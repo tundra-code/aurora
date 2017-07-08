@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "./node_modules/.bin/jest",
+    "test-watch": "./node_modules/.bin/jest --watch",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages; exit 0",
     "lint-fix": "./node_modules/.bin/eslint --fix packages; exit 0"
@@ -13,13 +14,13 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^4.1.1",
+    "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
+    "jest": "^20.0.4",
     "plop": "^1.8.0",
     "prettier": "^1.5.2"
   },
-  "dependencies": {
-    "jest": "^20.0.4"
-  }
+  "dependencies": {}
 }

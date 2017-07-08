@@ -3,17 +3,23 @@
 module.exports = {
   env: {
     es6: true,
-    node: true
+    node: true,
+    jest: true
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
-  plugins: ["prettier", "react", "import"],
+  plugins: ["prettier", "react", "import", "fp", "unicorn"],
   rules: {
     curly: "error",
     "import/no-extraneous-dependencies": [
       "error",
       { devDependencies: ["tests*/**", "scripts/**"] }
     ],
-    "import/no-unresolved": "error",
+    "unicorn/explicit-length-check": "error",
+    "unicorn/custom-error-definition": "error",
+    "unicorn/prefer-type-error": "error",
+    "unicorn/no-array-instanceof": "error",
+    "fp/no-get-set": "error",
+    "fp/no-mutating-assign": "error",
     "no-else-return": "error",
     "no-inner-declarations": "error",
     "no-unneeded-ternary": "error",
@@ -29,6 +35,8 @@ module.exports = {
     "no-use-before-define": "error",
     "no-unused-expressions": "error",
     "no-duplicate-imports": "error",
+    "react/display-name": "off",
+    "react/no-deprecated": "error",
     eqeqeq: "error",
     complexity: "error",
     "consistent-return": "error",
@@ -38,7 +46,6 @@ module.exports = {
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "prettier/prettier": "error",
-    "react/no-deprecated": "error",
     strict: "error",
     "symbol-description": "error",
     "max-depth": "error",
