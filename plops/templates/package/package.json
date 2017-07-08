@@ -1,0 +1,14 @@
+{
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}
