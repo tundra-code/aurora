@@ -5,12 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "plop": "./node_modules/.bin/plop"
+    "plop": "./node_modules/.bin/plop",
+    "lint": "./node_modules/.bin/eslint packages; exit 0",
+    "lint-fix": "./node_modules/.bin/eslint --fix packages; exit 0"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "plop": "^1.8.0"
+    "eslint": "^4.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-react": "^7.1.0",
+    "plop": "^1.8.0",
+    "prettier": "^1.5.2"
   },
   "dependencies": {
     "jest": "^20.0.4"
