@@ -6,6 +6,8 @@ cache:
     - node_modules
 after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
 before_script:
+  - apt-get update
+  - apt-get install -y libgtk2.0-0 libgconf-2-4 libasound2 libxtst6 libxss1 libnss3 xvfb
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
