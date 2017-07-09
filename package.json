@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "coveralls": "^2.13.1",
     "eslint": "^4.1.1",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.7.0",
@@ -24,10 +25,22 @@
     "prettier": "^1.5.2"
   },
   "jest": {
-    "projects": ["<rootDir>/packages/*"],
+    "projects": [
+      "<rootDir>/packages/*"
+    ],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/plops/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   }
 }
