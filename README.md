@@ -24,4 +24,4 @@ You also can have the tests running all the time with `npm run test-watch` which
 ### plop (or code generation)
 Plop is a code generation tool that you can use to setup a new package. If you run `npm run plop` you can then pick `package`, you can create a new module without having to actually create the files yourself. This saves a ton of time and helps with best practices. 
 
-You can learn more about [plop here.](https://github.com/amwmedia/plop) You also can see the way we use plop in [the plops folder](https://github.com/tundra-code/aurora/tree/master/plops).
+You can learn more about [plop here.](https://github.com/amwmedia/plop) You also can see the way we use plop in [the plops folder](https://github.com/tundra-code/aurora/tree/master/scripts/plops).
