@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest",
+    "test": "lerna exec npm install && xvfb-maybe ./node_modules/.bin/jest",
     "test-watch": "./node_modules/.bin/jest --watch",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages; exit 0",
@@ -27,7 +27,9 @@
     "lerna": "^2.0.0",
     "plop": "^1.8.0",
     "prettier": "^1.5.2",
-    "webpack": "^3.0.0"
+    "spectron": "^3.7.2",
+    "webpack": "^3.0.0",
+    "xvfb-maybe": "^0.2.1"
   },
   "jest": {
     "collectCoverage": true,
