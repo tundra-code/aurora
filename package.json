@@ -27,8 +27,7 @@
     "lerna": "^2.0.0",
     "plop": "^1.8.0",
     "prettier": "^1.5.2",
-    "webpack": "^3.0.0",
-    "spectron": "^3.7.2"
+    "webpack": "^3.0.0"
   },
   "jest": {
     "collectCoverage": true,

@@ -19,7 +19,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
-    "test": "jest"
+    "test": "lerna exec npm install && jest"
   },
   "devDependencies": {
     "electron": "^1.6.11",
