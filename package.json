@@ -8,7 +8,8 @@
     "test-watch": "./node_modules/.bin/jest --watch",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages; exit 0",
-    "lint-fix": "./node_modules/.bin/eslint --fix packages; exit 0"
+    "lint-fix": "./node_modules/.bin/eslint --fix packages; exit 0",
+    "dev": "cd ./packages/aurora-electron; npm run dev"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +25,7 @@
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
     "jest": "^20.0.4",
-    "lerna": "^2.0.0",
+    "lerna": "^2.0.0-rc.5",
     "plop": "^1.8.0",
     "prettier": "^1.5.2",
     "spectron": "^3.7.2",
