@@ -1,4 +1,4 @@
-const generators = require("./plops/generators");
+const generators = require("./scripts/plops/generators");
 
 /**
  * The final plop object.

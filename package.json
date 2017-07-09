@@ -1,5 +1,5 @@
 {
-  "name": "aurora-module-template",
+  "name": "@aurora/aurora",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,8 +19,15 @@
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
     "jest": "^20.0.4",
+    "lerna": "^2.0.0",
     "plop": "^1.8.0",
     "prettier": "^1.5.2"
   },
-  "dependencies": {}
+  "jest": {
+    "projects": ["<rootDir>/packages/*"],
+    "collectCoverage": true,
+    "coverageDirectory": "<rootDir>/coverage",
+    "coveragePathIgnorePatterns": ["/node_modules/", "/plops/"],
+    "coverageReporters": ["text", "lcov"]
+  }
 }
