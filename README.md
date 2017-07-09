@@ -1,4 +1,5 @@
 # Aurora 
+[![Build Status](https://travis-ci.org/tundra-code/aurora.svg?branch=master)](https://travis-ci.org/tundra-code/aurora)
 
 Aurora is a project in construction. Please come back later.
 
