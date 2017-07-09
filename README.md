@@ -1,5 +1,6 @@
 # Aurora 🌌
 [![Build Status](https://travis-ci.org/tundra-code/aurora.svg?branch=master)](https://travis-ci.org/tundra-code/aurora)
+[![Coverage Status](https://coveralls.io/repos/github/tundra-code/aurora/badge.svg)](https://coveralls.io/github/tundra-code/aurora)
 
 Aurora is a project in construction. Please come back later.
 
