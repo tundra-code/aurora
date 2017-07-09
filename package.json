@@ -27,22 +27,14 @@
     "lerna": "^2.0.0",
     "plop": "^1.8.0",
     "prettier": "^1.5.2",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "spectron": "^3.7.2"
   },
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/"
-    ],
-    "coverageReporters": [
-      "text",
-      "lcov"
-    ]
+    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/"],
+    "testPathIgnorePatterns": ["/node_modules/", "/templates/"],
+    "coverageReporters": ["text", "lcov"]
   }
 }
