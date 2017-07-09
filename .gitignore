@@ -1,3 +1,7 @@
+# Distributions
+dist
+build
+
 # Mac
 .DS_Store
 

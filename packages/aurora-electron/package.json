@@ -1,0 +1,30 @@
+{
+  "name": "@aurora/electron",
+  "version": "0.0.0",
+  "main": "compiled/index.js",
+  "description": "A note taking app.",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "build": {
+    "appId": "tundra.aurora",
+    "productName": "Aurora",
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  },
+  "scripts": {
+    "dev": "./node_modules/.bin/electron build/index.js && webpack --watch --colors --progress",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "electron": "^1.6.11",
+    "electron-builder": "^19.13.0",
+    "jest": "^20.0.4",
+    "spectron": "^3.7.2"
+  }
+}
