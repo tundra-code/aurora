@@ -9,6 +9,7 @@ install:
   - yarn add eslint-changes
 script:
   - ./node_modules/.bin/eslint-changes
+  - yarn test
 cache:
   directories:
     - node_modules
