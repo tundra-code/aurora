@@ -5,10 +5,8 @@ addons:
   apt:
     packages:
       - xvfb
-install:
-  - yarn add eslint-changes
 script:
-  - ./node_modules/.bin/eslint-changes
+  - yarn lint
   - yarn test
 cache:
   directories:
