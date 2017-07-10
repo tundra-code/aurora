@@ -1,6 +1,4 @@
-import { Application } from "spectron";
 import { startApplication } from "./helper.js";
-import fs from "fs";
 import path from "path";
 
 describe("Aurora", () => {
@@ -15,13 +13,14 @@ describe("Aurora", () => {
 
   afterEach(() => {
     if (app && app.isRunning()) {
-      return app.stop();
+      app.stop();
     }
   });
 
   test("It shows initial window", () => {
-    return app.client.getWindowCount().then(function(count) {
-      expect(count).toBe(1);
+    const ONLY_ONE_WINDOW = 1;
+    return app.client.getWindowCount().then(count => {
+      expect(count).toBe(ONLY_ONE_WINDOW);
     });
   });
 });

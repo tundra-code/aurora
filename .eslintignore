@@ -1,0 +1,8 @@
+build
+compiled
+dist
+
+# Don't remove this. While it's true eslintignore will ignore node_modules by default, it seems that 
+# it only ignores the ROOT level node_modules, so if you have a project with packages like this,
+# it will attempt to check all the node_modules inside them. Which takes FOREVER.
+node_modules

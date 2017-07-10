@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "lerna exec npm install && xvfb-maybe ./node_modules/.bin/jest",
+    "test": "./node_modules/.bin/lerna exec yarn && xvfb-maybe ./node_modules/.bin/jest",
     "test-watch": "./node_modules/.bin/jest --watch",
     "plop": "./node_modules/.bin/plop",
-    "lint": "./node_modules/.bin/eslint packages; exit 0",
-    "lint-fix": "./node_modules/.bin/eslint --fix packages; exit 0",
-    "dev": "cd ./packages/aurora-electron; npm run dev"
+    "lint": "./node_modules/.bin/eslint packages",
+    "lint-fix": "./node_modules/.bin/eslint --fix packages",
+    "dev": "cd ./packages/aurora-electron; yarn run dev",
+    "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-unicorn": "^2.1.2",
     "jest": "^20.0.4",
     "lerna": "^2.0.0-rc.5",
     "plop": "^1.8.0",
@@ -38,5 +40,8 @@
     "coveragePathIgnorePatterns": ["/node_modules/", "/templates/"],
     "testPathIgnorePatterns": ["/node_modules/", "/templates/"],
     "coverageReporters": ["text", "lcov"]
+  },
+  "dependencies": {
+    "electron": "^1.6.11"
   }
 }
