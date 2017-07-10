@@ -20,12 +20,12 @@ function startApplication(options) {
   if (process.env.CI) {
     options.startTimeout = 30000;
   }
-
   const app = new Application(options);
+
   return app.start().then(() => {
     expect(app.isRunning()).toBe(true);
     return app;
   });
 }
 
-export { startApplication };
+export { startApplication, getElectronPath };

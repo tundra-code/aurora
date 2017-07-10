@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/lerna exec yarn && xvfb-maybe ./node_modules/.bin/jest",
-    "test-watch": "./node_modules/.bin/jest --watch",
+    "test-watch": "./node_modules/.bin/xvfb-maybe ./node_modules/.bin/jest --watch",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
