@@ -6,7 +6,7 @@ addons:
     packages:
       - xvfb
 install:
-  - npm install eslint-changes
+  - yarn add eslint-changes
 script:
   - ./node_modules/.bin/eslint-changes
 cache:
