@@ -4,6 +4,18 @@
 
 Aurora is a project in construction. Please come back later.
 
+## Setup and Running
+
+To setup dependencies, just run the following in your terminal.
+``` bash
+npm install
+```
+
+Then, you can launch the development version of application with 
+``` bash
+npm run dev
+```
+
 ## Dev Scripts
 
 Aurora comes with a few tools that make developing it much nicer. 

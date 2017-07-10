@@ -15,7 +15,7 @@
     }
   },
   "scripts": {
-    "dev": "./node_modules/.bin/electron build/index.js && webpack --watch --colors --progress",
+    "dev": "./node_modules/.bin/electron compiled/index.js && webpack --watch --colors --progress",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
