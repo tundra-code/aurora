@@ -5,6 +5,9 @@ addons:
   apt:
     packages:
       - xvfb
+script:
+  - yarn lint
+  - yarn test
 cache:
   directories:
     - node_modules

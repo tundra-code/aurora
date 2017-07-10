@@ -10,10 +10,6 @@ module.exports = {
   plugins: ["prettier", "react", "import", "fp", "unicorn"],
   rules: {
     curly: "error",
-    "import/no-extraneous-dependencies": [
-      "error",
-      { devDependencies: ["tests*/**", "scripts/**"] }
-    ],
     "unicorn/explicit-length-check": "error",
     "unicorn/custom-error-definition": "error",
     "unicorn/prefer-type-error": "error",
@@ -39,7 +35,6 @@ module.exports = {
     "react/no-deprecated": "error",
     eqeqeq: "error",
     complexity: "error",
-    "consistent-return": "error",
     "block-scoped-var": "error",
     "dot-notation": "error",
     "one-var": ["error", "never"],
@@ -57,6 +52,8 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true
-    }
+    },
+    ecmaVersion: 2017,
+    sourceType: "module"
   }
 };
