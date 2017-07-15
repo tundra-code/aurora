@@ -1,6 +1,7 @@
 # Distributions
 dist
 build
+compiled
 
 # Mac
 .DS_Store
