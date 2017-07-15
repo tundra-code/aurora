@@ -1,6 +1,6 @@
 {
   "name": "@aurora/aurora",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "jest": "^20.0.4",
     "lerna": "^2.0.0-rc.5",
     "plop": "^1.8.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.5.2",
     "spectron": "^3.7.2",
     "webpack": "^3.0.0",
@@ -42,6 +43,8 @@
     "coverageReporters": ["text", "lcov"]
   },
   "dependencies": {
-    "electron": "^1.6.11"
-  }
+    "electron": "^1.6.11",
+    "stop-if": "^1.0.1"
+  },
+  "precommit": ["lint", "test"]
 }
