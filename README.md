@@ -46,3 +46,25 @@ You also can have the tests running all the time with `yarn run test-watch` whic
 Plop is a code generation tool that you can use to setup a new package. If you run `yarn run plop` you can then pick `package`, you can create a new module without having to actually create the files yourself. This saves a ton of time and helps with best practices. 
 
 You can learn more about [plop here.](https://github.com/amwmedia/plop) You also can see the way we use plop in [the plops folder](https://github.com/tundra-code/aurora/tree/master/scripts/plops).
+
+## Pull Requests and Forks
+
+To submit code to this repo, it's probably best to submit a pull request. If you've never submitted one before, here's [two](https://github.com/CPAN-PRC/resources/wiki/My-first-Pull-Request) [guides](https://github.com/sqlcollaborative/dbatools/wiki/Your-First-Pull-Request). 
+
+You'll need to create a fork before you submit your first PR. You can do that by clicking the "fork" button at the top of the repo on Github. That will create a copy of the repo on YOUR github account. So for example, Flaque's fork is at https://github.com/flaque/aurora instead of `/tundra-code/aurora`. **You should clone the fork, NOT the repo**.
+
+Once you have cloned the fork, you should setup an `upstream` branch on your local git repo like so:
+
+``` bash
+$ git remote add upstream https://github.com/tundra-code/aurora.git
+```
+
+Then, when you want to pull changes from the `/tundra-code/aurora` repo, you can run: 
+
+``` bash
+$ git pull upstream master
+```
+
+You can then when push whatever you want to your fork. When you're ready to merge that code into the main project, you can go to your fork and submit a PR to the original branch.
+
+When you submit your pull request (PR), [travis](https://travis-ci.org/), our build system will run the tests and linter against your code and either approve or reject your code. If all goes well, you should generally ask for a code review before merging your PR. In your PR, there will be a little bar on the right that will give you suggestions on who you should ask for a code review.
