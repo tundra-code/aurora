@@ -1,7 +1,7 @@
 {
   "name": "@aurora/electron",
   "version": "0.0.0",
-  "main": "compiled/index.js",
+  "main": "compiled/main.js",
   "description": "A note taking app.",
   "dependencies": {
     "react": "^15.6.1",
@@ -15,15 +15,22 @@
     }
   },
   "scripts": {
-    "dev": "./node_modules/.bin/electron compiled/index.js && webpack --watch --colors --progress",
+    "build": "yarn run build:main; yarn run build:renderer",
+    "build:main": "webpack --colors --progress --config webpack.config.main.js",
+    "build:renderer": "webpack --colors --progress --config webpack.config.renderer.js",
+    "build-watch:main": "yarn run build:main -- --watch",
+    "build-watch:renderer": "yarn run build:renderer -- --watch",
+    "dev": "yarn build; ./node_modules/.bin/electron .; yarn build-watch:renderer",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "test": "jest"
   },
   "devDependencies": {
+    "concurrently": "^3.5.0",
     "electron": "^1.6.11",
     "electron-builder": "^19.13.0",
+    "html-webpack-plugin": "^2.29.0",
     "jest": "^20.0.4",
     "spectron": "^3.7.2"
   }

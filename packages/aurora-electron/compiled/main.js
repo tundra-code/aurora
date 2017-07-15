@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,15 +74,39 @@ module.exports = require("electron");
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("url");
+
+/***/ }),
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(__dirname) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_electron__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_url__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_url___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_url__);
+
+
 
 
 let mainWindow = null;
+
+const indexPath = __WEBPACK_IMPORTED_MODULE_2_url___default.a.format({
+  pathname: __WEBPACK_IMPORTED_MODULE_1_path___default.a.join(__dirname, "index.html"),
+  protocol: "file:",
+  slashes: true
+});
 
 __WEBPACK_IMPORTED_MODULE_0_electron__["app"].on("window-all-closed", () => {
   if (process.platform !== "darwin") {
@@ -92,13 +116,12 @@ __WEBPACK_IMPORTED_MODULE_0_electron__["app"].on("window-all-closed", () => {
 
 __WEBPACK_IMPORTED_MODULE_0_electron__["app"].on("ready", () => {
   mainWindow = new __WEBPACK_IMPORTED_MODULE_0_electron__["BrowserWindow"]({ width: 800, height: 600 });
-  mainWindow.loadURL("file://" + __dirname + "/index.html");
+  mainWindow.loadURL(indexPath);
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
 });
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, "/"))
 
 /***/ })
 /******/ ]);
