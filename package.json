@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/lerna exec yarn && xvfb-maybe ./node_modules/.bin/jest",
+    "test": "./node_modules/.bin/lerna exec npm install && xvfb-maybe ./node_modules/.bin/jest",
     "test-watch": "./node_modules/.bin/xvfb-maybe ./node_modules/.bin/jest --watch",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
-    "dev": "cd ./packages/aurora-electron; yarn run dev",
+    "dev": "lerna boostrap; cd ./packages/aurora-electron; npm run dev",
     "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'"
   },
   "author": "",
@@ -44,7 +44,8 @@
   },
   "dependencies": {
     "electron": "^1.6.11",
+    "linklocal": "^2.8.1",
     "stop-if": "^1.0.1"
   },
-  "precommit": ["lint", "test"]
+  "precommit": ["lint"]
 }

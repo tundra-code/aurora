@@ -6,6 +6,10 @@ module.exports = {
     node: true,
     jest: true
   },
+  globals: {
+    document: true,
+    window: true
+  },
   extends: ["eslint:recommended", "plugin:react/recommended"],
   plugins: ["prettier", "react", "import", "fp", "unicorn"],
   rules: {

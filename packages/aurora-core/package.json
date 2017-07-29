@@ -1,0 +1,12 @@
+{
+  "name": "@aurora/core",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}
