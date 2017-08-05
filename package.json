@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/lerna exec npm install && xvfb-maybe ./node_modules/.bin/jest --runInBand",
+    "test": "./node_modules/.bin/lerna bootstrap && xvfb-maybe ./node_modules/.bin/jest --runInBand",
     "test-watch": "./node_modules/.bin/jest --watch --runInBand",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
@@ -51,6 +51,7 @@
     ]
   },
   "dependencies": {
+    "@vx/shape": "0.0.131",
     "linklocal": "^2.8.1",
     "stop-if": "^1.0.1"
   },
