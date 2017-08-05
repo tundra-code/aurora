@@ -8,7 +8,8 @@ module.exports = {
   },
   globals: {
     document: true,
-    window: true
+    window: true,
+    jasmine: true
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
   plugins: ["prettier", "react", "import", "fp", "unicorn"],
@@ -30,7 +31,6 @@ module.exports = {
     "no-undef-init": "error",
     "no-self-compare": "error",
     "no-throw-literal": "error",
-    "no-magic-numbers": "error",
     "no-useless-concat": "error",
     "no-use-before-define": "error",
     "no-unused-expressions": "error",

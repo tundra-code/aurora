@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/lerna exec npm install && xvfb-maybe ./node_modules/.bin/jest",
-    "test-watch": "./node_modules/.bin/xvfb-maybe ./node_modules/.bin/jest --watch",
+    "test": "./node_modules/.bin/lerna exec npm install && xvfb-maybe ./node_modules/.bin/jest --runInBand",
+    "test-watch": "./node_modules/.bin/jest --watch --runInBand",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
@@ -19,7 +19,6 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "coveralls": "^2.13.1",
-    "electron-builder": "^19.13.0",
     "eslint": "^4.1.1",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.7.0",
@@ -31,21 +30,31 @@
     "plop": "^1.8.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.5.2",
-    "spectron": "^3.7.2",
     "webpack": "^3.0.0",
-    "xvfb-maybe": "^0.2.1"
+    "xvfb-maybe": "^0.2.1",
+    "jest-cli": "^20.0.4"
   },
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   },
   "dependencies": {
-    "electron": "^1.6.11",
     "linklocal": "^2.8.1",
     "stop-if": "^1.0.1"
   },
-  "precommit": ["lint"]
+  "precommit": [
+    "lint"
+  ]
 }
