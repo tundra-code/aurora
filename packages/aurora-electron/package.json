@@ -4,11 +4,10 @@
   "main": "compiled/main.js",
   "description": "A note taking app.",
   "dependencies": {
-    "@aurora/core": "*",
-    "@vx/shape": "0.0.131",
     "promise": "^8.0.1",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "sea-floor": "^0.2.3"
   },
   "build": {
     "appId": "tundra.aurora",
@@ -18,12 +17,7 @@
     }
   },
   "scripts": {
-    "build": "npm run build:main; npm run build:renderer",
-    "build:main": "webpack --colors --progress --config webpack.config.main.js",
-    "build:renderer": "webpack --colors --progress --config webpack.config.renderer.js",
-    "build-watch:main": "npm run build:main -- --watch",
-    "build-watch:renderer": "npm run build:renderer -- --watch",
-    "dev": "npm run build; ./node_modules/.bin/electron .; npm run build-watch:renderer",
+    "dev": "sea dev src/index.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "test": "jest"

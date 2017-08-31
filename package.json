@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/lerna bootstrap && xvfb-maybe ./node_modules/.bin/jest --runInBand",
+    "test":
+      "./node_modules/.bin/lerna bootstrap && xvfb-maybe ./node_modules/.bin/jest --runInBand",
     "test-watch": "./node_modules/.bin/jest --watch --runInBand",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
     "dev": "lerna boostrap; cd ./packages/aurora-electron; npm run dev",
-    "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'"
+    "fmt":
+      "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'"
   },
   "author": "",
   "license": "ISC",
@@ -26,36 +28,26 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-unicorn": "^2.1.2",
     "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "lerna": "^2.0.0-rc.5",
     "plop": "^1.8.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.5.2",
     "webpack": "^3.0.0",
-    "xvfb-maybe": "^0.2.1",
-    "jest-cli": "^20.0.4"
+    "xvfb-maybe": "^0.2.1"
   },
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/"
-    ],
-    "coverageReporters": [
-      "text",
-      "lcov"
-    ]
+    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/"],
+    "testPathIgnorePatterns": ["/node_modules/", "/templates/"],
+    "coverageReporters": ["text", "lcov"]
   },
   "dependencies": {
     "@vx/shape": "0.0.131",
+    "babel-loader": "^7.1.2",
     "linklocal": "^2.8.1",
+    "sea-floor": "^0.2.2",
     "stop-if": "^1.0.1"
-  },
-  "precommit": [
-    "lint"
-  ]
+  }
 }
