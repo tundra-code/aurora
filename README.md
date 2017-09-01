@@ -45,6 +45,28 @@ Plop is a code generation tool that you can use to setup a new package. If you r
 
 You can learn more about [plop here.](https://github.com/amwmedia/plop) You also can see the way we use plop in [the plops folder](https://github.com/tundra-code/aurora/tree/master/scripts/plops).
 
+## CSS
+
+Aurora uses [styled-components](https://www.styled-components.com/) for it's CSS. If you've never used a CSS-in-JS solution, this might be a little bit different than what you're used to. Instead of creating an HTML file and a CSS file and then linking your css over to your HTML, we do everything in Javascript. This may seem scary at first, but you end up with vastly cleaner CSS and a lot easier refactoring.
+
+Styled-components let us define a React component with some CSS using [template-literal](https://www.styled-components.com/docs/advanced#tagged-template-literals) syntax like this:
+
+``` js 
+import styled from 'styled-components';
+
+const Blue = styled.div`color: blue;`;
+```
+
+Then we can use that React component as a wrapper to change the styles of other components.
+
+``` js 
+const SomeBlueText = (
+    <Blue> Hello I am Blue. </Blue>
+);
+```
+
+There's a whole lot more you can do with styled-components, but that's the basics. Learn more [here.](https://www.styled-components.com/docs) 
+
 ## Pull Requests and Forks
 
 To submit code to this repo, it's probably best to submit a pull request. If you've never submitted one before, here's [two](https://github.com/CPAN-PRC/resources/wiki/My-first-Pull-Request) [guides](https://github.com/sqlcollaborative/dbatools/wiki/Your-First-Pull-Request). 

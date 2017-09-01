@@ -11,8 +11,7 @@
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
     "dev": "sea dev packages/aurora-electron/src/index.js",
-    "fmt":
-      "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'"
+    "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'"
   },
   "author": "",
   "license": "ISC",
@@ -38,15 +37,25 @@
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   },
   "dependencies": {
     "@vx/shape": "0.0.131",
     "babel-loader": "^7.1.2",
     "linklocal": "^2.8.1",
     "sea-floor": "^0.3.2",
-    "stop-if": "^1.0.1"
+    "stop-if": "^1.0.1",
+    "styled-components": "^2.1.2"
   }
 }
