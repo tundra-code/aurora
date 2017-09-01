@@ -9,5 +9,5 @@ Just run `npm run plop` and select `package`.
 ## Rules 
 Packages must follow the following rules:
 
-1. Packages must contain their own `package.json`.
-2. Packages must start with `aurora-`.
+1. Packages must start with `aurora-`.
+2. Packages must have their own README.
