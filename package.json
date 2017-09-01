@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "xvfb-maybe ./node_modules/.bin/jest --runInBand",
+    "test": "./node_modules/.bin/jest",
+    "test-on-ci": "xvfb-maybe ./node_modules/.bin/jest --runInBand",
     "test-watch": "./node_modules/.bin/jest --watch --runInBand",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
