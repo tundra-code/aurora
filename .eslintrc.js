@@ -15,12 +15,6 @@ module.exports = {
   plugins: ["prettier", "react", "import", "fp", "unicorn"],
   rules: {
     curly: "error",
-    "unicorn/explicit-length-check": "error",
-    "unicorn/custom-error-definition": "error",
-    "unicorn/prefer-type-error": "error",
-    "unicorn/no-array-instanceof": "error",
-    "fp/no-get-set": "error",
-    "fp/no-mutating-assign": "error",
     "no-else-return": "error",
     "no-inner-declarations": "error",
     "no-unneeded-ternary": "error",
