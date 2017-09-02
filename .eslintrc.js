@@ -21,7 +21,6 @@ module.exports = {
     "no-useless-return": "error",
     "no-var": "error",
     "no-new": "error",
-    "no-undefined": "error",
     "no-undef-init": "error",
     "no-self-compare": "error",
     "no-throw-literal": "error",

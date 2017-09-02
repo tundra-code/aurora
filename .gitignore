@@ -1,6 +1,8 @@
 # sea-floor
 .sea
 
+.compiled
+
 # Distributions
 dist
 build
