@@ -1,3 +1,18 @@
+const path = require("path");
+
+// This some ugly shit
+const DRAFT_JS_CSS_PATH = path.resolve(
+  __dirname,
+  "../",
+  "../",
+  "../",
+  "../",
+  "node_modules",
+  "draft-js",
+  "dist",
+  "Draft.css"
+);
+
 function htmlDataUri(filepath) {
   const markup = `
         <!DOCTYPE html>
@@ -5,9 +20,10 @@ function htmlDataUri(filepath) {
           <head>
             <title>Hi</title>
             <meta charset="UTF-8">
+            <link rel="stylesheet" type="text/css" href="${DRAFT_JS_CSS_PATH}">
           </head>
             <div id="root">
-
+              <!-- React goes here --> 
             </div>
           <footer>
             <script> 

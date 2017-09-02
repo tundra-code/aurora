@@ -23,7 +23,7 @@ const NAME_PROMPT = {
 
 const ADD_INDEX = {
   type: "add",
-  path: getOutputPath("src/index.js"),
+  path: getOutputPath("index.js"),
   templateFile: getTemplatePath("index.js")
 };
 
@@ -39,14 +39,8 @@ const ADD_README = {
   templateFile: getTemplatePath("README.md")
 };
 
-const ADD_PACKAGE_JSON = {
-  type: "add",
-  path: getOutputPath("package.json"),
-  templateFile: getTemplatePath("package.json")
-};
-
 module.exports = {
   description: "creates a generic aurora-componentName style package",
   prompts: [NAME_PROMPT],
-  actions: [ADD_INDEX, ADD_TEST, ADD_README, ADD_PACKAGE_JSON]
+  actions: [ADD_INDEX, ADD_TEST, ADD_README]
 };

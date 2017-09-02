@@ -1,13 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-
-const Blue = styled.div`color: blue;`;
+import Editor from "../aurora-editor";
 
 /**
  * The main app.
  */
 function Core() {
-  return <Blue>Hello World</Blue>;
+  return <Editor />;
 }
 
 export default Core;
