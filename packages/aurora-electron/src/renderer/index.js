@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Core from "../../../aurora-core/index.js";
+import Electron from "./components/Electron.js";
 
 export default () => {
-  ReactDOM.render(<Core />, document.getElementById("root"));
+  ReactDOM.render(<Electron />, document.getElementById("root"));
 };

@@ -1,5 +1,6 @@
 const electron = require("electron");
-const htmlDataUri = require("./html.js");
+const path = require("path");
+const url = require("url");
 
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
@@ -8,12 +9,22 @@ const BrowserWindow = electron.BrowserWindow;
 // be closed automatically when the JavaScript object is garbage collected.
 global.mainWindow = undefined;
 
-function createWindow(rendererFilepath) {
+function createWindow() {
   // Create the browser window.
-  global.mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  global.mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    titleBarStyle: "hidden"
+  });
 
   // and load the index.html of the app.
-  global.mainWindow.loadURL(htmlDataUri(rendererFilepath));
+  global.mainWindow.loadURL(
+    url.format({
+      pathname: path.join(__dirname, "index.html"),
+      protocol: "file:",
+      slashes: true
+    })
+  );
 
   // Emitted when the window is closed.
   global.mainWindow.on("closed", () => {
