@@ -1,11 +1,16 @@
 import React from "react";
-import Editor from "../aurora-editor";
+import Feed from "../aurora-feed";
+import { Background } from "../aurora-ui";
 
 /**
  * The main app.
  */
 function Core() {
-  return <Editor />;
+  return (
+    <Background>
+      <Feed />
+    </Background>
+  );
 }
 
 export default Core;

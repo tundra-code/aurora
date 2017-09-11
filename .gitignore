@@ -2,6 +2,7 @@
 .sea
 
 .compiled
+.storybook
 
 # Distributions
 dist

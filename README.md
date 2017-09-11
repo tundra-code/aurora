@@ -40,10 +40,38 @@ You can test the application with `npm run test` which will run [jest](https://f
 
 You also can have the tests running all the time with `npm run test-watch` which will run `jest --watch`, which sets up jest to automatically figure out which tests to run based on the files you're working with. It's super fast and a great way to immediately tell if you've broken anything.
 
+#### Snapshot testing
+
+Jest allows you to make a really simple tests called "Snapshots" for React components. They're basically like tiny rendered versions of the HTML from the React components. 
+
+A simple snapshot test looks like this:
+
+```js
+import renderer from "react-test-renderer";
+
+test("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <MyReactThing/>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+```
+
+When you run your tests, if a snapshot has been changed it will alert you. If you meant to do this, then you can update automagically it by pressing "u". (It will have a prompt you can follow). 
+
+If you didn't mean to do this, then go fix your things.
+
+You can learn more about snapshot testing here. 
+
 ### plop (or code generation)
 Plop is a code generation tool that you can use to setup a new package. If you run `npm run plop` you can then pick `package`, you can create a new module without having to actually create the files yourself. This saves a ton of time and helps with best practices. 
 
 You can learn more about [plop here.](https://github.com/amwmedia/plop) You also can see the way we use plop in [the plops folder](https://github.com/tundra-code/aurora/tree/master/scripts/plops).
+
+### storybook
+[Storybook](https://storybook.js.org/) is a development environment for creating UI pieces. It's a great way to document React component and to play with it. You can make a story inside of the "stories" folder. You can launch it with `npm run storybook`. It will then launch a webpage you can visit at `localhost:6006`. 
 
 ## CSS
 
@@ -66,6 +94,32 @@ const SomeBlueText = (
 ```
 
 There's a whole lot more you can do with styled-components, but that's the basics. Learn more [here.](https://www.styled-components.com/docs) 
+
+## Main Packages
+
+This project is split into several different packages. The design is split into three parts. 
+
+## Entry points
+This is where a user interacts with the app.
+As of writing there's only one: `aurora-electron`. In the future, these could be `aurora-ios` or `aurora-web` or whatnot. Code specific to each platform can go in here.
+
+## Core
+Core should generally be one package and should be kept small. `aurora-core` is the main "app". It's where all the react components are put together to be a single main app. 
+
+## Components
+This is basically the rest of the app. These modules come together to make core. Never should they directly talk to any Entry Point.
+
+### `aurora-ui`
+This is the core library of static React UI components. They're primarily made with [styled-components](https://www.styled-components.com/).
+
+### `aurora-theme`
+This takes advantage of `styled-components` [themeing support](https://www.styled-components.com/docs/advanced#theming) to define the common colors, fonts, and spacing across the app. 
+
+### `aurora-feed`
+This makes up the majority of the main screen. It encorporates the "feed" of note cards and it's editor that can populate new note cards.
+
+### `aurora-editor`
+Anywhere the user can type, they should be typing on our `Editor`. It's built in [draft-js](https://draftjs.org/) which should allow us to change things up.
 
 ## Pull Requests and Forks
 

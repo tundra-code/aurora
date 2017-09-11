@@ -11,6 +11,7 @@ const DragHeader = styled.div`
   top: 0;
   position: fixed;
   height: ${props => props.dragRegionSize};
+  background: transparent;
 `;
 
 /**

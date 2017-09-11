@@ -11,7 +11,9 @@
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
     "dev": "cd packages/aurora-electron; npm run dev",
-    "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'"
+    "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "",
   "license": "ISC",
@@ -35,7 +37,8 @@
     "prettier": "^1.5.2",
     "react-test-renderer": "^15.6.1",
     "webpack": "^3.0.0",
-    "xvfb-maybe": "^0.2.1"
+    "xvfb-maybe": "^0.2.1",
+    "@storybook/react": "^3.2.8"
   },
   "jest": {
     "collectCoverage": true,
@@ -57,6 +60,8 @@
     "@vx/shape": "0.0.131",
     "babel-loader": "^7.1.2",
     "draft-js": "^0.10.1",
+    "draftjs-utils": "^0.8.6",
+    "fuse.js": "^3.1.0",
     "linklocal": "^2.8.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
