@@ -1,14 +1,11 @@
 const { app } = require("electron");
 const createWindow = require("./window.js");
-const path = require("path");
-
-const rendererFilepath = path.resolve(".compiled/renderer.bundle.js");
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
-  createWindow(rendererFilepath);
+  createWindow();
 });
 
 // Quit when all windows are closed.
