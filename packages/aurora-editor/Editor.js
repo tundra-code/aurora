@@ -34,6 +34,10 @@ class AuroraEditor extends React.Component {
     this.domEditor.focus();
   }
 
+  componentDidUpdate() {
+    this.domEditor.focus();
+  }
+
   // If we found the correct key commands to be a submit event, tell
   // draft that we found a SUBMIT_EVENT
   onKeyPressed(event) {
