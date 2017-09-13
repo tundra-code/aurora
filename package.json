@@ -10,7 +10,7 @@
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
-    "dev": "cd packages/aurora-electron; npm run dev",
+    "dev": "cd packages/aurora-electron & npm run dev",
     "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
