@@ -7,8 +7,8 @@ import { Background } from "../aurora-ui";
  */
 function Core() {
   return (
-    <Background>
-      <Feed />
+    <Background className="background">
+      <Feed className="feed" />
     </Background>
   );
 }
