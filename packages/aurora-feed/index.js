@@ -2,8 +2,22 @@ import React from "react";
 import { Card } from "../aurora-ui";
 import { CardAtBottomEditor } from "../aurora-editor";
 import search from "../aurora-search";
+import styled from "styled-components";
 
 const TUTORIAL_MESSAGES = [{ text: "Press Shift+Enter to add a new note." }];
+
+const FlexSeperated = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+`;
+
+const NoteWrapper = styled.div`
+  width: 100%;
+  padding-bottom: 50px;
+`;
 
 class Feed extends React.Component {
   constructor(props) {
@@ -46,17 +60,20 @@ class Feed extends React.Component {
 
   render() {
     const cards = this.state.messages.map((note, index) => (
-      <Card key={index}> {note.text} </Card>
+      <Card key={index} expanded>
+        {note.text}
+      </Card>
     ));
 
     return (
-      <div>
-        {cards}
+      <FlexSeperated className="flex-seperated">
+        <NoteWrapper className="note-wrapper">{cards}</NoteWrapper>
         <CardAtBottomEditor
+          className="card-at-bottom-editor"
           onSubmit={this.onSubmit}
           onChange={this.searchCard}
         />
-      </div>
+      </FlexSeperated>
     );
   }
 }

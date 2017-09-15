@@ -22,6 +22,7 @@ const PushedDown = styled.div`
   padding-top: ${props =>
     props.dragRegionSize ? props.dragRegionSize : "50px"};
   height: 100%;
+  box-sizing: border-box;
 `;
 
 /**
@@ -30,8 +31,16 @@ const PushedDown = styled.div`
  */
 const Draggable = ({ children, dragRegionSize }) => {
   return (
-    <PushedDown dragRegionSize={dragRegionSize} key="main">
-      <DragHeader dragRegionSize={dragRegionSize} key="dragHeader" />
+    <PushedDown
+      className="pushed-down"
+      dragRegionSize={dragRegionSize}
+      key="main"
+    >
+      <DragHeader
+        className="drag-header"
+        dragRegionSize={dragRegionSize}
+        key="dragHeader"
+      />
       {children}
     </PushedDown>
   );

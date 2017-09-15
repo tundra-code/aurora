@@ -7,6 +7,7 @@ const Card = styled.div`
   width: ${props => (props.expanded ? "100%" : "initial")};
   padding: ${props => props.theme.spacing.padding};
   margin-bottom: ${props => props.theme.spacing.padding};
+  box-sizing: border-box;
 `;
 
 // Use the base theme by default

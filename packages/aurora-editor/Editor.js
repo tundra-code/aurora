@@ -71,6 +71,7 @@ class AuroraEditor extends React.Component {
         keyBindingFn={this.onKeyPressed}
         handleKeyCommand={this.handleKeyCommand}
         ref={this.setDomEditorRef}
+        className="editor"
       />
     );
   }
