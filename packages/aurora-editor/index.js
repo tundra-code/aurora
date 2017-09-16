@@ -1,4 +1,4 @@
-import Editor from "./Editor.js";
-import CardAtBottomEditor from "./CardAtBottomEditor.js";
+import Editor from "./AbstractEditor.js";
+import modifiers from "./modifiers";
 
-export { Editor, CardAtBottomEditor };
+export { Editor, modifiers };

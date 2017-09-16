@@ -1,11 +1,12 @@
 import React from "react";
 
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import { linkTo } from "@storybook/addon-links";
 import { Welcome } from "@storybook/react/demo";
 import { Card, Background } from "../packages/aurora-ui";
 import styled from "styled-components";
+import { canSubmit } from "./editors.js";
+import feed from "./feed.js";
 
 const Expanded = styled.div`
   width: 100%;
@@ -35,3 +36,7 @@ storiesOf("Card", module).add("with rich text", () => (
     </Expanded>
   </Background>
 ));
+
+storiesOf("Editor", module).add("canSubmit", canSubmit);
+
+storiesOf("Feed", module).add("default", feed);
