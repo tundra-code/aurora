@@ -3,6 +3,7 @@ import { Card } from "../aurora-ui";
 import { CardAtBottomEditor } from "../aurora-editor";
 import search from "../aurora-search";
 import styled from "styled-components";
+import _ from "lodash";
 
 const TUTORIAL_MESSAGES = [{ text: "Press Shift+Enter to add a new note." }];
 
@@ -33,6 +34,11 @@ class Feed extends React.Component {
   }
 
   addCard(text) {
+    // Don't add a note if it doesn't exist. AUR-20
+    if (!text || _.trim(text).length === 0) {
+      return;
+    }
+
     this.setState(prevState => {
       const note = { text };
       prevState.messages.push(note);
