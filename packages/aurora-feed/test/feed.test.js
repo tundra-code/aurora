@@ -41,4 +41,13 @@ describe("feed", () => {
 
     expect(wrapper.containsMatchingElement(<span>{text}</span>)).toBe(true);
   });
+
+  it("won't submit an empty card", () => {
+    const wrapper = mount(<Feed />);
+    wrapper.get(0).onSubmit(EditorState.createEmpty());
+
+    // Note that `wrapper.find(".public-DraftEditor-content").length` is greater
+    // than 1 if something was added.
+    expect(wrapper.find(".public-DraftEditor-content").length).toBe(1);
+  });
 });
