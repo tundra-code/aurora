@@ -9,7 +9,7 @@ const NOT_HANDLED = "not-handled";
 /**
  * Returns true if this event is what we defined to be submit.
  * Currently Shift+Enter
- * @param {SyntheticEvent} event 
+ * @param {SyntheticEvent} event
  */
 function isSubmitEvent(event) {
   const isEnter = event.nativeEvent.keyCode === 13;
@@ -47,6 +47,7 @@ function canSubmit(Editor) {
     render() {
       return (
         <Editor
+          placeholder="Type here to search and create a note"
           keyBindingFn={this.onKeyPressed}
           handleKeyCommand={this.handleKeyCommand}
           {...this.props}
