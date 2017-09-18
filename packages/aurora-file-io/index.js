@@ -1,21 +1,35 @@
-import {
-  getAuroraDirContext,
-  attachMetaData,
-  noteFileName,
-  noteFileExt
-} from "./util.js";
-import { convertFromRaw, EditorState } from "draft-js";
+import Jetpack from "fs-jetpack";
+const os = require("os"); // For some reason I cannot import using normal syntax so I have to do it this way.
+import { convertToRaw, convertFromRaw, EditorState } from "draft-js";
+
+const noteFileExt = ".aur";
+
+function getAuroraDirContext() {
+  return Jetpack.dir(os.homedir()).dir(".aurora");
+}
+
+function attachMetaData(editorState) {
+  const note = {
+    contentState: convertToRaw(editorState.getCurrentContent()),
+    date: new Date().getTime()
+  };
+  return note;
+}
+
+function noteFileName(note) {
+  return note.date + noteFileExt; // name based on date to ensure uniqueness
+}
 
 function save(editorState) {
   const context = getAuroraDirContext();
   const note = attachMetaData(editorState);
   context.writeAsync(noteFileName(note), note);
-  return note.date;
+  return note["date"];
 }
 
-function deleteNote(id) {
+function deleteNote(uuid) {
   const context = getAuroraDirContext();
-  context.removeAsync(id + noteFileExt);
+  context.removeAsync(uuid + noteFileExt);
 }
 
 function loadNotes(callback) {
@@ -25,16 +39,15 @@ function loadNotes(callback) {
 
   noteFiles.forEach(file => {
     context.readAsync(file).then(data => {
-      const json = JSON.parse(data);
+      var json = JSON.parse(data);
       const contentState = convertFromRaw(json.contentState);
       const editorState = EditorState.createWithContent(contentState);
-      const note = {
-        id: json.date,
-        editorState: editorState
-      };
+      var note = {
+        "uuid":json["date"],
+        "editorState":editorState
+      }
       notes.push(note);
-      const allNotesAreLoaded = notes.length === noteFiles.length;
-      if (allNotesAreLoaded) {
+      if (notes.length === noteFiles.length) { // this means all notes have been loaded
         callback(notes);
       }
     });
