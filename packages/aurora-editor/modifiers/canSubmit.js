@@ -47,7 +47,7 @@ function canSubmit(Editor) {
     render() {
       return (
         <Editor
-          placeholder="Type here to search and create a note"
+          placeholder="Type here to search or to create a note"
           keyBindingFn={this.onKeyPressed}
           handleKeyCommand={this.handleKeyCommand}
           {...this.props}
