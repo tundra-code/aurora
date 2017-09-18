@@ -7,12 +7,23 @@ const DeleteDiv = styled.div`
 `;
 
 class DeleteButton extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.onDelete = this.onDelete.bind(this);
+  }
+
   render() {
     return (
       <DeleteDiv>
-        Delete
+        <button type="button" onClick={this.onDelete}>Delete</button>
       </DeleteDiv>
     );
+  }
+
+  onDelete() {
+    let uuid = this.props.uuid;
+    this.props.onDelete(uuid);
   }
 }
 
