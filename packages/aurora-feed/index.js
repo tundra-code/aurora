@@ -57,6 +57,7 @@ class Feed extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.searchCard = this.searchCard.bind(this);
     this.addSavedNotes = this.addSavedNotes.bind(this);
+    this.onDelete = this.onDelete.bind(this);
     loadNotes(this.addSavedNotes);
   }
 
@@ -105,6 +106,10 @@ class Feed extends React.Component {
     });
   }
 
+  onDelete(key) {
+    console.log("Deleting " + key);
+  }
+
   onSubmit(editorState) {
     // Add a card with a copy of the editor state
     this.addCard(editorState);
@@ -122,8 +127,10 @@ class Feed extends React.Component {
     const notes = uuids.map(uuid => {
       return (
         <Note
+          uuid={uuid}
           key={uuid}
           defaultEditorState={this.state.shownNotes[uuid].editorState}
+          onDelete={this.onDelete}
         />
       );
     });

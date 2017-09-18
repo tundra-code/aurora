@@ -3,7 +3,7 @@
 exports[`Card renders correctly 1`] = `
 <div>
   <div
-    className="sc-bdVaJa bFWBJJ"
+    className="sc-bdVaJa cFlAQs"
   >
     <div>
       Hello I am some content

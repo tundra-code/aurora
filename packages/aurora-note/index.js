@@ -27,7 +27,7 @@ class Note extends React.Component {
             readOnly
           />
         </PartialWidthDiv>
-        <DeleteButton/>
+        <DeleteButton {...this.props}/>
       </Card>
     );
   }
