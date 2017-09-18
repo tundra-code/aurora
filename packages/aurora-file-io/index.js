@@ -1,12 +1,16 @@
-import { getAuroraDirContext, noteFileName, noteFileExt } from "./util.js";
-import { NoteModel } from "../aurora-note";
+import {
+  getAuroraDirContext,
+  attachMetaData,
+  noteFileName,
+  noteFileExt
+} from "./util.js";
+import { convertFromRaw, EditorState } from "draft-js";
 
-function save(note) {
-  if (!(note instanceof NoteModel)) {
-    throw new Error("Attempted to save something that is not a NoteModel.");
-  }
+function save(editorState) {
   const context = getAuroraDirContext();
-  context.writeAsync(noteFileName(note), note.toJSON());
+  const note = attachMetaData(editorState);
+  context.writeAsync(noteFileName(note), note);
+  return note["date"];
 }
 
 function deleteNote(uuid) {
@@ -21,9 +25,15 @@ function loadNotes(callback) {
 
   noteFiles.forEach(file => {
     context.readAsync(file).then(data => {
-      notes.push(NoteModel.fromFileData(data));
-      const allNotesAreLoaded = notes.length === noteFiles.length;
-      if (allNotesAreLoaded) {
+      var json = JSON.parse(data);
+      const contentState = convertFromRaw(json.contentState);
+      const editorState = EditorState.createWithContent(contentState);
+      var note = {
+        "uuid":json["date"],
+        "editorState":editorState
+      }
+      notes.push(note);
+      if (notes.length === noteFiles.length) { // this means all notes have been loaded
         callback(notes);
       }
     });
