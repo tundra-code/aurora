@@ -3,9 +3,8 @@ import Note from "../aurora-note";
 import FeedEditor from "./FeedEditor.js";
 import search from "../aurora-search";
 import styled from "styled-components";
-import uuidv4 from "uuid";
 import { EditorState } from "draft-js";
-import { save, loadNotes } from "../aurora-save";
+import { save, loadNotes, deleteNote } from "../aurora-file-io";
 import _ from "lodash";
 
 /**
@@ -25,8 +24,13 @@ const fromNotesToSearchableObjects = notes => {
  * Creates data that we can use for a Note
  * @param {EditorState} editorState
  */
-const addNewNoteData = (notes, editorState) => {
-  notes[uuidv4()] = { editorState };
+const addNewNoteData = (notes, note) => {
+  notes[note["uuid"]] = note;
+  return notes;
+};
+
+const removeNoteData = (notes, uuid) => {
+  delete notes[uuid];
   return notes;
 };
 
@@ -61,22 +65,22 @@ class Feed extends React.Component {
     loadNotes(this.addSavedNotes);
   }
 
-  addSavedNotes(editorStates) {
-    editorStates.forEach(state => {
-      this.addCard(state);
+  addSavedNotes(notes) {
+    notes.forEach(note => {
+      this.addCard(note);
     });
   }
 
-  addCard(editorState) {
+  addCard(note) {
     // Don't add a note if it doesn't exist. AUR-20
-    const text = editorState.getCurrentContent().getPlainText();
+    const text = note["editorState"].getCurrentContent().getPlainText();
     if (!text || _.trim(text).length === 0) {
       return;
     }
 
     this.setState(prevState => {
-      prevState.shownNotes = addNewNoteData(prevState.shownNotes, editorState);
-      prevState.allNotes = addNewNoteData(prevState.allNotes, editorState);
+      prevState.shownNotes = addNewNoteData(prevState.shownNotes, note);
+      prevState.allNotes = addNewNoteData(prevState.allNotes, note);
       return prevState;
     });
   }
@@ -106,14 +110,22 @@ class Feed extends React.Component {
     });
   }
 
-  onDelete(key) {
-    console.log("Deleting " + key);
+  onDelete(uuid) {
+    deleteNote(uuid);
+    this.setState(prevState => {
+      prevState.shownNotes = removeNoteData(prevState.shownNotes, uuid);
+      prevState.allNotes = removeNoteData(prevState.allNotes, uuid);
+      return prevState;
+    });
   }
 
   onSubmit(editorState) {
     // Add a card with a copy of the editor state
-    this.addCard(editorState);
-    save(editorState);
+    let uuid = save(editorState);
+    this.addCard({
+      "editorState":editorState,
+      "uuid":uuid
+    });
 
     // Clear the main editor's state
     this.setState({
@@ -124,6 +136,7 @@ class Feed extends React.Component {
   render() {
     // Create a note for each uuid
     const uuids = Object.keys(this.state.shownNotes);
+    console.log(uuids);
     const notes = uuids.map(uuid => {
       return (
         <Note

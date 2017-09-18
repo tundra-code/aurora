@@ -70,7 +70,6 @@
     "react-dom": "^15.6.1",
     "sea-floor": "^0.3.2",
     "stop-if": "^1.0.3",
-    "styled-components": "^2.1.2",
-    "uuid": "^3.1.0"
+    "styled-components": "^2.1.2"
   }
 }
