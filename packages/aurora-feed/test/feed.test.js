@@ -23,8 +23,11 @@ describe("feed", () => {
     const wrapper = mount(<Feed />);
     wrapper
       .get(0)
-      .addCard(
-        EditorState.createWithContent(ContentState.createFromText(text))
+      .addCard({
+        "uuid":0, // TODO: don't actually save this stuff in tests
+        "editorState":EditorState.createWithContent(ContentState.createFromText(text))
+      }
+
       );
 
     expect(wrapper.containsMatchingElement(<span>{text}</span>)).toBe(true);
