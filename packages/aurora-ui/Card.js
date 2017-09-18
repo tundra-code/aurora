@@ -8,6 +8,7 @@ const Card = styled.div`
   padding: ${props => props.theme.spacing.padding};
   margin-bottom: ${props => props.theme.spacing.padding};
   box-sizing: border-box;
+  overflow: hidden;
 `;
 
 // Use the base theme by default
