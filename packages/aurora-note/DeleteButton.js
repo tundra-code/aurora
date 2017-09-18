@@ -24,7 +24,7 @@ class DeleteButton extends React.Component {
   }
 
   onDelete() {
-    let id = this.props.id;
+    const id = this.props.id;
     this.props.onDelete(id);
   }
 }
