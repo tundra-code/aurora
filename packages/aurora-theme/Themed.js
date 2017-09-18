@@ -15,10 +15,6 @@ injectGlobal`
         margin: 0;
         background: ${base.colors.background};
     }
-    .public-DraftEditorPlaceholder-inner {
-      position: absolute;
-      color: #aaaaaa ;
-    }
 `;
 
 // A helper for wrapping something in the default theme.
