@@ -10,12 +10,12 @@ function save(editorState) {
   const context = getAuroraDirContext();
   const note = attachMetaData(editorState);
   context.writeAsync(noteFileName(note), note);
-  return note["date"];
+  return note.date;
 }
 
-function deleteNote(uuid) {
+function deleteNote(id) {
   const context = getAuroraDirContext();
-  context.removeAsync(uuid + noteFileExt);
+  context.removeAsync(id + noteFileExt);
 }
 
 function loadNotes(callback) {
@@ -25,15 +25,16 @@ function loadNotes(callback) {
 
   noteFiles.forEach(file => {
     context.readAsync(file).then(data => {
-      var json = JSON.parse(data);
+      const json = JSON.parse(data);
       const contentState = convertFromRaw(json.contentState);
       const editorState = EditorState.createWithContent(contentState);
-      var note = {
-        "uuid":json["date"],
-        "editorState":editorState
-      }
+      const note = {
+        id: json.date,
+        editorState: editorState
+      };
       notes.push(note);
-      if (notes.length === noteFiles.length) { // this means all notes have been loaded
+      const allNotesAreLoaded = notes.length === noteFiles.length;
+      if (allNotesAreLoaded) {
         callback(notes);
       }
     });

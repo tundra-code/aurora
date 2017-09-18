@@ -21,14 +21,12 @@ describe("feed", () => {
   it("can add a card", () => {
     const text = "Hey I am some text";
     const wrapper = mount(<Feed />);
-    wrapper
-      .get(0)
-      .addCard({
-        "uuid":0, // TODO: don't actually save this stuff in tests
-        "editorState":EditorState.createWithContent(ContentState.createFromText(text))
-      }
-
-      );
+    wrapper.get(0).addCard({
+      id: 0, // TODO: don't actually save this stuff in tests
+      editorState: EditorState.createWithContent(
+        ContentState.createFromText(text)
+      )
+    });
 
     expect(wrapper.containsMatchingElement(<span>{text}</span>)).toBe(true);
   });

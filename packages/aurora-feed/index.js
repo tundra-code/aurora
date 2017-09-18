@@ -11,11 +11,11 @@ import _ from "lodash";
  * Adds a "text" version of the editor state to each note in the notes object
  */
 const fromNotesToSearchableObjects = notes => {
-  const uuids = Object.keys(notes);
-  return uuids.map(uuid => {
+  const ids = Object.keys(notes);
+  return ids.map(id => {
     return {
-      text: notes[uuid].editorState.getCurrentContent().getPlainText(),
-      uuid: uuid
+      text: notes[id].editorState.getCurrentContent().getPlainText(),
+      id: id
     };
   });
 };
@@ -25,12 +25,12 @@ const fromNotesToSearchableObjects = notes => {
  * @param {EditorState} editorState
  */
 const addNewNoteData = (notes, note) => {
-  notes[note["uuid"]] = note;
+  notes[note.id] = note;
   return notes;
 };
 
-const removeNoteData = (notes, uuid) => {
-  delete notes[uuid];
+const removeNoteData = (notes, id) => {
+  delete notes[id];
   return notes;
 };
 
@@ -73,7 +73,7 @@ class Feed extends React.Component {
 
   addCard(note) {
     // Don't add a note if it doesn't exist. AUR-20
-    const text = note["editorState"].getCurrentContent().getPlainText();
+    const text = note.editorState.getCurrentContent().getPlainText();
     if (!text || _.trim(text).length === 0) {
       return;
     }
@@ -94,12 +94,12 @@ class Feed extends React.Component {
 
   searchCard(editorState) {
     this.setState(prevState => {
-      const uuids = search(
+      const ids = search(
         fromNotesToSearchableObjects(prevState.allNotes),
         editorState.getCurrentContent().getPlainText()
       );
 
-      const notes = uuids.map(uuid => prevState.allNotes[uuid]);
+      const notes = ids.map(id => prevState.allNotes[id]);
 
       if (notes.length === 0) {
         prevState.shownNotes = Object.assign({}, prevState.allNotes); // makes a copy
@@ -110,21 +110,21 @@ class Feed extends React.Component {
     });
   }
 
-  onDelete(uuid) {
-    deleteNote(uuid);
+  onDelete(id) {
+    deleteNote(id);
     this.setState(prevState => {
-      prevState.shownNotes = removeNoteData(prevState.shownNotes, uuid);
-      prevState.allNotes = removeNoteData(prevState.allNotes, uuid);
+      prevState.shownNotes = removeNoteData(prevState.shownNotes, id);
+      prevState.allNotes = removeNoteData(prevState.allNotes, id);
       return prevState;
     });
   }
 
   onSubmit(editorState) {
     // Add a card with a copy of the editor state
-    let uuid = save(editorState);
+    const id = save(editorState);
     this.addCard({
-      "editorState":editorState,
-      "uuid":uuid
+      editorState: editorState,
+      id: id
     });
 
     // Clear the main editor's state
@@ -134,15 +134,14 @@ class Feed extends React.Component {
   }
 
   render() {
-    // Create a note for each uuid
-    const uuids = Object.keys(this.state.shownNotes);
-    console.log(uuids);
-    const notes = uuids.map(uuid => {
+    // Create a note for each id
+    const ids = Object.keys(this.state.shownNotes);
+    const notes = ids.map(id => {
       return (
         <Note
-          uuid={uuid}
-          key={uuid}
-          defaultEditorState={this.state.shownNotes[uuid].editorState}
+          id={id}
+          key={id}
+          defaultEditorState={this.state.shownNotes[id].editorState}
           onDelete={this.onDelete}
         />
       );

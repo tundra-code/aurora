@@ -2,13 +2,13 @@ import React from "react";
 import { Card } from "../aurora-ui";
 import { Editor, modifiers } from "../aurora-editor";
 import PropTypes from "prop-types";
-import DeleteButton from "./DeleteButton"
+import DeleteButton from "./DeleteButton";
 import styled from "styled-components";
 
 const PartialWidthDiv = styled.div`
-  float:left;
+  float: left;
   width: 70%;
-  margin-bottom:0;
+  margin-bottom: 0;
 `;
 
 const TypingEditor = props => {
@@ -27,7 +27,7 @@ class Note extends React.Component {
             readOnly
           />
         </PartialWidthDiv>
-        <DeleteButton {...this.props}/>
+        <DeleteButton {...this.props} />
       </Card>
     );
   }
