@@ -2,6 +2,7 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import Feed from "../index.js";
 import { EditorState, ContentState } from "draft-js";
+import fake from "../../aurora-persist/fake";
 
 describe("feed", () => {
   it("exists", () => {
@@ -9,18 +10,18 @@ describe("feed", () => {
   });
 
   it("has an Editor somewhere", () => {
-    const wrapper = shallow(<Feed />);
+    const wrapper = shallow(<Feed persist={fake} />);
     expect(wrapper.render().find(".DraftEditor-root").length).toBe(1);
   });
 
   it("has a note-wrapper", () => {
-    const wrapper = shallow(<Feed />);
+    const wrapper = shallow(<Feed persist={fake} />);
     expect(wrapper.render().find(".note-wrapper").length).toBe(1);
   });
 
   it("can add a card", () => {
     const text = "Hey I am some text";
-    const wrapper = mount(<Feed />);
+    const wrapper = mount(<Feed persist={fake} />);
     wrapper.get(0).addCard({
       id: 0, // TODO: don't actually save this stuff in tests
       editorState: EditorState.createWithContent(
@@ -33,7 +34,7 @@ describe("feed", () => {
 
   it("can use submit to add a card", () => {
     const text = "Hey I am some text";
-    const wrapper = mount(<Feed />);
+    const wrapper = mount(<Feed persist={fake} />);
     wrapper
       .get(0)
       .onSubmit(
@@ -44,7 +45,7 @@ describe("feed", () => {
   });
 
   it("won't submit an empty card", () => {
-    const wrapper = mount(<Feed />);
+    const wrapper = mount(<Feed persist={fake} />);
     wrapper.get(0).onSubmit(EditorState.createEmpty());
 
     // Note that `wrapper.find(".public-DraftEditor-content").length` is greater

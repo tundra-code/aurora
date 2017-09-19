@@ -4,7 +4,7 @@ import FeedEditor from "./FeedEditor.js";
 import search from "../aurora-search";
 import styled from "styled-components";
 import { EditorState } from "draft-js";
-import { save, loadNotes, deleteNote } from "../aurora-file-io";
+import PropTypes from "prop-types";
 import _ from "lodash";
 
 /**
@@ -56,13 +56,15 @@ class Feed extends React.Component {
       inputEditorState: EditorState.createEmpty()
     };
 
+    // TODO: This is getting to be a mess, EVAN: get webpack to accept the non-bind function names
     this.addCard = this.addCard.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.searchCard = this.searchCard.bind(this);
     this.addSavedNotes = this.addSavedNotes.bind(this);
     this.onDelete = this.onDelete.bind(this);
-    loadNotes(this.addSavedNotes);
+
+    this.props.persist.loadNotes(this.addSavedNotes);
   }
 
   addSavedNotes(notes) {
@@ -111,7 +113,7 @@ class Feed extends React.Component {
   }
 
   onDelete(id) {
-    deleteNote(id);
+    this.props.persist.deleteNote(id);
     this.setState(prevState => {
       prevState.shownNotes = removeNoteData(prevState.shownNotes, id);
       prevState.allNotes = removeNoteData(prevState.allNotes, id);
@@ -121,7 +123,7 @@ class Feed extends React.Component {
 
   onSubmit(editorState) {
     // Add a card with a copy of the editor state
-    const id = save(editorState);
+    const id = this.props.persist.save(editorState);
     this.addCard({
       editorState: editorState,
       id: id
@@ -161,5 +163,13 @@ class Feed extends React.Component {
     );
   }
 }
+
+Feed.propTypes = {
+  persist: PropTypes.shape({
+    save: PropTypes.func.isRequired,
+    deleteNote: PropTypes.func.isRequired,
+    loadNotes: PropTypes.func.isRequired
+  })
+};
 
 export default Feed;
