@@ -1,5 +1,5 @@
 import React from "react";
-import Note from "../aurora-note";
+import { NoteView, NoteModel } from "../aurora-note";
 import FeedEditor from "./FeedEditor.js";
 import search from "../aurora-search";
 import styled from "styled-components";
@@ -122,12 +122,10 @@ class Feed extends React.Component {
   }
 
   onSubmit(editorState) {
-    // Add a card with a copy of the editor state
-    const id = this.props.persist.save(editorState);
-    this.addCard({
-      editorState: editorState,
-      id: id
-    });
+    const note = new NoteModel(editorState);
+
+    this.addCard(note);
+    this.props.persist.save(note);
 
     // Clear the main editor's state
     this.setState({
@@ -140,7 +138,7 @@ class Feed extends React.Component {
     const ids = Object.keys(this.state.shownNotes);
     const notes = ids.map(id => {
       return (
-        <Note
+        <NoteView
           id={id}
           key={id}
           defaultEditorState={this.state.shownNotes[id].editorState}

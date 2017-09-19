@@ -1,40 +1,4 @@
-import React from "react";
-import { Card } from "../aurora-ui";
-import { Editor, modifiers } from "../aurora-editor";
-import PropTypes from "prop-types";
-import DeleteButton from "./DeleteButton";
-import styled from "styled-components";
+import NoteView from "./view/Note.js";
+import NoteModel from "./model/Note.js";
 
-const PartialWidthDiv = styled.div`
-  float: left;
-  width: 70%;
-  margin-bottom: 0;
-`;
-
-const TypingEditor = props => {
-  const _Editor = modifiers.canType(Editor);
-
-  return <_Editor {...props} />;
-};
-
-class Note extends React.Component {
-  render() {
-    return (
-      <Card expanded>
-        <PartialWidthDiv>
-          <TypingEditor
-            defaultEditorState={this.props.defaultEditorState}
-            readOnly
-          />
-        </PartialWidthDiv>
-        <DeleteButton {...this.props} />
-      </Card>
-    );
-  }
-}
-
-Note.propTypes = {
-  defaultEditorState: PropTypes.object.isRequired
-};
-
-export default Note;
+export { NoteView, NoteModel };
