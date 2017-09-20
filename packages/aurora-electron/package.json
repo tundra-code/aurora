@@ -2,10 +2,6 @@
   "scripts": {
     "build": "webpack --config src/renderer/renderer.config.js",
     "dev":
-<<<<<<< HEAD
       "npm run build && cd .. && cd .. && electron packages/aurora-electron/src/main/index.js"
-=======
-      "npm run build && cd .. && ../node_modules/.bin/electron aurora-electron/src/main/index.js"
->>>>>>> Fixed cross platform issues with ../..
   }
 }
