@@ -12,7 +12,7 @@ module.exports = {
     jasmine: true
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
-  plugins: ["prettier", "react", "import", "fp", "unicorn"],
+  plugins: ["react", "import", "fp", "unicorn"],
   rules: {
     curly: "error",
     "no-else-return": "error",
@@ -37,7 +37,6 @@ module.exports = {
     "one-var": ["error", "never"],
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
-    "prettier/prettier": "error",
     strict: "error",
     "symbol-description": "error",
     "max-depth": "error",
