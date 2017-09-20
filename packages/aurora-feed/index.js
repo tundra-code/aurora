@@ -56,24 +56,18 @@ class Feed extends React.Component {
       inputEditorState: EditorState.createEmpty()
     };
 
-    // TODO: This is getting to be a mess, EVAN: get webpack to accept the non-bind function names
-    this.addCard = this.addCard.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.searchCard = this.searchCard.bind(this);
-    this.addSavedNotes = this.addSavedNotes.bind(this);
-    this.onDelete = this.onDelete.bind(this);
-
     this.props.persist.loadNotes(this.addSavedNotes);
   }
 
-  addSavedNotes(notes) {
+  addSavedNotes = notes => {
     notes.forEach(note => {
       this.addCard(note);
     });
-  }
+  };
 
-  addCard(note) {
+  // Note: This fat arrow function syntax let's us not have to `bind(this);` in the
+  // constructor. See: https://facebook.github.io/react/docs/handling-events.html
+  addCard = note => {
     // Don't add a note if it doesn't exist. AUR-20
     const text = note.editorState.getCurrentContent().getPlainText();
     if (!text || _.trim(text).length === 0) {
@@ -85,16 +79,16 @@ class Feed extends React.Component {
       prevState.allNotes = addNewNoteData(prevState.allNotes, note);
       return prevState;
     });
-  }
+  };
 
-  onChange(editorState) {
+  onChange = editorState => {
     this.setState({
       inputEditorState: editorState
     });
     this.searchCard(editorState);
-  }
+  };
 
-  searchCard(editorState) {
+  searchCard = editorState => {
     this.setState(prevState => {
       const ids = search(
         fromNotesToSearchableObjects(prevState.allNotes),
@@ -110,18 +104,18 @@ class Feed extends React.Component {
       prevState.shownNotes = Object.assign({}, notes); // makes a copy of notes
       return prevState;
     });
-  }
+  };
 
-  onDelete(id) {
+  onDelete = id => {
     this.props.persist.deleteNote(id);
     this.setState(prevState => {
       prevState.shownNotes = removeNoteData(prevState.shownNotes, id);
       prevState.allNotes = removeNoteData(prevState.allNotes, id);
       return prevState;
     });
-  }
+  };
 
-  onSubmit(editorState) {
+  onSubmit = editorState => {
     const note = new NoteModel(editorState);
 
     this.addCard(note);
@@ -131,7 +125,7 @@ class Feed extends React.Component {
     this.setState({
       inputEditorState: EditorState.createEmpty()
     });
-  }
+  };
 
   render() {
     // Create a note for each id
