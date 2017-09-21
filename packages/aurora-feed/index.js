@@ -1,5 +1,5 @@
 import React from "react";
-import Note from "../aurora-note";
+import { NoteView, NoteModel } from "../aurora-note";
 import FeedEditor from "./FeedEditor.js";
 import search from "../aurora-search";
 import styled from "styled-components";
@@ -56,24 +56,18 @@ class Feed extends React.Component {
       inputEditorState: EditorState.createEmpty()
     };
 
-    // TODO: This is getting to be a mess, EVAN: get webpack to accept the non-bind function names
-    this.addCard = this.addCard.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.searchCard = this.searchCard.bind(this);
-    this.addSavedNotes = this.addSavedNotes.bind(this);
-    this.onDelete = this.onDelete.bind(this);
-
     this.props.persist.loadNotes(this.addSavedNotes);
   }
 
-  addSavedNotes(notes) {
+  addSavedNotes = notes => {
     notes.forEach(note => {
       this.addCard(note);
     });
-  }
+  };
 
-  addCard(note) {
+  // Note: This fat arrow function syntax let's us not have to `bind(this);` in the
+  // constructor. See: https://facebook.github.io/react/docs/handling-events.html
+  addCard = note => {
     // Don't add a note if it doesn't exist. AUR-20
     const text = note.editorState.getCurrentContent().getPlainText();
     if (!text || _.trim(text).length === 0) {
@@ -85,16 +79,16 @@ class Feed extends React.Component {
       prevState.allNotes = addNewNoteData(prevState.allNotes, note);
       return prevState;
     });
-  }
+  };
 
-  onChange(editorState) {
+  onChange = editorState => {
     this.setState({
       inputEditorState: editorState
     });
     this.searchCard(editorState);
-  }
+  };
 
-  searchCard(editorState) {
+  searchCard = editorState => {
     this.setState(prevState => {
       const ids = search(
         fromNotesToSearchableObjects(prevState.allNotes),
@@ -110,37 +104,35 @@ class Feed extends React.Component {
       prevState.shownNotes = Object.assign({}, notes); // makes a copy of notes
       return prevState;
     });
-  }
+  };
 
-  onDelete(id) {
+  onDelete = id => {
     this.props.persist.deleteNote(id);
     this.setState(prevState => {
       prevState.shownNotes = removeNoteData(prevState.shownNotes, id);
       prevState.allNotes = removeNoteData(prevState.allNotes, id);
       return prevState;
     });
-  }
+  };
 
-  onSubmit(editorState) {
-    // Add a card with a copy of the editor state
-    const id = this.props.persist.save(editorState);
-    this.addCard({
-      editorState: editorState,
-      id: id
-    });
+  onSubmit = editorState => {
+    const note = new NoteModel(editorState);
+
+    this.addCard(note);
+    this.props.persist.save(note);
 
     // Clear the main editor's state
     this.setState({
       inputEditorState: EditorState.createEmpty()
     });
-  }
+  };
 
   render() {
     // Create a note for each id
     const ids = Object.keys(this.state.shownNotes);
     const notes = ids.map(id => {
       return (
-        <Note
+        <NoteView
           id={id}
           key={id}
           defaultEditorState={this.state.shownNotes[id].editorState}
