@@ -7,7 +7,7 @@ function getAuroraDirContext() {
   return Jetpack.dir(os.homedir()).dir(".aurora");
 }
 function noteFileName(note) {
-  return note.date + noteFileExt; // name based on date to ensure uniqueness
+  return note.id + noteFileExt; // name based on date to ensure uniqueness
 }
 
 export { getAuroraDirContext, noteFileName, noteFileExt };
