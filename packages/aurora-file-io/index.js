@@ -9,9 +9,9 @@ function save(note) {
   context.writeAsync(noteFileName(note), note.toJSON());
 }
 
-function deleteNote(uuid) {
+function deleteNote(id) {
   const context = getAuroraDirContext();
-  context.removeAsync(uuid + noteFileExt);
+  context.removeAsync(id + noteFileExt);
 }
 
 function loadNotes(callback) {
