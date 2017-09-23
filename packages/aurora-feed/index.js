@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { EditorState } from "draft-js";
 import PropTypes from "prop-types";
 import _ from "lodash";
+import Animate, { FadeInUp } from "animate-css-styled-components";
 
 /**
  * Adds a "text" version of the editor state to each note in the notes object
@@ -68,6 +69,13 @@ class Feed extends React.Component {
   // Note: This fat arrow function syntax let's us not have to `bind(this);` in the
   // constructor. See: https://facebook.github.io/react/docs/handling-events.html
   addCard = note => {
+    // Don't allow a note that isn't a NoteModel
+    if (!(note instanceof NoteModel)) {
+      throw new Error(
+        "Feed called addCard on something that isn't a NoteModel"
+      );
+    }
+
     // Don't add a note if it doesn't exist. AUR-20
     const text = note.editorState.getCurrentContent().getPlainText();
     if (!text || _.trim(text).length === 0) {
@@ -85,7 +93,9 @@ class Feed extends React.Component {
     this.setState({
       inputEditorState: editorState
     });
-    this.searchCard(editorState);
+    // Only search once every XYZ miliseconds so we're not flashing
+    const searchOnlyAfterABit = _.debounce(this.searchCard, 250);
+    searchOnlyAfterABit(editorState);
   };
 
   searchCard = editorState => {
@@ -132,12 +142,14 @@ class Feed extends React.Component {
     const ids = Object.keys(this.state.shownNotes);
     const notes = ids.map(id => {
       return (
-        <NoteView
-          id={id}
-          key={id}
-          defaultEditorState={this.state.shownNotes[id].editorState}
-          onDelete={this.onDelete}
-        />
+        <Animate key={id} Animation={[FadeInUp]} duration={"0.2s"}>
+          <NoteView
+            id={id}
+            key={id}
+            defaultEditorState={this.state.shownNotes[id].editorState}
+            onDelete={this.onDelete}
+          />
+        </Animate>
       );
     });
 
