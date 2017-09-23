@@ -7,6 +7,7 @@ import { EditorState } from "draft-js";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import Animate, { FadeInUp } from "animate-css-styled-components";
+import extendable from "../aurora-extension";
 
 /**
  * Adds a "text" version of the editor state to each note in the notes object
@@ -176,4 +177,4 @@ Feed.propTypes = {
   })
 };
 
-export default Feed;
+export default extendable(Feed);
