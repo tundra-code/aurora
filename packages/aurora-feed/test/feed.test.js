@@ -44,6 +44,25 @@ describe("feed", () => {
     expect(wrapper.containsMatchingElement(<span>{text}</span>)).toBe(true);
   });
 
+  it("can use delete to remove a card", () => {
+    const text = "Hey I will be deleted";
+    const wrapper = mount(<Feed persist={fake} />);
+    wrapper
+      .get(0)
+      .onSubmit(
+        EditorState.createWithContent(ContentState.createFromText(text))
+      );
+
+    // Run a sanity check to make sure we actually added something
+    expect(wrapper.containsMatchingElement(<span>{text}</span>)).toBe(true);
+
+    // Now let's remove it.
+    wrapper.find(".delete-button").simulate("click");
+
+    // And test that it's gone.
+    expect(wrapper.find(".public-DraftEditor-content").length).toBe(1); // 1 === empty
+  });
+
   it("won't submit an empty card", () => {
     const wrapper = mount(<Feed persist={fake} />);
     wrapper.get(0).onSubmit(EditorState.createEmpty());
