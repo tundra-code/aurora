@@ -11,8 +11,7 @@
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
     "dev": "cd packages/aurora-electron && npm run dev",
-    "fmt":
-      "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
+    "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -41,6 +40,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^1.5.2",
     "react-test-renderer": "^15.6.1",
+    "tmp": "0.0.33",
     "sinon": "^3.3.0",
     "webpack": "^3.0.0",
     "xvfb-maybe": "^0.2.1"
@@ -48,9 +48,18 @@
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   },
   "dependencies": {
     "@vx/shape": "0.0.131",

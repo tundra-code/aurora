@@ -42,7 +42,6 @@ module.exports = {
     "max-depth": "error",
     "max-lines": "error",
     "max-nested-callbacks": "error",
-    "max-statements": "error",
     "new-cap": "error"
   },
   parserOptions: {
