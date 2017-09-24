@@ -176,6 +176,7 @@ class Feed extends React.Component {
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           editorState={this.state.inputEditorState}
+          focused
         />
       </FlexSeperated>
     );
