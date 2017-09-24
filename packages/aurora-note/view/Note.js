@@ -18,13 +18,22 @@ const TypingEditor = props => {
 };
 
 class Note extends React.Component {
+  onUpdate = editorState => {
+    this.props.onUpdate(this.props.id, editorState);
+  };
+
+  onBlur = () => {
+    this.props.onFocusEnded(this.props.id);
+  };
+
   render() {
     return (
       <Card expanded>
         <PartialWidthDiv>
           <TypingEditor
             defaultEditorState={this.props.defaultEditorState}
-            readOnly
+            onUpdate={this.onUpdate}
+            onBlur={this.onBlur}
           />
         </PartialWidthDiv>
         <DeleteButton {...this.props} />
@@ -36,7 +45,9 @@ class Note extends React.Component {
 Note.propTypes = {
   defaultEditorState: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  onFocusEnded: PropTypes.func.isRequired
 };
 
 export default Note;

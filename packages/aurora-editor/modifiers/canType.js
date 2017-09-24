@@ -4,7 +4,7 @@ import { EditorState } from "draft-js";
 
 /**
  * Gives an editor really basic typing capabilities. If you press some keys, something will happen.
- * @param {React} Editor 
+ * @param {React} Editor
  */
 const canType = Editor => {
   class CanTypeEditor extends React.Component {
@@ -17,16 +17,19 @@ const canType = Editor => {
         : EditorState.createEmpty();
 
       this.state = { editorState: startEditorState };
-      this.onChange = editorState => {
-        this.setState({ editorState });
-      };
     }
+
+    onChange = editorState => {
+      this.setState({ editorState });
+      this.props.onUpdate(editorState);
+    };
 
     render() {
       return (
         <Editor
           onChange={this.onChange}
           editorState={this.state.editorState}
+          onBlur={this.props.onBlur}
           {...this.props}
         />
       );
@@ -34,7 +37,9 @@ const canType = Editor => {
   }
 
   CanTypeEditor.propTypes = {
-    defaultEditorState: PropTypes.object
+    defaultEditorState: PropTypes.object,
+    onUpdate: PropTypes.func.isRequired,
+    onBlur: PropTypes.func.isRequired
   };
 
   return CanTypeEditor;

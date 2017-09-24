@@ -125,6 +125,19 @@ class Feed extends React.Component {
     });
   };
 
+  onUpdate = (id, editorState) => {
+    this.setState(prevState => {
+      prevState.shownNotes[id].setEditorState(editorState);
+      prevState.allNotes[id].setEditorState(editorState);
+      return prevState;
+    });
+  };
+
+  onNoteFocusEnded = id => {
+    const note = this.state.allNotes[id];
+    this.props.persist.save(note);
+  };
+
   onSubmit = editorState => {
     const note = new NoteModel(editorState);
 
@@ -148,6 +161,8 @@ class Feed extends React.Component {
             key={id}
             defaultEditorState={this.state.shownNotes[id].editorState}
             onDelete={this.onDelete}
+            onUpdate={this.onUpdate}
+            onFocusEnded={this.onNoteFocusEnded}
           />
         </Animate>
       );
@@ -161,7 +176,6 @@ class Feed extends React.Component {
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           editorState={this.state.inputEditorState}
-          focused
         />
       </FlexSeperated>
     );

@@ -10,8 +10,9 @@ const CardAtBottom = Card.extend`
   border-top: 1px solid
     ${props => (props.theme ? props.theme.colors.border : "black")};
   .public-DraftEditorPlaceholder-inner {
+    pointer-events: none;
     position: absolute;
-    color: #aaaaaa ;
+    color: #aaaaaa;
   }
 `;
 

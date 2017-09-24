@@ -14,8 +14,13 @@ export default class Note {
     this.toJSON = this.toJSON.bind(this);
   }
 
+  setEditorState(editorState) {
+    this.editorState = editorState;
+    this.contentState = convertToRaw(editorState.getCurrentContent());
+  }
+
   /**
-   * Gets information we care about saving to JSON 
+   * Gets information we care about saving to JSON
    */
   toJSON() {
     return {
@@ -26,7 +31,7 @@ export default class Note {
   }
 
   /**
-   * Returns a Note object from file data 
+   * Returns a Note object from file data
    */
   static fromFileData(data) {
     const json = JSON.parse(data);
