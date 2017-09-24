@@ -21,6 +21,15 @@ const fromNotesToSearchableObjects = notes => {
   });
 };
 
+/* Maps a list of valid ids to a dictionary of notes, selecting only a subset of all notes. */
+const mapIdsToNotes = (ids, allNotes) => {
+  const notes = {};
+  ids.forEach(id => {
+    notes[id] = allNotes[id];
+  });
+  return notes;
+};
+
 /**
  * Creates data that we can use for a Note
  * @param {EditorState} editorState
@@ -105,9 +114,9 @@ class Feed extends React.Component {
         editorState.getCurrentContent().getPlainText()
       );
 
-      const notes = ids.map(id => prevState.allNotes[id]);
+      const notes = mapIdsToNotes(ids, prevState.allNotes);
 
-      if (notes.length === 0) {
+      if (ids.length === 0) {
         prevState.shownNotes = Object.assign({}, prevState.allNotes); // makes a copy
         return prevState;
       }
