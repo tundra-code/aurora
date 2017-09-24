@@ -1,10 +1,4 @@
-import {
-  getAuroraDirContext,
-  noteFileName,
-  noteFileExt,
-  saveTo,
-  deleteNoteFrom
-} from "../util.js";
+import util from "../util.js";
 import fs from "fs";
 import tmp from "tmp";
 import jetpack from "fs-jetpack";
@@ -24,18 +18,18 @@ const newNote = () => {
 };
 
 test("noteFileExt is actually an extension", () => {
-  expect(noteFileExt.charAt(0)).toBe(".");
+  expect(util.noteFileExt.charAt(0)).toBe(".");
 });
 
 test("getAuroraDirContext generates a real location", () => {
-  const dir = getAuroraDirContext().cwd();
+  const dir = util.getAuroraDirContext().cwd();
   expect(fs.existsSync(dir)).toBe(true);
 });
 
 test("noteFileName ends with our file extension", () => {
   const note = new NoteModel(EditorState.createEmpty());
-  const noteFile = noteFileName(note);
-  expect("." + noteFile.split(".")[1]).toBe(noteFileExt);
+  const noteFile = util.noteFileName(note);
+  expect("." + noteFile.split(".")[1]).toBe(util.noteFileExt);
 });
 
 test("saveTo actually creates a note", async () => {
@@ -47,7 +41,7 @@ test("saveTo actually creates a note", async () => {
 
   // Create and save a dummy note
   const note = newNote();
-  await saveTo(note, tmpDirContext);
+  await util.saveTo(note, tmpDirContext);
 
   // Now expect there to be something inside of our tmpDir
   expect(tmpDirContext.list(".").length).toBe(1);
@@ -64,13 +58,13 @@ test("deleteFrom actually deletes a note", async () => {
 
   // Create and save two notes and lets only delete one.
   const note = newNote();
-  await saveTo(note, tmpDirContext);
+  await util.saveTo(note, tmpDirContext);
 
   // Check that we have two at the moment.
   expect(tmpDirContext.list(".").length).toBe(1);
 
   // Now let's just delete one and we deleted it
-  await deleteNoteFrom(note.id, tmpDirContext);
+  await util.deleteNoteFrom(note.id, tmpDirContext);
   expect(tmpDirContext.list(".").length).toBe(0);
 
   // And clean up after ourselves

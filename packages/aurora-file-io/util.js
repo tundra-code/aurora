@@ -19,7 +19,7 @@ function deleteNoteFrom(id, dirContext) {
   return dirContext.removeAsync(id + noteFileExt);
 }
 
-export {
+export default {
   getAuroraDirContext,
   saveTo,
   deleteNoteFrom,
