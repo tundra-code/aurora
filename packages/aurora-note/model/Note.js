@@ -1,4 +1,5 @@
 import { convertToRaw, convertFromRaw, EditorState } from "draft-js";
+import _ from "lodash";
 
 export default class Note {
   constructor(editorState, options) {
@@ -12,6 +13,14 @@ export default class Note {
     this.id = options.id ? options.id : now;
 
     this.toJSON = this.toJSON.bind(this);
+  }
+
+  /**
+   * Returns true if there's no text
+   */
+  isEmpty() {
+    const text = this.editorState.getCurrentContent().getPlainText();
+    return !text || _.trim(text).length === 0;
   }
 
   /**

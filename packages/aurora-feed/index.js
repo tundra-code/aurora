@@ -1,52 +1,15 @@
 import React from "react";
-import { NoteView, NoteModel } from "../aurora-note";
-import FeedEditor from "./FeedEditor.js";
+import { NoteModel } from "../aurora-note";
 import search from "../aurora-search";
-import styled from "styled-components";
 import { EditorState } from "draft-js";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import Animate, { FadeInUp } from "animate-css-styled-components";
-
-/**
- * Adds a "text" version of the editor state to each note in the notes object
- */
-const fromNotesToSearchableObjects = notes => {
-  const ids = Object.keys(notes);
-  return ids.map(id => {
-    return {
-      text: notes[id].editorState.getCurrentContent().getPlainText(),
-      id: id
-    };
-  });
-};
-
-/**
- * Creates data that we can use for a Note
- * @param {EditorState} editorState
- */
-const addNewNoteData = (notes, note) => {
-  notes[note.id] = note;
-  return notes;
-};
-
-const removeNoteData = (notes, id) => {
-  delete notes[id];
-  return notes;
-};
-
-const FlexSeperated = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-`;
-
-const NoteWrapper = styled.div`
-  width: 100%;
-  padding-bottom: 50px;
-`;
+import {
+  fromNotesToSearchableObjects,
+  addNewNoteData,
+  removeNoteData
+} from "./util.js";
+import StatelessFeed from "./StatelessFeed";
 
 class Feed extends React.Component {
   constructor(props) {
@@ -77,8 +40,7 @@ class Feed extends React.Component {
     }
 
     // Don't add a note if it doesn't exist. AUR-20
-    const text = note.editorState.getCurrentContent().getPlainText();
-    if (!text || _.trim(text).length === 0) {
+    if (note.isEmpty()) {
       return;
     }
 
@@ -94,8 +56,8 @@ class Feed extends React.Component {
       inputEditorState: editorState
     });
     // Only search once every XYZ miliseconds so we're not flashing
-    const searchOnlyAfterABit = _.debounce(this.searchCard, 250);
-    searchOnlyAfterABit(editorState);
+    const searchOnlyAfterSomeTime = _.debounce(this.searchCard, 250);
+    searchOnlyAfterSomeTime(editorState);
   };
 
   searchCard = editorState => {
@@ -138,32 +100,14 @@ class Feed extends React.Component {
   };
 
   render() {
-    // Create a note for each id
-    const ids = Object.keys(this.state.shownNotes);
-    const notes = ids.map(id => {
-      return (
-        <Animate key={id} Animation={[FadeInUp]} duration={"0.2s"}>
-          <NoteView
-            id={id}
-            key={id}
-            defaultEditorState={this.state.shownNotes[id].editorState}
-            onDelete={this.onDelete}
-          />
-        </Animate>
-      );
-    });
-
     return (
-      <FlexSeperated className="flex-seperated">
-        <NoteWrapper className="note-wrapper">{notes}</NoteWrapper>
-        <FeedEditor
-          className="card-at-bottom-editor"
-          onSubmit={this.onSubmit}
-          onChange={this.onChange}
-          editorState={this.state.inputEditorState}
-          focused
-        />
-      </FlexSeperated>
+      <StatelessFeed
+        notes={this.state.shownNotes}
+        onSubmit={this.onSubmit}
+        onChange={this.onChange}
+        onDelete={this.onDelete}
+        inputEditorState={this.state.inputEditorState}
+      />
     );
   }
 }
