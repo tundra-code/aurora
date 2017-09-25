@@ -9,38 +9,20 @@ import { Editor } from "draft-js";
 class AbstractEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      focused: props.focused
-    };
     this.setDomEditorRef = ref => (this.domEditor = ref);
   }
 
-  componentDidMount() {
-    if (this.state.focused) {
-      this.domEditor.focus();
-    }
-  }
-
-  handleEditor = () => {
-    if (this.state.focused) {
+  componentWillUpdate() {
+    if (this.props.focused) {
       this.domEditor.focus();
     } else {
       this.domEditor.blur();
     }
-  };
+  }
 
   render() {
-    if (this.domEditor) {
-      this.handleEditor();
-    }
-
     return (
-      <Editor
-        onBlur={this.setState({ focused: false })}
-        className="editor"
-        ref={this.setDomEditorRef}
-        {...this.props}
-      />
+      <Editor className="editor" ref={this.setDomEditorRef} {...this.props} />
     );
   }
 }

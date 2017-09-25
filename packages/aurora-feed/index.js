@@ -54,7 +54,8 @@ class Feed extends React.Component {
     this.state = {
       shownNotes: {}, // The notes that the user sees
       allNotes: {}, // A local copy of all the notes
-      inputEditorState: EditorState.createEmpty()
+      inputEditorState: EditorState.createEmpty(),
+      inputEditorFocused: true
     };
 
     this.props.persist.loadNotes(this.addSavedNotes);
@@ -176,7 +177,7 @@ class Feed extends React.Component {
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           editorState={this.state.inputEditorState}
-          focused
+          focused={this.state.inputEditorFocused}
         />
       </FlexSeperated>
     );
