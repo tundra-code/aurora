@@ -29,7 +29,6 @@ const canType = Editor => {
         <Editor
           onChange={this.onChange}
           editorState={this.state.editorState}
-          onBlur={this.props.onBlur}
           {...this.props}
         />
       );
@@ -38,8 +37,7 @@ const canType = Editor => {
 
   CanTypeEditor.propTypes = {
     defaultEditorState: PropTypes.object,
-    onUpdate: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired
+    onUpdate: PropTypes.func.isRequired
   };
 
   return CanTypeEditor;

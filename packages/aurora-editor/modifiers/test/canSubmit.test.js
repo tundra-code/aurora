@@ -1,11 +1,11 @@
-import AbstractEditor from "../../AbstractEditor.js";
+import StatelessEditor from "../../StatelessEditor.js";
 import React from "react";
 import canSubmit from "../canSubmit.js";
 import { shallow } from "enzyme";
 import { EditorState } from "draft-js";
 
 const wrapper = () => {
-  const SubmitEditor = canSubmit(AbstractEditor);
+  const SubmitEditor = canSubmit(StatelessEditor);
   return shallow(
     <SubmitEditor onSubmit={() => {}} editorState={EditorState.createEmpty()} />
   );
@@ -13,7 +13,7 @@ const wrapper = () => {
 
 describe("canSubmit", () => {
   test("it is defined", () => {
-    expect(canSubmit(AbstractEditor)).toBeDefined();
+    expect(canSubmit(StatelessEditor)).toBeDefined();
   });
 
   test("it has a 'handleKeyCommand' prop", () => {

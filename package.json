@@ -10,7 +10,7 @@
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
-    "dev": "cd packages/aurora-electron && npm run dev",
+    "dev": "cd packages/aurora-electron && NODE_ENV=dev npm run dev",
     "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -18,6 +18,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.10",
+    "@storybook/addon-links": "^3.2.10",
     "@storybook/react": "^3.2.8",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -63,20 +65,17 @@
     ]
   },
   "dependencies": {
-    "@vx/shape": "0.0.131",
     "animate-css-styled-components": "0.0.19",
     "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
     "draft-js": "^0.10.1",
-    "draftjs-utils": "^0.8.6",
     "fs-jetpack": "^1.2.0",
     "fuse.js": "^3.1.0",
-    "keycode-js": "0.0.4",
     "linklocal": "^2.8.1",
-    "os": "^0.1.1",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "sea-floor": "^0.3.2",
-    "stop-if": "^1.0.3",
     "styled-components": "^2.1.2"
   }
 }

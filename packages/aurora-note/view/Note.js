@@ -22,10 +22,6 @@ class Note extends React.Component {
     this.props.onUpdate(this.props.id, editorState);
   };
 
-  onBlur = () => {
-    this.props.onFocusEnded(this.props.id);
-  };
-
   onClick = () => {
     this.props.onClick();
   };
@@ -37,7 +33,6 @@ class Note extends React.Component {
           <TypingEditor
             defaultEditorState={this.props.defaultEditorState}
             onUpdate={this.onUpdate}
-            onBlur={this.onBlur}
             focused={this.props.focused}
           />
         </PartialWidthDiv>
@@ -51,8 +46,7 @@ Note.propTypes = {
   defaultEditorState: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-  onFocusEnded: PropTypes.func.isRequired
+  onUpdate: PropTypes.func.isRequired
 };
 
 export default Note;
