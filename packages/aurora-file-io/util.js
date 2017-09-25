@@ -4,7 +4,11 @@ const os = require("os"); // For some reason I cannot import using normal syntax
 const noteFileExt = ".aur";
 
 function getAuroraDirContext() {
-  return jetpack.dir(os.homedir()).dir(".aurora");
+  if (process.env.NODE_ENV === "dev"){
+    return jetpack.dir(os.homedir()).dir(".dev_aurora")
+  }
+  
+  return jetpack.dir(os.homedir()).dir(".aurora")
 }
 
 function noteFileName(note) {
