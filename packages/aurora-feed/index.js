@@ -7,7 +7,8 @@ import _ from "lodash";
 import {
   fromNotesToSearchableObjects,
   addNewNoteData,
-  removeNoteData
+  removeNoteData,
+  mapIdsToNotes
 } from "./util.js";
 import StatelessFeed from "./StatelessFeed";
 
@@ -17,7 +18,8 @@ class Feed extends React.Component {
     this.state = {
       shownNotes: {}, // The notes that the user sees
       allNotes: {}, // A local copy of all the notes
-      inputEditorState: EditorState.createEmpty()
+      inputEditorState: EditorState.createEmpty(),
+      inputEditorFocused: true
     };
 
     this.props.persist.loadNotes(this.addSavedNotes);
@@ -67,9 +69,9 @@ class Feed extends React.Component {
         editorState.getCurrentContent().getPlainText()
       );
 
-      const notes = ids.map(id => prevState.allNotes[id]);
+      const notes = mapIdsToNotes(ids, prevState.allNotes);
 
-      if (notes.length === 0) {
+      if (ids.length === 0) {
         prevState.shownNotes = Object.assign({}, prevState.allNotes); // makes a copy
         return prevState;
       }
@@ -87,6 +89,19 @@ class Feed extends React.Component {
     });
   };
 
+  onUpdate = (id, editorState) => {
+    this.setState(prevState => {
+      prevState.shownNotes[id].setEditorState(editorState);
+      prevState.allNotes[id].setEditorState(editorState);
+      return prevState;
+    });
+  };
+
+  saveNote = id => {
+    const note = this.state.allNotes[id];
+    this.props.persist.save(note);
+  };
+
   onSubmit = editorState => {
     const note = new NoteModel(editorState);
 
@@ -99,6 +114,16 @@ class Feed extends React.Component {
     });
   };
 
+  onNoteUnfocused = id => {
+    this.saveNote(id);
+  };
+
+  noteClicked = () => {
+    this.setState({
+      inputEditorFocused: false
+    });
+  };
+
   render() {
     return (
       <StatelessFeed
@@ -106,7 +131,11 @@ class Feed extends React.Component {
         onSubmit={this.onSubmit}
         onChange={this.onChange}
         onDelete={this.onDelete}
+        onUpdate={this.onUpdate}
+        onBlur={this.onNoteUnfocused}
         inputEditorState={this.state.inputEditorState}
+        inputEditorFocused={this.state.inputEditorFocused}
+        noteClicked={this.noteClicked}
       />
     );
   }

@@ -12,10 +12,18 @@ class AbstractEditor extends React.Component {
     this.setDomEditorRef = ref => (this.domEditor = ref);
   }
 
-  componentDidMount() {
+  handleFocus = () => {
+    if (!this.domEditor) {
+      return;
+    }
+
     if (this.props.focused) {
       this.domEditor.focus();
     }
+  };
+
+  componentDidMount() {
+    this.handleFocus();
   }
 
   render() {

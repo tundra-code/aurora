@@ -5,14 +5,25 @@ export default class Note {
   constructor(editorState, options) {
     options = options || {}; // avoid undefined errors
 
-    this.editorState = editorState;
-    this.contentState = convertToRaw(editorState.getCurrentContent());
+    // Note that the "moveSelectionToEnd" is required to fix errors
+    // that put the cursor in the front instead of at the end when clicked on.
+    this.editorState = EditorState.moveSelectionToEnd(
+      EditorState.createWithContent(editorState.getCurrentContent())
+    );
 
     const now = Date.now();
     this.date = options.date ? options.date : now;
     this.id = options.id ? options.id : now;
 
     this.toJSON = this.toJSON.bind(this);
+  }
+
+  setEditorState(editorState) {
+    this.editorState = editorState;
+  }
+
+  getRawContentState() {
+    return convertToRaw(this.editorState.getCurrentContent());
   }
 
   /**
@@ -28,14 +39,14 @@ export default class Note {
    */
   toJSON() {
     return {
-      contentState: this.contentState,
+      contentState: this.getRawContentState(),
       date: this.date,
       id: this.id
     };
   }
 
   /**
-   * Returns a Note object from file data 
+   * Returns a Note object from file data
    */
   static fromFileData(data) {
     const json = JSON.parse(data);
