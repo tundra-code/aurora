@@ -27,6 +27,9 @@ Aurora comes with a few tools that make developing it much nicer.
 
 All scripts can be run with `npm run <script_name_here>`.
 
+### dist
+`npm run dist` will create a new, sharable build file on the platform you're running on.
+
 ### fmt
 You can format with the default [prettier](https://github.com/prettier/prettier) formating with `npm run fmt`.
 
