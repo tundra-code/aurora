@@ -20,6 +20,7 @@ const StatelessFeedView = props => {
         notes={props.notes}
         onDelete={props.onDelete}
         onUpdate={props.onUpdate}
+        onBlur={props.onBlur}
       />
       <FeedEditor
         className="card-at-bottom-editor"

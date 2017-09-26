@@ -114,6 +114,10 @@ class Feed extends React.Component {
     });
   };
 
+  onNoteUnfocused = id => {
+    this.saveNote(id);
+  };
+
   noteClicked = () => {
     this.setState({
       inputEditorFocused: false
@@ -128,6 +132,7 @@ class Feed extends React.Component {
         onChange={this.onChange}
         onDelete={this.onDelete}
         onUpdate={this.onUpdate}
+        onBlur={this.onNoteUnfocused}
         inputEditorState={this.state.inputEditorState}
         inputEditorFocused={this.state.inputEditorFocused}
         noteClicked={this.noteClicked}

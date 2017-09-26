@@ -29,6 +29,7 @@ class Note extends React.Component {
           <TypingEditor
             defaultEditorState={this.props.defaultEditorState}
             onUpdate={this.onUpdate}
+            onBlur={this.props.onBlur}
           />
         </PartialWidthDiv>
         <DeleteButton {...this.props} />
@@ -41,7 +42,8 @@ Note.propTypes = {
   defaultEditorState: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired
+  onUpdate: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired
 };
 
 export default Note;
