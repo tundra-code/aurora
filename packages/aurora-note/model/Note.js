@@ -5,8 +5,10 @@ export default class Note {
   constructor(editorState, options) {
     options = options || {}; // avoid undefined errors
 
-    this.editorState = EditorState.createWithContent(
-      editorState.getCurrentContent()
+    // Note that the "moveSelectionToEnd" is required to fix errors
+    // that put the cursor in the front instead of at the end when clicked on.
+    this.editorState = EditorState.moveSelectionToEnd(
+      EditorState.createWithContent(editorState.getCurrentContent())
     );
 
     const now = Date.now();
