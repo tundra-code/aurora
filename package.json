@@ -54,13 +54,8 @@
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-<<<<<<< HEAD
     "coveragePathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
     "testPathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-=======
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/"],
->>>>>>> e727df7... Added new run prod script
     "coverageReporters": ["text", "lcov"]
   },
   "dependencies": {
