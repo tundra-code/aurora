@@ -11,7 +11,6 @@ import {
   mapIdsToNotes
 } from "./util.js";
 import StatelessFeed from "./StatelessFeed";
-import { MAIN_EDITOR_ID } from "./constants.js";
 
 class Feed extends React.Component {
   constructor(props) {
@@ -116,7 +115,6 @@ class Feed extends React.Component {
   };
 
   noteClicked = () => {
-    console.log("hey");
     this.setState({
       inputEditorFocused: false
     });

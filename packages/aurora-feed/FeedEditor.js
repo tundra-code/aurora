@@ -16,14 +16,19 @@ const CardAtBottom = Card.extend`
   }
 `;
 
-const FeedEditor = props => {
-  const { canSubmit } = modifiers;
-  const _Editor = canSubmit(Editor);
-  return (
-    <CardAtBottom>
-      <_Editor {...props} />
-    </CardAtBottom>
-  );
-};
+class FeedEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this._Editor = modifiers.canSubmit(Editor);
+  }
+
+  render() {
+    return (
+      <CardAtBottom>
+        <this._Editor {...this.props} />
+      </CardAtBottom>
+    );
+  }
+}
 
 export default FeedEditor;

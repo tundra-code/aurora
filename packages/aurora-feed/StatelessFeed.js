@@ -4,7 +4,6 @@ import { NoteList } from "../aurora-ui";
 import FeedEditor from "./FeedEditor.js";
 import { NoteModel } from "../aurora-note";
 import PropTypes from "prop-types";
-import { MAIN_EDITOR_ID } from "./constants.js";
 
 const FlexSeperated = styled.div`
   width: 100%;
@@ -21,7 +20,6 @@ const StatelessFeedView = props => {
         notes={props.notes}
         onDelete={props.onDelete}
         onUpdate={props.onUpdate}
-        onClick={props.noteClicked}
       />
       <FeedEditor
         className="card-at-bottom-editor"
