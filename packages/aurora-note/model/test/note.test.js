@@ -8,7 +8,6 @@ describe("Note", () => {
     expect(note.id).toBeDefined();
     expect(note.date).toBeDefined();
     expect(note.editorState).toBeDefined();
-    expect(note.contentState).toBeDefined();
   });
 
   it("can export something to JSON", () => {
