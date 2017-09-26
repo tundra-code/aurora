@@ -39,6 +39,7 @@ StatelessFeedView.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
   inputEditorState: PropTypes.object.isRequired,
   inputEditorFocused: PropTypes.bool
 };

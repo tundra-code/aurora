@@ -4,7 +4,6 @@ import { Editor, modifiers } from "../../aurora-editor";
 import PropTypes from "prop-types";
 import DeleteButton from "./DeleteButton";
 import styled from "styled-components";
-import { EditorState } from "draft-js";
 
 const PartialWidthDiv = styled.div`
   float: left;
