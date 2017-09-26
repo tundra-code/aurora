@@ -20,6 +20,7 @@ const NoteList = props => {
           defaultEditorState={props.notes[id].editorState}
           onDelete={props.onDelete}
           onUpdate={props.onUpdate}
+          onClick={props.onClick}
         />
       </Animate>
     );
@@ -31,7 +32,10 @@ const NoteList = props => {
 NoteList.propTypes = {
   notes: PropTypes.objectOf(PropTypes.instanceOf(NoteModel)).isRequired,
   onDelete: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired
+  onUpdate: PropTypes.func.isRequired,
+  focusId: PropTypes.number,
+  onFocusChange: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 export default NoteList;

@@ -11,6 +11,7 @@ import {
   mapIdsToNotes
 } from "./util.js";
 import StatelessFeed from "./StatelessFeed";
+import { MAIN_EDITOR_ID } from "./constants.js";
 
 class Feed extends React.Component {
   constructor(props) {
@@ -97,7 +98,7 @@ class Feed extends React.Component {
     });
   };
 
-  onNoteFocusEnded = id => {
+  saveNote = id => {
     const note = this.state.allNotes[id];
     this.props.persist.save(note);
   };
@@ -114,6 +115,13 @@ class Feed extends React.Component {
     });
   };
 
+  noteClicked = () => {
+    console.log("hey");
+    this.setState({
+      inputEditorFocused: false
+    });
+  };
+
   render() {
     return (
       <StatelessFeed
@@ -123,6 +131,8 @@ class Feed extends React.Component {
         onDelete={this.onDelete}
         onUpdate={this.onUpdate}
         inputEditorState={this.state.inputEditorState}
+        inputEditorFocused={this.state.inputEditorFocused}
+        noteClicked={this.noteClicked}
       />
     );
   }

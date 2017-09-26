@@ -22,18 +22,23 @@ class Note extends React.Component {
     this.props.onUpdate(this.props.id, editorState);
   };
 
-  onClick = () => {
-    this.props.onClick();
+  onFocusAttempt = () => {
+    console.log("hey");
+    // this.props.onClick();
   };
 
   render() {
     return (
-      <Card expanded onClick={this.onClick}>
+      <Card
+        expanded
+        onClick={() => {
+          console.log("rahhh");
+        }}
+      >
         <PartialWidthDiv>
           <TypingEditor
             defaultEditorState={this.props.defaultEditorState}
             onUpdate={this.onUpdate}
-            focused={this.props.focused}
           />
         </PartialWidthDiv>
         <DeleteButton {...this.props} />

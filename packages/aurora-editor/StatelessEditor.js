@@ -19,8 +19,6 @@ class AbstractEditor extends React.Component {
 
     if (this.props.focused) {
       this.domEditor.focus();
-    } else {
-      this.domEditor.blur();
     }
   };
 
