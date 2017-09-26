@@ -11,6 +11,7 @@
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
     "dev": "cd packages/aurora-electron && NODE_ENV=dev npm run dev",
+    "prod": "cd packages/aurora-electron && NODE_ENV=prod npm run dev",
     "fmt":
       "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
