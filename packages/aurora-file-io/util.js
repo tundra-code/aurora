@@ -4,11 +4,11 @@ const os = require("os"); // For some reason I cannot import using normal syntax
 const noteFileExt = ".aur";
 
 function getAuroraDirContext() {
-  if (process.env.NODE_ENV === "dev"){
-    return jetpack.dir(os.homedir()).dir(".dev_aurora")
+  if (process.env.NODE_ENV === "dev") {
+    return jetpack.dir(os.homedir()).dir(".dev_aurora");
   }
-  
-  return jetpack.dir(os.homedir()).dir(".aurora")
+
+  return jetpack.dir(os.homedir()).dir(".aurora");
 }
 
 function noteFileName(note) {
@@ -16,11 +16,11 @@ function noteFileName(note) {
 }
 
 function saveTo(note, dirContext) {
-  return dirContext.writeAsync(noteFileName(note), note.toJSON());
+  return dirContext.write(noteFileName(note), note.toJSON());
 }
 
 function deleteNoteFrom(id, dirContext) {
-  return dirContext.removeAsync(id + noteFileExt);
+  return dirContext.remove(id + noteFileExt);
 }
 
 export {
