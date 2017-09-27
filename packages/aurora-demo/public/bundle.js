@@ -43879,6 +43879,16 @@ var AbstractEditor = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AbstractEditor.__proto__ || Object.getPrototypeOf(AbstractEditor)).call(this, props));
 
+    _this.handleFocus = function () {
+      if (!_this.domEditor) {
+        return;
+      }
+
+      if (_this.props.focused) {
+        _this.domEditor.focus();
+      }
+    };
+
     _this.setDomEditorRef = function (ref) {
       return _this.domEditor = ref;
     };
@@ -43888,9 +43898,7 @@ var AbstractEditor = function (_React$Component) {
   _createClass(AbstractEditor, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (this.props.focused) {
-        this.domEditor.focus();
-      }
+      this.handleFocus();
     }
   }, {
     key: "render",
@@ -44054,7 +44062,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /**
  * Gives an editor really basic typing capabilities. If you press some keys, something will happen.
- * @param {React} Editor 
+ * @param {React} Editor
  */
 var canType = function canType(Editor) {
   var CanTypeEditor = function (_React$Component) {
@@ -44066,12 +44074,14 @@ var canType = function canType(Editor) {
       // Let the user pass in a defaultEditorState if they want to.
       var _this = _possibleConstructorReturn(this, (CanTypeEditor.__proto__ || Object.getPrototypeOf(CanTypeEditor)).call(this, props));
 
+      _this.onChange = function (editorState) {
+        _this.setState({ editorState: editorState });
+        _this.props.onUpdate(editorState);
+      };
+
       var startEditorState = _this.props.defaultEditorState ? _this.props.defaultEditorState : _draftJs.EditorState.createEmpty();
 
       _this.state = { editorState: startEditorState };
-      _this.onChange = function (editorState) {
-        _this.setState({ editorState: editorState });
-      };
       return _this;
     }
 
@@ -44089,7 +44099,8 @@ var canType = function canType(Editor) {
   }(_react2.default.Component);
 
   CanTypeEditor.propTypes = {
-    defaultEditorState: _propTypes2.default.object
+    defaultEditorState: _propTypes2.default.object,
+    onUpdate: _propTypes2.default.func.isRequired
   };
 
   return CanTypeEditor;
@@ -44154,7 +44165,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(["\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  margin-bottom: 0;\n  border-top: 1px solid\n    ", ";\n  .public-DraftEditorPlaceholder-inner {\n    position: absolute;\n    color: #aaaaaa ;\n  }\n"], ["\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  margin-bottom: 0;\n  border-top: 1px solid\n    ", ";\n  .public-DraftEditorPlaceholder-inner {\n    position: absolute;\n    color: #aaaaaa ;\n  }\n"]);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _templateObject = _taggedTemplateLiteral(["\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  margin-bottom: 0;\n  border-top: 1px solid\n    ", ";\n  .public-DraftEditorPlaceholder-inner {\n    pointer-events: none;\n    position: absolute;\n    color: #aaaaaa;\n  }\n"], ["\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  margin-bottom: 0;\n  border-top: 1px solid\n    ", ";\n  .public-DraftEditorPlaceholder-inner {\n    pointer-events: none;\n    position: absolute;\n    color: #aaaaaa;\n  }\n"]);
 
 var _react = __webpack_require__(9);
 
@@ -44166,22 +44179,43 @@ var _auroraUi = __webpack_require__(44);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 var CardAtBottom = _auroraUi.Card.extend(_templateObject, function (props) {
   return props.theme ? props.theme.colors.border : "black";
 });
 
-var FeedEditor = function FeedEditor(props) {
-  var canSubmit = _auroraEditor.modifiers.canSubmit;
+var FeedEditor = function (_React$Component) {
+  _inherits(FeedEditor, _React$Component);
 
-  var _Editor = canSubmit(_auroraEditor.Editor);
-  return _react2.default.createElement(
-    CardAtBottom,
-    null,
-    _react2.default.createElement(_Editor, props)
-  );
-};
+  function FeedEditor(props) {
+    _classCallCheck(this, FeedEditor);
+
+    var _this = _possibleConstructorReturn(this, (FeedEditor.__proto__ || Object.getPrototypeOf(FeedEditor)).call(this, props));
+
+    _this._Editor = _auroraEditor.modifiers.canSubmit(_auroraEditor.Editor);
+    return _this;
+  }
+
+  _createClass(FeedEditor, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        CardAtBottom,
+        null,
+        _react2.default.createElement(this._Editor, this.props)
+      );
+    }
+  }]);
+
+  return FeedEditor;
+}(_react2.default.Component);
 
 exports.default = FeedEditor;
 
@@ -44228,13 +44262,18 @@ var StatelessFeedView = function StatelessFeedView(props) {
   return _react2.default.createElement(
     FlexSeperated,
     { className: "flex-seperated" },
-    _react2.default.createElement(_auroraUi.NoteList, { notes: props.notes, onDelete: props.onDelete }),
+    _react2.default.createElement(_auroraUi.NoteList, {
+      notes: props.notes,
+      onDelete: props.onDelete,
+      onUpdate: props.onUpdate,
+      onBlur: props.onBlur
+    }),
     _react2.default.createElement(_FeedEditor2.default, {
       className: "card-at-bottom-editor",
       onSubmit: props.onSubmit,
       onChange: props.onChange,
       editorState: props.inputEditorState,
-      focused: true
+      focused: props.inputEditorFocused
     })
   );
 };
@@ -44242,9 +44281,12 @@ var StatelessFeedView = function StatelessFeedView(props) {
 StatelessFeedView.propTypes = {
   notes: _propTypes2.default.objectOf(_propTypes2.default.instanceOf(_auroraNote.NoteModel)).isRequired,
   onDelete: _propTypes2.default.func.isRequired,
+  onUpdate: _propTypes2.default.func.isRequired,
   onSubmit: _propTypes2.default.func.isRequired,
   onChange: _propTypes2.default.func.isRequired,
-  inputEditorState: _propTypes2.default.object.isRequired
+  onBlur: _propTypes2.default.func.isRequired,
+  inputEditorState: _propTypes2.default.object.isRequired,
+  inputEditorFocused: _propTypes2.default.bool
 };
 
 exports.default = StatelessFeedView;
@@ -44341,11 +44383,9 @@ var Feed = function (_React$Component) {
       _this.setState(function (prevState) {
         var ids = (0, _auroraSearch2.default)((0, _util.fromNotesToSearchableObjects)(prevState.allNotes), editorState.getCurrentContent().getPlainText());
 
-        var notes = ids.map(function (id) {
-          return prevState.allNotes[id];
-        });
+        var notes = (0, _util.mapIdsToNotes)(ids, prevState.allNotes);
 
-        if (notes.length === 0) {
+        if (ids.length === 0) {
           prevState.shownNotes = Object.assign({}, prevState.allNotes); // makes a copy
           return prevState;
         }
@@ -44363,6 +44403,19 @@ var Feed = function (_React$Component) {
       });
     };
 
+    _this.onUpdate = function (id, editorState) {
+      _this.setState(function (prevState) {
+        prevState.shownNotes[id].setEditorState(editorState);
+        prevState.allNotes[id].setEditorState(editorState);
+        return prevState;
+      });
+    };
+
+    _this.saveNote = function (id) {
+      var note = _this.state.allNotes[id];
+      _this.props.persist.save(note);
+    };
+
     _this.onSubmit = function (editorState) {
       var note = new _auroraNote.NoteModel(editorState);
 
@@ -44375,10 +44428,21 @@ var Feed = function (_React$Component) {
       });
     };
 
+    _this.onNoteUnfocused = function (id) {
+      _this.saveNote(id);
+    };
+
+    _this.noteClicked = function () {
+      _this.setState({
+        inputEditorFocused: false
+      });
+    };
+
     _this.state = {
       shownNotes: {}, // The notes that the user sees
       allNotes: {}, // A local copy of all the notes
-      inputEditorState: _draftJs.EditorState.createEmpty()
+      inputEditorState: _draftJs.EditorState.createEmpty(),
+      inputEditorFocused: true
     };
 
     _this.props.persist.loadNotes(_this.addSavedNotes);
@@ -44397,7 +44461,11 @@ var Feed = function (_React$Component) {
         onSubmit: this.onSubmit,
         onChange: this.onChange,
         onDelete: this.onDelete,
-        inputEditorState: this.state.inputEditorState
+        onUpdate: this.onUpdate,
+        onBlur: this.onNoteUnfocused,
+        inputEditorState: this.state.inputEditorState,
+        inputEditorFocused: this.state.inputEditorFocused,
+        noteClicked: this.noteClicked
       });
     }
   }]);
@@ -44452,9 +44520,19 @@ var removeNoteData = function removeNoteData(notes, id) {
   return notes;
 };
 
+/* Maps a list of valid ids to a dictionary of notes, selecting only a subset of all notes. */
+var mapIdsToNotes = function mapIdsToNotes(ids, allNotes) {
+  var notes = {};
+  ids.forEach(function (id) {
+    notes[id] = allNotes[id];
+  });
+  return notes;
+};
+
 exports.fromNotesToSearchableObjects = fromNotesToSearchableObjects;
 exports.addNewNoteData = addNewNoteData;
 exports.removeNoteData = removeNoteData;
+exports.mapIdsToNotes = mapIdsToNotes;
 
 /***/ }),
 /* 244 */
@@ -44485,8 +44563,9 @@ var Note = function () {
 
     options = options || {}; // avoid undefined errors
 
-    this.editorState = editorState;
-    this.contentState = (0, _draftJs.convertToRaw)(editorState.getCurrentContent());
+    // Note that the "moveSelectionToEnd" is required to fix errors
+    // that put the cursor in the front instead of at the end when clicked on.
+    this.editorState = _draftJs.EditorState.moveSelectionToEnd(_draftJs.EditorState.createWithContent(editorState.getCurrentContent()));
 
     var now = Date.now();
     this.date = options.date ? options.date : now;
@@ -44495,12 +44574,22 @@ var Note = function () {
     this.toJSON = this.toJSON.bind(this);
   }
 
-  /**
-   * Returns true if there's no text
-   */
-
-
   _createClass(Note, [{
+    key: "setEditorState",
+    value: function setEditorState(editorState) {
+      this.editorState = editorState;
+    }
+  }, {
+    key: "getRawContentState",
+    value: function getRawContentState() {
+      return (0, _draftJs.convertToRaw)(this.editorState.getCurrentContent());
+    }
+
+    /**
+     * Returns true if there's no text
+     */
+
+  }, {
     key: "isEmpty",
     value: function isEmpty() {
       var text = this.editorState.getCurrentContent().getPlainText();
@@ -44515,14 +44604,14 @@ var Note = function () {
     key: "toJSON",
     value: function toJSON() {
       return {
-        contentState: this.contentState,
+        contentState: this.getRawContentState(),
         date: this.date,
         id: this.id
       };
     }
 
     /**
-     * Returns a Note object from file data 
+     * Returns a Note object from file data
      */
 
   }], [{
@@ -44681,10 +44770,16 @@ var TypingEditor = function TypingEditor(props) {
 var Note = function (_React$Component) {
   _inherits(Note, _React$Component);
 
-  function Note() {
+  function Note(props) {
     _classCallCheck(this, Note);
 
-    return _possibleConstructorReturn(this, (Note.__proto__ || Object.getPrototypeOf(Note)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Note.__proto__ || Object.getPrototypeOf(Note)).call(this, props));
+
+    _this.onUpdate = function (editorState) {
+      _this.props.onUpdate(_this.props.id, editorState);
+    };
+
+    return _this;
   }
 
   _createClass(Note, [{
@@ -44698,7 +44793,8 @@ var Note = function (_React$Component) {
           null,
           _react2.default.createElement(TypingEditor, {
             defaultEditorState: this.props.defaultEditorState,
-            readOnly: true
+            onUpdate: this.onUpdate,
+            onBlur: this.props.onBlur
           })
         ),
         _react2.default.createElement(_DeleteButton2.default, this.props)
@@ -44712,7 +44808,9 @@ var Note = function (_React$Component) {
 Note.propTypes = {
   defaultEditorState: _propTypes2.default.object.isRequired,
   id: _propTypes2.default.string.isRequired,
-  onDelete: _propTypes2.default.func.isRequired
+  onDelete: _propTypes2.default.func.isRequired,
+  onUpdate: _propTypes2.default.func.isRequired,
+  onBlur: _propTypes2.default.func.isRequired
 };
 
 exports.default = Note;
@@ -44957,6 +45055,10 @@ var NoteWrapper = _styledComponents2.default.div(_templateObject);
 var NoteList = function NoteList(props) {
   var ids = Object.keys(props.notes);
   var notes = ids.map(function (id) {
+    var onBlur = function onBlur() {
+      props.onBlur(id);
+    };
+
     return _react2.default.createElement(
       _animateCssStyledComponents2.default,
       { key: id, Animation: [_animateCssStyledComponents.FadeInUp], duration: "0.2s" },
@@ -44964,7 +45066,10 @@ var NoteList = function NoteList(props) {
         id: id,
         key: id,
         defaultEditorState: props.notes[id].editorState,
-        onDelete: props.onDelete
+        onDelete: props.onDelete,
+        onUpdate: props.onUpdate,
+        onClick: props.onClick,
+        onBlur: onBlur
       })
     );
   });
@@ -44978,7 +45083,12 @@ var NoteList = function NoteList(props) {
 
 NoteList.propTypes = {
   notes: _propTypes2.default.objectOf(_propTypes2.default.instanceOf(_auroraNote.NoteModel)).isRequired,
-  onDelete: _propTypes2.default.func.isRequired
+  onDelete: _propTypes2.default.func.isRequired,
+  onUpdate: _propTypes2.default.func.isRequired,
+  focusId: _propTypes2.default.number,
+  onFocusChange: _propTypes2.default.func,
+  onClick: _propTypes2.default.func,
+  onBlur: _propTypes2.default.func
 };
 
 exports.default = NoteList;
@@ -67154,6 +67264,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 /**
  * Fix some of the demo on here.
  */
+/* eslint-disable no-unused-expressions */
 (0, _styledComponents.injectGlobal)(_templateObject);
 
 var Main = _styledComponents2.default.div(_templateObject2);
@@ -67190,7 +67301,9 @@ var App = function App() {
     _react2.default.createElement(
       "p",
       null,
-      "Here's a tiny example of how Aurora works. (Press shift+enter to add a note.)"
+      "Here",
+      "'",
+      "s a tiny example of how Aurora works. (Press shift+enter to add a note.)"
     ),
     _react2.default.createElement(_Demo2.default, null),
     _react2.default.createElement(
