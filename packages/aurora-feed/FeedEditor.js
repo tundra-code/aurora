@@ -1,6 +1,8 @@
 import React from "react";
 import { Editor, modifiers } from "../aurora-editor";
 import { Card } from "../aurora-ui";
+import AddButton from "./AddButton";
+import styled from "styled-components";
 
 const CardAtBottom = Card.extend`
   position: fixed;
@@ -14,6 +16,13 @@ const CardAtBottom = Card.extend`
     position: absolute;
     color: #aaaaaa;
   }
+  overflow: hidden;
+`;
+
+const PartialWidthDiv = styled.div`
+  float: left;
+  width: 80%;
+  margin-bottom: 0;
 `;
 
 class FeedEditor extends React.Component {
@@ -25,7 +34,10 @@ class FeedEditor extends React.Component {
   render() {
     return (
       <CardAtBottom>
-        <this._Editor {...this.props} />
+        <PartialWidthDiv>
+          <this._Editor {...this.props} />
+        </PartialWidthDiv>
+        <AddButton {...this.props} />
       </CardAtBottom>
     );
   }
