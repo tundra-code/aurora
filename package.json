@@ -1,6 +1,6 @@
 {
-  "name": "aurora",
-  "version": "0.0.0",
+  "name": "aurora-notes",
+  "version": "0.0.1",
   "description": "",
   "main": "packages/aurora-electron/src/main/index.js",
   "scripts": {
