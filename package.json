@@ -10,12 +10,10 @@
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
-    "dev": "cd packages/aurora-electron && NODE_ENV=dev npm run dev",
+    "dev": "cd packages/aurora-electron && export NODE_ENV=dev npm run dev",
     "dev-windows":
       "cd packages/aurora-electron && set NODE_ENV=dev && npm run dev",
-    "prod": "cd packages/aurora-electron && NODE_ENV=prod npm run dev",
-    "prod-windows":
-      "cd packages/aurora-electron && set NODE_ENV=prod && npm run dev",
+    "prod": "cd packages/aurora-electron && export NODE_ENV=prod npm run dev",
     "fmt":
       "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
