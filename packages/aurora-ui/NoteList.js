@@ -12,6 +12,10 @@ const NoteWrapper = styled.div`
 const NoteList = props => {
   const ids = Object.keys(props.notes);
   const notes = ids.map(id => {
+    const onBlur = () => {
+      props.onBlur(id);
+    };
+
     return (
       <Animate key={id} Animation={[FadeInUp]} duration={"0.2s"}>
         <NoteView
@@ -19,6 +23,9 @@ const NoteList = props => {
           key={id}
           defaultEditorState={props.notes[id].editorState}
           onDelete={props.onDelete}
+          onUpdate={props.onUpdate}
+          onClick={props.onClick}
+          onBlur={onBlur}
         />
       </Animate>
     );
@@ -29,7 +36,12 @@ const NoteList = props => {
 
 NoteList.propTypes = {
   notes: PropTypes.objectOf(PropTypes.instanceOf(NoteModel)).isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  focusId: PropTypes.number,
+  onFocusChange: PropTypes.func,
+  onClick: PropTypes.func,
+  onBlur: PropTypes.func
 };
 
 export default NoteList;

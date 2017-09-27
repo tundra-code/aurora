@@ -16,13 +16,18 @@ const FlexSeperated = styled.div`
 const StatelessFeedView = props => {
   return (
     <FlexSeperated className="flex-seperated">
-      <NoteList notes={props.notes} onDelete={props.onDelete} />
+      <NoteList
+        notes={props.notes}
+        onDelete={props.onDelete}
+        onUpdate={props.onUpdate}
+        onBlur={props.onBlur}
+      />
       <FeedEditor
         className="card-at-bottom-editor"
         onSubmit={props.onSubmit}
         onChange={props.onChange}
         editorState={props.inputEditorState}
-        focused
+        focused={props.inputEditorFocused}
       />
     </FlexSeperated>
   );
@@ -31,9 +36,12 @@ const StatelessFeedView = props => {
 StatelessFeedView.propTypes = {
   notes: PropTypes.objectOf(PropTypes.instanceOf(NoteModel)).isRequired,
   onDelete: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  inputEditorState: PropTypes.object.isRequired
+  onBlur: PropTypes.func.isRequired,
+  inputEditorState: PropTypes.object.isRequired,
+  inputEditorFocused: PropTypes.bool
 };
 
 export default StatelessFeedView;

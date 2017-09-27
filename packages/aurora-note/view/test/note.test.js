@@ -15,6 +15,8 @@ describe("note", () => {
         )}
         id={"1"}
         onDelete={fakeDeleteFunc}
+        onBlur={() => {}}
+        onUpdate={() => {}}
       />
     );
 

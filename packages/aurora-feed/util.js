@@ -25,4 +25,18 @@ const removeNoteData = (notes, id) => {
   return notes;
 };
 
-export { fromNotesToSearchableObjects, addNewNoteData, removeNoteData };
+/* Maps a list of valid ids to a dictionary of notes, selecting only a subset of all notes. */
+const mapIdsToNotes = (ids, allNotes) => {
+  const notes = {};
+  ids.forEach(id => {
+    notes[id] = allNotes[id];
+  });
+  return notes;
+};
+
+export {
+  fromNotesToSearchableObjects,
+  addNewNoteData,
+  removeNoteData,
+  mapIdsToNotes
+};
