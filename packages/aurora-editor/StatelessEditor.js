@@ -23,7 +23,12 @@ class AbstractEditor extends React.Component {
   };
 
   componentDidMount() {
+    if (this.started) {
+      return;
+    }
+
     this.handleFocus();
+    this.started = true;
   }
 
   render() {

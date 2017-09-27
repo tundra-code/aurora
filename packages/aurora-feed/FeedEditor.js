@@ -32,11 +32,10 @@ class FeedEditor extends React.Component {
   }
 
   render() {
+    const Ed = <this._Editor {...this.props} />;
     return (
       <CardAtBottom>
-        <PartialWidthDiv>
-          <this._Editor {...this.props} />
-        </PartialWidthDiv>
+        <PartialWidthDiv>{Ed}</PartialWidthDiv>
         <AddButton {...this.props} />
       </CardAtBottom>
     );
