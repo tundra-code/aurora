@@ -7,7 +7,7 @@ import {
 import { NoteModel } from "../aurora-note";
 
 /**
- * Asynchronously save a NoteModel.
+ * save a NoteModel.
  */
 function save(note) {
   if (!(note instanceof NoteModel)) {
@@ -18,7 +18,7 @@ function save(note) {
 }
 
 /**
- * Asynchronously delete a note by it's ID
+ * Delete a note by it's ID
  */
 function deleteNote(id) {
   const context = getAuroraDirContext();
@@ -26,21 +26,14 @@ function deleteNote(id) {
 }
 
 /**
- * Asynchronously load notes
+ * Loads notes one by one.
  */
 function loadNotes(callback) {
   const context = getAuroraDirContext();
   const noteFiles = context.find({ matching: "*" + noteFileExt });
-  const notes = [];
 
   noteFiles.forEach(file => {
-    context.readAsync(file).then(data => {
-      notes.push(NoteModel.fromFileData(data));
-      const allNotesAreLoaded = notes.length === noteFiles.length;
-      if (allNotesAreLoaded) {
-        callback(notes);
-      }
-    });
+    callback(NoteModel.fromFileData(context.read(file)));
   });
 }
 

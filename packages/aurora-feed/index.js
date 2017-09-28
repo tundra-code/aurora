@@ -22,14 +22,14 @@ class Feed extends React.Component {
       inputEditorState: EditorState.createEmpty(),
       inputEditorFocused: true
     };
-
-    this.props.persist.loadNotes(this.addSavedNotes);
   }
 
-  addSavedNotes = notes => {
-    notes.forEach(note => {
-      this.addCard(note);
-    });
+  componentDidMount() {
+    this.props.persist.loadNotes(this.addSavedNote);
+  }
+
+  addSavedNote = note => {
+    this.addCard(note);
   };
 
   // Note: This fat arrow function syntax let's us not have to `bind(this);` in the

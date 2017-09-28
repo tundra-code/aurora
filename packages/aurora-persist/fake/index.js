@@ -6,9 +6,7 @@ const fake = {
   save: () => {
     return Date.now().toString();
   },
-  loadNotes: back => {
-    back([]);
-  },
+  loadNotes: () => {},
   deleteNote: () => {}
 };
 
