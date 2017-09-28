@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { NoteList } from "../aurora-ui";
 import FeedEditor from "./FeedEditor.js";
-import { NoteModel } from "../aurora-note";
 import PropTypes from "prop-types";
+import { Map } from "immutable-props";
 
 const FlexSeperated = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ const StatelessFeedView = props => {
 };
 
 StatelessFeedView.propTypes = {
-  notes: PropTypes.objectOf(PropTypes.instanceOf(NoteModel)).isRequired,
+  notes: Map,
   onDelete: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

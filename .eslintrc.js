@@ -41,8 +41,7 @@ module.exports = {
     "symbol-description": "error",
     "max-depth": "error",
     "max-lines": "error",
-    "max-nested-callbacks": "error",
-    "new-cap": "error"
+    "max-nested-callbacks": "error"
   },
   parserOptions: {
     ecmaFeatures: {

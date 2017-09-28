@@ -30,7 +30,7 @@ class DeleteButton extends React.Component {
 }
 
 DeleteButton.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired
 };
 

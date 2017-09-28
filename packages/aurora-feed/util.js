@@ -16,13 +16,11 @@ const fromNotesToSearchableObjects = notes => {
    * @param {EditorState} editorState
    */
 const addNewNoteData = (notes, note) => {
-  notes[note.id] = note;
-  return notes;
+  return notes.set(note.id, note);
 };
 
 const removeNoteData = (notes, id) => {
-  delete notes[id];
-  return notes;
+  return notes.delete(id);
 };
 
 /* Maps a list of valid ids to a dictionary of notes, selecting only a subset of all notes. */

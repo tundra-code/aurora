@@ -11,13 +11,14 @@ import {
   mapIdsToNotes
 } from "./util.js";
 import StatelessFeed from "./StatelessFeed";
+import { Map } from "immutable";
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shownNotes: {}, // The notes that the user sees
-      allNotes: {}, // A local copy of all the notes
+      shownNotes: Map({}), // The notes that the user sees
+      allNotes: Map({}), // A local copy of all the notes
       inputEditorState: EditorState.createEmpty(),
       inputEditorFocused: true
     };
@@ -58,7 +59,7 @@ class Feed extends React.Component {
       inputEditorState: editorState
     });
     // Only search once every XYZ miliseconds so we're not flashing
-    const searchOnlyAfterSomeTime = _.debounce(this.searchCard, 250);
+    const searchOnlyAfterSomeTime = _.debounce(this.searchCard, 1000);
     searchOnlyAfterSomeTime(editorState);
   };
 
@@ -91,8 +92,8 @@ class Feed extends React.Component {
 
   onUpdate = (id, editorState) => {
     this.setState(prevState => {
-      prevState.shownNotes[id].setEditorState(editorState);
-      prevState.allNotes[id].setEditorState(editorState);
+      prevState.shownNotes.get(id).setEditorState(editorState);
+      prevState.allNotes.get(id).setEditorState(editorState);
       return prevState;
     });
   };
