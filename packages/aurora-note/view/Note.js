@@ -11,20 +11,24 @@ const PartialWidthDiv = styled.div`
   margin-bottom: 0;
 `;
 
-const TypingEditor = props => {
-  const _Editor = modifiers.canType(Editor);
-
-  return <_Editor {...props} />;
-};
-
 class Note extends React.Component {
+  constructor(props) {
+    super(props);
+    this._Editor = modifiers.canType(Editor);
+  }
+
+  onUpdate = editorState => {
+    this.props.onUpdate(this.props.id, editorState);
+  };
+
   render() {
     return (
       <Card expanded>
         <PartialWidthDiv>
-          <TypingEditor
+          <this._Editor
             defaultEditorState={this.props.defaultEditorState}
-            readOnly
+            onUpdate={this.onUpdate}
+            onBlur={this.props.onBlur}
           />
         </PartialWidthDiv>
         <DeleteButton {...this.props} />
@@ -35,7 +39,10 @@ class Note extends React.Component {
 
 Note.propTypes = {
   defaultEditorState: PropTypes.object.isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired
 };
 
 export default Note;

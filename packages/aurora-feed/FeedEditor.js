@@ -1,6 +1,8 @@
 import React from "react";
 import { Editor, modifiers } from "../aurora-editor";
 import { Card } from "../aurora-ui";
+import AddButton from "./AddButton";
+import styled from "styled-components";
 
 const CardAtBottom = Card.extend`
   position: fixed;
@@ -10,19 +12,35 @@ const CardAtBottom = Card.extend`
   border-top: 1px solid
     ${props => (props.theme ? props.theme.colors.border : "black")};
   .public-DraftEditorPlaceholder-inner {
+    pointer-events: none;
     position: absolute;
-    color: #aaaaaa ;
+    color: #aaaaaa;
   }
+  overflow: hidden;
 `;
 
-const FeedEditor = props => {
-  const { canSubmit } = modifiers;
-  const _Editor = canSubmit(Editor);
-  return (
-    <CardAtBottom>
-      <_Editor {...props} />
-    </CardAtBottom>
-  );
-};
+const PartialWidthDiv = styled.div`
+  float: left;
+  width: 80%;
+  margin-bottom: 0;
+`;
+
+class FeedEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this._Editor = modifiers.canSubmit(Editor);
+  }
+
+  render() {
+    return (
+      <CardAtBottom>
+        <PartialWidthDiv>
+          <this._Editor {...this.props} />
+        </PartialWidthDiv>
+        <AddButton {...this.props} />
+      </CardAtBottom>
+    );
+  }
+}
 
 export default FeedEditor;

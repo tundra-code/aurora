@@ -1,8 +1,15 @@
+/**
+ * Before we do anything else, we're going to import this to avoid weird issues
+ * with libraries meant for the browser and ones meant for node.
+ */
+import "babel-polyfill";
+
 import React from "react";
 import { shallow, mount } from "enzyme";
 import Feed from "../index.js";
 import { EditorState, ContentState } from "draft-js";
 import fake from "../../aurora-persist/fake";
+import { NoteModel } from "../../aurora-note";
 
 describe("feed", () => {
   it("exists", () => {
@@ -22,12 +29,11 @@ describe("feed", () => {
   it("can add a card", () => {
     const text = "Hey I am some text";
     const wrapper = mount(<Feed persist={fake} />);
-    wrapper.get(0).addCard({
-      id: 0, // TODO: don't actually save this stuff in tests
-      editorState: EditorState.createWithContent(
-        ContentState.createFromText(text)
-      )
-    });
+
+    const note = new NoteModel(
+      EditorState.createWithContent(ContentState.createFromText(text))
+    );
+    wrapper.get(0).addCard(note);
 
     expect(wrapper.containsMatchingElement(<span>{text}</span>)).toBe(true);
   });
@@ -40,8 +46,26 @@ describe("feed", () => {
       .onSubmit(
         EditorState.createWithContent(ContentState.createFromText(text))
       );
-
     expect(wrapper.containsMatchingElement(<span>{text}</span>)).toBe(true);
+  });
+
+  it("can use delete to remove a card", () => {
+    const text = "Hey I will be deleted";
+    const wrapper = mount(<Feed persist={fake} />);
+    wrapper
+      .get(0)
+      .onSubmit(
+        EditorState.createWithContent(ContentState.createFromText(text))
+      );
+
+    // Run a sanity check to make sure we actually added something
+    expect(wrapper.containsMatchingElement(<span>{text}</span>)).toBe(true);
+
+    // Now let's remove it.
+    wrapper.find(".delete-button").simulate("click");
+
+    // And test that it's gone.
+    expect(wrapper.find(".public-DraftEditor-content").length).toBe(1); // 1 === empty
   });
 
   it("won't submit an empty card", () => {

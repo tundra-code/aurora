@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Editor } from "draft-js";
-
 /**
  * A really basic editor that doesn't actually do anything other than have an editor className and can be focused
  * It might do something in the future, but at the moment it serves as a base to apply modifiers
@@ -12,10 +11,18 @@ class AbstractEditor extends React.Component {
     this.setDomEditorRef = ref => (this.domEditor = ref);
   }
 
-  componentDidMount() {
+  handleFocus = () => {
+    if (!this.domEditor) {
+      return;
+    }
+
     if (this.props.focused) {
       this.domEditor.focus();
     }
+  };
+
+  componentDidMount() {
+    this.handleFocus();
   }
 
   render() {

@@ -1,11 +1,15 @@
 import { convertToRaw, convertFromRaw, EditorState } from "draft-js";
+import _ from "lodash";
 
 export default class Note {
   constructor(editorState, options) {
     options = options || {}; // avoid undefined errors
 
-    this.editorState = editorState;
-    this.contentState = convertToRaw(editorState.getCurrentContent());
+    // Note that the "moveSelectionToEnd" is required to fix errors
+    // that put the cursor in the front instead of at the end when clicked on.
+    this.editorState = EditorState.moveSelectionToEnd(
+      EditorState.createWithContent(editorState.getCurrentContent())
+    );
 
     const now = Date.now();
     this.date = options.date ? options.date : now;
@@ -14,19 +18,35 @@ export default class Note {
     this.toJSON = this.toJSON.bind(this);
   }
 
+  setEditorState(editorState) {
+    this.editorState = editorState;
+  }
+
+  getRawContentState() {
+    return convertToRaw(this.editorState.getCurrentContent());
+  }
+
+  /**
+   * Returns true if there's no text
+   */
+  isEmpty() {
+    const text = this.editorState.getCurrentContent().getPlainText();
+    return !text || _.trim(text).length === 0;
+  }
+
   /**
    * Gets information we care about saving to JSON 
    */
   toJSON() {
     return {
-      contentState: this.contentState,
+      contentState: this.getRawContentState(),
       date: this.date,
       id: this.id
     };
   }
 
   /**
-   * Returns a Note object from file data 
+   * Returns a Note object from file data
    */
   static fromFileData(data) {
     const json = JSON.parse(data);

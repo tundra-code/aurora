@@ -1,32 +1,39 @@
 {
-  "name": "@aurora/aurora",
+  "name": "aurora",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "packages/aurora-electron/src/main/index.js",
   "scripts": {
     "test": "./node_modules/.bin/jest",
     "test-on-ci": "xvfb-maybe ./node_modules/.bin/jest --runInBand",
-    "test-watch": "./node_modules/.bin/jest --watch --runInBand",
+    "test-watch": "./node_modules/.bin/jest --watch",
     "plop": "./node_modules/.bin/plop",
     "lint": "./node_modules/.bin/eslint packages",
     "lint-fix": "./node_modules/.bin/eslint --fix packages",
-    "dev": "cd packages/aurora-electron && npm run dev",
-    "fmt":
-      "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
+    "dev": "cd packages/aurora-electron && NODE_ENV=dev npm run dev",
+    "dev-windows": "cd packages/aurora-electron && set NODE_ENV=dev && npm run dev",
+    "prod": "cd packages/aurora-electron && NODE_ENV=prod npm run dev",
+    "prod-windows": "cd packages/aurora-electron && set NODE_ENV=prod && npm run dev",
+    "fmt": "./node_modules/.bin/prettier --write 'packages/**/!(compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "dist": "./node_modules/.bin/electron-packager . --out ./dist --overwrite"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.10",
+    "@storybook/addon-links": "^3.2.10",
     "@storybook/react": "^3.2.8",
-    "babel-cli": "^6.24.1",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "coveralls": "^2.13.1",
     "electron": "^1.7.6",
+    "electron-packager": "^9.1.0",
     "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-plugin-fp": "^2.3.0",
@@ -41,30 +48,69 @@
     "pre-commit": "^1.2.2",
     "prettier": "^1.5.2",
     "react-test-renderer": "^15.6.1",
+    "sinon": "^3.3.0",
+    "tmp": "0.0.33",
     "webpack": "^3.0.0",
     "xvfb-maybe": "^0.2.1"
   },
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   },
   "dependencies": {
-    "@vx/shape": "0.0.131",
+    "animate-css-styled-components": "0.0.19",
     "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
     "draft-js": "^0.10.1",
-    "draftjs-utils": "^0.8.6",
     "fs-jetpack": "^1.2.0",
     "fuse.js": "^3.1.0",
-    "keycode-js": "0.0.4",
+    "immutable-props": "^1.1.0",
     "linklocal": "^2.8.1",
-    "os": "^0.1.1",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "sea-floor": "^0.3.2",
-    "stop-if": "^1.0.3",
     "styled-components": "^2.1.2"
+  },
+  "build": {
+    "appId": "com.flaque.penguin",
+    "mac": {
+      "category": "public.app-category.graphics-design",
+      "target": [
+        "pkg",
+        "dmg",
+        "zip",
+        "mas"
+      ],
+      "entitlements": "packages/aurora-electron/build/entitlements.mac.plist",
+      "type": "distribution",
+      "icon": "packages/aurora-electron/build/icon.icns"
+    },
+    "mas": {
+      "entitlements": "build/entitlements.mas.plist",
+      "type": "distribution",
+      "category": "public.app-category.graphics-design"
+    },
+    "files": [
+      "main.js",
+      "node_modules/**/*",
+      "app/**/*",
+      "package.json",
+      "embedded.provisionprofile"
+    ]
   }
 }

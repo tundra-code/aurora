@@ -1,76 +1,49 @@
 import React from "react";
-import { NoteView, NoteModel } from "../aurora-note";
-import FeedEditor from "./FeedEditor.js";
+import { NoteModel } from "../aurora-note";
 import search from "../aurora-search";
-import styled from "styled-components";
 import { EditorState } from "draft-js";
 import PropTypes from "prop-types";
 import _ from "lodash";
-
-/**
- * Adds a "text" version of the editor state to each note in the notes object
- */
-const fromNotesToSearchableObjects = notes => {
-  const ids = Object.keys(notes);
-  return ids.map(id => {
-    return {
-      text: notes[id].editorState.getCurrentContent().getPlainText(),
-      id: id
-    };
-  });
-};
-
-/**
- * Creates data that we can use for a Note
- * @param {EditorState} editorState
- */
-const addNewNoteData = (notes, note) => {
-  notes[note.id] = note;
-  return notes;
-};
-
-const removeNoteData = (notes, id) => {
-  delete notes[id];
-  return notes;
-};
-
-const FlexSeperated = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-`;
-
-const NoteWrapper = styled.div`
-  width: 100%;
-  padding-bottom: 50px;
-`;
+import {
+  fromNotesToSearchableObjects,
+  addNewNoteData,
+  removeNoteData,
+  mapIdsToNotes
+} from "./util.js";
+import StatelessFeed from "./StatelessFeed";
+import { Map } from "immutable";
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shownNotes: {}, // The notes that the user sees
-      allNotes: {}, // A local copy of all the notes
-      inputEditorState: EditorState.createEmpty()
+      shownNotes: Map({}), // The notes that the user sees
+      allNotes: Map({}), // A local copy of all the notes
+      inputEditorState: EditorState.createEmpty(),
+      inputEditorFocused: true
     };
-
-    this.props.persist.loadNotes(this.addSavedNotes);
   }
 
-  addSavedNotes = notes => {
-    notes.forEach(note => {
-      this.addCard(note);
-    });
+  componentDidMount() {
+    this.props.persist.loadNotes(this.addSavedNote);
+  }
+
+  addSavedNote = note => {
+    this.addCard(note);
   };
 
   // Note: This fat arrow function syntax let's us not have to `bind(this);` in the
   // constructor. See: https://facebook.github.io/react/docs/handling-events.html
   addCard = note => {
+    // Don't allow a note that isn't a NoteModel
+    if (!(note instanceof NoteModel)) {
+      throw new Error(
+        "Feed called addCard on something that isn't a NoteModel"
+      );
+    }
+
     // Don't add a note if it doesn't exist. AUR-20
-    const text = note.editorState.getCurrentContent().getPlainText();
-    if (!text || _.trim(text).length === 0) {
+    if (note.isEmpty()) {
       return;
     }
 
@@ -85,7 +58,9 @@ class Feed extends React.Component {
     this.setState({
       inputEditorState: editorState
     });
-    this.searchCard(editorState);
+    // Only search once every XYZ miliseconds so we're not flashing
+    const searchOnlyAfterSomeTime = _.debounce(this.searchCard, 1000);
+    searchOnlyAfterSomeTime(editorState);
   };
 
   searchCard = editorState => {
@@ -95,9 +70,9 @@ class Feed extends React.Component {
         editorState.getCurrentContent().getPlainText()
       );
 
-      const notes = ids.map(id => prevState.allNotes[id]);
+      const notes = mapIdsToNotes(ids, prevState.allNotes);
 
-      if (notes.length === 0) {
+      if (ids.length === 0) {
         prevState.shownNotes = Object.assign({}, prevState.allNotes); // makes a copy
         return prevState;
       }
@@ -115,6 +90,19 @@ class Feed extends React.Component {
     });
   };
 
+  onUpdate = (id, editorState) => {
+    this.setState(prevState => {
+      prevState.shownNotes.get(id).setEditorState(editorState);
+      prevState.allNotes.get(id).setEditorState(editorState);
+      return prevState;
+    });
+  };
+
+  saveNote = id => {
+    const note = this.state.allNotes[id];
+    this.props.persist.save(note);
+  };
+
   onSubmit = editorState => {
     const note = new NoteModel(editorState);
 
@@ -127,31 +115,29 @@ class Feed extends React.Component {
     });
   };
 
-  render() {
-    // Create a note for each id
-    const ids = Object.keys(this.state.shownNotes);
-    const notes = ids.map(id => {
-      return (
-        <NoteView
-          id={id}
-          key={id}
-          defaultEditorState={this.state.shownNotes[id].editorState}
-          onDelete={this.onDelete}
-        />
-      );
-    });
+  onNoteUnfocused = id => {
+    this.saveNote(id);
+  };
 
+  noteClicked = () => {
+    this.setState({
+      inputEditorFocused: false
+    });
+  };
+
+  render() {
     return (
-      <FlexSeperated className="flex-seperated">
-        <NoteWrapper className="note-wrapper">{notes}</NoteWrapper>
-        <FeedEditor
-          className="card-at-bottom-editor"
-          onSubmit={this.onSubmit}
-          onChange={this.onChange}
-          editorState={this.state.inputEditorState}
-          focused
-        />
-      </FlexSeperated>
+      <StatelessFeed
+        notes={this.state.shownNotes}
+        onSubmit={this.onSubmit}
+        onChange={this.onChange}
+        onDelete={this.onDelete}
+        onUpdate={this.onUpdate}
+        onBlur={this.onNoteUnfocused}
+        inputEditorState={this.state.inputEditorState}
+        inputEditorFocused={this.state.inputEditorFocused}
+        noteClicked={this.noteClicked}
+      />
     );
   }
 }
