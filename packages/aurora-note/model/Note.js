@@ -15,7 +15,7 @@ export default class Note {
     this.date = options.date ? options.date : now;
     this.id = options.id ? options.id : now;
 
-    this.toJSON = this.toJSON.bind(this);
+    this.forceIdToBeString();
   }
 
   setEditorState(editorState) {
@@ -25,6 +25,10 @@ export default class Note {
   getRawContentState() {
     return convertToRaw(this.editorState.getCurrentContent());
   }
+
+  forceIdToBeString = () => {
+    this.id = `${this.id}`; // Force id's to be strings.
+  };
 
   /**
    * Returns true if there's no text
@@ -37,13 +41,14 @@ export default class Note {
   /**
    * Gets information we care about saving to JSON 
    */
-  toJSON() {
+  toJSON = () => {
+    this.forceIdToBeString();
     return {
       contentState: this.getRawContentState(),
       date: this.date,
       id: this.id
     };
-  }
+  };
 
   /**
    * Returns a Note object from file data
@@ -54,7 +59,7 @@ export default class Note {
     const editorState = EditorState.createWithContent(contentState);
     return new Note(editorState, {
       date: json.date,
-      id: json.id
+      id: `${json.id}`
     });
   }
 }

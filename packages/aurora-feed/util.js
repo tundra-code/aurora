@@ -1,11 +1,16 @@
+import { Map } from "immutable";
+
 /**
  * Adds a "text" version of the editor state to each note in the notes object
  */
 const fromNotesToSearchableObjects = notes => {
-  const ids = Object.keys(notes);
+  const ids = notes.keySeq().toArray();
   return ids.map(id => {
     return {
-      text: notes[id].editorState.getCurrentContent().getPlainText(),
+      text: notes
+        .get(id)
+        .editorState.getCurrentContent()
+        .getPlainText(),
       id: id
     };
   });
@@ -25,11 +30,17 @@ const removeNoteData = (notes, id) => {
 
 /* Maps a list of valid ids to a dictionary of notes, selecting only a subset of all notes. */
 const mapIdsToNotes = (ids, allNotes) => {
+  if (!Map.isMap(allNotes)) {
+    throw new Error(
+      "Expected allNotes to be immutable-js Map in mapIdsToNotes"
+    );
+  }
+
   const notes = {};
   ids.forEach(id => {
-    notes[id] = allNotes[id];
+    notes[id] = allNotes.get(id);
   });
-  return notes;
+  return Map(notes);
 };
 
 export {

@@ -73,10 +73,10 @@ class Feed extends React.Component {
       const notes = mapIdsToNotes(ids, prevState.allNotes);
 
       if (ids.length === 0) {
-        prevState.shownNotes = Object.assign({}, prevState.allNotes); // makes a copy
+        prevState.shownNotes = prevState.allNotes;
         return prevState;
       }
-      prevState.shownNotes = Object.assign({}, notes); // makes a copy of notes
+      prevState.shownNotes = notes;
       return prevState;
     });
   };

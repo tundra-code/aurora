@@ -39,7 +39,7 @@ class Note extends React.Component {
 
 Note.propTypes = {
   defaultEditorState: PropTypes.object.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired
