@@ -21,6 +21,13 @@ module.exports = {
         options: {
           presets: ["env", "react"]
         }
+      },
+      {
+        test: /\.svg/,
+        use: {
+          loader: "svg-url-loader",
+          options: {}
+        }
       }
     ]
   }

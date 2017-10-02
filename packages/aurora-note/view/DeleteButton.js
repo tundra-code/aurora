@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { Trash } from "react-feather";
 
 const DeleteDiv = styled.div`
   float: right;
@@ -17,7 +18,7 @@ class DeleteButton extends React.Component {
     return (
       <DeleteDiv>
         <button className="delete-button" type="button" onClick={this.onDelete}>
-          Delete
+          <Trash />
         </button>
       </DeleteDiv>
     );
