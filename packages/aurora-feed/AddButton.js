@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { Plus } from "react-feather";
 
 const AddDiv = styled.div`
   float: right;
@@ -16,9 +17,9 @@ class AddButton extends React.Component {
   render() {
     return (
       <AddDiv>
-        <button className="add-button" type="button" onClick={this.onSubmit}>
-          Add
-        </button>
+        <icon className="AddButton" type="icon" onClick={this.onSubmit}>
+          <Plus />
+        </icon>
       </AddDiv>
     );
   }
