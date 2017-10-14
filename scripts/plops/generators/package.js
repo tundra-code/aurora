@@ -1,11 +1,10 @@
 const PLOP_PATH = "scripts/plops";
-const PREFIX = "aurora";
 
 /**
  * Creates a path starting with the folder name
  * @param {String} extra 
  */
-const getOutputPath = extra => `packages/${PREFIX}-{{camelCase name}}/${extra}`;
+const getOutputPath = extra => `lib/{{camelCase name}}/${extra}`;
 const getTemplatePath = extra => `${PLOP_PATH}/templates/package/${extra}`;
 
 // Asks for a package's name
