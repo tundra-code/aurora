@@ -1,6 +1,7 @@
 const electron = require("electron");
 const path = require("path");
 const url = require("url");
+const setupEvents = require("./events");
 
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
@@ -33,6 +34,9 @@ function createWindow() {
     // when you should delete the corresponding element.
     global.mainWindow = null;
   });
+
+  // Listen for various events on the main process and respond to them
+  setupEvents(global.mainWindow);
 }
 
 module.exports = createWindow;
