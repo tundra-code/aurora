@@ -1,7 +1,0 @@
-{
-  "name": "@aurora/{{camelCase name}}",
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT"
-}
