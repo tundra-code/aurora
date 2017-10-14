@@ -6,7 +6,7 @@ const path = require("path");
 
 module.exports = {
   context: path.resolve(__dirname),
-  entry: "./index.js",
+  entry: ["babel-polyfill", "./index.js"],
   output: {
     path: path.resolve(".compiled"),
     filename: "renderer.bundle.js",
