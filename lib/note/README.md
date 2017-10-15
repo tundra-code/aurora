@@ -1,0 +1,22 @@
+# Note
+This component includes the note data model. The data model is useful for storing notes, loading from files, and interacting with notes in the user interface.
+
+## Note Model
+Notes are just json objects. They have these main keys:
+- id: just a unix timestamp by default
+- date: unix timestamp
+- attributes: this is an array of attribute objects. Attributes have:
+  * key: a string naming the type of attribute (e.g. "title")
+  * value: a string indicating the value of the attribute (e.g. "how to create a git branch")
+  * searchable: Bool if this attribute should be searchable
+- editorState: the state of the editor for this note
+
+## To use:
+To instantiate a note:
+```
+Note(editorState: EditorState, attributes: [Attribute], options: JSON): Note
+```
+Where `options` could contain a value for the keys `id` and `date`. If not included, then they will take on default timestamp values.
+
+## Changes
+If this note model is insufficient in some way, please make a pull request and we'll see if your new changes work!
