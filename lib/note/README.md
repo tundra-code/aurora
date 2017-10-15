@@ -14,9 +14,15 @@ Notes are just json objects. They have these main keys:
 ## To use:
 To instantiate a note:
 ```
-Note(editorState: EditorState, attributes: [Attribute], options: JSON): Note
+NoteModel(editorState: EditorState, attributes: [Attribute], options: JSON): NoteModel
 ```
 Where `options` could contain a value for the keys `id` and `date`. If not included, then they will take on default timestamp values.
+
+To instantiate an attribute:
+```
+Attribute(key: string, value: string, searchable: Bool): Attribute
+```
+where `searchable` is optional and defaults to `false`.
 
 ## Changes
 If this note model is insufficient in some way, please make a pull request and we'll see if your new changes work!
