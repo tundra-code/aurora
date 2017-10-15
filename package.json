@@ -33,7 +33,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "coveralls": "^2.13.1",
     "devtron": "^1.4.0",
-    "electron": "^1.7.6",
+    "electron": "^1.7.9",
     "electron-packager": "^9.1.0",
     "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
@@ -62,8 +62,8 @@
     "coverageReporters": ["text", "lcov"]
   },
   "dependencies": {
-    "@react-mutate/core": "^0.4.2",
-    "@react-mutate/loader": "^0.4.2",
+    "@react-mutate/core": "^0.4.4",
+    "@react-mutate/loader": "^0.4.4",
     "animate-css-styled-components": "0.0.19",
     "draft-js": "^0.10.1",
     "fs-jetpack": "^1.2.0",
