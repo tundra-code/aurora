@@ -1,7 +1,8 @@
 const { installMutations, loadMutations } = require("@react-mutate/loader");
+const os = require("os");
 const path = require("path");
 
-const mutationsPath = path.resolve(__dirname, "./extensions");
+const mutationsPath = path.join(os.homedir(), "aurora-extensions"); //DIS BAD TODO: FIX
 
 const install = filepath => {
   const userMutations = []; // We have no mutations yet.
