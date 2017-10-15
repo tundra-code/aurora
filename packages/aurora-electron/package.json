@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "build": "webpack --config src/renderer/renderer.config.js",
-    "dev":
-      "npm run build && cd .. && cd .. && electron packages/aurora-electron/src/main/index.js"
-  }
-}
