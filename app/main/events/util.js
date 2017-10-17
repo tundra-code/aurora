@@ -5,7 +5,7 @@ const path = require("path");
 const mutationsPath = path.join(os.homedir(), "aurora-extensions"); //DIS BAD TODO: FIX
 
 const install = filepath => {
-  const userMutations = []; // We have no mutations yet.
+  const userMutations = ["aurora-mutation-cats"]; // Dem kitty cats-os are all we need in life
   return installMutations(userMutations, filepath);
 };
 
