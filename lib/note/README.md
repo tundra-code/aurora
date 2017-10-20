@@ -10,21 +10,18 @@ Notes are just json objects. They have these main keys:
   * `key`: a string naming the type of attribute (e.g. "title")
   * `value`: a string indicating the value of the attribute (e.g. "how to create a git branch")
   * `searchable`: Bool if this attribute should be searchable
-- `content`: content of a note. This can really be anything, but it must come with an
-`EditorSerializer` that can deserialize and serialize this specific content format.
-- `EditorSerializer`: This must contain three functions:
-  * `serialize`: takes in content and converts it to a format that can be saved.
-  * `deSerialize`: can take in saved content and load it back into its original form.
-  * `getID`: returns an identifier for this serializer.
+- `content`: content of a note. Should be serialized, ready for storage in a database.
+- `mutationName`: This is the name of the mutation that serializes the content.
+
 
 Where content must contain an attribute `editor-extension`.
 
 ## To use:
 To instantiate a note:
 ```
-NoteModel(editorState: EditorState, attributes: [Attribute], options: JSON): NoteModel
+NoteModel(content: Object, mutationName: string, attributes: [Attribute], options: Object): NoteModel
 ```
-Where `options` could contain a value for the keys `id` and `date`. If not included, then they will take on default timestamp values.
+Where `options` could contain a value for the keys `id` and `date`. If not included, then they will take on default timestamp values. `content` should be serialized already and ready for storage in a database.
 
 To instantiate an attribute:
 ```
