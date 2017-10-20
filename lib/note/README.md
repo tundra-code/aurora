@@ -3,13 +3,16 @@ This component includes the note data model. The data model is useful for storin
 
 ## Note Model
 Notes are just json objects. They have these main keys:
-- id: just a unix timestamp by default
-- date: unix timestamp
+- id: auto-incremented id
+- uuid: a uuid
+- date:
 - attributes: this is an array of attribute objects. Attributes have:
   * key: a string naming the type of attribute (e.g. "title")
   * value: a string indicating the value of the attribute (e.g. "how to create a git branch")
   * searchable: Bool if this attribute should be searchable
-- editorState: the state of the editor for this note
+- content: the state of the editor for this note
+
+Where content must contain an attribute `editor-extension`.
 
 ## To use:
 To instantiate a note:

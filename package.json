@@ -12,10 +12,8 @@
     "lint": "./node_modules/.bin/eslint lib app",
     "lint-fix": "./node_modules/.bin/eslint --fix lib app",
     "dev": "NODE_ENV=dev && npm run build && electron app/main/index.js",
-    "dev-windows":
-      "set NODE_ENV=dev && npm run build && electron app/main/index.js",
-    "fmt":
-      "./node_modules/.bin/prettier --write '!(coverage|scripts|.vscode|node_modules)/**/!(.compiled|build|dist)/*.js'",
+    "dev-windows": "set NODE_ENV=dev && npm run build && electron app/main/index.js",
+    "fmt": "./node_modules/.bin/prettier --write '!(coverage|scripts|.vscode|node_modules)/**/!(.compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "dist": "./node_modules/.bin/electron-packager . --out ./dist --overwrite"
@@ -57,9 +55,20 @@
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   },
   "dependencies": {
     "@react-mutate/core": "^0.4.4",
@@ -74,13 +83,20 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "styled-components": "^2.1.2"
+    "sqlite3": "^3.1.13",
+    "styled-components": "^2.1.2",
+    "uuid": "^3.1.0"
   },
   "build": {
     "appId": "com.flaque.penguin",
     "mac": {
       "category": "public.app-category.graphics-design",
-      "target": ["pkg", "dmg", "zip", "mas"],
+      "target": [
+        "pkg",
+        "dmg",
+        "zip",
+        "mas"
+      ],
       "entitlements": "app/build/entitlements.mac.plist",
       "type": "distribution",
       "icon": "app/build/icon.icns"
