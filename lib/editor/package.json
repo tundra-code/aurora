@@ -11,5 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Scott",
-  "license": "ISC"
+  "license": "ISC",
+  "mutations": {
+    "BaseEditor": "./BaseEditor.js"
+  }
 }
