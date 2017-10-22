@@ -4,6 +4,9 @@
 .compiled
 .storybook
 
+# Test/jest stuff
+jest_*
+
 # Distributions
 dist
 build
@@ -11,6 +14,9 @@ compiled
 
 # Mac
 .DS_Store
+
+# Databases
+*.db
 
 # Logs
 logs
