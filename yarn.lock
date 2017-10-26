@@ -2756,6 +2756,17 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
+electron-debug@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/electron-debug/-/electron-debug-1.4.0.tgz#bec7005522220a9d0622153352e1bbff0f37af2e"
+  dependencies:
+    electron-is-dev "^0.3.0"
+    electron-localshortcut "^3.0.0"
+
+electron-default-menu@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/electron-default-menu/-/electron-default-menu-1.0.1.tgz#3173c5018eb507404fec63bdf3b78c38eedba808"
+
 electron-download@^3.0.1:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/electron-download/-/electron-download-3.3.0.tgz#2cfd54d6966c019c4d49ad65fbe65cc9cdef68c8"
@@ -2783,6 +2794,23 @@ electron-download@^4.0.0:
     rc "^1.1.2"
     semver "^5.3.0"
     sumchecker "^2.0.1"
+
+electron-is-accelerator@^0.1.0:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/electron-is-accelerator/-/electron-is-accelerator-0.1.2.tgz#509e510c26a56b55e17f863a4b04e111846ab27b"
+
+electron-is-dev@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-0.3.0.tgz#14e6fda5c68e9e4ecbeff9ccf037cbd7c05c5afe"
+
+electron-localshortcut@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/electron-localshortcut/-/electron-localshortcut-3.0.2.tgz#df9cebe64140f4e58b680aacb2bd6278ae38ee61"
+  dependencies:
+    debug "^2.6.8"
+    electron-is-accelerator "^0.1.0"
+    keyboardevent-from-electron-accelerator "^0.7.0"
+    keyboardevents-areequal "^0.2.1"
 
 electron-osx-sign@^0.4.1:
   version "0.4.7"
@@ -4415,6 +4443,10 @@ isbinaryfile@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/isbinaryfile/-/isbinaryfile-3.0.2.tgz#4a3e974ec0cba9004d3fc6cde7209ea69368a621"
 
+isdev@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/isdev/-/isdev-1.0.1.tgz#ccd45f5c0c5129ec16f30849eb10dc7f4daa3c0d"
+
 isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -4876,6 +4908,14 @@ jxLoader@*:
     moo-server "1.3.x"
     promised-io "*"
     walker "1.x"
+
+keyboardevent-from-electron-accelerator@^0.7.0:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/keyboardevent-from-electron-accelerator/-/keyboardevent-from-electron-accelerator-0.7.1.tgz#aedafa5cc9a3a5f3f2b7c88b2ffd4057568118e7"
+
+keyboardevents-areequal@^0.2.1:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/keyboardevents-areequal/-/keyboardevents-areequal-0.2.2.tgz#88191ec738ce9f7591c25e9056de928b40277194"
 
 keycode@^2.1.8:
   version "2.1.9"
