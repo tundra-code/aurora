@@ -19,7 +19,7 @@ exports.up = function(db) {
     .createTable("Notes", {
       id: { type: "int", primaryKey: true, autoIncrement: true },
       uuid: { type: "string", notNull: true },
-      content: { type: "string" },
+      mutationName: { type: "string", notNull: true },
       created_at: { type: "int", notNull: true },
       updated_at: { type: "int", notNull: true }
     })
