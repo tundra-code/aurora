@@ -1,2 +1,2 @@
 // TODO: Move somewhere else
-module.exports = [];
+module.exports = ["aurora-mutation-cats"];
