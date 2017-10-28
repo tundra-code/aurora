@@ -1,5 +1,6 @@
 const { Menu, app } = require("electron");
 const defaultMenu = require("./default");
+const createWindow = require("../window.js");
 
 module.exports = () => {
   const template = defaultMenu(app);
@@ -8,7 +9,10 @@ module.exports = () => {
     label: "Mutations",
     submenu: [
       {
-        label: "Add New Mutation"
+        label: "Add New Mutation",
+        click: () => {
+          createWindow("mutations.html");
+        }
       }
     ]
   });

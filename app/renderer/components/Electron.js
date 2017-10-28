@@ -1,11 +1,10 @@
 import React from "react";
-import Core from "../../../lib/core/index.js";
 import Draggable from "./Draggable.js";
 
-export default () => {
+export default ({children}) => {
   return (
     <Draggable dragRegionSize={"25px"}>
-      <Core />
+      {children}
     </Draggable>
   );
 };
