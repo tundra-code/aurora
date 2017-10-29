@@ -75,6 +75,8 @@
     "@react-mutate/core": "^0.4.4",
     "@react-mutate/loader": "^0.4.4",
     "animate-css-styled-components": "0.0.19",
+    "axios": "^0.17.0",
+    "debounce": "^1.0.2",
     "draft-js": "^0.10.1",
     "electron-debug": "^1.4.0",
     "electron-default-menu": "^1.0.1",
@@ -87,6 +89,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "string": "^3.3.3",
     "styled-components": "^2.1.2"
   },
   "build": {
