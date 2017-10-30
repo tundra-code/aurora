@@ -5,7 +5,8 @@
   "main": "app/main/index.js",
   "scripts": {
     "build": "webpack --config app/renderer/renderer.config.js",
-    "db-migrate-create": "node node_modules/db-migrate/bin/db-migrate create $NAME -e dev",
+    "db-migrate-create":
+      "node node_modules/db-migrate/bin/db-migrate create $NAME -e dev --config config/database.json",
     "test": "NODE_ENV=test ./node_modules/.bin/jest",
     "test-on-ci": "xvfb-maybe ./node_modules/.bin/jest --runInBand",
     "test-watch": "./node_modules/.bin/jest --watch",
@@ -14,17 +15,28 @@
     "lint-fix": "./node_modules/.bin/eslint --fix lib app",
     "dev": "NODE_ENV=dev && npm run build && electron app/main/index.js",
     "prod": "NODE_ENV=prod && npm run build && electron app/main/index.js",
-    "dev-down": "node node_modules/db-migrate/bin/db-migrate down -e dev",
-    "prod-down": "node node_modules/db-migrate/bin/db-migrate down -e prod",
-    "test-down": "node node_modules/db-migrate/bin/db-migrate down -e test",
-    "dev-up": "node node_modules/db-migrate/bin/db-migrate up -e dev",
-    "prod-up": "node node_modules/db-migrate/bin/db-migrate up -e prod",
-    "test-up": "node node_modules/db-migrate/bin/db-migrate up -e test",
-    "dev-reset": "node node_modules/db-migrate/bin/db-migrate reset -e dev",
-    "prod-reset": "node node_modules/db-migrate/bin/db-migrate reset -e prod",
-    "test-reset": "node node_modules/db-migrate/bin/db-migrate reset -e test",
-    "dev-windows": "set NODE_ENV=dev && npm run build && electron app/main/index.js",
-    "fmt": "./node_modules/.bin/prettier --write '!(coverage|scripts|.vscode|node_modules)/**/!(.compiled|build|dist)/*.js'",
+    "dev-down":
+      "node node_modules/db-migrate/bin/db-migrate down -e dev --config config/database.json",
+    "prod-down":
+      "node node_modules/db-migrate/bin/db-migrate down -e prod --config config/database.json",
+    "test-down":
+      "node node_modules/db-migrate/bin/db-migrate down -e test --config config/database.json",
+    "dev-up":
+      "node node_modules/db-migrate/bin/db-migrate up -e dev --config config/database.json",
+    "prod-up":
+      "node node_modules/db-migrate/bin/db-migrate up -e prod --config config/database.json",
+    "test-up":
+      "node node_modules/db-migrate/bin/db-migrate up -e test --config config/database.json",
+    "dev-reset":
+      "node node_modules/db-migrate/bin/db-migrate reset -e dev --config config/database.json",
+    "prod-reset":
+      "node node_modules/db-migrate/bin/db-migrate reset -e prod --config config/database.json",
+    "test-reset":
+      "node node_modules/db-migrate/bin/db-migrate reset -e test --config config/database.json",
+    "dev-windows":
+      "set NODE_ENV=dev && npm run build && electron app/main/index.js",
+    "fmt":
+      "./node_modules/.bin/prettier --write '!(coverage|scripts|.vscode|node_modules)/**/!(.compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "dist": "./node_modules/.bin/electron-packager . --out ./dist --overwrite"
@@ -67,20 +79,9 @@
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/",
-      "/dist/"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/",
-      "/dist/"
-    ],
-    "coverageReporters": [
-      "text",
-      "lcov"
-    ]
+    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
+    "testPathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
+    "coverageReporters": ["text", "lcov"]
   },
   "dependencies": {
     "@react-mutate/core": "^0.4.4",
@@ -108,12 +109,7 @@
     "appId": "com.flaque.penguin",
     "mac": {
       "category": "public.app-category.graphics-design",
-      "target": [
-        "pkg",
-        "dmg",
-        "zip",
-        "mas"
-      ],
+      "target": ["pkg", "dmg", "zip", "mas"],
       "entitlements": "app/build/entitlements.mac.plist",
       "type": "distribution",
       "icon": "app/build/icon.icns"

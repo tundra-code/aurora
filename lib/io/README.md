@@ -116,6 +116,8 @@ There are some additional functions that are exposed to work with files and fold
 ```
 auroraDirContext() => directoryContext (a jetpack file system object)
 
+auroraDirPath() => String (path to the aurora directory)
+
 saveTo(data, fileName, dirContext) => Promise to save
 
 saveToAsync(data, fileName, dirContext, callback, onFailure)
@@ -137,7 +139,7 @@ Note that there are different preferences and notes for each environment.
 ## Helpful Commands
 All these commands are to be run from the root of the project.
 Current `env` options are `dev`,`prod`, and `test`.
-- `npm run db-migrate-create`: creates a new database migration file.
+- `NAME=<migration-name> npm run db-migrate-create`: creates a new database migration file.
 - `npm run <env>-up`: Runs next needed migration for this env, if applicable.
 - `npm run <env>-down`: Rolls back one migration for this env, if applicable.
 - `npm run <env>-reset`: Resets all migrations for this env. Has the effect of emptying the database for this env. Note that this does not delete the `.aurora/<env>` folder so preferences do persist.

@@ -7,6 +7,7 @@
   },
   "test": {
     "driver": "sqlite3",
+    "user": "root",
     "filename": "./test.db"
   },
   "prod": {
