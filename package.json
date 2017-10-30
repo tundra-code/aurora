@@ -59,6 +59,7 @@
     "devtron": "^1.4.0",
     "electron": "^1.7.9",
     "electron-packager": "^9.1.0",
+    "electron-react-devtools": "^0.4.0",
     "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-plugin-fp": "^2.3.0",
