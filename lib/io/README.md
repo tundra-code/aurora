@@ -114,7 +114,9 @@ savePreferences(preferences, onLoad, onFailure)
 There are some additional functions that are exposed to work with files and folders in general:
 
 ```
-auroraDirContext() => directoryContext (a jetpack file system object)
+auroraDirContext() => directoryContext (~/.aurora/<NODE_ENV>)
+
+auroraRootContext() => directoryContext (~/.aurora)
 
 auroraDirPath() => String (path to the aurora directory)
 
@@ -130,15 +132,19 @@ deleteFile(fileName, dirContext) => Promise to delete
 ```
 
 ## Data Storage
-By default, the database is created in whichever directory the project is run from.
-A `NODE_ENV` must be specified; this is the database where notes and attributes are stored.
+By default, the database is created at `HOME_DIR/.aurora/<NODE_ENV>/<NODE_ENV>.db`.
+This is set in the `config/database.json` file, but please don't screw with it.
+
+When running or testing, a `NODE_ENV` must be specified; this is the database where notes and attributes are stored.
 The actual note content is stored in a file `<uuid>.aur` which lies in the `HOME_DIR/.aurora/<NODE_ENV>/notes` folder.
+
 The preference object is stored at `HOME_DIR/.aurora/<NODE_ENV>/preferences.json`.
 Note that there are different preferences and notes for each environment.
 
 ## Helpful Commands
 All these commands are to be run from the root of the project.
 Current `env` options are `dev`,`prod`, and `test`.
+- `npm run update-db-json`: this updates the `config/database.json` file to specify your `HOME_DIR/.aurora/` as where to store the database files. Note this only needs to be run once and launching the app will automatically run it. I guess if you want to do some fancy db-migration commands before launching the app then this is useful.
 - `NAME=<migration-name> npm run db-migrate-create`: creates a new database migration file.
 - `npm run <env>-up`: Runs next needed migration for this env, if applicable.
 - `npm run <env>-down`: Rolls back one migration for this env, if applicable.

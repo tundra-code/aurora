@@ -1,18 +1,20 @@
 {
-  "defaultEnv": { "ENV": "NODE_ENV" },
+  "defaultEnv": {
+    "ENV": "NODE_ENV"
+  },
   "dev": {
     "driver": "sqlite3",
     "user": "root",
-    "filename": "./dev.db"
+    "filename": ""
   },
   "test": {
     "driver": "sqlite3",
     "user": "root",
-    "filename": "./test.db"
+    "filename": ""
   },
   "prod": {
     "driver": "sqlite3",
     "user": "root",
-    "filename": "./prod.db"
+    "filename": ""
   }
 }
