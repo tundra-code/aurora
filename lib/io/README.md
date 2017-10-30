@@ -144,7 +144,7 @@ Note that there are different preferences and notes for each environment.
 ## Helpful Commands
 All these commands are to be run from the root of the project.
 Current `env` options are `dev`,`prod`, and `test`.
-- `npm run update-db-json`: this updates the `config/database.json` file to specify your `HOME_DIR/.aurora/` as where to store the database files. Note this only needs to be run once and launching the app will automatically run it. I guess if you want to do some fancy db-migration commands before launching the app then this is useful.
+- `npm run create-db-config`: this updates the `config/database.json` file to specify your `HOME_DIR/.aurora/` as where to store the database files. Note this only needs to be run once and launching the app will automatically run it. I guess if you want to do some fancy db-migration commands before launching the app then this is useful.
 - `NAME=<migration-name> npm run db-migrate-create`: creates a new database migration file.
 - `npm run <env>-up`: Runs next needed migration for this env, if applicable.
 - `npm run <env>-down`: Rolls back one migration for this env, if applicable.

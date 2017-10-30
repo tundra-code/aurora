@@ -33,8 +33,8 @@
       "node node_modules/db-migrate/bin/db-migrate reset -e prod --config config/database.json",
     "test-reset":
       "node node_modules/db-migrate/bin/db-migrate reset -e test --config config/database.json",
-    "update-db-json":
-      "NODE_ENV=dev babel-node lib/io/sqlite/scripts/updateDatabaseJSON.js",
+    "create-db-config":
+      "NODE_ENV=dev babel-node lib/io/sqlite/scripts/createDatabaseConfig.js",
     "dev-windows":
       "set NODE_ENV=dev && npm run build && electron app/main/index.js",
     "fmt":
