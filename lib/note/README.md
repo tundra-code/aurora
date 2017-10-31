@@ -5,7 +5,7 @@ This component includes the note data model. The data model is useful for storin
 Notes are just json objects. They have these main keys:
 - `id`: auto-incremented id
 - `uuid`: a uuid
-- `date`:
+- `tags`: an array of tag objects. Tags have a single string.
 - `attributes`: this is an array of attribute objects. Attributes have:
   * `key`: a string naming the type of attribute (e.g. "title")
   * `value`: a string indicating the value of the attribute (e.g. "how to create a git branch")
@@ -19,13 +19,18 @@ Where content must contain an attribute `editor-extension`.
 ## To use:
 To instantiate a note:
 ```
-NoteModel(content: Object, mutationName: string, attributes: [Attribute], options: Object): NoteModel
+new NoteModel(content: Object, mutationName: string, tags: [Tags] attributes: [Attribute], options: Object): NoteModel
 ```
 Where `options` could contain a value for the keys `id` and `date`. If not included, then they will take on default timestamp values. `content` should be serialized already and ready for storage in a database.
 
+To instantiate a tag:
+```
+new Tag(value: string): Tag
+```
+
 To instantiate an attribute:
 ```
-Attribute(key: string, value: string, searchable: Bool): Attribute
+new Attribute(key: string, value: string, searchable: Bool): Attribute
 ```
 where `searchable` is optional and defaults to `false`.
 

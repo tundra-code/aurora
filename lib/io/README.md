@@ -7,12 +7,14 @@ Interacting with the IO functions is relatively simple. Almost all are done asyn
 require callbacks.
 
 ### Saving a note.
-First, create a note (with associated attributes).
+First, create a note (with associated attributes and tags).
 ```
-const myNote = new NoteModel(serializeContent(editorContent), "my-editor-mutation", [
-  new Attribute("title", "My note", true),
-  new Attribute("class", "math")
-]);
+const myNote = new NoteModel(
+  serializeContent(content),
+  "Aurora-Editor",
+  [new Tag("java"), new Tag("sql")],
+  [new Attribute("title", "My note", true), new Attribute("class", "math")]
+);
 ```
 Then, save the note. Optionally pass in callbacks for successful and unsuccessful saving.
 ```
