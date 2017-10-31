@@ -27,9 +27,10 @@ saveNote(myNote, () => {
 To edit the note in any way (including adding/removing attributes), just modify the
 `NoteModel` object and save it again. It will update the new values. For example, to add a new attribute:
 ```
-myNote.attributes.push(new Attribute("topic", "partial differential techniques"));
+myNote.addAttribute(new Attribute("topic", "partial differential techniques"));
 saveNote(myNote);
 ```
+For a list of functions that are handy to interact with the `NoteModel` object, check out the `README` in that module.
 
 ### Deleting a note.
 Assuming we have a `NoteModel` object, to delete it, just call the function.
