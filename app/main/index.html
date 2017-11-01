@@ -5,12 +5,6 @@
     <title>Hi</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./reset.css">
-    <script>
-        // Add React dev tools in development. 
-        if (process.env.NODE_ENV !== 'production') {
-            require('electron-react-devtools').inject()
-        }
-    </script>
 </head>
 <div id="root">
     <!-- React goes here -->
@@ -19,6 +13,11 @@
     <script>
         const render = require("../.compiled/renderer.bundle.js").default;
         render();
+
+        // Add React dev tools in development. 
+        if (process.env.NODE_ENV !== 'production') {
+            require('electron-react-devtools').install();
+        }
     </script>
 </footer>
 
