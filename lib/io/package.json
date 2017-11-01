@@ -1,0 +1,11 @@
+{
+  "name": "io",
+  "version": "1.0.0",
+  "description": "Handles saving, loading, deleting notes and preferences.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "KMac",
+  "license": "ISC"
+}
