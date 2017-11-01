@@ -8,6 +8,8 @@
     "db-migrate-create":
       "node node_modules/db-migrate/bin/db-migrate create $NAME -e dev --config config/database.json",
     "test": "NODE_ENV=test ./node_modules/.bin/jest",
+    "test-windows": "set NODE_ENV=test&& npm run test-windows2",
+    "test-windows2": "./node_modules/.bin/jest",
     "test-on-ci": "xvfb-maybe ./node_modules/.bin/jest --runInBand",
     "test-watch": "./node_modules/.bin/jest --watch",
     "plop": "./node_modules/.bin/plop",
@@ -36,7 +38,9 @@
     "create-db-config":
       "NODE_ENV=dev babel-node lib/io/sqlite/scripts/createDatabaseConfig.js",
     "dev-windows":
-      "set NODE_ENV=dev && npm run build && electron app/main/index.js",
+      "set NODE_ENV=dev&& npm run build && electron app/main/index.js",
+    "prod-windows":
+      "set NODE_ENV=prod&& npm run build && electron app/main/index.js",
     "fmt":
       "./node_modules/.bin/prettier --write '!(coverage|scripts|.vscode|node_modules)/**/!(.compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
