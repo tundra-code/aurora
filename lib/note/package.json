@@ -1,0 +1,12 @@
+{
+  "name": "note",
+  "version": "1.0.0",
+  "description":
+    "The data model for a note. Handles other utilities relating to notes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test jest"
+  },
+  "author": "KMac",
+  "license": "ISC"
+}
