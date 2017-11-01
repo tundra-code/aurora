@@ -1,4 +1,4 @@
-const { installMutations, loadMutations } = require("@react-mutate/loader");
+const { installMutations } = require("@react-mutate/loader");
 const os = require("os");
 const path = require("path");
 const defaultMutations = require("./defaultMutations");
