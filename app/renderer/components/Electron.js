@@ -1,10 +1,13 @@
 import React from "react";
 import Draggable from "./Draggable.js";
+import PropTypes from "prop-types";
 
-export default ({children}) => {
-  return (
-    <Draggable dragRegionSize={"25px"}>
-      {children}
-    </Draggable>
-  );
+const Electron = ({ children }) => {
+  return <Draggable dragRegionSize={"25px"}>{children}</Draggable>;
 };
+
+Electron.propTypes = {
+  children: PropTypes.any
+};
+
+export default Electron;
