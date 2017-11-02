@@ -3,7 +3,11 @@ import { shallow } from "enzyme";
 import Electron from "../Electron.js";
 import Draggable from "../Draggable.js";
 
-const wrapper = shallow(<Electron />);
+const wrapper = shallow(
+  <Electron>
+    <p>Cats</p>
+  </Electron>
+);
 
 describe("Electron", () => {
   it("exists and is exported", () => {

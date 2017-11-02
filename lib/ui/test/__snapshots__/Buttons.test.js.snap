@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<div
+  className="sc-ifAKCX ksmhtO"
+>
+  <button
+    className="sc-bdVaJa ewSStz"
+  >
+     
+    foo
+  </button>
+</div>
+`;
+
+exports[`DangerButton renders correctly 1`] = `
+<div
+  className="sc-ifAKCX ksmhtO"
+>
+  <button
+    className="sc-bxivhb kBqUkW"
+  >
+     
+    foo
+  </button>
+</div>
+`;
+
+exports[`PrimaryButton renders correctly 1`] = `
+<div
+  className="sc-ifAKCX ksmhtO"
+>
+  <button
+    className="sc-bwzfXH IxvRo"
+  >
+     
+    foo
+  </button>
+</div>
+`;
+
+exports[`SuccessButton renders correctly 1`] = `
+<div
+  className="sc-ifAKCX ksmhtO"
+>
+  <button
+    className="sc-htpNat godGnZ"
+  >
+     
+    foo
+  </button>
+</div>
+`;

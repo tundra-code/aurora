@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Card renders correctly 1`] = `
-<div>
+<div
+  className="sc-bdVaJa kDnqCF"
+>
   <div
-    className="sc-bdVaJa ixElbp"
+    className="sc-bwzfXH HslKS"
   >
     <div>
       Hello I am some content

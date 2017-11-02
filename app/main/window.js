@@ -9,7 +9,7 @@ const BrowserWindow = electron.BrowserWindow;
 // be closed automatically when the JavaScript object is garbage collected.
 global.mainWindow = undefined;
 
-function createWindow() {
+function createWindow(htmlFile) {
   // Create the browser window.
   global.mainWindow = new BrowserWindow({
     width: 800,
@@ -20,7 +20,7 @@ function createWindow() {
   // and load the index.html of the app.
   global.mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, "index.html"),
+      pathname: path.join(__dirname, htmlFile),
       protocol: "file:",
       slashes: true
     })
