@@ -68,14 +68,6 @@ If you didn't mean to do this, then go fix your things.
 
 You can learn more about snapshot testing here. 
 
-### plop (or code generation)
-Plop is a code generation tool that you can use to setup a new package. If you run `npm run plop` you can then pick `package`, you can create a new module without having to actually create the files yourself. This saves a ton of time and helps with best practices. 
-
-You can learn more about [plop here.](https://github.com/amwmedia/plop) You also can see the way we use plop in [the plops folder](https://github.com/tundra-code/aurora/tree/master/scripts/plops).
-
-### storybook
-[Storybook](https://storybook.js.org/) is a development environment for creating UI pieces. It's a great way to document React component and to play with it. You can make a story inside of the "stories" folder. You can launch it with `npm run storybook`. It will then launch a webpage you can visit at `localhost:6006`. 
-
 ## CSS
 
 Aurora uses [styled-components](https://www.styled-components.com/) for it's CSS. If you've never used a CSS-in-JS solution, this might be a little bit different than what you're used to. Instead of creating an HTML file and a CSS file and then linking your css over to your HTML, we do everything in Javascript. This may seem scary at first, but you end up with vastly cleaner CSS and a lot easier refactoring.
