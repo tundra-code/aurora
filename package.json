@@ -31,7 +31,9 @@
     "fmt": "./node_modules/.bin/prettier --write '!(coverage|scripts|.vscode|node_modules)/**/!(.compiled|build|dist)/*.js'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "dist": "./node_modules/.bin/electron-packager . --out ./dist --overwrite"
+    "dist": "./node_modules/.bin/electron-packager . --out ./dist --overwrite",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "",
   "license": "ISC",
@@ -113,7 +115,8 @@
     "sqlite3": "^3.1.13",
     "styled-components": "^2.1.2",
     "uuid": "^3.1.0",
-    "voca": "^1.3.0"
+    "voca": "^1.3.0",
+    "snyk": "^1.47.0"
   },
   "build": {
     "appId": "com.flaque.penguin",
@@ -141,5 +144,6 @@
       "package.json",
       "embedded.provisionprofile"
     ]
-  }
+  },
+  "snyk": true
 }
