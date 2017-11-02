@@ -4,12 +4,18 @@ exports[`StoreSearchBar renders correctly 1`] = `
 <div
   className="sc-htpNat dYxwZX"
 >
-  <input
-    className="sc-bwzfXH cFCtWB"
-    onChange={[Function]}
-    placeholder="Type to search for a mutation..."
-    type="text"
-    value={undefined}
-  />
+   
+  <div
+    className="sc-htpNat dYxwZX"
+  >
+    <input
+      className="sc-bwzfXH cFCtWB"
+      onChange={[Function]}
+      placeholder="Type to search for a mutation..."
+      type="text"
+      value={undefined}
+    />
+  </div>
+   
 </div>
 `;

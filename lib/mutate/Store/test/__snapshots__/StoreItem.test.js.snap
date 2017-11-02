@@ -4,23 +4,29 @@ exports[`StoreItem renders correctly 1`] = `
 <div
   className="sc-bdVaJa kDnqCF"
 >
+   
   <div
-    className="sc-gZMcBi eJzfZk"
+    className="sc-bdVaJa kDnqCF"
   >
-    <h2
-      className="sc-iwsKbI busnWl"
+    <div
+      className="sc-gZMcBi eJzfZk"
     >
-      title
-    </h2>
-    <p>
-      description
-    </p>
-    <button
-      className="sc-gzVnrw cAJgWF"
-      onClick={[Function]}
-    >
-      Install
-    </button>
+      <h2
+        className="sc-iwsKbI busnWl"
+      >
+        title
+      </h2>
+      <p>
+        description
+      </p>
+      <button
+        className="sc-gzVnrw cAJgWF"
+        onClick={[Function]}
+      >
+        Install
+      </button>
+    </div>
   </div>
+   
 </div>
 `;

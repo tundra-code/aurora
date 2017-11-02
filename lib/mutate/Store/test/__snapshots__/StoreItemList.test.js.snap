@@ -4,44 +4,50 @@ exports[`StoreItemList renders correctly with items 1`] = `
 <div
   className="sc-bdVaJa kDnqCF"
 >
-  <div>
-    <div
-      className="sc-gZMcBi eJzfZk"
-    >
-      <h2
-        className="sc-iwsKbI busnWl"
+   
+  <div
+    className="sc-bdVaJa kDnqCF"
+  >
+    <div>
+      <div
+        className="sc-gZMcBi eJzfZk"
       >
-        one
-      </h2>
-      <p>
-        desc_one
-      </p>
-      <button
-        className="sc-gzVnrw cAJgWF"
-        onClick={[Function]}
+        <h2
+          className="sc-iwsKbI busnWl"
+        >
+          one
+        </h2>
+        <p>
+          desc_one
+        </p>
+        <button
+          className="sc-gzVnrw cAJgWF"
+          onClick={[Function]}
+        >
+          Install
+        </button>
+      </div>
+      <div
+        className="sc-gZMcBi eJzfZk"
       >
-        Install
-      </button>
-    </div>
-    <div
-      className="sc-gZMcBi eJzfZk"
-    >
-      <h2
-        className="sc-iwsKbI busnWl"
-      >
-        two
-      </h2>
-      <p>
-        desc_two
-      </p>
-      <button
-        className="sc-gzVnrw cAJgWF"
-        onClick={[Function]}
-      >
-        Install
-      </button>
+        <h2
+          className="sc-iwsKbI busnWl"
+        >
+          two
+        </h2>
+        <p>
+          desc_two
+        </p>
+        <button
+          className="sc-gzVnrw cAJgWF"
+          onClick={[Function]}
+        >
+          Install
+        </button>
+      </div>
     </div>
   </div>
+   
 </div>
 `;
 
@@ -49,6 +55,12 @@ exports[`StoreItemList renders correctly with no items 1`] = `
 <div
   className="sc-bdVaJa kDnqCF"
 >
-  <div />
+   
+  <div
+    className="sc-bdVaJa kDnqCF"
+  >
+    <div />
+  </div>
+   
 </div>
 `;
