@@ -15,7 +15,7 @@
         render();
 
         // Add React dev tools in development. 
-        if (process.env.NODE_ENV !== 'production') {
+        if (process.env.NODE_ENV !== 'prod') {
             require('electron-react-devtools').install();
         }
     </script>
