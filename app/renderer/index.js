@@ -1,7 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Electron from "./components/Electron.js";
+import Core from "../../lib/core";
+import { Store } from "../../lib/mutate";
 
-export default () => {
-  ReactDOM.render(<Electron />, document.getElementById("root"));
+const render = Page => {
+  ReactDOM.render(
+    <Electron>
+      <Page />
+    </Electron>,
+    document.getElementById("root")
+  );
+};
+
+export default {
+  index: () => {
+    render(Core);
+  },
+  mutations: () => {
+    render(Store);
+  }
 };

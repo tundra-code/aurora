@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hi</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./reset.css">
+</head>
+<div id="root">
+    <!-- React goes here -->
+</div>
+<footer>
+    <script>
+        const render = require("../.compiled/renderer.bundle.js").default.mutations;
+        render();
+
+        // Add React dev tools in development. 
+        if (process.env.NODE_ENV !== 'prod') {
+            require('electron-react-devtools').install();
+        }
+    </script>
+</footer>
+
+</html>

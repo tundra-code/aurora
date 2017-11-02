@@ -1,7 +1,6 @@
 const electron = require("electron");
 const path = require("path");
 const url = require("url");
-const setupEvents = require("./events");
 
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
@@ -10,7 +9,7 @@ const BrowserWindow = electron.BrowserWindow;
 // be closed automatically when the JavaScript object is garbage collected.
 global.mainWindow = undefined;
 
-function createWindow() {
+function createWindow(htmlFile) {
   // Create the browser window.
   global.mainWindow = new BrowserWindow({
     width: 800,
@@ -21,7 +20,7 @@ function createWindow() {
   // and load the index.html of the app.
   global.mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, "index.html"),
+      pathname: path.join(__dirname, htmlFile),
       protocol: "file:",
       slashes: true
     })
@@ -35,8 +34,6 @@ function createWindow() {
     global.mainWindow = null;
   });
 
-  // Listen for various events on the main process and respond to them
-  setupEvents(global.mainWindow);
 }
 
 module.exports = createWindow;

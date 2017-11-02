@@ -11,8 +11,13 @@
 </div>
 <footer>
     <script>
-        const render = require("../.compiled/renderer.bundle.js").default;
+        const render = require("../.compiled/renderer.bundle.js").default.index;
         render();
+
+        // Add React dev tools in development. 
+        if (process.env.NODE_ENV !== 'production') {
+            require('electron-react-devtools').install();
+        }
     </script>
 </footer>
 
