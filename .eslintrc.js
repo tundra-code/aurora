@@ -15,6 +15,7 @@ module.exports = {
   plugins: ["react", "import", "fp", "unicorn"],
   rules: {
     curly: "error",
+    "no-empty": "off",
     "no-else-return": "error",
     "no-inner-declarations": "error",
     "no-unneeded-ternary": "error",

@@ -68,7 +68,9 @@ exports[`Frame renders correctly 1`] = `
               spellCheck={false}
               style={
                 Object {
+                  "WebkitUserSelect": "text",
                   "outline": "none",
+                  "userSelect": "text",
                   "whiteSpace": "pre-wrap",
                   "wordWrap": "break-word",
                 }
