@@ -147,8 +147,8 @@ Note that there are different preferences and notes for each environment.
 ## Helpful Commands
 All these commands are to be run from the root of the project.
 Current `env` options are `dev`,`prod`, and `test`.
-- `npm run create-db-config`: this updates the `config/database.json` file to specify your `HOME_DIR/.aurora/` as where to store the database files. Note this only needs to be run once and launching the app will automatically run it. I guess if you want to do some fancy db-migration commands before launching the app then this is useful.
+- `npm run db-create-config`: this updates the `config/database.json` file to specify your `HOME_DIR/.aurora/` as where to store the database files. Note this only needs to be run once and launching the app will automatically run it. I guess if you want to do some fancy db-migration commands before launching the app then this is useful.
 - `NAME=<migration-name> npm run db-migrate-create`: creates a new database migration file.
-- `npm run <env>-up`: Runs next needed migration for this env, if applicable.
-- `npm run <env>-down`: Rolls back one migration for this env, if applicable.
-- `npm run <env>-reset`: Resets all migrations for this env. Has the effect of emptying the database for this env. Note that this does not delete the `.aurora/<env>` folder so preferences do persist.
+- `ENV=<env> npm run db-up`: Runs next needed migration(s) for this env, if applicable. Note this will not work if you have never run the application `npm run <env>` in this environment before.
+- `ENV=<env> npm run db-down`: Rolls back one migration for this env, if applicable.
+- `ENV=<env> npm run db-reset`: Resets all migrations for this env. Has the effect of emptying the database for this env. Note that this does not delete the `.aurora/<env>` folder so preferences do persist.
