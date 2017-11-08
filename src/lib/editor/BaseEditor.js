@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Editor } from "draft-js";
+import "draft-js/dist/Draft.css";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 

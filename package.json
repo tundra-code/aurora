@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
+    "babel-plugin-react-css-modules": "^3.3.2",
     "cross-env": "^5.1.1",
     "electron": "1.7.9",
     "electron-builder": "^19.42.1",
