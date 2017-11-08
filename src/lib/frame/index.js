@@ -6,11 +6,12 @@ import PropTypes from "prop-types";
 
 const EditorThatCanType = modifiers.canType(Editor);
 
-const Frame = () => (
+const Frame = props => (
   <Container>
     <Card>
       <EditorThatCanType onUpdate={() => {}} placeholder={"Change me!"} />
     </Card>
+    {props.children}
   </Container>
 );
 

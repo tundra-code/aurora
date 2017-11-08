@@ -10,10 +10,10 @@ exports[`StoreItemList renders correctly with items 1`] = `
   >
     <div>
       <div
-        className="sc-gZMcBi eJzfZk"
+        className="sc-VigVT khyPhR"
       >
         <h2
-          className="sc-iwsKbI busnWl"
+          className="sc-gqjmRU dkfoIR"
         >
           one
         </h2>
@@ -21,17 +21,17 @@ exports[`StoreItemList renders correctly with items 1`] = `
           desc_one
         </p>
         <button
-          className="sc-gzVnrw cAJgWF"
+          className="sc-dnqmqq hOfHpX"
           onClick={[Function]}
         >
           Install
         </button>
       </div>
       <div
-        className="sc-gZMcBi eJzfZk"
+        className="sc-VigVT khyPhR"
       >
         <h2
-          className="sc-iwsKbI busnWl"
+          className="sc-gqjmRU dkfoIR"
         >
           two
         </h2>
@@ -39,7 +39,7 @@ exports[`StoreItemList renders correctly with items 1`] = `
           desc_two
         </p>
         <button
-          className="sc-gzVnrw cAJgWF"
+          className="sc-dnqmqq hOfHpX"
           onClick={[Function]}
         >
           Install
