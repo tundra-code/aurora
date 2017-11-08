@@ -50,19 +50,25 @@ export default class Note {
     }
   };
 
-  loadContent = callback => {
-    loadNoteContent(this, data => {
-      this.content[this.mutationName] = data;
-      callback(this.content);
-    });
+  loadContent = (callback, onFailure) => {
+    loadNoteContent(
+      this,
+      data => {
+        this.content[this.mutationName] = data;
+        callback(this.content);
+      },
+      onFailure
+    );
   };
 
-  getContent = callback => {
-    if (this.content[this.mutationName] === null) {
-      this.loadContent(callback);
-    } else {
-      callback(this.content);
-    }
+  getContent = () => {
+    return new Promise((resolve, reject) => {
+      if (this.content[this.mutationName] === null) {
+        this.loadContent(resolve, reject);
+      } else {
+        resolve(this.content);
+      }
+    });
   };
 
   setContent = content => {

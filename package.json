@@ -5,9 +5,15 @@
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "test": "./node_modules/.bin/jest",
+    "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "dist": "yarn compile && electron-builder",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "db-down": "node node_modules/db-migrate/bin/db-migrate down -e $ENV --config config/database.json",
+    "db-up": "node node_modules/db-migrate/bin/db-migrate up -e $ENV --config config/database.json",
+    "dev-reset": "node node_modules/db-migrate/bin/db-migrate reset -e $ENV --config config/database.json",
+    "db-create-config": "babel-node lib/io/sqlite/scripts/createDatabaseConfig.js",
+    "db-migrate-create": "node node_modules/db-migrate/bin/db-migrate create $NAME -e dev --config config/database.json",
+    "lint": "./node_modules/.bin/eslint src"
   },
   "dependencies": {
     "@react-mutate/core": "^0.4.4",
@@ -26,6 +32,7 @@
     "styled-components": "^2.2.3"
   },
   "devDependencies": {
+    "cross-env": "^5.1.1",
     "electron": "1.7.9",
     "electron-builder": "^19.42.1",
     "electron-webpack": "1.10.1",

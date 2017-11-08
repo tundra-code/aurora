@@ -81,8 +81,13 @@ function readFromAsync(fileName, dirContext, callback, onFailure) {
     });
 }
 
-function loadNoteContent(note, callback) {
-  readFromAsync(noteFile(note), auroraDirContext().dir(noteFolder), callback);
+function loadNoteContent(note, callback, onFailure) {
+  readFromAsync(
+    noteFile(note),
+    auroraDirContext().dir(noteFolder),
+    callback,
+    onFailure
+  );
 }
 
 function deleteFile(fileName, dirContext) {
