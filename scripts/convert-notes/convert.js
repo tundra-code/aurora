@@ -1,7 +1,7 @@
 const fs = require("fs");
-const { saveNote } = require("../../lib/io");
+const { saveNote } = require("../../src/lib/io");
 const draftJS = require("draft-js");
-const { NoteModel } = require("../../lib/note");
+const { NoteModel } = require("../../src/lib/note");
 
 function get_items_from_file(file) {
   const content = fs.readFileSync(file);

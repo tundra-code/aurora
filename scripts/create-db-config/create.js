@@ -1,3 +1,3 @@
-import { createDatabaseConfig, ensureDirExists } from "../../lib/io";
+import { createDatabaseConfig, ensureDirExists } from "../../src/lib/io";
 createDatabaseConfig();
 ensureDirExists();
