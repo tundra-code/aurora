@@ -20,6 +20,18 @@ yarn dist:dir
 yarn lint
 
 # Testing
-yarn test 
+yarn test
 yarn test --watch
+
+# Interacting with database migrations
+yarn db-reset -e dev
+yarn db-down -e prod
+yarn db-up -d dev
+yarn db-create-config
+yarn db-migration-create myNewMigration
+
+# Adding notes
+ENV=dev yarn add-some-notes
+ENV=prod yarn add-many-notes
+
 ```
