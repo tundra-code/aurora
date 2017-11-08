@@ -1,0 +1,50 @@
+[
+  {
+    "text":
+      "When npm post-install keeps failing, try: npm install -g. Installs things globally so now you need to run electron globally also.",
+    "uuid": 1
+  },
+  {
+    "text":
+      "Note to self: windows doesn't accept ../.. notation. So annoying ik",
+    "uuid": 2
+  },
+  {
+    "text":
+      "To pull remote branch and clone locally: git checkout --track origin/that-branch",
+    "uuid": 3
+  },
+  {
+    "text": "To align an html element to one side: float left/right.",
+    "uuid": 4
+  },
+  {
+    "text":
+      "When parent div doesn't expand to size of its children: add 'overflow:hidden;'",
+    "uuid": 5
+  },
+  {
+    "text": "How to make div only partial width of container: 'width:70%'",
+    "uuid": 6
+  },
+  {
+    "text":
+      "If your class doesn't recognize one of your functions, add this to constructor():`this.myFunc = this.myFunc.bind(this);`",
+    "uuid": 7
+  },
+  {
+    "text":
+      "Interesting research on reaction times: https://www.nngroup.com/articles/response-times-3-important-limits/",
+    "uuid": 8
+  },
+  {
+    "text":
+      "To pull code from a remote different branch and merge into your local branch: git pull origin other-branch",
+    "uuid": 9
+  },
+  {
+    "text":
+      "To change what type of python is run on `python` command: Go into you ~/.bash_profile, add line `alias python=`python3`",
+    "uuid": 10
+  }
+]
