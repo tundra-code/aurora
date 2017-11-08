@@ -18,9 +18,9 @@ const myNote = new NoteModel(
 ```
 Then, save the note. Optionally pass in callbacks for successful and unsuccessful saving.
 ```
-saveNote(myNote, () => {
-  console.log("Yay Saving!");
-}, (err) => {
+saveNote(myNote).then(() => {
+  console.log("Yay!")
+}).catch(err => {
   console.log(err);
 });
 ```
@@ -28,45 +28,42 @@ To edit the note in any way (including adding/removing attributes), just modify 
 `NoteModel` object and save it again. It will update the new values. For example, to add a new attribute:
 ```
 myNote.addAttribute(new Attribute("topic", "partial differential techniques"));
-saveNote(myNote);
+await saveNote(myNote);
 ```
 For a list of functions that are handy to interact with the `NoteModel` object, check out the `README` in that module.
 
 ### Deleting a note.
 Assuming we have a `NoteModel` object, to delete it, just call the function.
 ```
-function deleteCallback() {
-  console.log("Deleted");
-}
-deleteNote(myNote, deleteCallback);
+await deleteNote(ourNote);
 ```
 
 ### Loading notes.
-To load notes, call the function. Your callback should take in an array of `NoteModel`
+To load notes, call the function. Your promise resolve should take in an array of `NoteModel`
 objects. They will be ordered from most recently updated to least recently.
 ```
-loadNotes(notesLoaded, notes => {
-  notes.forEach(note => {
-    console.log(note.uuid); // access information
-    note.getContent(content => {  // loading in content from associated file.
-      console.log(content);
-    });
-  });
-});
+// using promise
+loadNotes().then(notes => {
+  console.log(await notes[0].getContent());
+})
+
+// using await
+const notes = await loadNotes();
+const content = await notes[0].getContent();
 ```
-In this example, for each note returned, we then call `getContent` to load in the content
+In this example, for the first note returned, we then call `getContent` to load in the content
 from the associated note content file.
 
 ### Saving preferences
-Pass in your JSON preferences object. Pass in optional callback and failure callback.
+Pass in your JSON preferences object. Use the promise as you want.
 ```
-savePreferences(preferences);
+await savePreferences(preferences);
 ```
 
 ### Loading preferences
-Pass in a callback that takes in a JSON preferences object when loaded.
+Use the promise that takes in a JSON preferences object when loaded.
 ```
-loadPreferences(pref => {
+loadPreferences().then(pref => {
   console.log(pref);
 });
 ```
@@ -75,41 +72,35 @@ loadPreferences(pref => {
 The main functions of IO are:
 ```
 /*
-Saves the specified note. Overwrites an existing note with matching id.
-note : NoteModel
-onSuccess() : function invoked if successfully saved.
-onFailure() : function invoked if failure to save.
- */
-saveNote(note, onSuccess, onFailure)
+  Saves the specified note. Overwrites an existing note with matching id.
+  @param note : NoteModel
+  @returns Promise
+   */
+function saveNote(note)
 
 /*
-Deletes the specified note.
-note : NoteModel
-onSuccess() : function invoked if successfully deleted.
-onFailure() : function invoked if failure to delete.
- */
-deleteNote(note, onSuccess, onFailure)
+  Deletes the specified note.
+  @param note : NoteModel
+  @returns Promise
+   */
+function deleteNote(note)
 
 /*
-Loads all notes.
-note : NoteModel
-onLoad(note) : function invoked when a note is loaded. Takes in a note as a parameter.
-onFailure(note) : function invoked if loading a specific note fails. Takes in the note as a parameter.
- */
-loadNotes(onLoad, onFailure)
+  Loads all notes ordered by most recently updated to least recently.
+  @returns Promise
+   */
+function loadNotes()
 
 /*
 Loads user preferences.
-onLoad(preferences) : function invoked when preferences are loaded. Takes in the JSON preferences object.
-onFailure() : function invoked if loading preferences fails.
+@returns Promise
  */
 loadPreferences(onLoad, onFailure)
 
 /*
 Saves user preferences.
-preferences : JSON object of preferences
-onSuccess() : function invoked when preferences are saved.
-onFailure() : function invoked if loading preferences fails.
+@params preferences : JSON object of preferences
+@returns Promise
  */
 savePreferences(preferences, onLoad, onFailure)
 ```
