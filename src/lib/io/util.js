@@ -55,7 +55,7 @@ function saveToAsync(data, fileName, dirContext, callback, onFailure) {
 }
 
 function saveNoteContent(note) {
-  note.getContent(content => {
+  note.getContent().then(content => {
     saveToAsync(content, noteFile(note), auroraDirContext().dir(noteFolder));
   });
 }

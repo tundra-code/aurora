@@ -9,7 +9,8 @@ module.exports = {
   globals: {
     document: true,
     window: true,
-    jasmine: true
+    jasmine: true,
+    __static: true
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
   plugins: ["react", "import", "fp", "unicorn"],

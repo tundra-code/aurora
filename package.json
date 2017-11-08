@@ -8,20 +8,13 @@
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "db-down":
-      "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
-    "db-up":
-      "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
-    "db-reset":
-      "node node_modules/db-migrate/bin/db-migrate reset --config config/database.json",
-    "db-create-config":
-      "cross-env NODE_ENV=dev babel-node scripts/create-db-config/create.js",
-    "db-migrate-create":
-      "node node_modules/db-migrate/bin/db-migrate create -e dev --config config/database.json",
-    "add-some-notes":
-      "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
-    "add-many-notes":
-      "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
+    "db-down": "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
+    "db-up": "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
+    "db-reset": "node node_modules/db-migrate/bin/db-migrate reset --config config/database.json",
+    "db-create-config": "cross-env NODE_ENV=dev babel-node scripts/create-db-config/create.js",
+    "db-migrate-create": "node node_modules/db-migrate/bin/db-migrate create -e dev --config config/database.json",
+    "add-some-notes": "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
+    "add-many-notes": "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
     "lint": "./node_modules/.bin/eslint src"
   },
   "dependencies": {
@@ -41,6 +34,7 @@
     "styled-components": "^2.2.3"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.2",
     "cross-env": "^5.1.1",
     "electron": "1.7.9",
     "electron-builder": "^19.42.1",
@@ -48,6 +42,11 @@
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-react-16-adapter-setup": "^0.1.0",
+    "eslint": "^4.10.0",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-unicorn": "^2.1.2",
     "jest": "^21.2.1",
     "raf": "^3.4.0",
     "react-test-renderer": "^16.0.0",
@@ -55,11 +54,25 @@
     "webpack": "^3.8.1"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "enzyme-react-16-adapter-setup"],
+    "setupFiles": [
+      "raf/polyfill",
+      "enzyme-react-16-adapter-setup"
+    ],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   }
 }

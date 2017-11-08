@@ -14,34 +14,39 @@ import { installMutations } from "@react-mutate/loader";
 const preferencesFile = "aurora-preferences.json";
 /*
   Saves the specified note. Overwrites an existing note with matching id.
-  note : NoteModel
-  onSuccess() : function invoked if successfully saved.
-  onFailure(err) : function invoked if failure to save. Takes in error object.
+  @param note : NoteModel
+  @returns Promise
    */
-function saveNote(note, onSuccess, onFailure) {
+function saveNote(note) {
   throwIfNotNoteModel(note);
-  insertNote(note, onSuccess, onFailure);
+  return new Promise((resolve, reject) => {
+    insertNote(note, resolve, reject);
+  });
 }
 
 /*
   Deletes the specified note.
-  note : NoteModel
-  onSuccess() : function invoked if successfully deleted.
-  onFailure(err) : function invoked if failure to delete. Takes in error object.
+  @param note : NoteModel
+  @returns Promise
    */
-function deleteNote(note, onSuccess, onFailure) {
+function deleteNote(note) {
   throwIfNotNoteModel(note);
-  cascadeDeleteNote(note, onSuccess, onFailure);
+  return new Promise((resolve, reject) => {
+    cascadeDeleteNote(note, resolve, reject);
+  });
 }
 
 /*
-  Loads all notes.
-  note : NoteModel
-  onLoad(note) : function invoked all notes are loaded. Should take in array of note objects as parameter.
-  onFailure(err) : function invoked if loading fails. Takes in error object.
+  Loads all notes ordered by most recently updated to least recently.
+  @returns Promise
    */
-function loadNotes(onLoad, onFailure) {
-  queryNotes(onLoad, onFailure);
+function loadNotes() {
+  return new Promise((resolve, reject) => {
+    function load(notes) {
+      resolve(notes);
+    }
+    queryNotes(load, reject);
+  });
 }
 
 /**
@@ -89,18 +94,18 @@ async function createPreferencesIfNotExist(
  *   foo: "bar",
  *   pro: "grammer"
  * }
- * 
+ *
  * // Change "foo", leave "pro" alone
  * updatePreferences({
  *  foo: "notBar"
  * });
- * 
+ *
  * // Now preferences looks like this:
  * {
  *   foo: "notBar",
  *   pro: "grammer"
  * }
- * 
+ *
  * @param preferences a subset of or addition to existing preferences
  * @return Promise
  */
@@ -125,7 +130,7 @@ async function updateMutations(prefsFile = preferencesFile) {
 
 /**
  * Adds a new mutation to the preference file.
- * @param {String} name 
+ * @param {String} name
  */
 async function addMutationPreference(name, prefsFile = preferencesFile) {
   await createPreferencesIfNotExist({}, prefsFile);
@@ -141,7 +146,7 @@ async function addMutationPreference(name, prefsFile = preferencesFile) {
 
 /**
  * Installs a new mutation.
- * @param {String} name 
+ * @param {String} name
  */
 async function installNewMutation(name, prefsFile = preferencesFile) {
   await addMutationPreference(prefsFile);

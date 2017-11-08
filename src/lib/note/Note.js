@@ -54,7 +54,7 @@ export default class Note {
     loadNoteContent(
       this,
       data => {
-        this.content[this.mutationName] = data;
+        this.content = JSON.parse(data);
         callback(this.content);
       },
       onFailure
