@@ -14,13 +14,13 @@ function create_note_object(item) {
   return new NoteModel(editorState, "aurora-base", item.tags, []);
 }
 
-async function convert() {
+function convert() {
   const datasetFile = process.argv[2];
   const items = get_items_from_file(datasetFile);
 
   for (const item of items) {
     const note = create_note_object(item);
-    await saveNote(note);
+    saveNote(note);
   }
 }
 
