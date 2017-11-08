@@ -1,4 +1,3 @@
-import { remote } from "electron";
 import defaultMutations from "./defaultMutations";
 import path from "path";
 import os from "os";

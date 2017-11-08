@@ -14,8 +14,6 @@ const withMutations = Component => {
         this.state = { mutations: muts[0].mutations };
       }
 
-      console.log(muts);
-
       this.getMutations = this.getMutations.bind(this);
     }
 
