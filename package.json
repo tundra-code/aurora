@@ -12,12 +12,16 @@
       "node node_modules/db-migrate/bin/db-migrate down -e $ENV --config config/database.json",
     "db-up":
       "node node_modules/db-migrate/bin/db-migrate up -e $ENV --config config/database.json",
-    "dev-reset":
+    "db-reset":
       "node node_modules/db-migrate/bin/db-migrate reset -e $ENV --config config/database.json",
     "db-create-config":
-      "babel-node lib/io/sqlite/scripts/createDatabaseConfig.js",
+      "cross-env NODE_ENV=dev babel-node scripts/create-db-config/create.js",
     "db-migrate-create":
       "node node_modules/db-migrate/bin/db-migrate create $NAME -e dev --config config/database.json",
+    "add-some-notes":
+      "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
+    "add-many-notes":
+      "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
     "lint": "./node_modules/.bin/eslint src"
   },
   "dependencies": {
