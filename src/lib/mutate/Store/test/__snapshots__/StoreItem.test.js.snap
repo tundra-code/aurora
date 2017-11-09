@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoreItem renders correctly 1`] = `
+<div
+  className="sc-bdVaJa kDnqCF"
+>
+   
+  <div
+    className="sc-bdVaJa kDnqCF"
+  >
+    <div
+      className="sc-VigVT khyPhR"
+    >
+      <h2
+        className="sc-gqjmRU dkfoIR"
+      >
+        title
+      </h2>
+      <p>
+        description
+      </p>
+      <button
+        className="sc-dnqmqq hOfHpX"
+        onClick={[Function]}
+      >
+        Install
+      </button>
+    </div>
+  </div>
+   
+</div>
+`;

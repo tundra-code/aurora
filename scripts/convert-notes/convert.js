@@ -1,7 +1,7 @@
 const fs = require("fs");
-const { saveNote } = require("../../lib/io");
+const { saveNote } = require("../../src/lib/io");
 const draftJS = require("draft-js");
-const { NoteModel } = require("../../lib/note");
+const { NoteModel } = require("../../src/lib/note");
 
 function get_items_from_file(file) {
   const content = fs.readFileSync(file);
@@ -14,13 +14,13 @@ function create_note_object(item) {
   return new NoteModel(editorState, "aurora-base", item.tags, []);
 }
 
-async function convert() {
+function convert() {
   const datasetFile = process.argv[2];
   const items = get_items_from_file(datasetFile);
 
   for (const item of items) {
     const note = create_note_object(item);
-    await saveNote(note);
+    saveNote(note);
   }
 }
 
