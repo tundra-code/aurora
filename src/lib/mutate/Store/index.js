@@ -5,6 +5,8 @@ import StoreSearchBar from "./StoreSearchBar";
 import { Container } from "../../ui";
 import search from "../npm-search";
 import debounce from "debounce";
+import { setScreen } from "../../../redux/actions";
+import { connect } from "react-redux";
 
 class Store extends React.Component {
   constructor(props) {
@@ -35,14 +37,22 @@ class Store extends React.Component {
     this.searchAndUpdate(searchValue);
   };
 
+  onBackClick = () => {
+    this.props.dispatch(setScreen("main"));
+  };
+
   onInstallClick = () => {
-    // TODO: Install application here with pack variable
+    // TODO do something on install
   };
 
   render() {
     return (
       <StoreContainer>
         <Container>
+          <a href="#" onClick={this.onBackClick}>
+            👈 Back
+          </a>
+
           <StoreSearchBar
             value={this.state.searchValue}
             onChange={this.onSearch}
@@ -56,5 +66,4 @@ class Store extends React.Component {
     );
   }
 }
-
-export default Store;
+export default connect()(Store);
