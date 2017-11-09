@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import { app, Menu, BrowserWindow } from "electron";
 import setupMenu from "./menu";
+=======
+
+
+import { app, BrowserWindow } from "electron";
+>>>>>>> develop
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
