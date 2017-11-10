@@ -1,0 +1,11 @@
+{
+  "name": "preview",
+  "version": "1.0.0",
+  "description": "basic preview of a note",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

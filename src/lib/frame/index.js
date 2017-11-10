@@ -1,18 +1,30 @@
 import { Card, Container } from "../ui";
 import React from "react";
 import { mutate } from "@react-mutate/core";
-import { Editor, modifiers } from "../editor";
+import { Editor } from "../editor";
 import PropTypes from "prop-types";
-
-const EditorThatCanType = modifiers.canType(Editor);
+import SplitPane from "react-split-pane";
+import StyledSplitPaneContainer from "../ui/SplitPanes"
+import {FixedWidthDiv} from "../ui/util/Layouts"
 
 const Frame = props => (
-  <Container>
-    <Card>
-      <EditorThatCanType onUpdate={() => {}} placeholder={"Change me!"} />
-    </Card>
-    {props.children}
-  </Container>
+  <StyledSplitPaneContainer>
+    <SplitPane split="vertical" minSize={200} maxSize={400} defaultSize={250}>
+
+      <FixedWidthDiv>
+      </FixedWidthDiv>
+
+      <FixedWidthDiv>
+        <Container>
+          <Card>
+            <Editor placeholder={"Change me!"} />
+          </Card>
+          {props.children}
+        </Container>
+      </FixedWidthDiv>
+
+    </SplitPane>
+  </StyledSplitPaneContainer>
 );
 
 Frame.propTypes = {

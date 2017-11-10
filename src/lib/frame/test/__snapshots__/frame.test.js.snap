@@ -6,99 +6,163 @@ exports[`Frame renders correctly 1`] = `
 >
    
   <div
-    className="sc-EHOje jjMdwe"
+    className="sc-htoDjs bIGOqA"
   >
     <div
-      className="sc-bwzfXH lnZBXS"
+      className="SplitPane  vertical "
+      style={
+        Object {
+          "MozUserSelect": "text",
+          "WebkitUserSelect": "text",
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "row",
+          "height": "100%",
+          "left": 0,
+          "msUserSelect": "text",
+          "outline": "none",
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "userSelect": "text",
+        }
+      }
     >
       <div
-        className="sc-htoDjs bIDNS"
+        className="Pane vertical Pane1"
+        style={
+          Object {
+            "flex": "none",
+            "outline": "none",
+            "position": "relative",
+            "width": 250,
+          }
+        }
       >
         <div
-          className="DraftEditor-root"
+          className="sc-iwsKbI gXxRyd"
+        />
+      </div>
+      <span
+        className="Resizer vertical "
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={Object {}}
+      />
+      <div
+        className="Pane vertical Pane2"
+        style={
+          Object {
+            "flex": 1,
+            "outline": "none",
+            "position": "relative",
+          }
+        }
+      >
+        <div
+          className="sc-iwsKbI gXxRyd"
         >
           <div
-            className="public-DraftEditorPlaceholder-root"
+            className="sc-EHOje jjMdwe"
           >
             <div
-              className="public-DraftEditorPlaceholder-inner"
-              id="placeholder-123"
-            >
-              Change me!
-            </div>
-          </div>
-          <div
-            className="DraftEditor-editorContainer"
-          >
-            <div
-              aria-activedescendant={undefined}
-              aria-autocomplete={undefined}
-              aria-controls={undefined}
-              aria-describedby="placeholder-123"
-              aria-expanded={null}
-              aria-label={undefined}
-              aria-multiline={undefined}
-              autoCapitalize={undefined}
-              autoComplete={undefined}
-              autoCorrect={undefined}
-              className="notranslate public-DraftEditor-content"
-              contentEditable={true}
-              data-testid={undefined}
-              onBeforeInput={[Function]}
-              onBlur={[Function]}
-              onCompositionEnd={[Function]}
-              onCompositionStart={[Function]}
-              onCopy={[Function]}
-              onCut={[Function]}
-              onDragEnd={[Function]}
-              onDragEnter={[Function]}
-              onDragLeave={[Function]}
-              onDragOver={[Function]}
-              onDragStart={[Function]}
-              onDrop={[Function]}
-              onFocus={[Function]}
-              onInput={[Function]}
-              onKeyDown={[Function]}
-              onKeyPress={[Function]}
-              onKeyUp={[Function]}
-              onMouseUp={[Function]}
-              onPaste={[Function]}
-              onSelect={[Function]}
-              role="textbox"
-              spellCheck={false}
-              style={
-                Object {
-                  "WebkitUserSelect": "text",
-                  "outline": "none",
-                  "userSelect": "text",
-                  "whiteSpace": "pre-wrap",
-                  "wordWrap": "break-word",
-                }
-              }
-              suppressContentEditableWarning={true}
-              tabIndex={undefined}
+              className="sc-bwzfXH lnZBXS"
             >
               <div
-                data-contents="true"
+                className="sc-dnqmqq enrPvc"
               >
                 <div
-                  className=""
-                  data-block={true}
-                  data-editor="123"
-                  data-offset-key="123-0-0"
+                  className="DraftEditor-root"
                 >
                   <div
-                    className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
-                    data-offset-key="123-0-0"
+                    className="public-DraftEditorPlaceholder-root"
                   >
-                    <span
-                      data-offset-key="123-0-0"
-                      style={Object {}}
+                    <div
+                      className="public-DraftEditorPlaceholder-inner"
+                      id="placeholder-123"
                     >
-                      <br
-                        data-text="true"
-                      />
-                    </span>
+                      Change me!
+                    </div>
+                  </div>
+                  <div
+                    className="DraftEditor-editorContainer"
+                  >
+                    <div
+                      aria-activedescendant={undefined}
+                      aria-autocomplete={undefined}
+                      aria-controls={undefined}
+                      aria-describedby="placeholder-123"
+                      aria-expanded={null}
+                      aria-label={undefined}
+                      aria-multiline={undefined}
+                      autoCapitalize={undefined}
+                      autoComplete={undefined}
+                      autoCorrect={undefined}
+                      className="notranslate public-DraftEditor-content"
+                      contentEditable={true}
+                      data-testid={undefined}
+                      onBeforeInput={[Function]}
+                      onBlur={[Function]}
+                      onCompositionEnd={[Function]}
+                      onCompositionStart={[Function]}
+                      onCopy={[Function]}
+                      onCut={[Function]}
+                      onDragEnd={[Function]}
+                      onDragEnter={[Function]}
+                      onDragLeave={[Function]}
+                      onDragOver={[Function]}
+                      onDragStart={[Function]}
+                      onDrop={[Function]}
+                      onFocus={[Function]}
+                      onInput={[Function]}
+                      onKeyDown={[Function]}
+                      onKeyPress={[Function]}
+                      onKeyUp={[Function]}
+                      onMouseUp={[Function]}
+                      onPaste={[Function]}
+                      onSelect={[Function]}
+                      role="textbox"
+                      spellCheck={false}
+                      style={
+                        Object {
+                          "WebkitUserSelect": "text",
+                          "outline": "none",
+                          "userSelect": "text",
+                          "whiteSpace": "pre-wrap",
+                          "wordWrap": "break-word",
+                        }
+                      }
+                      suppressContentEditableWarning={true}
+                      tabIndex={undefined}
+                    >
+                      <div
+                        data-contents="true"
+                      >
+                        <div
+                          className=""
+                          data-block={true}
+                          data-editor="123"
+                          data-offset-key="123-0-0"
+                        >
+                          <div
+                            className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+                            data-offset-key="123-0-0"
+                          >
+                            <span
+                              data-offset-key="123-0-0"
+                              style={Object {}}
+                            >
+                              <br
+                                data-text="true"
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

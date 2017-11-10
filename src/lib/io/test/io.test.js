@@ -8,7 +8,8 @@ import {
   updatePreferences
 } from "../index.js";
 import { createPreferencesIfNotExist, addMutationPreference } from "../IO.js";
-import { noteExistsIn, preferences, newNote } from "./util.js";
+import { noteExistsIn, preferences } from "./util.js";
+import { newNote } from "../../test-util/note-util.js";
 import { exists } from "../util";
 import { loadDB } from "../sqlite/setup.js";
 import path from "path";
@@ -44,7 +45,7 @@ test("Can load the database", done => {
 });
 
 test("Saving a note, query notes and content, then delete that note works", async () => {
-  const ourNote = newNote();
+  const ourNote = newNote("hello");
 
   // Save the note and verify it can be loaded.
   await saveNote(ourNote);

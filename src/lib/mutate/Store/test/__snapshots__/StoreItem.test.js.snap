@@ -9,10 +9,10 @@ exports[`StoreItem renders correctly 1`] = `
     className="sc-bdVaJa kDnqCF"
   >
     <div
-      className="sc-VigVT khyPhR"
+      className="sc-jTzLTM cEizhB"
     >
       <h2
-        className="sc-gqjmRU dkfoIR"
+        className="sc-VigVT gvySff"
       >
         title
       </h2>
@@ -20,7 +20,7 @@ exports[`StoreItem renders correctly 1`] = `
         description
       </p>
       <button
-        className="sc-dnqmqq hOfHpX"
+        className="sc-iwsKbI exmtif"
         onClick={[Function]}
       >
         Install
