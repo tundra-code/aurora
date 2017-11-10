@@ -1,21 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Editor } from "draft-js";
-import "draft-js/dist/Draft.css";
+import { Editor, EditorState } from "draft-js";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 
 const EditorStyles = styled.div`
   padding: ${props => props.theme.spacing.padding};
+  .public-DraftEditorPlaceholder-inner {
+    pointer-events: none;
+    position: absolute;
+    color: #aaaaaa;
+  }
 `;
 
 /**
- * A really basic editor that doesn't actually do anything other than have an editor className and can be focused
- * It might do something in the future, but at the moment it serves as a base to apply modifiers
+ * A really basic editor that can type and focus and maintain editor state.
  */
 class BaseEditor extends React.Component {
   constructor(props) {
     super(props);
+
+    // Let the user pass in a defaultEditorState if they want to.
+    const startEditorState = this.props.defaultEditorState
+      ? this.props.defaultEditorState
+      : EditorState.createEmpty();
+
+    this.state = { editorState: startEditorState };
     this.setDomEditorRef = ref => (this.domEditor = ref);
   }
 
@@ -29,6 +39,14 @@ class BaseEditor extends React.Component {
     }
   };
 
+  onChange = editorState => {
+    this.setState({ editorState });
+    if (this.props.onChangeEx) {
+      this.props.onChangeEx(editorState);
+    }
+    console.log("Change");
+  };
+
   componentDidMount() {
     this.handleFocus();
   }
@@ -36,15 +54,22 @@ class BaseEditor extends React.Component {
   render() {
     return (
       <EditorStyles>
-        <Editor className="editor" ref={this.setDomEditorRef} {...this.props} />
+        <Editor
+          className="editor"
+          ref={this.setDomEditorRef}
+          onChange={this.onChange}
+          editorState={this.state.editorState}
+          {...this.props}
+        />
       </EditorStyles>
     );
   }
 }
 
 BaseEditor.propTypes = {
-  editorState: PropTypes.object.isRequired,
-  focused: PropTypes.bool
+  focused: PropTypes.bool,
+  defaultEditorState: PropTypes.object,
+  onChangeEx: PropTypes.func
 };
 
 export default mutate(BaseEditor, "BaseEditor");
