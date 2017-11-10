@@ -8,14 +8,22 @@
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "db-down": "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
-    "db-up": "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
-    "db-reset": "node node_modules/db-migrate/bin/db-migrate reset --config config/database.json",
-    "db-create-config": "cross-env NODE_ENV=dev babel-node scripts/create-db-config/create.js",
-    "db-migrate-create": "node node_modules/db-migrate/bin/db-migrate create -e dev --config config/database.json",
-    "add-some-notes": "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
-    "add-many-notes": "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
-    "lint": "./node_modules/.bin/eslint src"
+    "db-down":
+      "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
+    "db-up":
+      "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
+    "db-reset":
+      "node node_modules/db-migrate/bin/db-migrate reset --config config/database.json",
+    "db-create-config":
+      "cross-env NODE_ENV=dev babel-node scripts/create-db-config/create.js",
+    "db-migrate-create":
+      "node node_modules/db-migrate/bin/db-migrate create -e dev --config config/database.json",
+    "add-some-notes":
+      "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
+    "add-many-notes":
+      "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
+    "lint": "./node_modules/.bin/eslint src",
+    "postinstall": " electron-builder install-app-deps"
   },
   "dependencies": {
     "@react-mutate/core": "^0.4.4",
@@ -42,20 +50,22 @@
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
     "react-split-pane": "^0.1.68",
     "source-map-support": "^0.5.0",
     "sqlite3": "^3.1.13",
     "styled-components": "^2.2.3",
+    "tmp": "^0.0.33",
     "uuid": "^3.1.0",
     "voca": "^1.3.0"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.10",
-    "@storybook/addon-links": "^3.2.10",
-    "@storybook/react": "^3.2.8",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
     "babel-plugin-react-css-modules": "^3.3.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-stage-0": "^6.24.1",
     "coveralls": "^2.13.1",
     "cross-env": "^5.1.1",
     "electron": "1.7.9",
@@ -73,37 +83,24 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "jest-css-modules": "^1.1.0",
-    "raf": "^3.4.0",
-    "tmp": "0.0.33",
     "prettier": "^1.5.2",
+    "raf": "^3.4.0",
     "react-test-renderer": "^16.0.0",
+    "redux-devtools": "^3.4.0",
     "regenerator-runtime": "^0.11.0",
     "sinon": "^4.1.2",
     "webpack": "^3.8.1"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "enzyme-react-16-adapter-setup"
-    ],
+    "setupFiles": ["raf/polyfill", "enzyme-react-16-adapter-setup"],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/",
-      "/dist/"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/",
-      "/dist/"
-    ],
-    "coverageReporters": [
-      "text",
-      "lcov"
-    ],
+    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
+    "testPathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
+    "coverageReporters": ["text", "lcov"],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     }
   }

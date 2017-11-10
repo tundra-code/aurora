@@ -125,7 +125,7 @@ async function updateMutations(prefsFile = preferencesFile) {
   const prefsJSON = await loadPreferences(prefsFile);
   const mutations = prefsJSON.mutations || [];
 
-  return installMutations(mutations.map(mut => mut.name), auroraRootPath);
+  return installMutations(mutations.map(mut => mut.name), auroraRootPath());
 }
 
 /**

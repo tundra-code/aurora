@@ -5,6 +5,11 @@ import StoreSearchBar from "./StoreSearchBar";
 import { Container } from "../../ui";
 import search from "../npm-search";
 import debounce from "debounce";
+import { setScreen } from "../../../redux/actions";
+import { connect } from "react-redux";
+import rendererEvents from "../../electron-events/renderer";
+import { itemArrayToKeyValueObj, pkgKey } from "./util";
+import { INSTALLED } from "./InstallStates";
 
 class Store extends React.Component {
   constructor(props) {
@@ -25,7 +30,7 @@ class Store extends React.Component {
     search(query)
       .then(res => res.data)
       .then(data => {
-        this.setState({ items: data.objects });
+        this.setState({ items: itemArrayToKeyValueObj(data.objects) });
       });
   };
 
@@ -35,20 +40,36 @@ class Store extends React.Component {
     this.searchAndUpdate(searchValue);
   };
 
-  onInstallClick = () => {
-    // TODO: Install application here with pack variable
+  onBackClick = () => {
+    this.props.dispatch(setScreen("main"));
+  };
+
+  onInstallClick = pkg => {
+    rendererEvents.sendInstallMutation(pkg);
+    rendererEvents.onMutationInstalled((event, pkg) => {
+      this.setState(prevState => {
+        pkg.installState = INSTALLED;
+        prevState.items[pkgKey(pkg)] = pkg;
+      });
+
+      // TODO ADD SOMETHING HERE
+    });
   };
 
   render() {
     return (
       <StoreContainer>
         <Container>
+          <a href="#" onClick={this.onBackClick}>
+            👈 Back
+          </a>
+
           <StoreSearchBar
             value={this.state.searchValue}
             onChange={this.onSearch}
           />
           <StoreItemList
-            items={this.state.items}
+            items={Object.values(this.state.items)}
             onClick={this.onInstallClick}
           />
         </Container>
@@ -56,5 +77,4 @@ class Store extends React.Component {
     );
   }
 }
-
-export default Store;
+export default connect()(Store);

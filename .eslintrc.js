@@ -32,6 +32,7 @@ module.exports = {
     "no-duplicate-imports": "error",
     "react/display-name": "off",
     "react/no-deprecated": "error",
+    "react/prop-types": "off",
     eqeqeq: "error",
     complexity: "error",
     "block-scoped-var": "error",
