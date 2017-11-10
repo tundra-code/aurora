@@ -1,5 +1,5 @@
 import defaultMenu from "./default";
-import main from "../../lib/events/main";
+import main from "../../lib/electron-events/main";
 
 module.exports = (app, Menu, MainWindow) => {
   const template = defaultMenu(app);

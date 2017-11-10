@@ -7,6 +7,7 @@ import search from "../npm-search";
 import debounce from "debounce";
 import { setScreen } from "../../../redux/actions";
 import { connect } from "react-redux";
+import rendererEvents from "../../electron-events/renderer";
 
 class Store extends React.Component {
   constructor(props) {
@@ -41,8 +42,11 @@ class Store extends React.Component {
     this.props.dispatch(setScreen("main"));
   };
 
-  onInstallClick = () => {
-    // TODO do something on install
+  onInstallClick = pkg => {
+    rendererEvents.sendInstallMutation(pkg.name);
+    rendererEvents.onMutationInstalled((event, name) => {
+      console.log(name);
+    });
   };
 
   render() {
