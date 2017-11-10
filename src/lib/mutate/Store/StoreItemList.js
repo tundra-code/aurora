@@ -21,6 +21,7 @@ const StoreItemList = ({ items, onClick }) => {
         onClick={() => {
           onClick(item.package);
         }}
+        installState={item.installState}
       />
     );
   });

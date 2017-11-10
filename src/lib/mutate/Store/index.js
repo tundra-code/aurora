@@ -8,6 +8,8 @@ import debounce from "debounce";
 import { setScreen } from "../../../redux/actions";
 import { connect } from "react-redux";
 import rendererEvents from "../../electron-events/renderer";
+import { itemArrayToKeyValueObj, pkgKey } from "./util";
+import { INSTALLED } from "./InstallStates";
 
 class Store extends React.Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class Store extends React.Component {
     search(query)
       .then(res => res.data)
       .then(data => {
-        this.setState({ items: data.objects });
+        this.setState({ items: itemArrayToKeyValueObj(data.objects) });
       });
   };
 
@@ -43,9 +45,14 @@ class Store extends React.Component {
   };
 
   onInstallClick = pkg => {
-    rendererEvents.sendInstallMutation(pkg.name);
-    rendererEvents.onMutationInstalled((event, name) => {
-      console.log(name);
+    rendererEvents.sendInstallMutation(pkg);
+    rendererEvents.onMutationInstalled((event, pkg) => {
+      this.setState(prevState => {
+        pkg.installState = INSTALLED;
+        prevState.items[pkgKey(pkg)] = pkg;
+      });
+
+      console.log(pkg); // TODO FIX THIS
     });
   };
 
@@ -62,7 +69,7 @@ class Store extends React.Component {
             onChange={this.onSearch}
           />
           <StoreItemList
-            items={this.state.items}
+            items={Object.values(this.state.items)}
             onClick={this.onInstallClick}
           />
         </Container>

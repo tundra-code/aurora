@@ -4,8 +4,8 @@ import { ipcRenderer } from "electron";
 /**
  * Senders
  */
-function sendInstallMutation(name) {
-  ipcRenderer.send(names.INSTALL_MUTATION, name);
+function sendInstallMutation(pkg) {
+  ipcRenderer.send(names.INSTALL_MUTATION, pkg);
 }
 
 /**

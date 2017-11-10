@@ -61,5 +61,5 @@ app.on("activate", () => {
 app.on("ready", () => {
   mainWindow = createMainWindow();
   setupMenu(app, Menu, mainWindow);
-  // setupEvents();
+  setupEvents();
 });

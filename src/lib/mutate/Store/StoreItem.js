@@ -1,9 +1,10 @@
 import React from "react";
 import { Card } from "../../ui";
-import { PrimaryButton } from "../../ui/Buttons";
+import { PrimaryButton, Button } from "../../ui/Buttons";
 import { withShadow } from "../../ui/Modifiers";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { INSTALLING, INSTALLED, ERROR } from "./InstallStates";
 
 const Title = styled.h2`
   margin-top: 0;
@@ -12,11 +13,29 @@ const Title = styled.h2`
 
 const CardWithShadow = withShadow(Card);
 
-const StoreItem = ({ title, description, onClick }) => (
+const InstallButton = ({ installState, onClick }) => {
+  switch (installState) {
+    case INSTALLING:
+      return (
+        <PrimaryButton disabled onClick={onClick}>
+          Install
+        </PrimaryButton>
+      );
+    case INSTALLED:
+      return <p> Installed! </p>;
+    case ERROR:
+      return <p> Error! </p>;
+    default:
+      return <PrimaryButton onClick={onClick}>Install</PrimaryButton>;
+  }
+};
+
+const StoreItem = ({ title, description, onClick, installState }) => (
   <CardWithShadow>
     <Title>{title}</Title>
     {description && <p>{description}</p>}
-    <PrimaryButton onClick={onClick}>Install</PrimaryButton>
+
+    <InstallButton installState={installState} onClick={onClick} />
   </CardWithShadow>
 );
 

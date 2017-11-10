@@ -127,5 +127,6 @@ export {
   writeDatabaseJSON,
   dbFilePath,
   throwIfNotNoteModel,
-  exists
+  exists,
+  auroraRootPath
 };

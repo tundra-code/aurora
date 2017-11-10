@@ -3,10 +3,12 @@ import { installNewMutation } from "../../lib/io";
 
 function setupEvents() {
   // Listen for installation requests
-  mainEvents.onInstallMutation((event, name) => {
-    installNewMutation(name).then(() => {
-      mainEvents.sendInstallMutationReply(event, name);
-    });
+  mainEvents.onInstallMutation((event, pkg) => {
+    installNewMutation(pkg.name)
+      .then(() => {
+        mainEvents.sendInstallMutationReply(event, pkg);
+      })
+      .catch(console.error);
   });
 }
 
