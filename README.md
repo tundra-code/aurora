@@ -24,9 +24,9 @@ yarn test
 yarn test --watch
 
 # Interacting with database migrations
-yarn db-reset -e dev
-yarn db-down -e prod
-yarn db-up -d dev
+yarn db-reset -e test
+yarn db-down -e development
+yarn db-up -d development
 yarn db-create-config
 yarn db-migration-create myNewMigration
 

@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "electron-webpack dev",
-    "prod": "electron-webpack prod",
     "compile": "electron-webpack",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "dist": "yarn compile && electron-builder",

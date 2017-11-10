@@ -137,7 +137,7 @@ Note that there are different preferences and notes for each environment.
 
 ## Helpful Commands
 All these commands are to be run from the root of the project.
-Current `env` options are `dev`,`prod`, and `test`.
+Current `env` options are `development`, and `test`.
 - `yarn run db-create-config`: this updates the `config/database.json` file to specify your `HOME_DIR/.aurora/` as where to store the database files. Note this only needs to be run once and launching the app will automatically run it. I guess if you want to do some fancy db-migration commands before launching the app then this is useful.
 - `yarn db-migrate-create <migration-name>`: creates a new database migration file.
 - `yarn db-up -e <env>`: Runs next needed migration(s) for this env, if applicable. Note this will not work if you have never run the application `yarn <env>` in this environment before.
