@@ -52,7 +52,7 @@ class Store extends React.Component {
         prevState.items[pkgKey(pkg)] = pkg;
       });
 
-      console.log(pkg); // TODO FIX THIS
+      // TODO ADD SOMETHING HERE
     });
   };
 

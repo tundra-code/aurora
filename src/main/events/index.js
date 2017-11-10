@@ -8,7 +8,7 @@ function setupEvents() {
       .then(() => {
         mainEvents.sendInstallMutationReply(event, pkg);
       })
-      .catch(console.error);
+      .catch(console.error); // eslint-disable-line no-console
   });
 }
 

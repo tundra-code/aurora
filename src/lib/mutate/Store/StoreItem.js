@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "../../ui";
-import { PrimaryButton, Button } from "../../ui/Buttons";
+import { PrimaryButton } from "../../ui/Buttons";
 import { withShadow } from "../../ui/Modifiers";
 import styled from "styled-components";
 import PropTypes from "prop-types";
