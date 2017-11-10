@@ -148,9 +148,3 @@ test("addMutationPreference will create a new attribute in the preferences file"
 
   removeTmpFiles();
 });
-
-/**
- * Note: I'm explcitly not testing "updateMutations" or "installMutations"
- * here because their functionality is tested inside of react-mutate. Also
- * they both involve installing files which could dramatically slow down tests :(
- */

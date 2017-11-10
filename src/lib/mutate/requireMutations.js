@@ -1,7 +1,8 @@
 import defaultMutations from "./defaultMutations";
 import path from "path";
 import os from "os";
-let requireMutations = () => [];
+import io from "../io";
+let requireMutations = () => new Promise();
 
 if (process.env.NODE_ENV !== "test") {
   const mutationsPath = path.join(

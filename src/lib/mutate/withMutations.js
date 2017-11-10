@@ -7,21 +7,19 @@ import requireMutations from "./requireMutations";
  */
 const withMutations = Component => {
   class WithMutations extends React.Component {
-    constructor(props) {
-      super(props);
-      const muts = requireMutations();
-      if (muts && muts.length !== 0 && muts[0]) {
-        this.state = { mutations: muts[0].mutations };
-      }
-
-      this.getMutations = this.getMutations.bind(this);
+    componentWillMount() {
+      requireMutations().then(muts => {
+        if (muts && muts.length !== 0 && muts[0]) {
+          this.setState({ mutations: muts[0].mutations });
+        }
+      });
     }
 
     componentDidMount() {
       this.forceUpdate();
     }
 
-    getMutations() {
+    getMutations = () => {
       if (
         this.state && // State exists
         this.state.mutations // We loaded mutations without an error
@@ -30,7 +28,7 @@ const withMutations = Component => {
       }
 
       return {};
-    }
+    };
 
     render() {
       return (

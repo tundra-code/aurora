@@ -149,7 +149,7 @@ async function addMutationPreference(name, prefsFile = preferencesFile) {
  * @param {String} name
  */
 async function installNewMutation(name, prefsFile = preferencesFile) {
-  await addMutationPreference(prefsFile);
+  await addMutationPreference(name, prefsFile);
   return updateMutations(prefsFile);
 }
 
