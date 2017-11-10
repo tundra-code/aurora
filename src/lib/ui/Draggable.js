@@ -14,16 +14,9 @@ const DragHeader = styled.div`
   background: transparent;
 `;
 
-/**
- * Push the header down a bit so the content is not fully 
- * overlapping with the draggable region.
- */
-const PushedDown = styled.div`
-  padding-top: ${props =>
-    props.dragRegionSize ? props.dragRegionSize : "50px"};
+const DragHeaderContainer = styled.div`
   height: 100%;
-  box-sizing: border-box;
-`;
+`
 
 /**
  * A componenent wrapper that attaches on a draggable header to the 
@@ -31,18 +24,14 @@ const PushedDown = styled.div`
  */
 const Draggable = ({ children, dragRegionSize }) => {
   return (
-    <PushedDown
-      className="pushed-down"
-      dragRegionSize={dragRegionSize}
-      key="main"
-    >
+    <DragHeaderContainer>
       <DragHeader
         className="drag-header"
         dragRegionSize={dragRegionSize}
         key="dragHeader"
       />
       {children}
-    </PushedDown>
+    </DragHeaderContainer>
   );
 };
 
