@@ -10,7 +10,7 @@ NODE_ENV={my_env} babel-node convert.js PATH-TO-DATASET
 
 For example:
 ```
-NODE_ENV=dev babel-node convert.js our_small_dataset.json
+NODE_ENV=development babel-node convert.js our_small_dataset.json
 ```
 
 This will add all of the notes in the dataset to your `~/.aurora/dev` folder.

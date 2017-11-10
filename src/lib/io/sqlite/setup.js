@@ -4,7 +4,7 @@ import {
   writeDatabaseJSON,
   auroraDirContext
 } from "../util.js";
-const ENVs = ["test", "prod", "dev"];
+const ENVs = ["test", "production", "development"];
 
 function createDatabaseConfig() {
   if (dbConfigExists()) {
