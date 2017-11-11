@@ -1,5 +1,6 @@
 import jetpack from "fs-jetpack";
 import { NoteModel } from "../note";
+import { auroraRootPath } from "../paths";
 const os = require("os");
 
 const noteFolder = "notes";
@@ -15,10 +16,6 @@ const auroraRootContext = () => {
 
 const auroraDirContext = () => {
   return auroraRootContext().dir(process.env.NODE_ENV);
-};
-
-const auroraRootPath = () => {
-  return auroraRootContext().cwd();
 };
 
 const configDir = () => {

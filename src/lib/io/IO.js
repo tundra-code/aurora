@@ -10,8 +10,10 @@ import {
   auroraRootPath
 } from "./util.js";
 import { installMutations } from "@react-mutate/loader";
+import { auroraMutationPackageJSONPath } from "../paths";
 
-const preferencesFile = "aurora-preferences.json";
+const preferencesFile = auroraMutationPackageJSONPath();
+
 /*
   Saves the specified note. Overwrites an existing note with matching id.
   @param note : NoteModel
@@ -124,7 +126,6 @@ async function updateMutations(prefsFile = preferencesFile) {
   await createPreferencesIfNotExist({}, prefsFile);
   const prefsJSON = await loadPreferences(prefsFile);
   const mutations = prefsJSON.mutations || [];
-
   return installMutations(mutations.map(mut => mut.name), auroraRootPath());
 }
 
