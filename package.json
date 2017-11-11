@@ -29,6 +29,8 @@
     "@react-mutate/core": "^0.4.4",
     "@react-mutate/loader": "^0.4.4",
     "axios": "^0.17.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
@@ -51,8 +53,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
     "react-split-pane": "^0.1.68",
+    "redux": "^3.7.2",
     "source-map-support": "^0.5.0",
     "sqlite3": "^3.1.13",
     "styled-components": "^2.2.3",
@@ -64,7 +66,6 @@
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
     "babel-plugin-react-css-modules": "^3.3.2",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-stage-0": "^6.24.1",
     "coveralls": "^2.13.1",
     "cross-env": "^5.1.1",
@@ -90,6 +91,11 @@
     "regenerator-runtime": "^0.11.0",
     "sinon": "^4.1.2",
     "webpack": "^3.8.1"
+  },
+  "electronWebpack": {
+    "main": {
+      "webpackConfig": "webpack.main.additions.js"
+    }
   },
   "jest": {
     "setupFiles": ["raf/polyfill", "enzyme-react-16-adapter-setup"],

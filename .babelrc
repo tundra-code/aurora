@@ -1,4 +1,4 @@
 {
   "presets": ["env", "react", "stage-0"],
-  "plugins": ["react-css-modules"]
+  "plugins": ["transform-regenerator", "react-css-modules"]
 }

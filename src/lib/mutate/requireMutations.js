@@ -1,7 +1,6 @@
 import defaultMutations from "./defaultMutations";
 import path from "path";
 import os from "os";
-import io from "../io";
 let requireMutations = () => new Promise();
 
 if (process.env.NODE_ENV !== "test") {

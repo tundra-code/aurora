@@ -8,11 +8,11 @@ import requireMutations from "./requireMutations";
 const withMutations = Component => {
   class WithMutations extends React.Component {
     componentWillMount() {
-      requireMutations().then(muts => {
-        if (muts && muts.length !== 0 && muts[0]) {
-          this.setState({ mutations: muts[0].mutations });
-        }
-      });
+      const muts = requireMutations();
+
+      if (muts && muts.length !== 0 && muts[0]) {
+        this.setState({ mutations: muts[0].mutations });
+      }
     }
 
     componentDidMount() {

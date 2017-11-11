@@ -1,4 +1,3 @@
-import "babel-polyfill";
 import { app, Menu, BrowserWindow } from "electron";
 import setupMenu from "./menu";
 import setupEvents from "./events";
