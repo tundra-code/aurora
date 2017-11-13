@@ -8,8 +8,6 @@ const StoreItemList = ({ items, onClick, onUninstallClick }) => {
     return <div />;
   }
 
-  console.log(items);
-
   const ListMap = items.map(item => {
     const title = removePrefix(item.package.name);
 
