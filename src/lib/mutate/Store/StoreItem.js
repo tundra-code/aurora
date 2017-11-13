@@ -16,13 +16,14 @@ const CardWithShadow = withShadow(Card);
 const InstallButton = ({ installState, onClick }) => {
   switch (installState) {
     case INSTALLING:
-      return (
-        <PrimaryButton disabled onClick={onClick}>
-          Install
-        </PrimaryButton>
-      );
+      return <p> Installing... This may take a moment 😅 </p>;
     case INSTALLED:
-      return <p> Installed! </p>;
+      return (
+        <p>
+          🙌 Installed! You may need to restart the app in order to see the
+          effects.
+        </p>
+      );
     case ERROR:
       return <p> Error! </p>;
     default:

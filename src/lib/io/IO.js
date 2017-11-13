@@ -11,6 +11,7 @@ import {
 } from "./util.js";
 import { installMutations } from "@react-mutate/loader";
 import { auroraMutationPackageJSONPath } from "../paths";
+import safeParseJSON from "json-parse-safe";
 
 const preferencesFile = auroraMutationPackageJSONPath();
 
@@ -58,7 +59,14 @@ function loadNotes() {
 function loadPreferences(file = preferencesFile) {
   return new Promise((resolve, reject) => {
     function load(pref) {
-      resolve(JSON.parse(pref));
+      console.log(pref, file);
+      const parsed = safeParseJSON(pref);
+      if (parsed.error) {
+        reject(parsed.error);
+        return;
+      }
+
+      resolve(parsed.value);
     }
     readFromAsync(file, auroraDirContext(), load, reject);
   });

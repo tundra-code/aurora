@@ -1,5 +1,5 @@
 import mainEvents from "../../lib/electron-events/main";
-import { installNewMutation } from "../../lib/io";
+import { installNewMutation, loadPreferences } from "../../lib/io";
 
 function setupEvents() {
   // Listen for installation requests
@@ -9,6 +9,11 @@ function setupEvents() {
         mainEvents.sendInstallMutationReply(event, pkg);
       })
       .catch(console.error); // eslint-disable-line no-console
+  });
+
+  // Listen for preferences requests
+  mainEvents.onGetPreferences(event => {
+    loadPreferences().then(json => mainEvents.sendPreferences(event, json));
   });
 }
 
