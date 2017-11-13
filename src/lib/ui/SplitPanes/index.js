@@ -1,9 +1,15 @@
 import styled from "styled-components";
+import Color from "color";
+
+const opaqueBorder = (props, alpha) => {
+  return Color(props.theme.colors.border)
+    .alpha(alpha)
+    .toString();
+};
 
 const StyledSplitPaneContainer = styled.div`
   .Resizer {
-    background: #000;
-    opacity: .2;
+    background: ${props => props.theme.colors.border};
     z-index: 1;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -21,28 +27,28 @@ const StyledSplitPaneContainer = styled.div`
   .Resizer.horizontal {
     height: 11px;
     margin: -5px 0;
-    border-top: 5px solid rgba(255, 255, 255, 0);
-    border-bottom: 5px solid rgba(255, 255, 255, 0);
+    border-top: 5px solid ${props => opaqueBorder(props, 0)};
+    border-bottom: 5px solid ${props => opaqueBorder(props, 0)};
     cursor: row-resize;
     width: 100%;
   }
 
   .Resizer.horizontal:hover {
-    border-top: 5px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+    border-top: 5px solid ${props => opaqueBorder(props, 0.5)};
+    border-bottom: 5px solid ${props => opaqueBorder(props, 0.5)};
   }
 
   .Resizer.vertical {
     width: 11px;
     margin: 0 -5px;
-    border-left: 5px solid rgba(255, 255, 255, 0);
-    border-right: 5px solid rgba(255, 255, 255, 0);
+    border-left: 5px solid ${props => opaqueBorder(props, 0)};
+    border-right: 5px solid ${props => opaqueBorder(props, 0)};
     cursor: col-resize;
   }
 
   .Resizer.vertical:hover {
-    border-left: 5px solid rgba(0, 0, 0, 0.5);
-    border-right: 5px solid rgba(0, 0, 0, 0.5);
+    border-left: 5px solid ${props => opaqueBorder(props, 0.5)};
+    border-right: 5px solid ${props => opaqueBorder(props, 0.5)};
   }
   .Resizer.disabled {
     cursor: not-allowed;
