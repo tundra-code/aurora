@@ -1,10 +1,10 @@
 import React from "react";
 import { Card } from "../../ui";
-import { PrimaryButton } from "../../ui/Buttons";
+import { PrimaryButton, Button } from "../../ui/Buttons";
 import { withShadow } from "../../ui/Modifiers";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { INSTALLING, INSTALLED, ERROR } from "./InstallStates";
+import { INSTALLING, INSTALLED, ERROR, UNINSTALL } from "./InstallStates";
 
 const Title = styled.h2`
   margin-top: 0;
@@ -13,16 +13,24 @@ const Title = styled.h2`
 
 const CardWithShadow = withShadow(Card);
 
-const InstallButton = ({ installState, onClick }) => {
+const InstallButton = ({ installState, onClick, onUninstallClick }) => {
+  console.log(installState);
   switch (installState) {
     case INSTALLING:
+      return <p> Installing... This may take a moment 😅 </p>;
+    case INSTALLED:
       return (
-        <PrimaryButton disabled onClick={onClick}>
-          Install
+        <p>
+          🙌 Installed! You may need to restart the app in order to see the
+          effects.
+        </p>
+      );
+    case UNINSTALL:
+      return (
+        <PrimaryButton onUninstallClick={onUninstallClick}>
+          Uninstall
         </PrimaryButton>
       );
-    case INSTALLED:
-      return <p> Installed! </p>;
     case ERROR:
       return <p> Error! </p>;
     default:

@@ -10,9 +10,10 @@ import {
   auroraRootPath
 } from "./util.js";
 import { installMutations } from "@react-mutate/loader";
-import { auroraMutationPackageJSONPath } from "../paths";
+import { auroraPreferencesFile } from "../paths";
+import safeParseJSON from "json-parse-safe";
 
-const preferencesFile = auroraMutationPackageJSONPath();
+const preferencesFile = auroraPreferencesFile();
 
 /*
   Saves the specified note. Overwrites an existing note with matching id.
@@ -55,10 +56,18 @@ function loadNotes() {
   Loads user preferences.
   @returns Promise
    */
-function loadPreferences(file = preferencesFile) {
+async function loadPreferences(file = preferencesFile) {
+  await createPreferencesIfNotExist({});
+
   return new Promise((resolve, reject) => {
     function load(pref) {
-      resolve(JSON.parse(pref));
+      const parsed = safeParseJSON(pref);
+      if (parsed.error) {
+        reject(parsed.error);
+        return;
+      }
+
+      resolve(parsed.value);
     }
     readFromAsync(file, auroraDirContext(), load, reject);
   });

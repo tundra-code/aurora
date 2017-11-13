@@ -1,5 +1,5 @@
 import mainEvents from "../../lib/electron-events/main";
-import { installNewMutation } from "../../lib/io";
+import { installNewMutation, loadPreferences } from "../../lib/io";
 
 function setupEvents() {
   // Listen for installation requests

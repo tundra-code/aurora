@@ -3,8 +3,8 @@ import StoreItem from "./StoreItem";
 import { removePrefix } from "./util";
 import PropTypes from "prop-types";
 
-const StoreItemList = ({ items, onClick }) => {
-  const List = items.map(item => {
+const StoreItemList = ({ items, onClick, onUninstallClick }) => {
+  const ListMap = items.map(item => {
     const title = removePrefix(item.package.name);
 
     // Handle the case where something is named
@@ -21,16 +21,18 @@ const StoreItemList = ({ items, onClick }) => {
         onClick={() => {
           onClick(item.package);
         }}
-        installState={item.installState}
+        onUninstallClick={() => {
+          onClick(item.package);
+        }}
+        installState={item.package.installState}
       />
     );
   });
 
-  return <div>{List}</div>;
+  return <div>{Array.from(ListMap.values())}</div>;
 };
 
 StoreItemList.propTypes = {
-  items: PropTypes.array,
   onClick: PropTypes.func.isRequired
 };
 
