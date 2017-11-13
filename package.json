@@ -8,20 +8,13 @@
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "db-down":
-      "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
-    "db-up":
-      "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
-    "db-reset":
-      "node node_modules/db-migrate/bin/db-migrate reset --config config/database.json",
-    "db-create-config":
-      "cross-env NODE_ENV=dev babel-node scripts/create-db-config/create.js",
-    "db-migrate-create":
-      "node node_modules/db-migrate/bin/db-migrate create -e dev --config config/database.json",
-    "add-some-notes":
-      "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
-    "add-many-notes":
-      "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
+    "db-down": "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
+    "db-up": "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
+    "db-reset": "node node_modules/db-migrate/bin/db-migrate reset --config config/database.json",
+    "db-create-config": "cross-env NODE_ENV=dev babel-node scripts/create-db-config/create.js",
+    "db-migrate-create": "node node_modules/db-migrate/bin/db-migrate create -e dev --config config/database.json",
+    "add-some-notes": "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
+    "add-many-notes": "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
     "lint": "./node_modules/.bin/eslint src",
     "postinstall": " electron-builder install-app-deps"
   },
@@ -34,6 +27,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "bookshelf": "^0.10.4",
     "bookshelf-cascade-delete": "^2.0.1",
+    "color": "^2.0.1",
     "db-migrate": "^0.10.0-beta.24",
     "db-migrate-sqlite3": "^0.2.1",
     "debounce": "^1.1.0",
@@ -51,8 +45,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
     "react-split-pane": "^0.1.68",
+    "redux": "^3.7.2",
     "source-map-support": "^0.5.0",
     "sqlite3": "^3.1.13",
     "styled-components": "^2.2.3",
@@ -92,15 +86,28 @@
     "webpack": "^3.8.1"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "enzyme-react-16-adapter-setup"],
+    "setupFiles": [
+      "raf/polyfill",
+      "enzyme-react-16-adapter-setup"
+    ],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-    "coverageReporters": ["text", "lcov"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     }
   }
