@@ -10,8 +10,11 @@ import {
   auroraRootPath
 } from "./util.js";
 import { installMutations } from "@react-mutate/loader";
+import { auroraPreferencesFile } from "../paths";
+import safeParseJSON from "json-parse-safe";
 
-const preferencesFile = "aurora-preferences.json";
+const preferencesFile = auroraPreferencesFile();
+
 /*
   Saves the specified note. Overwrites an existing note with matching id.
   @param note : NoteModel
@@ -50,19 +53,6 @@ function loadNotes() {
 }
 
 /**
-  Loads user preferences.
-  @returns Promise
-   */
-function loadPreferences(file = preferencesFile) {
-  return new Promise((resolve, reject) => {
-    function load(pref) {
-      resolve(JSON.parse(pref));
-    }
-    readFromAsync(file, auroraDirContext(), load, reject);
-  });
-}
-
-/**
   Saves user preferences.
   @param preferences is a JSON object of preferences
   @returns Promise
@@ -84,6 +74,27 @@ async function createPreferencesIfNotExist(
   if (!exists(file)) {
     await savePreferences(preferences, file);
   }
+}
+
+/**
+  Loads user preferences.
+  @returns Promise
+   */
+async function loadPreferences(file = preferencesFile) {
+  await createPreferencesIfNotExist({});
+
+  return new Promise((resolve, reject) => {
+    function load(pref) {
+      const parsed = safeParseJSON(pref);
+      if (parsed.error) {
+        reject(parsed.error);
+        return;
+      }
+
+      resolve(parsed.value);
+    }
+    readFromAsync(file, auroraDirContext(), load, reject);
+  });
 }
 
 /**
@@ -124,7 +135,6 @@ async function updateMutations(prefsFile = preferencesFile) {
   await createPreferencesIfNotExist({}, prefsFile);
   const prefsJSON = await loadPreferences(prefsFile);
   const mutations = prefsJSON.mutations || [];
-
   return installMutations(mutations.map(mut => mut.name), auroraRootPath());
 }
 
@@ -149,7 +159,7 @@ async function addMutationPreference(name, prefsFile = preferencesFile) {
  * @param {String} name
  */
 async function installNewMutation(name, prefsFile = preferencesFile) {
-  await addMutationPreference(prefsFile);
+  await addMutationPreference(name, prefsFile);
   return updateMutations(prefsFile);
 }
 

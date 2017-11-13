@@ -8,6 +8,10 @@ function sendInstallMutation(pkg) {
   ipcRenderer.send(names.INSTALL_MUTATION, pkg);
 }
 
+function sendGetPreferences() {
+  ipcRenderer.send(names.GET_PREFERENCES);
+}
+
 /**
  * Listeners
  */
@@ -19,8 +23,14 @@ function onMutationInstalled(then) {
   return ipcRenderer.on(names.INSTALL_MUTATION_REPLY, then);
 }
 
+function onGetPreferences(then) {
+  return ipcRenderer.on(names.RETURN_GET_PREFERENCES, then);
+}
+
 export default {
   onChangeScreen,
   onMutationInstalled,
-  sendInstallMutation
+  sendInstallMutation,
+  sendGetPreferences,
+  onGetPreferences
 };

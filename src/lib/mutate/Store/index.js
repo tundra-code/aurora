@@ -9,7 +9,8 @@ import { setScreen } from "../../../redux/actions";
 import { connect } from "react-redux";
 import rendererEvents from "../../electron-events/renderer";
 import { itemArrayToKeyValueObj, pkgKey } from "./util";
-import { INSTALLED } from "./InstallStates";
+import { nextState, UNINSTALL } from "./InstallStates";
+import { Map } from "immutable";
 
 class Store extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Store extends React.Component {
 
     this.state = {
       searchValue: "",
-      items: []
+      items: Map()
     };
 
     // Don't search more than once every 100 miliseconds
@@ -26,11 +27,33 @@ class Store extends React.Component {
     this.searchAndUpdate();
   }
 
+  markItemsAsUninstallable = data => {
+    let muts = [];
+    if (this.props.preferences) {
+      muts = this.props.preferences.mutations.map(m => m.name);
+    }
+
+    data.objects = data.objects.map(obj => {
+      // If we've already got this mutation, then let the user uninstall it
+      if (muts.includes(obj.package.name)) {
+        obj.package.installState = UNINSTALL;
+      }
+      return obj;
+    });
+
+    return data;
+  };
+
+  itemValues = () => {
+    return Array.from(this.state.items.values());
+  };
+
   searchAndUpdate = query => {
     search(query)
       .then(res => res.data)
+      .then(this.markItemsAsUninstallable)
       .then(data => {
-        this.setState({ items: itemArrayToKeyValueObj(data.objects) });
+        this.setState({ items: Map(itemArrayToKeyValueObj(data.objects)) });
       });
   };
 
@@ -44,15 +67,28 @@ class Store extends React.Component {
     this.props.dispatch(setScreen("main"));
   };
 
-  onInstallClick = pkg => {
-    rendererEvents.sendInstallMutation(pkg);
-    rendererEvents.onMutationInstalled((event, pkg) => {
-      this.setState(prevState => {
-        pkg.installState = INSTALLED;
-        prevState.items[pkgKey(pkg)] = pkg;
-      });
+  bumpPkgInstallState = (pkg, isError) => {
+    this.setState(prevState => {
+      const key = pkgKey(pkg);
+      if (isError) {
+        return prevState.items.set(key, pkg);
+      }
 
-      // TODO ADD SOMETHING HERE
+      const item = prevState.items.get(key);
+      const installState = item.package.installState;
+      item.package.installState = nextState(installState);
+
+      prevState.items.set(key, item);
+      return prevState;
+    });
+  };
+
+  onInstallClick = pkg => {
+    this.bumpPkgInstallState(pkg);
+    rendererEvents.sendInstallMutation(pkg);
+
+    rendererEvents.onMutationInstalled((event, pkg) => {
+      this.bumpPkgInstallState(pkg);
     });
   };
 
@@ -69,7 +105,7 @@ class Store extends React.Component {
             onChange={this.onSearch}
           />
           <StoreItemList
-            items={Object.values(this.state.items)}
+            items={this.itemValues()}
             onClick={this.onInstallClick}
           />
         </Container>
@@ -77,4 +113,9 @@ class Store extends React.Component {
     );
   }
 }
-export default connect()(Store);
+
+const mapStateToProps = state => {
+  return { preferences: state.preferences };
+};
+
+export default connect(mapStateToProps)(Store);
