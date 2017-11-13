@@ -44,6 +44,10 @@ class Store extends React.Component {
     return data;
   };
 
+  itemValues = () => {
+    return Array.from(this.state.items.values());
+  };
+
   searchAndUpdate = query => {
     search(query)
       .then(res => res.data)
@@ -101,7 +105,7 @@ class Store extends React.Component {
             onChange={this.onSearch}
           />
           <StoreItemList
-            items={this.state.items}
+            items={this.itemValues()}
             onClick={this.onInstallClick}
           />
         </Container>

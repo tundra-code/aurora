@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import SplitPane from "react-split-pane";
 import StyledSplitPaneContainer from "../ui/SplitPanes";
 import { FixedWidthDiv } from "../ui/util/Layouts";
-import renderer from "../electron-events/renderer";
 
 const Frame = props => (
   <StyledSplitPaneContainer>

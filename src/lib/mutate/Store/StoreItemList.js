@@ -4,6 +4,12 @@ import { removePrefix } from "./util";
 import PropTypes from "prop-types";
 
 const StoreItemList = ({ items, onClick, onUninstallClick }) => {
+  if (!items) {
+    return <div />;
+  }
+
+  console.log(items);
+
   const ListMap = items.map(item => {
     const title = removePrefix(item.package.name);
 
@@ -22,7 +28,7 @@ const StoreItemList = ({ items, onClick, onUninstallClick }) => {
           onClick(item.package);
         }}
         onUninstallClick={() => {
-          onClick(item.package);
+          onUninstallClick(item.package);
         }}
         installState={item.package.installState}
       />

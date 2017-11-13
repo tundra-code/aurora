@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "../../ui";
-import { PrimaryButton, Button } from "../../ui/Buttons";
+import { PrimaryButton } from "../../ui/Buttons";
 import { withShadow } from "../../ui/Modifiers";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -14,7 +14,6 @@ const Title = styled.h2`
 const CardWithShadow = withShadow(Card);
 
 const InstallButton = ({ installState, onClick, onUninstallClick }) => {
-  console.log(installState);
   switch (installState) {
     case INSTALLING:
       return <p> Installing... This may take a moment 😅 </p>;

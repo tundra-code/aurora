@@ -53,27 +53,6 @@ function loadNotes() {
 }
 
 /**
-  Loads user preferences.
-  @returns Promise
-   */
-async function loadPreferences(file = preferencesFile) {
-  await createPreferencesIfNotExist({});
-
-  return new Promise((resolve, reject) => {
-    function load(pref) {
-      const parsed = safeParseJSON(pref);
-      if (parsed.error) {
-        reject(parsed.error);
-        return;
-      }
-
-      resolve(parsed.value);
-    }
-    readFromAsync(file, auroraDirContext(), load, reject);
-  });
-}
-
-/**
   Saves user preferences.
   @param preferences is a JSON object of preferences
   @returns Promise
@@ -95,6 +74,27 @@ async function createPreferencesIfNotExist(
   if (!exists(file)) {
     await savePreferences(preferences, file);
   }
+}
+
+/**
+  Loads user preferences.
+  @returns Promise
+   */
+async function loadPreferences(file = preferencesFile) {
+  await createPreferencesIfNotExist({});
+
+  return new Promise((resolve, reject) => {
+    function load(pref) {
+      const parsed = safeParseJSON(pref);
+      if (parsed.error) {
+        reject(parsed.error);
+        return;
+      }
+
+      resolve(parsed.value);
+    }
+    readFromAsync(file, auroraDirContext(), load, reject);
+  });
 }
 
 /**
