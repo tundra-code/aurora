@@ -14,18 +14,12 @@ class Core extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    switch (nextProps.toast.type) {
-      case "error":
-        toast.error(nextProps.toast.message);
-        break;
-      case "warn":
-        toast.warn(nextProps.toast.message);
-        break;
-      case "info":
-        toast.info(nextProps.toast.message);
-        break;
-      default:
-        toast(nextProps.toast.message);
+    if (nextProps.toast) {
+      if (nextProps.toast.type) {
+        toast[nextProps.toast.type](nextProps.toast.message);
+        return;
+      }
+      toast(nextProps.toast.message);
     }
   }
 
