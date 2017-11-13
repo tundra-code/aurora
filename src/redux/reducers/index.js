@@ -1,4 +1,4 @@
-import { SET_SCREEN, SET_TOAST } from "../actions";
+import { SET_SCREEN, SET_TOAST, SET_PREFERENCES } from "../actions";
 
 function app(state = {}, action) {
   switch (action.type) {
@@ -9,6 +9,9 @@ function app(state = {}, action) {
     case SET_TOAST:
       return Object.assign({}, state, {
         toast: { message: action.message, type: action.toastType }
+    case SET_PREFERENCES:
+      return Object.assign({}, state, {
+        preferences: action.preferences
       });
     default:
       return state;
