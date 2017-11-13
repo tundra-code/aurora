@@ -33,8 +33,6 @@ class Store extends React.Component {
       muts = this.props.preferences.mutations.map(m => m.name);
     }
 
-    console.log(muts);
-
     data.objects = data.objects.map(obj => {
       // If we've already got this mutation, then let the user uninstall it
       if (muts.includes(obj.package.name)) {

@@ -10,6 +10,11 @@ function setupEvents() {
       })
       .catch(console.error); // eslint-disable-line no-console
   });
+
+  // Listen for preferences requests
+  mainEvents.onGetPreferences(event => {
+    loadPreferences().then(json => mainEvents.sendPreferences(event, json));
+  });
 }
 
 export default setupEvents;
