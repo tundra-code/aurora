@@ -14,13 +14,16 @@ class Core extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.toast) {
-      if (nextProps.toast.type) {
-        toast[nextProps.toast.type](nextProps.toast.message);
-        return;
-      }
-      toast(nextProps.toast.message);
+    createToast(nextProps);
+  }
+
+  createToast(nextProps) {
+    if (nextProps.toast) return;
+    if (nextProps.toast.type) {
+      toast[nextProps.toast.type](nextProps.toast.message);
+      return;
     }
+    toast(nextProps.toast.message);
   }
 
   render() {
