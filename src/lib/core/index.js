@@ -18,7 +18,9 @@ class Core extends React.Component {
   }
 
   createToast(nextProps) {
-    if (!nextProps.toast) return;
+    if (!nextProps.toast) {
+      return;
+    }
     if (nextProps.toast.type) {
       toast[nextProps.toast.type](nextProps.toast.message);
       return;
