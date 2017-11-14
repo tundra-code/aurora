@@ -3,14 +3,12 @@ import { withMutations } from "../mutate";
 import Frame from "../frame";
 import { connect } from "react-redux";
 import { Themed } from "../theme";
-import { setToast } from "../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 class Core extends React.Component {
   constructor(props) {
     super(props);
-    this.props.dispatch(setToast("do you like cats?", "info"));
   }
 
   componentWillReceiveProps(nextProps) {
