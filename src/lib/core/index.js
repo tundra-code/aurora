@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.min.css";
 class Core extends React.Component {
   constructor(props) {
     super(props);
-    this.props.dispatch(setToast("do you like cats?", "info"));
   }
 
   componentWillReceiveProps(nextProps) {
