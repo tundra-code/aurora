@@ -23,6 +23,7 @@ export function setScreen(screen) {
 
 export function setToast(message, toastType = null) {
   return { type: SET_TOAST, message, toastType };
+}
 
 export function setPreferences(preferences) {
   return { type: SET_PREFERENCES, preferences };
