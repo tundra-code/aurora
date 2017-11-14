@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoreSearchBar renders correctly 1`] = `
+<div
+  className="sc-htpNat dYxwZX"
+>
+   
+  <div
+    className="sc-htpNat dYxwZX"
+  >
+    <input
+      className="sc-bwzfXH cFCtWB"
+      onChange={[Function]}
+      placeholder="Type to search for a mutation..."
+      type="text"
+      value={undefined}
+    />
+  </div>
+   
+</div>
+`;

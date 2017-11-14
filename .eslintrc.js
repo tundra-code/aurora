@@ -9,12 +9,14 @@ module.exports = {
   globals: {
     document: true,
     window: true,
-    jasmine: true
+    jasmine: true,
+    __static: true
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
   plugins: ["react", "import", "fp", "unicorn"],
   rules: {
     curly: "error",
+    "no-empty": "off",
     "no-else-return": "error",
     "no-inner-declarations": "error",
     "no-unneeded-ternary": "error",
@@ -30,6 +32,7 @@ module.exports = {
     "no-duplicate-imports": "error",
     "react/display-name": "off",
     "react/no-deprecated": "error",
+    "react/prop-types": "off",
     eqeqeq: "error",
     complexity: "error",
     "block-scoped-var": "error",

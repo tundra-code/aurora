@@ -1,0 +1,458 @@
+[
+  {
+    "text":
+      "When npm post-install keeps failing, try: npm install -g. Installs things globally so now you need to run electron globally also.",
+    "uuid": 1
+  },
+  {
+    "text":
+      "Note to self: windows doesn't accept ../.. notation. So annoying ik",
+    "uuid": 2
+  },
+  {
+    "text":
+      "To pull remote branch and clone locally: git checkout --track origin/that-branch",
+    "uuid": 3
+  },
+  {
+    "text": "To align an html element to one side: float left/right.",
+    "uuid": 4
+  },
+  {
+    "text":
+      "When parent div doesn't expand to size of its children: add 'overflow:hidden;'",
+    "uuid": 5
+  },
+  {
+    "text": "How to make div only partial width of container: 'width:70%'",
+    "uuid": 6
+  },
+  {
+    "text":
+      "If your class doesn't recognize one of your functions, add this to constructor():`this.myFunc = this.myFunc.bind(this);`",
+    "uuid": 7
+  },
+  {
+    "text":
+      "Interesting research on reaction times: https://www.nngroup.com/articles/response-times-3-important-limits/",
+    "uuid": 8
+  },
+  {
+    "text":
+      "To pull code from a remote different branch and merge into your local branch: git pull origin other-branch",
+    "uuid": 9
+  },
+  {
+    "text":
+      "To change what type of python is run on `python` command: Go into you ~/.bash_profile, add line `alias python=`python3`",
+    "uuid": 10
+  },
+  {
+    "text": "Software Eng HW: cover section 1 in Project Proposal.",
+    "uuid": 11
+  },
+  {
+    "text": "Inner Join on attributes of the same name: USING (attr)",
+    "uuid": 12
+  },
+  {
+    "text": "SELECT * FROM table1 t1 JOIN table t2 ON t1.id = t1.id",
+    "uuid": 13
+  },
+  {
+    "text":
+      "To convert text to an editor state: static fromFileData(data) { const json = JSON.parse(data); const contentState = convertFromRaw(json.contentState); const editorState = EditorState.createWithContent(contentState); return new Note(editorState, date: json.date, id: json.id});",
+    "uuid": 14
+  },
+  {
+    "text": "8 general purpose registers in x86 architecture",
+    "uuid": 15
+  },
+  {
+    "text":
+      "To declare a var in assembly (jasmin at least): `my_var: DB init_val`",
+    "uuid": 16
+  },
+  {
+    "text": "our aurora repo: https://github.com/tundra-code/aurora",
+    "uuid": 17
+  },
+  {
+    "text":
+      "our aurora JIRA: https://auroradev.atlassian.net/secure/RapidBoard.jspa?rapidView=1&projectKey=AUR&view=planning&selectedIssue=AUR-15",
+    "uuid": 18
+  },
+  {
+    "text":
+      "How to get unix time (ms since 1970): ```const now = Date.now()```;",
+    "uuid": 19
+  },
+  {
+    "text":
+      "To change state in react use an arrow function like: this.setState(prevState => {prevState.shownNotes = addNewNoteData(prevState.shownNotes, note); prevState.allNotes = addNewNoteData(prevState.allNotes, note); return prevState;});",
+    "uuid": 20
+  },
+  {
+    "text":
+      "Placeholder attribute to add our grey text in the editor: https://draftjs.org/docs/api-reference-editor.html#placeholderdraftjs.org",
+    "uuid": 21
+  },
+  {
+    "text":
+      "To execute multiple commands in one line (with cross platform compatbility): &&",
+    "uuid": 22
+  },
+  {
+    "text": "Popular sqlite libraries for js: sqlite.js and sqlite3.js",
+    "uuid": 23
+  },
+  {
+    "text":
+      "sqlite is supposedly 35% faster than file io systems when dealing with small blobs (size of thumbnail or smaller)",
+    "uuid": 24
+  },
+  {
+    "text": "the click event for html button: onClick",
+    "uuid": 25
+  },
+  {
+    "text": "Meeting with Gina at 2 on Wednesdays in the project lab",
+    "uuid": 26
+  },
+  {
+    "text": "HW this week 9-19: add more notes to this dataset.",
+    "uuid": 27
+  },
+  {
+    "text": "to reset this branch back to last commit: git reset --hard",
+    "uuid": 28
+  },
+  {
+    "text": "To clean npm: npm clean cache -f",
+    "uuid": 29
+  },
+  {
+    "text":
+      "how to center div: position: absolute and then top:50% and left:50% places the top edge at vertically center of the screen, and left edge at horizontally center, then by adding margin-top to negative of height of the div i.e -100 shifts it above by 100, similarly for margin-left. This gets div exactly in the center of the page.",
+    "uuid": 30
+  },
+  {
+    "text":
+      "To read json file in javascript: var jsonData = JSON.parse(theTextContentOfMyFile);",
+    "uuid": 31
+  },
+  {
+    "text": "One byte contains 8 bits",
+    "uuid": 32
+  },
+  {
+    "text":
+      "How do I create a placeholder prop in React by using the placeholder attribute in an editor",
+    "uuid": 33
+  },
+  {
+    "text":
+      "npm install --save try running as root/admin install things globally",
+    "uuid": 34
+  },
+  {
+    "text": "draft js editor default text placeholder attribute",
+    "uuid": 35
+  },
+  {
+    "text": "How to format code in slack ```code here```",
+    "uuid": 36
+  },
+  {
+    "text":
+      "how to pull a remote branch git checkout --track origin/branchname",
+    "uuid": 37
+  },
+  {
+    "text": "how to create a bit vector in vhdl var : bit_vector(1 downto 0)",
+    "uuid": 38
+  },
+  {
+    "text": "how to separate a bit vector in vhld use () to select a bit",
+    "uuid": 39
+  },
+  {
+    "text": "how to use std library in vhld use std_logic_1164.all",
+    "uuid": 40
+  },
+  {
+    "text":
+      "how to push branches correctly make sure youve commited and then git push",
+    "uuid": 41
+  },
+  {
+    "text": "creating an array in c++ var[]=[elements]",
+    "uuid": 42
+  },
+  {
+    "text":
+      "steps for staging files in git git status, git add, git status, git commit -m",
+    "uuid": 43
+  },
+  {
+    "text": "error message vcom 1164 in vhdl its a std library error",
+    "uuid": 44
+  },
+  {
+    "text": "how do go back a file in terminal cd ..",
+    "uuid": 45
+  },
+  {
+    "text": "how many mega bytes in a gigabyte 1000",
+    "uuid": 46
+  },
+  {
+    "text": "how to declare a variable in jasmin a: DB",
+    "uuid": 47
+  },
+  {
+    "text":
+      "how to use cmp in assembly? cmp dest,src have to be register or memory",
+    "uuid": 48
+  },
+  {
+    "text": "how big are registers in x86? 32 bits",
+    "uuid": 49
+  },
+  {
+    "text":
+      "165 folks, 4 offices, 80/85 folks in SF. Engineering office in Vancoover, business office in NYC, Dublin Ireland. ",
+    "uuid": 50
+  },
+  {
+    "text":
+      "Integrations engineers, builds point to point jazz, clean docs, ect, resilient integrations  ",
+    "uuid": 51
+  },
+  {
+    "text":
+      "Infastructure - Scaled up queues that work with different endpoints ",
+    "uuid": 52
+  },
+  {
+    "text":
+      "Breadth first search starts at a single node and then row by row expands outwards. It goes by layers, not by searching exhaustively a single tree source. ",
+    "uuid": 53
+  },
+  {
+    "text": "https://breakoutlist.com/",
+    "uuid": 54
+  },
+  {
+    "text":
+      "I learned to react to change better. I learned I need to bring up issues and problems as soon as they happen rather than let them slide. I should have a higher standard of quality rather than wasting time as a result of shyness or perceived inability. I learned to accept that changes are going to happen and to try and make them happen quicker and be able to adapt better. I also learned that change is not inherently negative and can help a product become better overall. ",
+    "uuid": 55
+  },
+  {
+    "text":
+      "Modules - They should all be run with \u201cnpm start\u201d and all should be tested with \u201cnpm test\u201d",
+    "uuid": 56
+  },
+  {
+    "text": "https://github.com/theanalyst/awesome-distributed-systems",
+    "uuid": 57
+  },
+  {
+    "text":
+      "What\u2019s the proper way to test plugins that rely on volley/network requests? Is there a standardized way to get robolectric and power mock to work together? ",
+    "uuid": 58
+  },
+  {
+    "text":
+      "Has anyone got instant run to work? Fixing permissions issues? How do we speed up build times?",
+    "uuid": 59
+  },
+  {
+    "text":
+      "Code should not be \u201cowned\u201d by any one person. Even if the senior design class wants us to say \u201cKyle did BLAH and Ethan did FOO\u201d we should not maintain such ideas. Any person can edit and work on any part of the project. ",
+    "uuid": 60
+  },
+  {
+    "text":
+      "We\u2019ll be blocked less as we don\u2019t have to wait for \u201cthat person\u201d who knows how to work with XYZ. For example, we faced this problem with previous projects as, in general, Ethan was the only one who worked on backend stuff and therefor the only person who knew how it worked.",
+    "uuid": 61
+  },
+  {
+    "text":
+      "1 week sprints with 1 standup and 1 retrospective/planning meeting",
+    "uuid": 62
+  },
+  {
+    "text":
+      "We all learn more and get a broader understanding of the whole system rather than just doing the same thing over and over.",
+    "uuid": 63
+  },
+  {
+    "text":
+      "We should have sprints that only last a week. More established \u201creal\u201d companies can have longer sprints (2, 3, or 4 week sprints) because they have several other checks in place to check in, solve blockers, and keep things working. Their programmers are generally all working full time, in an office, with several other meetings. ",
+    "uuid": 64
+  },
+  {
+    "text":
+      "we have school and all sorts of other things and can\u2019t work on it full time. Because of that, we\u2019re more likely to get distracted or slow down or get hit with blockers if we don\u2019t have regular checkups. More sprints keep us honest and let us adapt to problems quicker. It also forces us to have smaller tasks that can be completed in a shorter amount of time, which works better when our day-to-day lives are so variable. ",
+    "uuid": 65
+  },
+  {
+    "text":
+      "With 1 week sprints, we should have 1 standup and 1 retrospective/planning meeting.",
+    "uuid": 66
+  },
+  {
+    "text":
+      "We don\u2019t need a standup each day. We may only work on this an hour or two a day anyway, so filling that up with standup meetings might take up too much time. Also, there will some days where some of us can\u2019t work at all due to a test or homework or whatever.  Therefore a standup each day is probably going to be overkill. Instead, let\u2019s have 1 standup somewhere in the middle of the week so we can catch problems before the end of the sprint, but not take up too much time.",
+    "uuid": 67
+  },
+  {
+    "text":
+      "\u201cI\u2019ve seen a team of three people operate in such a way that each person published interfaces to the other two. This led to all sorts of gyrations to maintain interfaces when it would have been easier to go into the code base and make the edits. Organizations with an overly strong notion of code ownership tend to behave this way. Using published interfaces is useful, but it comes with a cost. So don\u2019t publish interfaces unless you really need to. This may mean modifying your code ownership rules to allow people to change other people\u2019s code in order to support an interface change.",
+    "uuid": 68
+  },
+  {
+    "text": "ec.test.amzn@gmail.com",
+    "uuid": 69
+  },
+  {
+    "text": "https://github.com/jaredreich/pell",
+    "uuid": 70
+  },
+  {
+    "text": "post-review --no-review-guess --parent=<branch with CR#1>",
+    "uuid": 71
+  },
+  {
+    "text":
+      "You MUST leave the code better than you found it. If you cannot leave the code better than you found it, you MUST write a comment that says \u201cI cannot leave the code better than I found it\u201d, otherwise your code review will be rejected. ",
+    "uuid": 72
+  },
+  {
+    "text":
+      "If ESLint doesn\u2019t allow you to merge, then don\u2019t merge. There should be 0 warnings in your ESLint.",
+    "uuid": 73
+  },
+  {
+    "text":
+      "Story points should be seeded off of small tasks, not on time. Story points should not be seeded with a \u201ctask\u201d",
+    "uuid": 74
+  },
+  {
+    "text":
+      "When you send an intent to another app, THEY need an activity that can listen for the mime type and action your sending, other wise it will fail.",
+    "uuid": 75
+  },
+  {
+    "text": "https://github.com/reactjs/react-docgen ",
+    "uuid": 76
+  },
+  {
+    "text":
+      "Is there a gray background or some sort of opacity or filter to stop something like white text on a white background to happen?",
+    "uuid": 77
+  },
+  {
+    "text":
+      "\u201cApplication or device usage data containing or derived from arbitrary, non-public user input. (Examples include, but are not limited to, notes on books, URLs of websites, and the names or contents of files)\u201c ",
+    "uuid": 78
+  },
+  {
+    "text": "Do we alert the user if the ratio size is too big? ",
+    "uuid": 79
+  },
+  {
+    "text":
+      "As a developer, I want to know wether or not customers swipe to see the other background images",
+    "uuid": 80
+  },
+  {
+    "text": "3:30-4 for demo? Notable-notes-dev? ",
+    "uuid": 81
+  },
+  {
+    "text":
+      "Albedo -> Whiteness or reflectivity. The more white the surface is the more reflective it is. ",
+    "uuid": 82
+  },
+  {
+    "text": "6 degrees changes between glacial period and non glacial period.",
+    "uuid": 83
+  },
+  {
+    "text":
+      "Many users, when asked to search, tried to press command-f. Maybe this should focus the submit editor to nudge the user towards the correct usage.",
+    "uuid": 84
+  },
+  {
+    "text": "Bug: User should not be able to make an empty note",
+    "uuid": 85
+  },
+  {
+    "text": "Enhancement: Command-F should focus the SubmitEditor",
+    "uuid": 86
+  },
+  {
+    "text": "Enhancement: Tokenize each word in the search query",
+    "uuid": 87
+  },
+  {
+    "text": "Potential Enhancement: Search only after the user stops typing",
+    "uuid": 88
+  },
+  {
+    "text":
+      "Potential Enhancement: Search should fill a \u201cqueue\u201d of most recent items rather than flipping things around",
+    "uuid": 89
+  },
+  {
+    "text":
+      "The search should act as a stream of items and when it finds something, it should add it to the \u201cqueue\u201d of items appearing on the feed.",
+    "uuid": 90
+  },
+  {
+    "text": "Feature: Notes should be editable",
+    "uuid": 91
+  },
+  {
+    "text":
+      "Notes should be implemented as Editors, which will give both similar structure and the ability to change the notes.",
+    "uuid": 92
+  },
+  {
+    "text": "Feature: Notes should be saved",
+    "uuid": 93
+  },
+  {
+    "text": "There\u2019s currently no way to persist your notes",
+    "uuid": 94
+  },
+  {
+    "text": "Feature: Notes should be able to be deleted",
+    "uuid": 95
+  },
+  {
+    "text":
+      "You should be able to remove your notes from the screen and to remove them from any saves",
+    "uuid": 96
+  },
+  {
+    "text":
+      "Hashes - A signature: fixed-length fingerprint, ex: 128-bit, 160-bit, 256-bit",
+    "uuid": 97
+  },
+  {
+    "text": "Requirement statements (requirements) AKA User stories",
+    "uuid": 98
+  },
+  {
+    "text":
+      "Project plan - The point: Demonstrate (to me, advisor, dab, sponsor) that you understand what has been done in the space",
+    "uuid": 99
+  },
+  {
+    "text": "Backfire Effect \u2014> Deny stuff that is very scary ",
+    "uuid": 100
+  }
+]

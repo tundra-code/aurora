@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoreItemList renders correctly with items 1`] = `
+<div
+  className="sc-bdVaJa kDnqCF"
+>
+   
+  <div
+    className="sc-bdVaJa kDnqCF"
+  >
+    <div>
+      <div
+        className="sc-jTzLTM cEizhB"
+      >
+        <h2
+          className="sc-VigVT gvySff"
+        >
+          one
+        </h2>
+        <p>
+          desc_one
+        </p>
+        <button
+          className="sc-iwsKbI exmtif"
+          onClick={[Function]}
+        >
+          Install
+        </button>
+      </div>
+      <div
+        className="sc-jTzLTM cEizhB"
+      >
+        <h2
+          className="sc-VigVT gvySff"
+        >
+          two
+        </h2>
+        <p>
+          desc_two
+        </p>
+        <button
+          className="sc-iwsKbI exmtif"
+          onClick={[Function]}
+        >
+          Install
+        </button>
+      </div>
+    </div>
+  </div>
+   
+</div>
+`;
+
+exports[`StoreItemList renders correctly with no items 1`] = `
+<div
+  className="sc-bdVaJa kDnqCF"
+>
+   
+  <div
+    className="sc-bdVaJa kDnqCF"
+  >
+    <div />
+  </div>
+   
+</div>
+`;
