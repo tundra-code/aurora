@@ -16,7 +16,8 @@
     "add-some-notes": "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
     "add-many-notes": "cross-env NODE_ENV=$ENV babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
     "lint": "./node_modules/.bin/eslint src",
-    "postinstall": " electron-builder install-app-deps"
+    "postinstall": " electron-builder install-app-deps",
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "@react-mutate/core": "^0.4.4",
@@ -101,6 +102,7 @@
       "webpackConfig": "webpack.babel-polyfill.renderer.js"
     }
   },
+  "snyk": true,
   "jest": {
     "setupFiles": [
       "raf/polyfill",
