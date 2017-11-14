@@ -2,7 +2,7 @@ import preferences from "../preferences";
 import { installMutationFiles } from "../io/IO";
 import _ from "lodash";
 
-async function addMutationPreference(name, dispatch) {
+export async function addMutationPreference(name, dispatch) {
   const prefs = await preferences.get();
 
   // Create mutations if it doesn't already exist
@@ -17,8 +17,8 @@ async function addMutationPreference(name, dispatch) {
  * Removes a mutation from the preference file.
  * @param {String} name
  */
-async function removeMutationPreference(name, dispatch) {
-  const prefsJSON = preferences.get();
+export async function removeMutationPreference(name, dispatch) {
+  const prefsJSON = await preferences.get();
 
   // Add to mutations or create new field in preferences
   const mutations = prefsJSON.mutations || [];

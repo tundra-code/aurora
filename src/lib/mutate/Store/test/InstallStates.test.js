@@ -4,8 +4,7 @@ import {
   INSTALLING,
   INSTALLED,
   ERROR,
-  UNINSTALL,
-  UNINSTALLING
+  UNINSTALL
 } from "../InstallStates";
 
 test("nextState goes through the correct order", () => {
@@ -13,7 +12,6 @@ test("nextState goes through the correct order", () => {
   expect(nextState(DEFAULT)).toBe(INSTALLING);
   expect(nextState(INSTALLING)).toBe(INSTALLED);
   expect(nextState(INSTALLED)).toBe(UNINSTALL);
-  expect(nextState(UNINSTALL)).toBe(UNINSTALLING);
-  expect(nextState(UNINSTALLING)).toBe(DEFAULT);
+  expect(nextState(UNINSTALL)).toBe(DEFAULT);
   expect(nextState(ERROR)).toBe(DEFAULT);
 });

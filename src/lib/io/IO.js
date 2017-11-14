@@ -6,13 +6,15 @@ import {
   saveToAsync,
   readFromAsync,
   throwIfNotNoteModel,
-  exists,
-  auroraRootPath
+  exists
 } from "./util.js";
+import {
+  auroraUserPath,
+  auroraMutationPackageJSONPath,
+  auroraPreferencesFile
+} from "../paths";
 import { installMutations } from "@react-mutate/loader";
-import { auroraPreferencesFile } from "../paths";
 import safeParseJSON from "json-parse-safe";
-import _ from "lodash";
 
 const preferencesFile = auroraPreferencesFile();
 
@@ -130,66 +132,10 @@ async function updatePreferences(preferences, file = preferencesFile) {
 }
 
 async function installMutationFiles(mutations) {
-  return installMutations(mutations.map(mut => mut.name), auroraRootPath());
-}
-
-/**
- * Updates mutations based on preferences file
- */
-async function updateMutations(prefsFile = preferencesFile) {
-  await createPreferencesIfNotExist({}, prefsFile);
-  const prefsJSON = await loadPreferences(prefsFile);
-  const mutations = prefsJSON.mutations || [];
-  return installMutations(mutations.map(mut => mut.name), auroraRootPath());
-}
-
-/**
- * Adds a new mutation to the preference file.
- * @param {String} name
- */
-async function addMutationPreference(name, prefsFile = preferencesFile) {
-  await createPreferencesIfNotExist({}, prefsFile);
-  const prefsJSON = await loadPreferences(prefsFile);
-
-  // Add to mutations or create new field in preferences
-  const mutations = prefsJSON.mutations || [];
-  mutations.push({ name });
-  prefsJSON.mutations = mutations;
-
-  return savePreferences(prefsJSON, prefsFile);
-}
-
-/**
- * Removes a mutation from the preference file.
- * @param {String} name
- */
-async function removeMutationPreference(name, prefsFile = preferencesFile) {
-  await createPreferencesIfNotExist({}, prefsFile);
-  const prefsJSON = await loadPreferences(prefsFile);
-
-  // Add to mutations or create new field in preferences
-  const mutations = prefsJSON.mutations || [];
-  prefsJSON.mutations = _.reject(mutations, { name });
-
-  return savePreferences(prefsJSON, prefsFile);
-}
-
-/**
- * Installs a new mutation.
- * @param {String} name
- */
-async function installNewMutation(name, prefsFile = preferencesFile) {
-  await addMutationPreference(name, prefsFile);
-  return updateMutations(prefsFile);
-}
-
-/**
- * Removes a previously installed mutation
- * @param {String} name
- */
-async function uninstallMutation(name, prefsFile = preferencesFile) {
-  await removeMutationPreference(name, prefsFile);
-  return updateMutations(prefsFile);
+  if (!exists(auroraMutationPackageJSONPath())) {
+    return [];
+  }
+  return installMutations(mutations.map(mut => mut.name), auroraUserPath());
 }
 
 export {
@@ -199,11 +145,6 @@ export {
   loadPreferences,
   savePreferences,
   updatePreferences,
-  installNewMutation,
-  removeMutationPreference,
   createPreferencesIfNotExist,
-  updateMutations,
-  addMutationPreference,
-  uninstallMutation,
   installMutationFiles
 };

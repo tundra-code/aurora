@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== "test") {
       );
       return modules;
     } catch (error) {
-      // TODO log error
+      console.error(error); // eslint-disable-line no-console
       return [];
     }
   };

@@ -4,13 +4,7 @@ import { PrimaryButton } from "../../ui/Buttons";
 import { withShadow } from "../../ui/Modifiers";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import {
-  INSTALLING,
-  INSTALLED,
-  ERROR,
-  UNINSTALL,
-  UNINSTALLING
-} from "./InstallStates";
+import { INSTALLING, INSTALLED, ERROR, UNINSTALL } from "./InstallStates";
 
 const Title = styled.h2`
   margin-top: 0;
