@@ -1,6 +1,5 @@
 import { app, Menu, BrowserWindow } from "electron";
 import setupMenu from "./menu";
-import setupEvents from "./events";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -60,5 +59,4 @@ app.on("activate", () => {
 app.on("ready", () => {
   mainWindow = createMainWindow();
   setupMenu(app, Menu, mainWindow);
-  setupEvents();
 });
