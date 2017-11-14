@@ -53,6 +53,7 @@
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-split-pane": "^0.1.68",
+    "react-style-proptype": "^3.1.0",
     "react-toastify": "^2.2.0",
     "redux": "^3.7.2",
     "source-map-support": "^0.5.0",

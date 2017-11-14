@@ -6712,7 +6712,6 @@ react-redux@^5.0.6:
 react-split-pane@^0.1.68:
   version "0.1.70"
   resolved "https://registry.yarnpkg.com/react-split-pane/-/react-split-pane-0.1.70.tgz#0dcf3d8de17d54db6f6b7141386ec69a0cf45f48"
-
   dependencies:
     "@types/inline-style-prefixer" "^3.0.0"
     "@types/react" "^16.0.18"
@@ -6720,7 +6719,7 @@ react-split-pane@^0.1.68:
     prop-types "^15.5.10"
     react-style-proptype "^3.0.0"
 
-react-style-proptype@^3.0.0:
+react-style-proptype@^3.0.0, react-style-proptype@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-style-proptype/-/react-style-proptype-3.1.0.tgz#c8912fc13460f5b0c1ec1114c729d535b52b8073"
   dependencies:
