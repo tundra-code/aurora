@@ -30,8 +30,7 @@ yarn db-up -d development
 yarn db-create-config
 yarn db-migration-create myNewMigration
 
-# Adding notes
-ENV=dev yarn add-some-notes
-ENV=prod yarn add-many-notes
+# Adding a note
+yarn create-note "<Some text for the note here>"
 
 ```

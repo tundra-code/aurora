@@ -48,10 +48,7 @@ function deleteNote(note) {
    */
 function loadNotes() {
   return new Promise((resolve, reject) => {
-    function load(notes) {
-      resolve(notes);
-    }
-    queryNotes(load, reject);
+    queryNotes(resolve, reject);
   });
 }
 

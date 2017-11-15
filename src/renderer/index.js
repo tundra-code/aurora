@@ -2,13 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ScreenManager from "./ScreenManager";
 import { Provider } from "react-redux";
-import reducers from "../redux/reducers";
 import { setPreferences } from "../redux/actions";
-import { createStore } from "redux";
 import { loadPreferences } from "../lib/io";
+import configureStore from "../redux/configureStore";
 import Draggable from "../lib/ui/Draggable";
 
-const store = createStore(reducers);
+const store = configureStore();
 
 class Aurora extends React.Component {
   constructor(props) {

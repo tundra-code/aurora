@@ -1,11 +1,11 @@
-import { Card, Container } from "../ui";
 import React from "react";
 import { mutate } from "@react-mutate/core";
-import { Editor } from "../editor";
 import PropTypes from "prop-types";
 import SplitPane from "react-split-pane";
 import StyledSplitPaneContainer from "../ui/SplitPanes";
 import { FixedWidthDiv } from "../ui/util/Layouts";
+import Sidebar from "../sidebar";
+import Feed from "../feed";
 
 const LeftFixedWidthDiv = FixedWidthDiv.extend`
   background: ${props => props.theme.colors.secondaryBackground};
@@ -15,15 +15,12 @@ const LeftFixedWidthDiv = FixedWidthDiv.extend`
 const Frame = props => (
   <StyledSplitPaneContainer>
     <SplitPane split="vertical" minSize={200} maxSize={400} defaultSize={250}>
-      <LeftFixedWidthDiv />
-
+      <LeftFixedWidthDiv>
+        <Sidebar />
+      </LeftFixedWidthDiv>
       <FixedWidthDiv>
-        <Container>
-          <Card>
-            <Editor placeholder={"Change me!"} />
-          </Card>
-          {props.children}
-        </Container>
+        <Feed />
+        {props.children}
       </FixedWidthDiv>
     </SplitPane>
   </StyledSplitPaneContainer>

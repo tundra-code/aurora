@@ -3,6 +3,10 @@ import React from "react";
 import { EditorState } from "draft-js";
 import { Editor } from "../../editor";
 import expectMatchesSnapshot from "../../test-util/expectMatchesSnapshot";
+import configureStore from "../../../redux/configureStore";
+import { Provider } from "react-redux";
+
+const store = configureStore();
 
 jest.mock("draft-js/lib/generateRandomKey", () => () => "123");
 
@@ -19,6 +23,11 @@ describe("Frame", () => {
   });
 
   it("renders correctly", () => {
-    expectMatchesSnapshot(<Frame />);
+    const superFrame = (
+      <Provider store={store}>
+        <Frame />
+      </Provider>
+    );
+    expectMatchesSnapshot(superFrame);
   });
 });
