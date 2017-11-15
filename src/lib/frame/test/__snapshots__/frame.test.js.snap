@@ -40,8 +40,47 @@ exports[`Frame renders correctly 1`] = `
         }
       >
         <div
-          className="sc-iwsKbI gXxRyd"
-        />
+          className="sc-fjdhpX byGBqZ"
+        >
+          <div
+            className="sc-gqjmRU jOpYUv"
+          >
+            <a
+              className="sc-gZMcBi iEdUPX"
+            >
+               Lorem 
+            </a>
+            <a
+              className="sc-gZMcBi cfgC"
+            >
+              Lorem
+            </a>
+            <div
+              className="sc-VigVT iQqjUf"
+            >
+              <div
+                className="sc-jTzLTM eSamhM"
+              >
+                Hey there
+              </div>
+              <div
+                className="sc-jTzLTM eSamhM"
+              >
+                Hey there
+              </div>
+              <div
+                className="sc-jTzLTM eSamhM"
+              >
+                Hey there
+              </div>
+            </div>
+            <a
+              className="sc-gZMcBi iEdUPX"
+            >
+               Lorem 
+            </a>
+          </div>
+        </div>
       </div>
       <span
         className="Resizer vertical "

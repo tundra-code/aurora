@@ -10,6 +10,9 @@ export default {
     darkSuccess: "#27ae60",
     darkDanger: "#c0392b",
 
+    // Lighter versions
+    lightPrimary: "#F5E8FA",
+
     // Background
     background: "#F9F7FA",
     secondaryBackground: "white",

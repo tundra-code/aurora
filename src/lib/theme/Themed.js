@@ -16,6 +16,10 @@ injectGlobal`
         background: ${base.colors.background};
         color: ${base.colors.text};
     }
+
+    * {
+      box-sizing: border-box;
+    }
 `;
 
 const Expand = styled.div`
