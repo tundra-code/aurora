@@ -2,6 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { loadNotes } from "../../redux/actions";
 import NoteListItem from "./NoteListItem.js";
+import { Menu, MenuCardList, MenuItem } from "../ui/Menu";
+
+const BumpedDownMenu = Menu.extend`
+  padding-top: ${props => props.theme.spacing.header};
+`;
 
 class NoteList extends React.Component {
   constructor(props) {
@@ -12,10 +17,6 @@ class NoteList extends React.Component {
     this.props.dispatch(loadNotes());
   }
 
-  // componentDidUpdate(prevProps) {
-  //   console.log(this.props.allNotes);
-  // }
-
   render() {
     const noteList = [];
     for (const uuid in this.props.allNotes) {
@@ -23,7 +24,12 @@ class NoteList extends React.Component {
       noteList.push(<NoteListItem key={note.uuid} note={note} />);
     }
 
-    return <div>{noteList}</div>;
+    return (
+      <BumpedDownMenu>
+        <MenuItem active> 🔮 Untagged </MenuItem>
+        <MenuCardList> {noteList} </MenuCardList>
+      </BumpedDownMenu>
+    );
   }
 }
 

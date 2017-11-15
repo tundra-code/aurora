@@ -5,6 +5,10 @@ import { connect } from "react-redux";
 import { mutate } from "@react-mutate/core";
 import { loadNoteContent } from "../../redux/actions";
 
+const BumpedDownContainer = Container.extend`
+  padding-top: ${props => props.theme.spacing.header};
+`;
+
 class Feed extends React.Component {
   constructor(props) {
     super(props);
@@ -18,14 +22,14 @@ class Feed extends React.Component {
 
   render() {
     return (
-      <Container>
+      <BumpedDownContainer>
         <Card>
           <Editor
             editorState={this.props.editorState}
             placeholder={"Change me!"}
           />
         </Card>
-      </Container>
+      </BumpedDownContainer>
     );
   }
 }
