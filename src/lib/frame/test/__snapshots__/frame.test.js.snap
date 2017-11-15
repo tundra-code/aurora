@@ -2,11 +2,11 @@
 
 exports[`Frame renders correctly 1`] = `
 <div
-  className="sc-bdVaJa kDnqCF"
+  className="sc-bxivhb bTqOEZ"
 >
    
   <div
-    className="sc-htoDjs bLSIwj"
+    className="sc-bdVaJa jGBnAo"
   >
     <div
       className="SplitPane  vertical "
@@ -40,45 +40,24 @@ exports[`Frame renders correctly 1`] = `
         }
       >
         <div
-          className="sc-fjdhpX byGBqZ"
+          className="sc-cSHVUG gNGGUt"
         >
-          <div
-            className="sc-gqjmRU jOpYUv"
-          >
-            <a
-              className="sc-gZMcBi iEdUPX"
-            >
-               Lorem 
-            </a>
-            <a
-              className="sc-gZMcBi cfgC"
-            >
-              Lorem
-            </a>
+          <div>
             <div
-              className="sc-VigVT iQqjUf"
+              className="sc-dnqmqq cuIVHT"
             >
-              <div
-                className="sc-jTzLTM eSamhM"
+              <a
+                className="sc-EHOje eAWFnv"
               >
-                Hey there
-              </div>
+                 🔮 Untagged 
+              </a>
               <div
-                className="sc-jTzLTM eSamhM"
+                className="sc-gzVnrw cVUWLG"
               >
-                Hey there
-              </div>
-              <div
-                className="sc-jTzLTM eSamhM"
-              >
-                Hey there
+                 
+                 
               </div>
             </div>
-            <a
-              className="sc-gZMcBi iEdUPX"
-            >
-               Lorem 
-            </a>
           </div>
         </div>
       </div>
@@ -102,16 +81,16 @@ exports[`Frame renders correctly 1`] = `
         }
       >
         <div
-          className="sc-iwsKbI gXxRyd"
+          className="sc-bwzfXH fGLoGE"
         >
           <div
-            className="sc-EHOje jjMdwe"
+            className="sc-jzJRlG gptPCh"
           >
             <div
-              className="sc-bwzfXH lnZBXS"
+              className="sc-ifAKCX jsXDYi"
             >
               <div
-                className="sc-dnqmqq enrPvc"
+                className="sc-htpNat ebpaGs"
               >
                 <div
                   className="DraftEditor-root"
