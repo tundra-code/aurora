@@ -7,11 +7,11 @@ It's still a little early in the process, but here's the general idea of what we
 
 
 <p align="center">
-  <img src="https://i.imgur.com/QCrot4G.png" alt="Light mode ui mockup" width="500px" />
+  <img src="https://i.imgur.com/QCrot4G.png" alt="Light mode ui mockup" width="700px" />
 </p>
 
 <p align="center">
-  <img src="https://i.imgur.com/kURH8c2.png" alt="Dark mode ui mockup" width="500px" />
+  <img src="https://i.imgur.com/kURH8c2.png" alt="Dark mode ui mockup" width="700px" />
 </p>
 
 
