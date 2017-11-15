@@ -98,7 +98,7 @@ export default class Note {
     const attrs = [];
     const tags = [];
     json.tag.forEach(t => {
-      tags.push(new Tag(t.value), { id: t.id });
+      tags.push(new Tag(t.value, { id: t.id }));
     });
     json.attribute.forEach(at => {
       attrs.push(new Attribute(at.key, at.value, at.searchable, { id: at.id }));
