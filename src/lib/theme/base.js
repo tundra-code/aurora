@@ -32,6 +32,7 @@ export default {
 
   spacing: {
     padding: "1em",
-    extraPadding: "2em"
+    extraPadding: "2em",
+    header: "2.5em"
   }
 };

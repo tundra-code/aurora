@@ -10,7 +10,6 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div>
-        <h1> Your Notes: </h1>
         <NoteList />
       </div>
     );
