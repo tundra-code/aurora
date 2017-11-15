@@ -26,9 +26,7 @@ const InstallButton = ({ installState, onClick, onUninstallClick }) => {
       );
     case UNINSTALL:
       return (
-        <PrimaryButton onUninstallClick={onUninstallClick}>
-          Uninstall
-        </PrimaryButton>
+        <PrimaryButton onClick={onUninstallClick}>Uninstall</PrimaryButton>
       );
     case ERROR:
       return <p> Error! </p>;
@@ -37,12 +35,22 @@ const InstallButton = ({ installState, onClick, onUninstallClick }) => {
   }
 };
 
-const StoreItem = ({ title, description, onClick, installState }) => (
+const StoreItem = ({
+  title,
+  description,
+  onClick,
+  installState,
+  onUninstallClick
+}) => (
   <CardWithShadow>
     <Title>{title}</Title>
     {description && <p>{description}</p>}
 
-    <InstallButton installState={installState} onClick={onClick} />
+    <InstallButton
+      installState={installState}
+      onClick={onClick}
+      onUninstallClick={onUninstallClick}
+    />
   </CardWithShadow>
 );
 

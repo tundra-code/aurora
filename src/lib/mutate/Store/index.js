@@ -7,10 +7,10 @@ import search from "../npm-search";
 import debounce from "debounce";
 import { setScreen } from "../../../redux/actions";
 import { connect } from "react-redux";
-import rendererEvents from "../../electron-events/renderer";
 import { itemArrayToKeyValueObj, pkgKey } from "./util";
 import { nextState, UNINSTALL } from "./InstallStates";
 import { Map } from "immutable";
+import { installMutation, uninstallMutation } from "../mutationsManager";
 
 class Store extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Store extends React.Component {
 
   markItemsAsUninstallable = data => {
     let muts = [];
-    if (this.props.preferences) {
+    if (this.props.preferences && this.props.preferences.mutations) {
       muts = this.props.preferences.mutations.map(m => m.name);
     }
 
@@ -84,12 +84,15 @@ class Store extends React.Component {
   };
 
   onInstallClick = pkg => {
-    this.bumpPkgInstallState(pkg);
-    rendererEvents.sendInstallMutation(pkg);
+    this.bumpPkgInstallState(pkg); // Installing
+    installMutation(pkg.name, this.props.dispatch).then(() =>
+      this.bumpPkgInstallState(pkg)
+    ); // Installed
+  };
 
-    rendererEvents.onMutationInstalled((event, pkg) => {
-      this.bumpPkgInstallState(pkg);
-    });
+  onUninstallClick = pkg => {
+    this.bumpPkgInstallState(pkg);
+    uninstallMutation(pkg.name, this.props.dispatch);
   };
 
   render() {
@@ -107,6 +110,7 @@ class Store extends React.Component {
           <StoreItemList
             items={this.itemValues()}
             onClick={this.onInstallClick}
+            onUninstallClick={this.onUninstallClick}
           />
         </Container>
       </StoreContainer>

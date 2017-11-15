@@ -8,7 +8,8 @@ function app(state = {}, action) {
       });
     case SET_TOAST:
       return Object.assign({}, state, {
-        toast: { message: action.message, type: action.toastType }});
+        toast: { message: action.message, type: action.toastType }
+      });
     case SET_PREFERENCES:
       return Object.assign({}, state, {
         preferences: action.preferences
