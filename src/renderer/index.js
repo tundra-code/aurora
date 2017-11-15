@@ -6,6 +6,7 @@ import reducers from "../redux/reducers";
 import { setPreferences } from "../redux/actions";
 import { createStore } from "redux";
 import { loadPreferences } from "../lib/io";
+import Draggable from "../lib/ui/Draggable";
 
 const store = createStore(reducers);
 
@@ -21,7 +22,9 @@ class Aurora extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <ScreenManager />
+        <Draggable dragRegionSize="50px">
+          <ScreenManager />
+        </Draggable>
       </Provider>
     );
   }

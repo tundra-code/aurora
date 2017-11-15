@@ -8,7 +8,7 @@ const SecondaryBackground = styled.div`
   background: ${props => props.theme.colors.secondaryBackground};
 
   position: absolute;
-  top: 0;
+  top: 25px;
   left: 0;
   min-width: 100%;
   min-height: 100%;
