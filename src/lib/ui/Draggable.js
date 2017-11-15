@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 /**
- * Allow the user to drag 
+ * Allow the user to drag
  */
 const DragHeader = styled.div`
   -webkit-app-region: drag;
@@ -16,10 +16,10 @@ const DragHeader = styled.div`
 
 const DragHeaderContainer = styled.div`
   height: 100%;
-`
+`;
 
 /**
- * A componenent wrapper that attaches on a draggable header to the 
+ * A componenent wrapper that attaches on a draggable header to the
  * top of the screen.
  */
 const Draggable = ({ children, dragRegionSize }) => {
