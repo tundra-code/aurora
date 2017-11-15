@@ -132,9 +132,6 @@ async function updatePreferences(preferences, file = preferencesFile) {
 }
 
 async function installMutationFiles(mutations) {
-  if (!exists(auroraMutationPackageJSONPath())) {
-    return [];
-  }
   return installMutations(mutations.map(mut => mut.name), auroraUserPath());
 }
 
