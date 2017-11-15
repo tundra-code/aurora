@@ -8,11 +8,7 @@ import {
   throwIfNotNoteModel,
   exists
 } from "./util.js";
-import {
-  auroraUserPath,
-  auroraMutationPackageJSONPath,
-  auroraPreferencesFile
-} from "../paths";
+import { auroraUserPath, auroraPreferencesFile } from "../paths";
 import { installMutations } from "@react-mutate/loader";
 import safeParseJSON from "json-parse-safe";
 
