@@ -6,7 +6,7 @@ exports[`Frame renders correctly 1`] = `
 >
    
   <div
-    className="sc-htoDjs bIGOqA"
+    className="sc-htoDjs bLSIwj"
   >
     <div
       className="SplitPane  vertical "
@@ -29,7 +29,7 @@ exports[`Frame renders correctly 1`] = `
       }
     >
       <div
-        className="Pane vertical Pane1"
+        className="Pane vertical Pane1  "
         style={
           Object {
             "flex": "none",
@@ -53,7 +53,7 @@ exports[`Frame renders correctly 1`] = `
         style={Object {}}
       />
       <div
-        className="Pane vertical Pane2"
+        className="Pane vertical Pane2  "
         style={
           Object {
             "flex": 1,
