@@ -14,11 +14,16 @@ export const updateNote = (note, notesDict) => {
 
 export const firstNoteIfDefined = notes => {
   if (notes.length > 0) {
-    return notes[0];
+    return notes[0].uuid;
   }
   return null;
 };
 
 export const emptyEditorState = () => {
   return EditorState.createEmpty();
+};
+
+export const updateNoteInAllNotes = (allNotes, note) => {
+  allNotes[note.uuid] = note;
+  return allNotes;
 };

@@ -11,7 +11,7 @@ class NoteListItem extends React.Component {
   }
 
   onClick = () => {
-    this.props.dispatch(selectNote(this.props.note));
+    this.props.dispatch(selectNote(this.props.note.uuid));
   };
 
   render() {

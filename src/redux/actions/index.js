@@ -1,4 +1,4 @@
-import { loadNotes as load } from "../../lib/io";
+import { loadNotes as load, saveNote } from "../../lib/io";
 import { firstNoteIfDefined } from "../utils";
 import { EDITOR_NAME, deSerializeContent } from "../../lib/editor";
 /**
@@ -13,6 +13,7 @@ export const RECEIVED_NOTE_CONTENT = "RECEVED_NOTE_CONTENT";
 export const SELECT_NOTE = "SELECT_NOTE";
 export const SET_EDITOR_STATE = "SET_EDITOR_STATE";
 export const SET_TOAST = "SET_TOAST";
+export const UPDATE_NOTE = "UPDATE_NOTE";
 
 /**
  * Other constants
@@ -45,8 +46,8 @@ function receivedNotes(notes) {
   return { type: RECEIVED_NOTES, notes };
 }
 
-export function selectNote(note) {
-  return { type: SELECT_NOTE, note };
+export function selectNote(uuid) {
+  return { type: SELECT_NOTE, uuid };
 }
 
 export function loadNotes() {
@@ -71,6 +72,10 @@ export function setEditorState(editorState) {
   return { type: SET_EDITOR_STATE, editorState };
 }
 
+function updateNote(note) {
+  return { type: UPDATE_NOTE, note };
+}
+
 export function loadNoteContent(note) {
   return dispatch => {
     dispatch(getNoteContent());
@@ -79,5 +84,12 @@ export function loadNoteContent(note) {
       dispatch(receivedNoteContent(note, content));
       dispatch(setEditorState(editorState));
     });
+  };
+}
+
+export function updateAndSaveNote(note) {
+  return dispatch => {
+    saveNote(note);
+    dispatch(updateNote(note));
   };
 }

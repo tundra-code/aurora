@@ -8,9 +8,10 @@ import {
   RECEIVED_NOTE_CONTENT,
   SELECT_NOTE,
   SET_TOAST,
-  SET_EDITOR_STATE
+  SET_EDITOR_STATE,
+  UPDATE_NOTE
 } from "../actions";
-import { notesToDict, emptyEditorState } from "../utils";
+import { notesToDict, emptyEditorState, updateNoteInAllNotes } from "../utils";
 
 function app(state = {}, action) {
   switch (action.type) {
@@ -53,7 +54,7 @@ function notes(
       });
     case SELECT_NOTE:
       return Object.assign({}, state, {
-        selectedNote: action.note
+        selectedNote: action.uuid ? state.allNotes[action.uuid] : null
       });
     case LOAD_NOTE_CONTENT:
       return Object.assign({}, state, {
@@ -66,6 +67,10 @@ function notes(
     case SET_EDITOR_STATE:
       return Object.assign({}, state, {
         editorState: action.editorState
+      });
+    case UPDATE_NOTE:
+      return Object.assign({}, state, {
+        allNotes: updateNoteInAllNotes(state.allNotes, action.note)
       });
     default:
       return state;

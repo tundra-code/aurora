@@ -16,11 +16,3 @@ test("all actions return a new copy of the state", () => {
     expect(app(prevState, creator("ya")) !== prevState).toBe(true);
   });
 });
-
-// If the action doesn't exist at all, we SHOULD return the same state. (AKA do nothing)
-test("if the action does not exist, we DO return the same state", () => {
-  const prevState = { ya: "wjeio" };
-  expect(
-    app(prevState, "IDUNEXISTHAHAWHOEJWIEOIWAE33344#$*(") === prevState
-  ).toBe(true);
-});

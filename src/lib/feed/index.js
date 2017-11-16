@@ -25,7 +25,8 @@ class Feed extends React.Component {
       <BumpedDownContainer>
         <Card>
           <Editor
-            editorState={this.props.editorState}
+            ourEditorState={this.props.editorState}
+            note={this.props.selectedNote}
             placeholder={"Change me!"}
           />
         </Card>

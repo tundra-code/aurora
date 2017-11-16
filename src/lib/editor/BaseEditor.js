@@ -4,8 +4,8 @@ import { RichUtils, Editor } from "draft-js";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { EDITOR_NAME } from "./index";
-import { setEditorState } from "../../redux/actions";
+import { EDITOR_NAME, serializeContent } from "./index";
+import { setEditorState, updateAndSaveNote } from "../../redux/actions";
 
 const EditorStyles = styled.div`
   padding: ${props => props.theme.spacing.padding};
@@ -47,6 +47,25 @@ class BaseEditor extends React.Component {
     this.handleFocus();
   }
 
+  // trying to save upon quitting without onBlur. But doesn't work currently.
+  componentWillUnmount() {
+    this.updateAndSaveNote();
+  }
+
+  updateAndSaveNote() {
+    const note = this.props.note;
+    if (note === null) {
+      return;
+    }
+    const content = serializeContent(this.props.ourEditorState);
+    note.setContent(content);
+    this.props.dispatch(updateAndSaveNote(note));
+  }
+
+  onBlur = () => {
+    this.updateAndSaveNote();
+  };
+
   // rich styling here
   handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -64,6 +83,8 @@ class BaseEditor extends React.Component {
           className="editor"
           ref={this.setDomEditorRef}
           onChange={this.onChange}
+          onBlur={this.onBlur}
+          editorState={this.props.ourEditorState}
           handleKeyCommand={this.handleKeyCommand}
           {...this.props}
         />
@@ -74,7 +95,9 @@ class BaseEditor extends React.Component {
 
 BaseEditor.propTypes = {
   focused: PropTypes.bool,
-  onChangeEx: PropTypes.func
+  onChangeEx: PropTypes.func,
+  selectNote: PropTypes.object,
+  ourEditorState: PropTypes.object.isRequired
 };
 
 export default connect()(mutate(BaseEditor, EDITOR_NAME));
