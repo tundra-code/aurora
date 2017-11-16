@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Themed } from "../theme";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import * as selectors from "../../redux/selectors";
 
 class Core extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class Core extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    toast: state.toast
+    toast: selectors.toast(state)
   };
 };
 

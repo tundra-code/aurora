@@ -11,6 +11,7 @@ import { itemArrayToKeyValueObj, pkgKey } from "./util";
 import { nextState, UNINSTALL } from "./InstallStates";
 import { Map } from "immutable";
 import { installMutation, uninstallMutation } from "../mutationsManager";
+import { preferences } from "../../../redux/selectors";
 
 class Store extends React.Component {
   constructor(props) {
@@ -119,7 +120,7 @@ class Store extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { preferences: state.preferences };
+  return { preferences: preferences(state) };
 };
 
 export default connect(mapStateToProps)(Store);
