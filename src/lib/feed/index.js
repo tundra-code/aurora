@@ -4,6 +4,11 @@ import { Card, Container } from "../ui";
 import { connect } from "react-redux";
 import { mutate } from "@react-mutate/core";
 import { loadNoteContent } from "../../redux/actions";
+import {
+  selectedNote,
+  editorState,
+  isLoadingContent
+} from "../../redux/selectors";
 
 const BumpedDownContainer = Container.extend`
   padding-top: ${props => props.theme.spacing.header};
@@ -39,9 +44,9 @@ Feed.propTypes = {};
 
 const mapStateToProps = state => {
   return {
-    selectedNote: state.notes.selectedNote,
-    editorState: state.notes.editorState,
-    isLoadingContent: state.notes.isLoadingContent
+    selectedNote: selectedNote(state),
+    editorState: editorState(state),
+    isLoadingContent: isLoadingContent(state)
   };
 };
 

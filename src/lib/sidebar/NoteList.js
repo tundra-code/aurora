@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { loadNotes } from "../../redux/actions";
 import NoteListItem from "./NoteListItem.js";
 import { Menu, MenuCardList, MenuItem } from "../ui/Menu";
+import { allNotes } from "../../redux/selectors";
 
 const BumpedDownMenu = Menu.extend`
   padding-top: ${props => props.theme.spacing.header};
@@ -36,7 +37,7 @@ class NoteList extends React.Component {
 NoteList.propTypes = {};
 
 const mapStateToProps = state => {
-  return { allNotes: state.notes.allNotes };
+  return { allNotes: allNotes(state) };
 };
 
 export default connect(mapStateToProps)(NoteList);
