@@ -2,6 +2,8 @@
  * Why selectors?
  * These basically act as getters so we avoid weird issues
  * where reducers change the path to something without us realizing it.
+ *
+ * If "state.app.screen" changes, it can break lots of places all at once
  */
 
 // app

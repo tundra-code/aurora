@@ -4,6 +4,7 @@ import { Store } from "../lib/mutate";
 import { connect } from "react-redux";
 import rendererEvents from "../lib/electron-events/renderer";
 import { setScreen } from "../redux/actions";
+import { screen } from "../redux/selectors";
 
 class ScreenManager extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ const Screens = {
 
 const mapStateToProps = state => {
   return {
-    screen: Screens[state.app.screen] || Screens.main
+    screen: Screens[screen(state)] || Screens.main
   };
 };
 

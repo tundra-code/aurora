@@ -2,7 +2,7 @@ import {
   auroraMutationPackageJSONPath,
   auroraMutationFilesPath
 } from "../paths";
-let requireMutations = () => new Promise((resolve, reject) => {});
+let requireMutations = () => new Promise((resolve, reject) => {}); //eslint-disable-line
 
 const getPkg = () => {
   try {
