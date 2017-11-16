@@ -10,6 +10,7 @@ import Feed from "../feed";
 const LeftFixedWidthDiv = FixedWidthDiv.extend`
   background: ${props => props.theme.colors.secondaryBackground};
   height: 100%;
+  overflow: scroll;
 `;
 
 const Frame = props => (
