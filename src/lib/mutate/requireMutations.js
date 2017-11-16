@@ -2,7 +2,7 @@ import {
   auroraMutationPackageJSONPath,
   auroraMutationFilesPath
 } from "../paths";
-let requireMutations = () => new Promise();
+let requireMutations = () => new Promise((resolve, reject) => {});
 
 const getPkg = () => {
   try {

@@ -33,7 +33,7 @@ const Screens = {
 
 const mapStateToProps = state => {
   return {
-    screen: Screens[state.screen] || Screens.main
+    screen: Screens[state.app.screen] || Screens.main
   };
 };
 
