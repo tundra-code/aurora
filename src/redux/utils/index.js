@@ -1,4 +1,6 @@
-import { EditorState } from "draft-js";
+import { EditorState, EDITOR_NAME } from "draft-js";
+import { NoteModel } from "../../lib/note";
+import { serializeContent } from "../../lib/editor";
 
 export const notesToDict = notes => {
   const dict = {};
@@ -14,7 +16,7 @@ export const updateNote = (note, notesDict) => {
 
 export const firstNoteIfDefined = notes => {
   if (notes.length > 0) {
-    return notes[0].uuid;
+    return notes[0];
   }
   return null;
 };
@@ -23,7 +25,17 @@ export const emptyEditorState = () => {
   return EditorState.createEmpty();
 };
 
-export const updateNoteInAllNotes = (allNotes, note) => {
+export const updateNoteInAllNotes = (note, allNotes) => {
   allNotes[note.uuid] = note;
-  return allNotes;
+  return Object.assign({}, allNotes);
+};
+
+export const removeNoteFromAllNotes = (note, allNotes) => {
+  delete allNotes[note.uuid];
+  return Object.assign({}, allNotes);
+};
+
+export const newEmptyNote = () => {
+  const content = serializeContent(emptyEditorState());
+  return new NoteModel(content, EDITOR_NAME);
 };

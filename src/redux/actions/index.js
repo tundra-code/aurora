@@ -1,4 +1,8 @@
-import { loadNotes as load, saveNote } from "../../lib/io";
+import {
+  loadNotes as load,
+  saveNote,
+  deleteNote as deleteN
+} from "../../lib/io";
 import { firstNoteIfDefined } from "../utils";
 import { EDITOR_NAME, deSerializeContent } from "../../lib/editor";
 /**
@@ -14,6 +18,7 @@ export const SELECT_NOTE = "SELECT_NOTE";
 export const SET_EDITOR_STATE = "SET_EDITOR_STATE";
 export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
+export const DELETE_NOTE = "DELETE_NOTE";
 
 /**
  * Other constants
@@ -46,8 +51,8 @@ function receivedNotes(notes) {
   return { type: RECEIVED_NOTES, notes };
 }
 
-export function selectNote(uuid) {
-  return { type: SELECT_NOTE, uuid };
+export function selectNote(note) {
+  return { type: SELECT_NOTE, note };
 }
 
 export function loadNotes() {
@@ -92,4 +97,13 @@ export function updateAndSaveNote(note) {
     saveNote(note);
     dispatch(updateNote(note));
   };
+}
+
+export function newNote(note) {
+  return updateAndSaveNote(note);
+}
+
+export function deleteNote(note) {
+  deleteN(note);
+  return { type: DELETE_NOTE, note };
 }

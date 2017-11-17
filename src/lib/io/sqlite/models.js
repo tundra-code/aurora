@@ -45,6 +45,7 @@ const Tags = bookshelf.Collection.extend({
 
 function noteFromNoteModel(note) {
   return new Note({
+    id: note.id,
     uuid: note.uuid,
     mutationName: note.mutationName
   });
@@ -52,6 +53,7 @@ function noteFromNoteModel(note) {
 
 function attrFromAttrModel(attr, noteID) {
   return new Attribute({
+    id: attr.id,
     key: attr.key,
     value: attr.value,
     note_id: noteID,
@@ -61,6 +63,7 @@ function attrFromAttrModel(attr, noteID) {
 
 function tagFromTagModel(tag, noteID) {
   return new Tag({
+    id: tag.id,
     value: tag.value,
     note_id: noteID
   });

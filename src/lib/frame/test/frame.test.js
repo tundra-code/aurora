@@ -1,10 +1,10 @@
 import Frame from "../index.js";
 import React from "react";
-import expectMatchesSnapshot from "../../test-util/expectMatchesSnapshot";
-import configureStore from "../../../redux/configureStore";
-import { Provider } from "react-redux";
+//import expectMatchesSnapshot from "../../test-util/expectMatchesSnapshot";
+//import configureStore from "../../../redux/configureStore";
+//import { Provider } from "react-redux";
 
-const store = configureStore();
+//const store = configureStore();
 
 jest.mock("draft-js/lib/generateRandomKey", () => () => "123");
 

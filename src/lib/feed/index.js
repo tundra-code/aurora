@@ -20,6 +20,9 @@ class Feed extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.selectedNote === null) {
+      return;
+    }
     if (this.props.selectedNote !== prevProps.selectedNote) {
       this.props.dispatch(loadNoteContent(this.props.selectedNote));
     }
