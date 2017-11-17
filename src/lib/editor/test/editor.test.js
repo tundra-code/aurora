@@ -15,9 +15,7 @@ describe("Editor", () => {
   });
 
   it("is a valid React element", () => {
-    const element = (
-      <Editor ourEditorState={EditorState.createEmpty()} onChange={() => {}} />
-    );
+    const element = <Editor ourEditorState={EditorState.createEmpty()} />;
     expect(React.isValidElement(element)).toBe(true);
   });
 
