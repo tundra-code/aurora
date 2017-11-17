@@ -47,7 +47,8 @@ bookshelf.plugin(cascadeDelete);
 //getting an instance of dbmigrate
 const dbmigrate = DBMigrate.getInstance(true, {
   env: process.env.NODE_ENV,
-  config: "config/database.json"
+  config: "config/database.json",
+  throwUncatched: true
 });
 
 function loadDB() {

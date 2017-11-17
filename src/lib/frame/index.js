@@ -6,6 +6,7 @@ import StyledSplitPaneContainer from "../ui/SplitPanes";
 import { FixedWidthDiv } from "../ui/util/Layouts";
 import Sidebar from "../sidebar";
 import Feed from "../feed";
+import { connect } from "react-redux";
 
 const LeftFixedWidthDiv = FixedWidthDiv.extend`
   background: ${props => props.theme.colors.secondaryBackground};
@@ -31,4 +32,4 @@ Frame.propTypes = {
   children: PropTypes.any
 };
 
-export default mutate(Frame, "Frame");
+export default connect()(mutate(Frame, "Frame"));
