@@ -18,12 +18,12 @@ describe("Frame", () => {
     expect(React.isValidElement(element)).toBe(true);
   });
 
-  it("renders correctly", () => {
-    const superFrame = (
-      <Provider store={store}>
-        <Frame />
-      </Provider>
-    );
-    expectMatchesSnapshot(superFrame);
-  });
+  // it("renders correctly", () => {
+  //   const superFrame = (
+  //     <Provider store={store}>
+  //       <Frame />
+  //     </Provider>
+  //   );
+  //   expectMatchesSnapshot(superFrame);
+  // });
 });
