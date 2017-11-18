@@ -1,23 +1,30 @@
 import React from "react";
-import { Editor } from "../editor";
-import { Card, Container } from "../ui";
 import { connect } from "react-redux";
 import { mutate } from "@react-mutate/core";
-import { loadNoteContent } from "../../redux/actions";
 import {
   selectedNote,
   editorState,
   isLoadingContent
 } from "../../redux/selectors";
+import NoteView from "./NoteView";
+import styled from "styled-components";
+import { selectNote, newNote, loadNoteContent } from "../../redux/actions";
+import { noteWithEmptyEditor } from "../editor";
 
-const BumpedDownContainer = Container.extend`
-  padding-top: ${props => props.theme.spacing.header};
+const AddButton = styled.button`
+  float: right;
 `;
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  onAdd = () => {
+    const note = noteWithEmptyEditor();
+    this.props.dispatch(newNote(note));
+    this.props.dispatch(selectNote(note));
+  };
 
   componentDidUpdate(prevProps) {
     if (this.props.selectedNote === null) {
@@ -30,15 +37,14 @@ class Feed extends React.Component {
 
   render() {
     return (
-      <BumpedDownContainer>
-        <Card>
-          <Editor
-            ourEditorState={this.props.editorState}
-            note={this.props.selectedNote}
-            placeholder={"Change me!"}
-          />
-        </Card>
-      </BumpedDownContainer>
+      <div>
+        <AddButton onClick={this.onAdd}>New</AddButton>
+        <NoteView
+          ourEditorState={this.props.editorState}
+          note={this.props.selectedNote}
+          placeholder={"Change me!"}
+        />
+      </div>
     );
   }
 }

@@ -10,8 +10,8 @@ let mainWindow;
 function createMainWindow() {
   // Construct new BrowserWindow
   const window = new BrowserWindow({
-    frame: false,
-    titleBarStyle: "hiddenInset"
+    //  frame: false,
+    //  titleBarStyle: "hiddenInset"
   });
 
   // Set url for `win`
