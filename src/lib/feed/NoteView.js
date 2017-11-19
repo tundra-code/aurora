@@ -9,6 +9,12 @@ import { selectNote, deleteNote } from "../../redux/actions";
 
 const DeleteButton = styled.button`
   float: right;
+  background: transparent;
+  border: none;
+  position: relative;
+  right: -20px;
+  top: -30px;
+  font-size: 25px;
 `;
 
 const BumpedDownContainer = Container.extend`
@@ -32,7 +38,7 @@ class NoteView extends React.Component {
     return (
       <BumpedDownContainer>
         <Card>
-          <DeleteButton onClick={this.onDelete}>Delete</DeleteButton>
+          <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
           <Editor {...this.props} />
         </Card>
       </BumpedDownContainer>

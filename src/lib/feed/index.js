@@ -13,6 +13,11 @@ import { noteWithEmptyEditor } from "../editor";
 
 const AddButton = styled.button`
   float: right;
+  position: relative;
+  background: transparent;
+  border: none;
+  top: 5%;
+  right: 7%;
 `;
 
 class Feed extends React.Component {
@@ -38,7 +43,7 @@ class Feed extends React.Component {
   render() {
     return (
       <div>
-        <AddButton onClick={this.onAdd}>New</AddButton>
+        <AddButton onClick={this.onAdd}>📝 New</AddButton>
         <NoteView
           ourEditorState={this.props.editorState}
           note={this.props.selectedNote}
