@@ -16,6 +16,7 @@ const AddButton = styled.button`
   position: relative;
   background: transparent;
   border: none;
+  color: #e600e6;
   top: 5%;
   right: 7%;
 `;
