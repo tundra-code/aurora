@@ -6,6 +6,8 @@ The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** reco
 ```bash
 # run application in development mode
 yarn dev
+# Also display redux acton logs (warning: it logs a lot)
+yarn dev-log-redux
 
 # compile source code and create webpack output
 yarn compile

@@ -5,7 +5,7 @@ import rootReducer from "./reducers";
 export default function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware];
 
-  if (process.env.NODE_ENV === `development`) {
+  if (process.env.LOG_REDUX && process.env.LOG_REDUX === "true") {
     const { logger } = require(`redux-logger`);
 
     middlewares.push(logger);
