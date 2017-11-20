@@ -1,8 +1,11 @@
 const { saveNote } = require("../../src/lib/io");
-const draftJS = require("draft-js");
-const { NoteModel } = require("../../src/lib/note");
 const { newNote } = require("../../src/lib/test-util/note-util");
 
 const text = process.argv[2];
-saveNote(newNote(text));
+const tags = [];
+for (let i = 3; i < process.argv.length; i++) {
+  tags.push(process.argv[i]);
+}
+console.log(tags);
+saveNote(newNote(text, tags));
 console.log("Created note.");
