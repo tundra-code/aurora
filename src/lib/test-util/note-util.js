@@ -7,10 +7,16 @@ const newNote = (text, tags = []) => {
   const tagObjects = tags.map(tag => {
     return new Tag(tag);
   });
-  return new NoteModel(serializeContent(content), EDITOR_NAME, tagObjects, [
+  const attrs = [
     new Attribute("title", "My note", true),
     new Attribute("class", "math")
-  ]);
+  ];
+  return new NoteModel(
+    serializeContent(content),
+    EDITOR_NAME,
+    tagObjects,
+    attrs
+  );
 };
 
 export { newNote };

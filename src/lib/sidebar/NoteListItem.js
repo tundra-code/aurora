@@ -1,5 +1,4 @@
 import React from "react";
-import { getPreview } from "../preview";
 import PropTypes from "prop-types";
 import { selectNote } from "../../redux/actions";
 import { connect } from "react-redux";
@@ -15,7 +14,7 @@ class NoteListItem extends React.Component {
   };
 
   render() {
-    const preview = getPreview(this.props.note);
+    const preview = this.props.note.renderPreview();
     return (
       <MenuCard onClick={this.onClick} key={`${this.props.note.uuid}-note`}>
         {preview}

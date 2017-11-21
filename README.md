@@ -33,6 +33,7 @@ yarn db-create-config
 yarn db-migration-create myNewMigration
 
 # Adding a note
+# CURRENTLY DOES NOT WORK!!!
 yarn create-note "<Some text for the note here>" <tag1> <tag2> ... <tagn>
 
 ```

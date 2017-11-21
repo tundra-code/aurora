@@ -88,6 +88,7 @@ class BaseEditor extends React.Component {
     }
     const content = serializeContent(this.props.ourEditorState);
     note.setContent(content);
+    note.updatePreview();
     this.props.dispatch(updateAndSaveNote(note));
   };
 

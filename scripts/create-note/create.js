@@ -6,6 +6,5 @@ const tags = [];
 for (let i = 3; i < process.argv.length; i++) {
   tags.push(process.argv[i]);
 }
-console.log(tags);
 saveNote(newNote(text, tags));
 console.log("Created note.");

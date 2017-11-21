@@ -26,7 +26,7 @@ export const emptyEditorState = () => {
 };
 
 export const updateNoteInAllNotes = (note, allNotes) => {
-  allNotes[note.uuid] = note;
+  allNotes[note.uuid] = Object.assign({}, note);
   return Object.assign({}, allNotes);
 };
 
