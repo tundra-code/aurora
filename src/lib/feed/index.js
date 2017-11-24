@@ -10,9 +10,23 @@ import NoteView from "../note/NoteView";
 import styled from "styled-components";
 import { selectNote, newNote, loadNoteContent } from "../../redux/actions";
 import { noteWithEmptyEditor } from "../editor";
+import { Container } from "../ui";
 
-const AddButton = styled.button`
-  float: right;
+const AddButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+`;
+
+const AddButton = styled.a`
+  cursor: pointer;
+  color: ${props => props.theme.colors.darkPrimary};
+  padding: ${props => props.theme.spacing.padding};
+
+  &:hover {
+    color: ${props => props.theme.colors.primary};
+    text-decoration: underline;
+  }
 `;
 
 class Feed extends React.Component {
@@ -37,14 +51,16 @@ class Feed extends React.Component {
 
   render() {
     return (
-      <div>
-        <AddButton onClick={this.onAdd}>New</AddButton>
+      <Container>
+        <AddButtonContainer>
+          <AddButton onClick={this.onAdd}>📝 New Note</AddButton>
+        </AddButtonContainer>
         <NoteView
           ourEditorState={this.props.editorState}
           note={this.props.selectedNote}
           placeholder={"Change me!"}
         />
-      </div>
+      </Container>
     );
   }
 }
