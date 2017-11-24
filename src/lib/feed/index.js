@@ -6,7 +6,7 @@ import {
   editorState,
   isLoadingContent
 } from "../../redux/selectors";
-import NoteView from "./NoteView";
+import NoteView from "../note/NoteView";
 import styled from "styled-components";
 import { selectNote, newNote, loadNoteContent } from "../../redux/actions";
 import { noteWithEmptyEditor } from "../editor";
