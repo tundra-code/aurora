@@ -13,6 +13,7 @@ const DeleteButton = styled.button`
 
 const BumpedDownContainer = Container.extend`
   padding-top: ${props => props.theme.spacing.header};
+  padding: 0;
 `;
 
 class NoteView extends React.Component {
