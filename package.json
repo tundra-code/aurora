@@ -45,7 +45,6 @@
     "immutable": "^3.8.2",
     "immutable-props": "^1.1.0",
     "inline-style-prefixer": "^3.0.8",
-    "invariant": "^2.2.2",
     "isdev": "^1.0.1",
     "json-parse-safe": "^1.0.3",
     "knex": "^0.13.0",
