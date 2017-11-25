@@ -64,8 +64,12 @@ export default class Note {
     loadNoteContent(
       this,
       data => {
-        const cont = data ? JSON.parse(data) : emptySerializedEditorState();
-        this.setContent(cont);
+        if (data) {
+          this.content = JSON.parse(data);
+        } else {
+          this.setContent(emptySerializedEditorState());
+        }
+
         callback(this.content);
       },
       onFailure
