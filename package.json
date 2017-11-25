@@ -9,22 +9,14 @@
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "db-down":
-      "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
-    "db-up":
-      "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
-    "db-reset":
-      "node node_modules/db-migrate/bin/db-migrate reset --config config/database.json",
-    "db-create-config":
-      "cross-env NODE_ENV=development babel-node scripts/create-db-config/create.js",
-    "db-migrate-create":
-      "node node_modules/db-migrate/bin/db-migrate create -e dev --config config/database.json",
-    "add-some-notes":
-      "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
-    "add-many-notes":
-      "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
-    "create-note":
-      "cross-env NODE_ENV=development babel-node scripts/create-note/create.js",
+    "db-down": "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
+    "db-up": "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
+    "db-reset": "node node_modules/db-migrate/bin/db-migrate reset --config config/database.json",
+    "db-create-config": "cross-env NODE_ENV=development babel-node scripts/create-db-config/create.js",
+    "db-migrate-create": "node node_modules/db-migrate/bin/db-migrate create -e dev --config config/database.json",
+    "add-some-notes": "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
+    "add-many-notes": "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
+    "create-note": "cross-env NODE_ENV=development babel-node scripts/create-note/create.js",
     "lint": "./node_modules/.bin/eslint src",
     "postinstall": "electron-builder install-app-deps",
     "snyk-protect": "snyk protect"
@@ -53,6 +45,7 @@
     "immutable": "^3.8.2",
     "immutable-props": "^1.1.0",
     "inline-style-prefixer": "^3.0.8",
+    "invariant": "^2.2.2",
     "isdev": "^1.0.1",
     "json-parse-safe": "^1.0.3",
     "knex": "^0.13.0",
@@ -116,15 +109,28 @@
   },
   "snyk": true,
   "jest": {
-    "setupFiles": ["raf/polyfill", "enzyme-react-16-adapter-setup"],
+    "setupFiles": [
+      "raf/polyfill",
+      "enzyme-react-16-adapter-setup"
+    ],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-    "testPathIgnorePatterns": ["/node_modules/", "/templates/", "/dist/"],
-    "coverageReporters": ["text", "lcov"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/templates/",
+      "/dist/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     }
   }
