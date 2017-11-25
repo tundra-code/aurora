@@ -4,6 +4,7 @@ import { loadNotes } from "../../redux/actions";
 import NoteListItem from "./NoteListItem.js";
 import { Menu, MenuCardList, MenuItem } from "../ui/Menu";
 import { allNotes } from "../../redux/selectors";
+import { noteDictToArray } from "../note/util";
 
 const BumpedDownMenu = Menu.extend`
   padding-top: ${props => props.theme.spacing.header};
@@ -19,11 +20,9 @@ class NoteList extends React.Component {
   }
 
   render() {
-    const noteList = [];
-    for (const uuid in this.props.allNotes) {
-      const note = this.props.allNotes[uuid];
-      noteList.push(<NoteListItem key={note.uuid} note={note} />);
-    }
+    const noteList = noteDictToArray(this.props.allNotes).map(note => (
+      <NoteListItem key={note.uuid} note={note} />
+    ));
 
     return (
       <BumpedDownMenu>

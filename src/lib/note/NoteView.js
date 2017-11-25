@@ -5,7 +5,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Card, Container } from "../ui";
 import { Editor } from "../editor";
-import { selectNote, deleteNote } from "../../redux/actions";
+import { deleteNote } from "../../redux/actions";
 
 const DeleteButton = styled.button`
   float: right;
@@ -26,7 +26,6 @@ class NoteView extends React.Component {
       return;
     }
     this.props.dispatch(deleteNote(this.props.note));
-    this.props.dispatch(selectNote(null));
   };
 
   render() {
