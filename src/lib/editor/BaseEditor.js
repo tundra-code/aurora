@@ -18,7 +18,6 @@ const EditorStyles = styled.div`
   padding: ${props => props.theme.spacing.padding};
   .public-DraftEditorPlaceholder-inner {
     pointer-events: none;
-    position: absolute;
     color: #aaaaaa;
   }
 `;
