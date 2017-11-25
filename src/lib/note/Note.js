@@ -6,6 +6,13 @@ import { loadNoteContent } from "../io";
 import { serializePreview, renderPreview as renderPre } from "../preview";
 
 export default class Note {
+  /**
+   * @param content Draft js content
+   * @param mutationName String
+   * @param tags array
+   * @param attributes array
+   * @param options object
+   */
   constructor(content, mutationName, tags, attributes, options) {
     options = options || {}; // avoid undefined errors
 

@@ -16,7 +16,8 @@ import {
   notesToDict,
   emptyEditorState,
   updateNoteInAllNotes,
-  removeNoteFromAllNotes
+  removeNoteFromAllNotes,
+  pickNoteFromAllNotes
 } from "../utils";
 
 function app(state = {}, action) {
@@ -61,6 +62,11 @@ function notes(
     case SELECT_NOTE:
       if (action.note === state.selectedNote) {
         return state;
+      }
+      if (action.note === null) {
+        return Object.assign({}, state, {
+          selectedNote: pickNoteFromAllNotes(state.allNotes)
+        });
       }
       return Object.assign({}, state, {
         selectedNote: action.note,
