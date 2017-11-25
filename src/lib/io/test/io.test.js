@@ -7,7 +7,7 @@ import {
   loadPreferences,
   updatePreferences
 } from "../index.js";
-import { createPreferencesIfNotExist, addMutationPreference } from "../IO.js";
+import { createPreferencesIfNotExist } from "../IO.js";
 import { noteExistsIn, preferences } from "./util.js";
 import { newNote } from "../../test-util/note-util.js";
 import { exists } from "../util";
@@ -129,23 +129,6 @@ test("createPreferencesIfNotExist will create a new file if there's not one", as
   expect(exists(name)).toBe(false);
   await createPreferencesIfNotExist({ foo: "foo" }, name);
   expect(exists(name)).toBeTruthy();
-
-  removeTmpFiles();
-});
-
-test("addMutationPreference will create a new attribute in the preferences file", async () => {
-  expect.assertions(1);
-  const { name, removeTmpFiles } = tmpPrefsFile();
-
-  // Create a base prefs file
-  await savePreferences({ mutations: [{ name: "joe" }] }, name);
-
-  // Add a new mutation
-  await addMutationPreference("bar", name);
-
-  // Load and check if we actually changed something
-  const prefs = await loadPreferences(name);
-  expect(prefs.mutations).toMatchObject([{ name: "joe" }, { name: "bar" }]);
 
   removeTmpFiles();
 });

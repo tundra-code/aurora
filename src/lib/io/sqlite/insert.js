@@ -39,7 +39,7 @@ function saveAttributes(note, callback, onFailure) {
 
 function saveTags(note, callback, onFailure) {
   const tags = Tags.forge(getTagModels(note.tags, note.id));
-  Promise.all(tags.invokeMap("save"))
+  return Promise.all(tags.invokeMap("save"))
     .then(savedTags => {
       assingIdsToObjects(note.tags, savedTags);
       saveAttributes(note, callback, onFailure);
@@ -49,26 +49,21 @@ function saveTags(note, callback, onFailure) {
     });
 }
 
-function insertNote(note, callback, onFailure) {
-  loadDB()
-    .then(() => {
-      const bookshelfNote = noteFromNoteModel(note);
-      saveNoteContent(note);
-      bookshelfNote
-        .save()
-        .then(savedNote => {
-          note.id = savedNote.id;
-          note.created_at = savedNote.attributes.created_at;
-          note.updated_at = savedNote.attributes.updated_at;
-          saveTags(note, callback, onFailure);
-        })
-        .catch(err => {
-          executeIfDefined(onFailure, err);
-        });
-    })
-    .catch(err => {
-      throw new Error("Failed to load database: " + err);
-    });
+async function insertNote(note, callback, onFailure) {
+  await loadDB().catch(err => {
+    throw new Error("Failed to load database: " + err);
+  });
+
+  const bookshelfNote = noteFromNoteModel(note);
+  saveNoteContent(note);
+  const savedNote = await bookshelfNote.save().catch(err => {
+    executeIfDefined(onFailure, err);
+  });
+
+  note.id = savedNote.id;
+  note.created_at = savedNote.attributes.created_at;
+  note.updated_at = savedNote.attributes.updated_at;
+  return saveTags(note, callback, onFailure);
 }
 
 export { insertNote };

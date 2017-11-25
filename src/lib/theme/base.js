@@ -10,6 +10,9 @@ export default {
     darkSuccess: "#27ae60",
     darkDanger: "#c0392b",
 
+    // Lighter versions
+    lightPrimary: "#F5E8FA",
+
     // Background
     background: "#F9F7FA",
     secondaryBackground: "white",
@@ -29,6 +32,7 @@ export default {
 
   spacing: {
     padding: "1em",
-    extraPadding: "2em"
+    extraPadding: "2em",
+    header: "2.5em"
   }
 };

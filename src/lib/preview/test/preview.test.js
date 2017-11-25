@@ -1,13 +1,20 @@
-import { getPreview } from "../index.js";
+import { renderPreview, serializePreview } from "../index.js";
 import { newNote } from "../../test-util/note-util.js";
 
 describe("Preview", () => {
   it("is exported and exists", () => {
-    expect(getPreview).toBeDefined();
+    expect(renderPreview).toBeDefined();
   });
 
   it("returns a react component", () => {
-    const preview = getPreview(newNote("hello"));
+    const note = newNote("hello");
+    const preview = renderPreview(note);
     expect(preview).toBeDefined();
+  });
+
+  it("returns a react component", () => {
+    const note = newNote("hello");
+    const serializedPreview = serializePreview(note);
+    expect(serializedPreview).toBeDefined();
   });
 });

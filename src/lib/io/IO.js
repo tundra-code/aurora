@@ -6,11 +6,10 @@ import {
   saveToAsync,
   readFromAsync,
   throwIfNotNoteModel,
-  exists,
-  auroraRootPath
+  exists
 } from "./util.js";
+import { auroraUserPath, auroraPreferencesFile } from "../paths";
 import { installMutations } from "@react-mutate/loader";
-import { auroraPreferencesFile } from "../paths";
 import safeParseJSON from "json-parse-safe";
 
 const preferencesFile = auroraPreferencesFile();
@@ -45,10 +44,7 @@ function deleteNote(note) {
    */
 function loadNotes() {
   return new Promise((resolve, reject) => {
-    function load(notes) {
-      resolve(notes);
-    }
-    queryNotes(load, reject);
+    queryNotes(resolve, reject);
   });
 }
 
@@ -128,39 +124,8 @@ async function updatePreferences(preferences, file = preferencesFile) {
   return savePreferences(newPrefs, file);
 }
 
-/**
- * Updates mutations based on preferences file
- */
-async function updateMutations(prefsFile = preferencesFile) {
-  await createPreferencesIfNotExist({}, prefsFile);
-  const prefsJSON = await loadPreferences(prefsFile);
-  const mutations = prefsJSON.mutations || [];
-  return installMutations(mutations.map(mut => mut.name), auroraRootPath());
-}
-
-/**
- * Adds a new mutation to the preference file.
- * @param {String} name
- */
-async function addMutationPreference(name, prefsFile = preferencesFile) {
-  await createPreferencesIfNotExist({}, prefsFile);
-  const prefsJSON = await loadPreferences(prefsFile);
-
-  // Add to mutations or create new field in preferences
-  const mutations = prefsJSON.mutations || [];
-  mutations.push({ name });
-  prefsJSON.mutations = mutations;
-
-  return savePreferences(prefsJSON, prefsFile);
-}
-
-/**
- * Installs a new mutation.
- * @param {String} name
- */
-async function installNewMutation(name, prefsFile = preferencesFile) {
-  await addMutationPreference(name, prefsFile);
-  return updateMutations(prefsFile);
+async function installMutationFiles(mutations) {
+  return installMutations(mutations.map(mut => mut.name), auroraUserPath());
 }
 
 export {
@@ -170,8 +135,6 @@ export {
   loadPreferences,
   savePreferences,
   updatePreferences,
-  installNewMutation,
   createPreferencesIfNotExist,
-  updateMutations,
-  addMutationPreference
+  installMutationFiles
 };

@@ -23,6 +23,8 @@ The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** reco
 ```bash
 # run application in development mode
 yarn dev
+# Also display redux acton logs (warning: it logs a lot)
+yarn dev-log-redux
 
 # compile source code and create webpack output
 yarn compile
@@ -47,8 +49,8 @@ yarn db-up -d development
 yarn db-create-config
 yarn db-migration-create myNewMigration
 
-# Adding notes
-ENV=dev yarn add-some-notes
-ENV=prod yarn add-many-notes
+# Adding a note
+# CURRENTLY DOES NOT WORK!!!
+yarn create-note "<Some text for the note here>" <tag1> <tag2> ... <tagn>
 
 ```

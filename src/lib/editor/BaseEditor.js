@@ -1,14 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { RichUtils, Editor, EditorState } from "draft-js";
+import { RichUtils, Editor } from "draft-js";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { EDITOR_NAME, serializeContent } from "./index";
+import {
+  setEditorState,
+  updateAndSaveNote,
+  newNote,
+  selectNote,
+  deleteNote
+} from "../../redux/actions";
+import { noteWithEmptyEditor } from "./util";
 
 const EditorStyles = styled.div`
   padding: ${props => props.theme.spacing.padding};
   .public-DraftEditorPlaceholder-inner {
     pointer-events: none;
-    position: absolute;
     color: #aaaaaa;
   }
 `;
@@ -20,13 +29,6 @@ const EditorStyles = styled.div`
 class BaseEditor extends React.Component {
   constructor(props) {
     super(props);
-
-    // Let the user pass in a defaultEditorState if they want to.
-    const startEditorState = this.props.defaultEditorState
-      ? this.props.defaultEditorState
-      : EditorState.createEmpty();
-
-    this.state = { editorState: startEditorState };
     this.setDomEditorRef = ref => (this.domEditor = ref);
   }
 
@@ -41,7 +43,7 @@ class BaseEditor extends React.Component {
   };
 
   onChange = editorState => {
-    this.setState({ editorState });
+    this.props.dispatch(setEditorState(editorState));
     if (this.props.onChangeEx) {
       this.props.onChangeEx(editorState);
     }
@@ -50,6 +52,48 @@ class BaseEditor extends React.Component {
   componentDidMount() {
     this.handleFocus();
   }
+
+  // trying to save upon quitting without onBlur. But doesn't work currently.
+  componentWillUnmount() {
+    this.updateAndSaveNote();
+  }
+
+  createNewNote = () => {
+    const note = noteWithEmptyEditor();
+    this.props.dispatch(newNote(note));
+    this.props.dispatch(selectNote(note));
+  };
+
+  onFocus = () => {
+    if (this.props.note !== null) {
+      return;
+    }
+    this.createNewNote();
+  };
+
+  removeNote = note => {
+    this.props.dispatch(deleteNote(note));
+    this.props.dispatch(selectNote(null));
+  };
+
+  updateAndSaveNote = () => {
+    const note = this.props.note;
+    if (note === null) {
+      return;
+    }
+    if (!this.props.ourEditorState.getCurrentContent().hasText()) {
+      this.removeNote(note);
+      return;
+    }
+    const content = serializeContent(this.props.ourEditorState);
+    note.setContent(content);
+    note.updatePreview();
+    this.props.dispatch(updateAndSaveNote(note));
+  };
+
+  onBlur = () => {
+    this.updateAndSaveNote();
+  };
 
   // rich styling here
   handleKeyCommand = (command, editorState) => {
@@ -68,7 +112,9 @@ class BaseEditor extends React.Component {
           className="editor"
           ref={this.setDomEditorRef}
           onChange={this.onChange}
-          editorState={this.state.editorState}
+          onBlur={this.onBlur}
+          onFocus={this.onFocus}
+          editorState={this.props.ourEditorState}
           handleKeyCommand={this.handleKeyCommand}
           {...this.props}
         />
@@ -79,8 +125,9 @@ class BaseEditor extends React.Component {
 
 BaseEditor.propTypes = {
   focused: PropTypes.bool,
-  defaultEditorState: PropTypes.object,
-  onChangeEx: PropTypes.func
+  onChangeEx: PropTypes.func,
+  selectNote: PropTypes.object,
+  ourEditorState: PropTypes.object.isRequired
 };
 
-export default mutate(BaseEditor, "BaseEditor");
+export default connect()(mutate(BaseEditor, EDITOR_NAME));

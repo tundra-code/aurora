@@ -1,8 +1,18 @@
 import { app, Menu, BrowserWindow } from "electron";
 import setupMenu from "./menu";
-import setupEvents from "./events";
+import os from "os";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
+
+function getWindowOptionsByPlatform() {
+  const platform = os.platform();
+  const MacOptions = {
+    frame: false,
+    titleBarStyle: "hiddenInset"
+  };
+
+  return platform === "darwin" ? MacOptions : {};
+}
 
 // Global reference to mainWindow
 // Necessary to prevent win from being garbage collected
@@ -10,7 +20,7 @@ let mainWindow;
 
 function createMainWindow() {
   // Construct new BrowserWindow
-  const window = new BrowserWindow();
+  const window = new BrowserWindow(getWindowOptionsByPlatform());
 
   // Set url for `win`
   // points to `webpack-dev-server` in development
@@ -60,5 +70,4 @@ app.on("activate", () => {
 app.on("ready", () => {
   mainWindow = createMainWindow();
   setupMenu(app, Menu, mainWindow);
-  setupEvents();
 });

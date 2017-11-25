@@ -3,23 +3,32 @@ import Tag from "./Tag.js";
 import _ from "lodash";
 import uuidv4 from "uuid/v4";
 import { loadNoteContent } from "../io";
+import { serializePreview, renderPreview as renderPre } from "../preview";
 
 export default class Note {
+  /**
+   * @param content Draft js content
+   * @param mutationName String
+   * @param tags array
+   * @param attributes array
+   * @param options object
+   */
   constructor(content, mutationName, tags, attributes, options) {
     options = options || {}; // avoid undefined errors
+
+    const cont = {};
+    cont[mutationName] = content;
+    this.content = cont;
+    this.mutationName = mutationName;
 
     const uuid = uuidv4();
     this.uuid = options.uuid ? options.uuid : uuid;
     this.id = options.id;
     this.created_at = options.created_at;
     this.updated_at = options.updated_at;
+    this.preview = options.preview ? options.preview : serializePreview(this);
     this.attributes = attributes;
     this.tags = tags;
-
-    const cont = {};
-    cont[mutationName] = content;
-    this.content = cont;
-    this.mutationName = mutationName;
 
     this.forceUUIdToBeString();
   }
@@ -71,6 +80,14 @@ export default class Note {
     });
   };
 
+  updatePreview = () => {
+    this.preview = serializePreview(this);
+  };
+
+  renderPreview = () => {
+    return renderPre(this.preview);
+  };
+
   setContent = content => {
     const cont = {};
     cont[this.mutationName] = content;
@@ -98,7 +115,7 @@ export default class Note {
     const attrs = [];
     const tags = [];
     json.tag.forEach(t => {
-      tags.push(new Tag(t.value), { id: t.id });
+      tags.push(new Tag(t.value, { id: t.id }));
     });
     json.attribute.forEach(at => {
       attrs.push(new Attribute(at.key, at.value, at.searchable, { id: at.id }));
@@ -108,7 +125,8 @@ export default class Note {
       uuid: `${json.uuid}`,
       id: json.id,
       created_at: json.created_at,
-      updated_at: json.updated_at
+      updated_at: json.updated_at,
+      preview: JSON.parse(json.preview)
     });
   }
 }
