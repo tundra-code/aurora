@@ -10,15 +10,16 @@ import {
   SET_TOAST,
   SET_EDITOR_STATE,
   UPDATE_NOTE,
-  DELETE_NOTE
+  DELETE_NOTE,
+  BUMP_NOTE
 } from "../actions";
 import {
-  notesToDict,
   emptyEditorState,
   updateNoteInAllNotes,
   removeNoteFromAllNotes,
-  pickNoteFromAllNotes
+  pickPreviousNoteInList
 } from "../utils";
+import { noteArrayToDict } from "../../lib/note/util";
 
 function app(state = {}, action) {
   switch (action.type) {
@@ -57,16 +58,11 @@ function notes(
     case RECEIVED_NOTES:
       return Object.assign({}, state, {
         isLoadingNotes: false,
-        allNotes: notesToDict(action.notes)
+        allNotes: noteArrayToDict(action.notes)
       });
     case SELECT_NOTE:
       if (action.note === state.selectedNote) {
         return state;
-      }
-      if (action.note === null) {
-        return Object.assign({}, state, {
-          selectedNote: pickNoteFromAllNotes(state.allNotes)
-        });
       }
       return Object.assign({}, state, {
         selectedNote: action.note,
@@ -88,10 +84,20 @@ function notes(
       return Object.assign({}, state, {
         allNotes: updateNoteInAllNotes(action.note, state.allNotes)
       });
+    case BUMP_NOTE: {
+      const newSelectedNote = pickPreviousNoteInList(
+        state.allNotes,
+        state.selectedNote
+      );
+      return Object.assign({}, state, {
+        selectedNote: newSelectedNote
+      });
+    }
     case DELETE_NOTE:
       return Object.assign({}, state, {
         allNotes: removeNoteFromAllNotes(action.note, state.allNotes)
       });
+
     default:
       return state;
   }
