@@ -13,17 +13,9 @@ const editorStateFromText = text =>
 
 const emptyEditorState = () => EditorState.createEmpty();
 
-const emptySerializedEditorState = () => {
-  return serializeContent(emptyEditorState());
-};
-
 const noteWithEmptyEditor = () => {
-  return new NoteModel(emptySerializedEditorState(), EDITOR_NAME, [], []);
+  const content = serializeContent(emptyEditorState());
+  return new NoteModel(content, EDITOR_NAME, [], []);
 };
 
-export {
-  editorStateFromText,
-  emptySerializedEditorState,
-  emptyEditorState,
-  noteWithEmptyEditor
-};
+export { editorStateFromText, emptyEditorState, noteWithEmptyEditor };
