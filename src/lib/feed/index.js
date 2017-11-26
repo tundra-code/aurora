@@ -22,6 +22,7 @@ const AddButton = styled.a`
   cursor: pointer;
   color: ${props => props.theme.colors.darkPrimary};
   padding: ${props => props.theme.spacing.padding};
+  user-select: none;
 
   &:hover {
     color: ${props => props.theme.colors.primary};
