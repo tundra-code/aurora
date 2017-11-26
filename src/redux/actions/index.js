@@ -95,8 +95,9 @@ export function loadNoteContent(note) {
 
 export function updateAndSaveNote(note) {
   return dispatch => {
-    saveNote(note);
-    dispatch(updateNote(note));
+    saveNote(note).then(() => {
+      dispatch(updateNote(note));
+    });
   };
 }
 
