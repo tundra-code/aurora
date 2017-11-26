@@ -21,9 +21,7 @@ const preferencesFile = auroraPreferencesFile();
    */
 function saveNote(note) {
   throwIfNotNoteModel(note);
-  return new Promise((resolve, reject) => {
-    insertNote(note, resolve, reject);
-  });
+  return insertNote(note);
 }
 
 /*
