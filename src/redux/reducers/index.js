@@ -10,7 +10,8 @@ import {
   SET_TOAST,
   SET_EDITOR_STATE,
   UPDATE_NOTE,
-  DELETE_NOTE
+  DELETE_NOTE,
+  BUMP_NOTE
 } from "../actions";
 import {
   emptyEditorState,
@@ -83,17 +84,20 @@ function notes(
       return Object.assign({}, state, {
         allNotes: updateNoteInAllNotes(action.note, state.allNotes)
       });
-    case DELETE_NOTE: {
+    case BUMP_NOTE: {
       const newSelectedNote = pickPreviousNoteInList(
         state.allNotes,
         state.selectedNote
       );
-
       return Object.assign({}, state, {
-        selectedNote: newSelectedNote,
-        allNotes: removeNoteFromAllNotes(action.note, state.allNotes)
+        selectedNote: newSelectedNote
       });
     }
+    case DELETE_NOTE:
+      return Object.assign({}, state, {
+        allNotes: removeNoteFromAllNotes(action.note, state.allNotes)
+      });
+
     default:
       return state;
   }

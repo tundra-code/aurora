@@ -19,6 +19,7 @@ export const SET_EDITOR_STATE = "SET_EDITOR_STATE";
 export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
+export const BUMP_NOTE = "BUMP_NOTE";
 
 /**
  * Other constants
@@ -106,4 +107,15 @@ export function newNote(note) {
 export function deleteNote(note) {
   deleteN(note);
   return { type: DELETE_NOTE, note };
+}
+
+export function bumpNoteSelection() {
+  return { type: BUMP_NOTE };
+}
+
+export function deleteNoteAndChangeSelection(note) {
+  return dispatch => {
+    dispatch(bumpNoteSelection());
+    dispatch(deleteNote(note));
+  };
 }
