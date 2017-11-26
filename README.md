@@ -1,4 +1,21 @@
 # Aurora
+
+## Overview
+Aurora is an open source note taker with first class support for third part extensions. It's built on [react-mutate](https://github.com/Flaque/react-mutate), a framework for creating "mutations" in React. 
+
+It's still a little early in the process, but here's the general idea of what we're building at the moment:
+
+
+<p align="center">
+  <img src="https://i.imgur.com/QCrot4G.png" alt="Light mode ui mockup" width="700px" />
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/kURH8c2.png" alt="Dark mode ui mockup" width="700px" />
+</p>
+
+
+## For Devs 
 The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** recommended, as opposed to using `npm`.
 
 ### Development Scripts

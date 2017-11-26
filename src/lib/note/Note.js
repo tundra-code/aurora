@@ -4,6 +4,7 @@ import _ from "lodash";
 import uuidv4 from "uuid/v4";
 import { loadNoteContent } from "../io";
 import { serializePreview, renderPreview as renderPre } from "../preview";
+import { emptySerializedEditorState } from "../editor/util";
 
 export default class Note {
   /**
@@ -63,7 +64,12 @@ export default class Note {
     loadNoteContent(
       this,
       data => {
-        this.content = JSON.parse(data);
+        if (data) {
+          this.content = JSON.parse(data);
+        } else {
+          this.setContent(emptySerializedEditorState());
+        }
+
         callback(this.content);
       },
       onFailure
@@ -88,9 +94,9 @@ export default class Note {
     return renderPre(this.preview);
   };
 
-  setContent = content => {
+  setContent = serializedState => {
     const cont = {};
-    cont[this.mutationName] = content;
+    cont[this.mutationName] = serializedState;
     this.content = cont;
     return this.content;
   };
