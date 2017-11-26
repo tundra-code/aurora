@@ -5,7 +5,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Card, Container } from "../ui";
 import { Editor } from "../editor";
-import { deleteNote, deleteNoteAndChangeSelection } from "../../redux/actions";
+import { deleteNoteAndChangeSelection } from "../../redux/actions";
 
 const DeleteButton = styled.button`
   float: right;
