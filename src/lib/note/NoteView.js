@@ -14,7 +14,7 @@ const DeleteButton = styled.button`
   position: relative;
   right: -20px;
   top: -30px;
-  font-size: 25px;
+  font-size: ${props => props.theme.fontSize};
 `;
 
 const BumpedDownContainer = Container.extend`
