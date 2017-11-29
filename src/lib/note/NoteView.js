@@ -5,7 +5,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Card, Container } from "../ui";
 import { Editor } from "../editor";
-import { selectNote, deleteNote } from "../../redux/actions";
+import { deleteNoteAndChangeSelection } from "../../redux/actions";
 
 const DeleteButton = styled.button`
   float: right;
@@ -19,6 +19,7 @@ const DeleteButton = styled.button`
 
 const BumpedDownContainer = Container.extend`
   padding-top: ${props => props.theme.spacing.header};
+  padding: 0;
 `;
 
 class NoteView extends React.Component {
@@ -30,8 +31,7 @@ class NoteView extends React.Component {
     if (this.props.note === null) {
       return;
     }
-    this.props.dispatch(deleteNote(this.props.note));
-    this.props.dispatch(selectNote(null));
+    this.props.dispatch(deleteNoteAndChangeSelection(this.props.note));
   };
 
   render() {
