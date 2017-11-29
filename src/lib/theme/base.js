@@ -27,10 +27,14 @@ export default {
 
   font: "Helvetica",
   fontSize: "14px",
+  iconSizes: {
+    small: "14px"
+  },
 
   borderRadius: "5px",
 
   spacing: {
+    lessPadding: "0.5em",
     padding: "1em",
     extraPadding: "2em",
     header: "2.5em"

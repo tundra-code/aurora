@@ -78,9 +78,20 @@ export function setEditorState(editorState) {
   return { type: SET_EDITOR_STATE, editorState };
 }
 
-function updateNote(note) {
+const updateNote = note => {
   return { type: UPDATE_NOTE, note };
-}
+};
+
+const updateNoteAndSelect = note => (dispatch, getState) => {
+  // Update the selected note if we're updating the currently selected note
+  if (
+    getState().notes.selectedNote &&
+    getState().notes.selectedNote.uuid === note.uuid
+  ) {
+    dispatch(selectNote(note));
+  }
+  dispatch(updateNote(note));
+};
 
 export function loadNoteContent(note) {
   return dispatch => {
@@ -93,12 +104,10 @@ export function loadNoteContent(note) {
   };
 }
 
-export function updateAndSaveNote(note) {
-  return dispatch => {
-    saveNote(note);
-    dispatch(updateNote(note));
-  };
-}
+export const updateAndSaveNote = note => dispatch => {
+  saveNote(note);
+  dispatch(updateNoteAndSelect(note));
+};
 
 export function newNote(note) {
   return updateAndSaveNote(note);
