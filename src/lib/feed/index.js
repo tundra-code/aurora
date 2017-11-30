@@ -8,7 +8,7 @@ import {
 } from "../../redux/selectors";
 import NoteView from "../note/NoteView";
 import styled from "styled-components";
-import { selectNote, newNote, loadNoteContent } from "../../redux/actions";
+import { selectNote, newNote } from "../../redux/actions";
 import { noteWithEmptyEditor } from "../editor";
 import { Container } from "../ui";
 
@@ -40,15 +40,6 @@ class Feed extends React.Component {
     this.props.dispatch(newNote(note));
     this.props.dispatch(selectNote(note));
   };
-
-  componentDidUpdate(prevProps) {
-    if (this.props.selectedNote === null) {
-      return;
-    }
-    if (this.props.selectedNote !== prevProps.selectedNote) {
-      this.props.dispatch(loadNoteContent(this.props.selectedNote));
-    }
-  }
 
   render() {
     return (

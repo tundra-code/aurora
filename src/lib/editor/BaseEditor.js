@@ -68,7 +68,7 @@ class BaseEditor extends React.Component {
     if (this.props.note !== null) {
       return;
     }
-    //this.createNewNote();
+    this.createNewNote();
   };
 
   removeNote = note => {
@@ -82,7 +82,7 @@ class BaseEditor extends React.Component {
       return;
     }
     if (!this.props.ourEditorState.getCurrentContent().hasText()) {
-      //this.removeNote(note);
+      this.removeNote(note);
       return;
     }
     const content = serializeContent(this.props.ourEditorState);

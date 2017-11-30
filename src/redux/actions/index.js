@@ -56,16 +56,6 @@ export function selectNote(note) {
   return { type: SELECT_NOTE, note };
 }
 
-export function loadNotes() {
-  return dispatch => {
-    dispatch(getNotes());
-    return load().then(notes => {
-      dispatch(receivedNotes(notes));
-      dispatch(selectNote(firstNoteIfDefined(notes)));
-    });
-  };
-}
-
 function getNoteContent(note) {
   return { type: LOAD_NOTE_CONTENT, note };
 }
@@ -89,6 +79,23 @@ export function loadNoteContent(note) {
       const editorState = deSerializeContent(content[EDITOR_NAME]);
       dispatch(receivedNoteContent(note, content));
       dispatch(setEditorState(editorState));
+    });
+  };
+}
+
+export function selectAndLoadNote(note) {
+  return dispatch => {
+    dispatch(selectNote(note));
+    dispatch(loadNoteContent(note));
+  };
+}
+
+export function loadNotes() {
+  return dispatch => {
+    dispatch(getNotes());
+    return load().then(notes => {
+      dispatch(receivedNotes(notes));
+      dispatch(selectAndLoadNote(firstNoteIfDefined(notes)));
     });
   };
 }
