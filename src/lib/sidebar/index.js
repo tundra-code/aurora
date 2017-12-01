@@ -40,10 +40,5 @@ class Sidebar extends React.Component {
 
 Sidebar.propTypes = {};
 
-const mapStateToProps = state => {
-  return {
-    query: query(state)
-  };
-};
 
-export default connect(mapStateToProps)(mutate(Sidebar, "Sidebar"));
+export default connect()(mutate(Sidebar, "Sidebar"));
