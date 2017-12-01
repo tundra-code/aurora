@@ -61,16 +61,6 @@ export function setQuery(query) {
   return {type: SEARCH_NOTE, query};
 }
 
-export function loadNotes() {
-  return dispatch => {
-    dispatch(getNotes());
-    return load().then(notes => {
-      dispatch(receivedNotes(notes));
-      dispatch(selectNote(firstNoteIfDefined(notes)));
-    });
-  };
-}
-
 function getNoteContent(note) {
   return { type: LOAD_NOTE_CONTENT, note };
 }
