@@ -57,8 +57,6 @@ export function selectNote(note) {
   return { type: SELECT_NOTE, note };
 }
 
-<<<<<<< HEAD
-=======
 export function setQuery(query) {
   return {type: SEARCH_NOTE, query};
 }
@@ -73,7 +71,6 @@ export function loadNotes() {
   };
 }
 
->>>>>>> 33f12c1... searchbar
 function getNoteContent(note) {
   return { type: LOAD_NOTE_CONTENT, note };
 }
