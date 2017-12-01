@@ -20,6 +20,7 @@ export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 export const BUMP_NOTE = "BUMP_NOTE";
+export const SEARCH_NOTE = "SEARCH_NOTE"
 
 /**
  * Other constants
@@ -56,6 +57,23 @@ export function selectNote(note) {
   return { type: SELECT_NOTE, note };
 }
 
+<<<<<<< HEAD
+=======
+export function setQuery(query) {
+  return {type: SEARCH_NOTE, query};
+}
+
+export function loadNotes() {
+  return dispatch => {
+    dispatch(getNotes());
+    return load().then(notes => {
+      dispatch(receivedNotes(notes));
+      dispatch(selectNote(firstNoteIfDefined(notes)));
+    });
+  };
+}
+
+>>>>>>> 33f12c1... searchbar
 function getNoteContent(note) {
   return { type: LOAD_NOTE_CONTENT, note };
 }

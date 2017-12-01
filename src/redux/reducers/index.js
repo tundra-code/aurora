@@ -11,7 +11,8 @@ import {
   SET_EDITOR_STATE,
   UPDATE_NOTE,
   DELETE_NOTE,
-  BUMP_NOTE
+  BUMP_NOTE,
+  SEARCH_NOTE
 } from "../actions";
 import {
   emptyEditorState,
@@ -46,7 +47,8 @@ function notes(
     allNotes: {},
     selectedNote: null,
     editorState: emptyEditorState(),
-    isLoadingContent: false
+    isLoadingContent: false,
+    query: ""
   },
   action
 ) {
@@ -96,6 +98,10 @@ function notes(
     case DELETE_NOTE:
       return Object.assign({}, state, {
         allNotes: removeNoteFromAllNotes(action.note, state.allNotes)
+      });
+    case SEARCH_NOTE:
+      return Object.assign({}, state, {
+        query: action.query
       });
 
     default:

@@ -1,16 +1,38 @@
 import React from "react";
 import { mutate } from "@react-mutate/core";
+import { connect } from "react-redux";
+import { setQuery } from "../../redux/actions";
+import {Menu} from "../ui/Menu";
 import NoteList from "./NoteList.js";
+import { query } from "../../redux/selectors";
+import {Input} from "../ui/Inputs"
+
+const BumpedDownMenu = Menu.extend`
+padding-top: ${props => props.theme.spacing.header};
+`;
+
+const SearchBar = Input.extend`
+margin-top: 8px;
+margin-bottom: 16px;
+`
 
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  onInput = (e) => {
+    const searchBoxValue = e.target.value;
+    this.props.dispatch(setQuery(searchBoxValue));
+  }
+
   render() {
     return (
       <div>
-        <NoteList />
+        <BumpedDownMenu>
+          <SearchBar onInput={this.onInput} placeholder="Search"/>
+          <NoteList />
+        </BumpedDownMenu>
       </div>
     );
   }
@@ -18,4 +40,10 @@ class Sidebar extends React.Component {
 
 Sidebar.propTypes = {};
 
-export default mutate(Sidebar, "Sidebar");
+const mapStateToProps = state => {
+  return {
+    query: query(state)
+  };
+};
+
+export default connect(mapStateToProps)(mutate(Sidebar, "Sidebar"));

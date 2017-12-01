@@ -28,12 +28,12 @@ export const MenuCardList = styled.div`
   width: 100%;
   padding: ${props => props.theme.spacing.padding};
   padding-right: 0;
+  padding-left: 0;
   padding-bottom: 0;
 `;
 
 export const MenuCard = Card.extend`
   cursor: pointer;
-  margin-left: ${props => props.theme.spacing.padding};
   margin-bottom: ${props => props.theme.spacing.padding};
   padding: ${props => props.theme.spacing.padding};
 
