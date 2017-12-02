@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { setQuery } from "../../redux/actions";
 import {Menu} from "../ui/Menu";
 import NoteList from "./NoteList.js";
-import { query } from "../../redux/selectors";
 import {Input} from "../ui/Inputs"
 
 const BumpedDownMenu = Menu.extend`
