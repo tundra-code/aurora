@@ -20,6 +20,7 @@ export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 export const BUMP_NOTE = "BUMP_NOTE";
+export const SEARCH_NOTE = "SEARCH_NOTE"
 
 /**
  * Other constants
@@ -54,6 +55,10 @@ function receivedNotes(notes) {
 
 export function selectNote(note) {
   return { type: SELECT_NOTE, note };
+}
+
+export function setQuery(query) {
+  return {type: SEARCH_NOTE, query};
 }
 
 function getNoteContent(note) {
