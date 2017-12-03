@@ -14,16 +14,16 @@ class NoteList extends React.Component {
   componentDidMount() {
     this.props.dispatch(loadNotes());
   }
-  
+
   filterNotesBasedOnQuery = note => {
-    return note.tags.includes(this.props.query);
-  }
+    return note.tags.map(tag => tag.value).includes(this.props.query);
+  };
 
   render() {
     let noteObjectList = noteDictToArray(this.props.allNotes);
     if (this.props.query.length !== 0) {
       noteObjectList = noteObjectList.filter(this.filterNotesBasedOnQuery);
-    } 
+    }
     const noteList = noteObjectList.map(note => (
       <NoteListItem key={note.uuid} note={note} />
     ));
@@ -39,7 +39,7 @@ class NoteList extends React.Component {
 NoteList.propTypes = {};
 
 const mapStateToProps = state => {
-  return { 
+  return {
     allNotes: allNotes(state),
     query: query(state)
   };
