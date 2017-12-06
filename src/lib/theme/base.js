@@ -22,7 +22,8 @@ export default {
 
     // Text
     lightText: "#76657D",
-    text: "#331340"
+    text: "#331340",
+    insetText: "#9E96A1"
   },
 
   font: "Helvetica",

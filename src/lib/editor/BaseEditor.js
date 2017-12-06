@@ -8,11 +8,9 @@ import { EDITOR_NAME, serializeContent } from "./index";
 import {
   setEditorState,
   updateAndSaveNote,
-  newNote,
   selectNote,
   deleteNote
 } from "../../redux/actions";
-import { noteWithEmptyEditor } from "./util";
 
 const EditorStyles = styled.div`
   padding: ${props => props.theme.spacing.padding};
@@ -57,19 +55,6 @@ class BaseEditor extends React.Component {
   componentWillUnmount() {
     this.updateAndSaveNote();
   }
-
-  createNewNote = () => {
-    const note = noteWithEmptyEditor();
-    this.props.dispatch(newNote(note));
-    this.props.dispatch(selectNote(note));
-  };
-
-  onFocus = () => {
-    if (this.props.note !== null) {
-      return;
-    }
-    this.createNewNote();
-  };
 
   removeNote = note => {
     this.props.dispatch(deleteNote(note));

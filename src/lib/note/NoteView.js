@@ -17,6 +17,10 @@ const DeleteButton = styled.button`
   font-size: ${props => props.theme.fontSize};
 `;
 
+const InsetText = styled.div`
+  color: ${props => props.theme.colors.insetText};
+`;
+
 const BumpedDownContainer = Container.extend`
   padding-top: ${props => props.theme.spacing.header};
   padding: 0;
@@ -36,6 +40,11 @@ class NoteView extends React.Component {
   };
 
   render() {
+    if (this.props.note === null) {
+      return (
+        <InsetText>Create new note or select note from sidebar.</InsetText>
+      );
+    }
     return (
       <BumpedDownContainer>
         <Card>
