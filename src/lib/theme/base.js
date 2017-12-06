@@ -37,6 +37,6 @@ export default {
     lessPadding: "0.5em",
     padding: "1em",
     extraPadding: "2em",
-    header: "2.5em"
+    header: "3.5em"
   }
 };

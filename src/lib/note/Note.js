@@ -24,7 +24,7 @@ export default class Note {
 
     const uuid = uuidv4();
     this.uuid = options.uuid ? options.uuid : uuid;
-    this.id = options.id;
+    this.id = options.id; //sqlite id
     this.created_at = options.created_at;
     this.updated_at = options.updated_at;
     this.preview = options.preview ? options.preview : serializePreview(this);

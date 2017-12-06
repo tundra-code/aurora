@@ -99,7 +99,9 @@ class BaseEditor extends React.Component {
   handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
-      this.onChange(newState);
+      if (window.styling) {
+        this.onChange(newState);
+      }
       return "handled";
     }
     return "not-handled";

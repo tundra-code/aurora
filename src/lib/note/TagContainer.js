@@ -37,7 +37,7 @@ const TagContainer = ({
     {tags.map(tag => (
       <Tag
         text={tag.value}
-        key={`${tag.id}-tag`}
+        key={`${tag.id || tag.value}-tag`}
         onDelete={() => {
           onTagDelete(tag);
         }}

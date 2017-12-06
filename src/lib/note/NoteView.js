@@ -15,6 +15,12 @@ import _ from "lodash";
 
 const DeleteButton = styled.button`
   float: right;
+  background: transparent;
+  border: none;
+  position: relative;
+  right: -20px;
+  top: -30px;
+  font-size: ${props => props.theme.fontSize};
 `;
 
 const BumpedDownContainer = Container.extend`
@@ -42,6 +48,7 @@ class NoteView extends React.Component {
     if (this.props.note === null) {
       return;
     }
+
     this.props.delete(this.props.note);
     this.setState({ tagInputValue: "" });
   };
@@ -82,7 +89,7 @@ class NoteView extends React.Component {
       <BumpedDownContainer>
         <NoteViewContainer>
           <TopViewContainer>
-            <DeleteButton onClick={this.onDelete}>Delete</DeleteButton>
+            <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
             <Editor {...this.props} />
           </TopViewContainer>
           <TagContainer

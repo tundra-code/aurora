@@ -20,6 +20,7 @@ export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 export const BUMP_NOTE = "BUMP_NOTE";
+export const SEARCH_NOTE = "SEARCH_NOTE";
 
 /**
  * Other constants
@@ -56,14 +57,8 @@ export function selectNote(note) {
   return { type: SELECT_NOTE, note };
 }
 
-export function loadNotes() {
-  return dispatch => {
-    dispatch(getNotes());
-    return load().then(notes => {
-      dispatch(receivedNotes(notes));
-      dispatch(selectNote(firstNoteIfDefined(notes)));
-    });
-  };
+export function setQuery(query) {
+  return { type: SEARCH_NOTE, query };
 }
 
 function getNoteContent(note) {
@@ -104,10 +99,30 @@ export function loadNoteContent(note) {
   };
 }
 
-export const updateAndSaveNote = note => dispatch => {
-  saveNote(note);
-  dispatch(updateNoteAndSelect(note));
-};
+export function selectAndLoadNote(note) {
+  return dispatch => {
+    dispatch(selectNote(note));
+    dispatch(loadNoteContent(note));
+  };
+}
+
+export function loadNotes() {
+  return dispatch => {
+    dispatch(getNotes());
+    return load().then(notes => {
+      dispatch(receivedNotes(notes));
+      dispatch(selectAndLoadNote(firstNoteIfDefined(notes)));
+    });
+  };
+}
+
+export function updateAndSaveNote(note) {
+  return dispatch => {
+    saveNote(note).then(() => {
+      dispatch(updateNoteAndSelect(note));
+    });
+  };
+}
 
 export function newNote(note) {
   return updateAndSaveNote(note);

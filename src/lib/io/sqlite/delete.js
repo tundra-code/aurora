@@ -3,6 +3,12 @@ import { Note } from "./models.js";
 import { deleteNoteContent, executeIfDefined } from "../util.js";
 
 function cascadeDeleteNote(note, callback, onFailure) {
+  if (!note.id) {
+    throw new Error(
+      "Attempting to delete a note that has never recieved an SQLite id. This is probably bad."
+    );
+  }
+
   loadDB()
     .then(async () => {
       await Note.forge({ id: note.id })
