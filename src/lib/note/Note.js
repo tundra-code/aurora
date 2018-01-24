@@ -5,6 +5,36 @@ import uuidv4 from "uuid/v4";
 import { loadNoteContent } from "../io";
 import { serializePreview, renderPreview as renderPre } from "../preview";
 import { emptySerializedEditorState } from "../editor/util";
+import { Map } from "immutable";
+
+export const CONTENT = "CONTENT";
+export const MUTATION_NAME = "MUTATION_NAME";
+export const TAGS = "TAGS";
+export const ATTRIBUTES = "ATTRIBUTES";
+export const UUID = "UUID";
+
+export function newNote(content, mutationName, tags = [], attributes = [], uuid = uuidv4()) {
+  return new Map({
+    content, mutationName, tags, attributes, uuid
+  });
+}
+
+export function addAttribute(noteMap, attribute) {
+  const attrs = noteMap.get(ATTRIBUTES);
+
+}
+
+export function addTag(noteMap) {
+  // TODO
+}
+
+export function removeAttribute(noteMap) {
+  // TODO
+}
+
+export function removeTag(noteMap) {
+  // TODO
+}
 
 export default class Note {
   /**
