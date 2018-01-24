@@ -87,7 +87,11 @@ export default class Note {
   };
 
   setPreview = serializedPreview => {
-    this.preview = _.clone(serializedPreview);
+    this.preview = Object.assign({}, serializedPreview);
+  };
+
+  getPreview = () => {
+    return this.preview;
   };
 
   renderPreview = () => {
