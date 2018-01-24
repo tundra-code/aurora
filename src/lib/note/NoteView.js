@@ -41,7 +41,11 @@ class NoteView extends React.Component {
     if (this.props.note === null) {
       return;
     }
-    this.props.dispatch(deleteNote(this.props.note));
+    this.removeNote(this.props.note);
+  };
+
+  removeNote = note => {
+    this.props.dispatch(deleteNote(note));
     this.props.dispatch(selectNote(null));
   };
 
