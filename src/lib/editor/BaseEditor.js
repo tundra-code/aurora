@@ -45,11 +45,14 @@ class BaseEditor extends React.Component {
   }
 
   finishedLoadingContent = () => {
-    const content = this.props.note.content[this.props.note.mutationName];
-    const editorState = deSerializeContent(content);
-    if (this.props.onContentLoaded) {
-      this.props.onContentLoaded(editorState);
-    }
+    this.props.note.getContent().then(content => {
+      const editorState = deSerializeContent(
+        content[this.props.note.mutationName]
+      );
+      if (this.props.onContentLoaded) {
+        this.props.onContentLoaded(editorState);
+      }
+    });
   };
 
   onChange = editorState => {

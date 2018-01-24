@@ -87,7 +87,7 @@ export default class Note {
   };
 
   setPreview = serializedPreview => {
-    this.preview = serializedPreview;
+    this.preview = _.clone(serializedPreview);
   };
 
   renderPreview = () => {
