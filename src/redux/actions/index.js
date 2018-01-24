@@ -4,7 +4,6 @@ import {
   deleteNote as deleteN
 } from "../../lib/io";
 import { firstNoteIfDefined } from "../utils";
-import { EDITOR_NAME, deSerializeContent } from "../../lib/editor";
 /**
  * Action Name constants
  */
@@ -80,9 +79,7 @@ export function loadNoteContent(note) {
   return dispatch => {
     dispatch(getNoteContent());
     return note.getContent().then(content => {
-      const editorState = deSerializeContent(content[EDITOR_NAME]);
       dispatch(receivedNoteContent(note, content));
-      dispatch(setEditorState(editorState));
     });
   };
 }
@@ -90,7 +87,9 @@ export function loadNoteContent(note) {
 export function selectAndLoadNote(note) {
   return dispatch => {
     dispatch(selectNote(note));
-    dispatch(loadNoteContent(note));
+    if (note !== null) {
+      dispatch(loadNoteContent(note));
+    }
   };
 }
 

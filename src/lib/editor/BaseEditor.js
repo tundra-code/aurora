@@ -4,7 +4,8 @@ import { Editor } from "draft-js";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { EDITOR_NAME, serializeContent } from "./index";
+import { EDITOR_NAME, serializeContent, deSerializeContent } from "./index";
+import { serializePreview } from "./Preview";
 
 const EditorStyles = styled.div`
   padding: ${props => props.theme.spacing.padding};
@@ -34,8 +35,26 @@ class BaseEditor extends React.Component {
     }
   };
 
+  componentDidUpdate(prevProps) {
+    const contentLoaded =
+      prevProps.isLoadingContent === true &&
+      this.props.isLoadingContent === false;
+    if (contentLoaded) {
+      this.finishedLoadingContent();
+    }
+  }
+
+  finishedLoadingContent = () => {
+    const content = this.props.note.content[this.props.note.mutationName];
+    const editorState = deSerializeContent(content);
+    if (this.props.onContentLoaded) {
+      this.props.onContentLoaded(editorState);
+    }
+  };
+
   onChange = editorState => {
     const serializedContent = serializeContent(editorState);
+    const serializedPreview = serializePreview(serializedContent);
 
     if (this.props.onChangeEx) {
       this.props.onChangeEx(editorState, serializedContent);
@@ -73,8 +92,11 @@ class BaseEditor extends React.Component {
 BaseEditor.propTypes = {
   focused: PropTypes.bool,
   onChangeEx: PropTypes.func,
+  onBlurEx: PropTypes.func,
+  onContentLoaded: PropTypes.func,
   selectNote: PropTypes.object,
-  ourEditorState: PropTypes.object.isRequired
+  ourEditorState: PropTypes.object.isRequired,
+  isLoadingContent: PropTypes.bool.isRequired
 };
 
 export default connect()(mutate(BaseEditor, EDITOR_NAME));

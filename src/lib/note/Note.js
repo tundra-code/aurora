@@ -3,7 +3,7 @@ import Tag from "./Tag.js";
 import _ from "lodash";
 import uuidv4 from "uuid/v4";
 import { loadNoteContent } from "../io";
-import { serializePreview, renderPreview as renderPre } from "../preview";
+import { renderPreview as renderPre } from "../preview";
 import { emptySerializedEditorState } from "../editor/util";
 
 export default class Note {
@@ -27,7 +27,7 @@ export default class Note {
     this.id = options.id; //sqlite id
     this.created_at = options.created_at;
     this.updated_at = options.updated_at;
-    this.preview = options.preview ? options.preview : serializePreview(this);
+    this.preview = options.preview ? options.preview : { text: "New Note" };
     this.attributes = attributes;
     this.tags = tags;
 
@@ -86,11 +86,12 @@ export default class Note {
     });
   };
 
-  updatePreview = () => {
-    this.preview = serializePreview(this);
+  setPreview = serializedPreview => {
+    this.preview = serializedPreview;
   };
 
   renderPreview = () => {
+    console.log(this.preview);
     return renderPre(this.preview);
   };
 

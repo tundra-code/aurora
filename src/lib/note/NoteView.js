@@ -45,12 +45,16 @@ class NoteView extends React.Component {
     this.props.dispatch(selectNote(null));
   };
 
-  onEditorChange = (editorState, serializedContent) => {
+  onEditorChange = (editorState, serializedContent, serializedPreview) => {
     const note = this.props.note;
     this.props.dispatch(setEditorState(editorState));
     note.setContent(serializedContent);
-    note.updatePreview();
+    note.setPreview(serializedPreview);
     this.props.dispatch(updateNote(note));
+  };
+
+  onEditorContentLoaded = editorState => {
+    this.props.dispatch(setEditorState(editorState));
   };
 
   checkAndSaveNote = () => {
@@ -83,6 +87,7 @@ class NoteView extends React.Component {
             {...this.props}
             onChangeEx={this.onEditorChange}
             onBlurEx={this.onEditorBlur}
+            onContentLoaded={this.onEditorContentLoaded}
           />
         </Card>
       </BumpedDownContainer>
