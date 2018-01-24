@@ -1,6 +1,6 @@
 import {
   loadNotes as load,
-  saveNote,
+  saveNote as save,
   deleteNote as deleteN
 } from "../../lib/io";
 import { firstNoteIfDefined } from "../utils";
@@ -20,7 +20,7 @@ export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 export const BUMP_NOTE = "BUMP_NOTE";
-export const SEARCH_NOTE = "SEARCH_NOTE"
+export const SEARCH_NOTE = "SEARCH_NOTE";
 
 /**
  * Other constants
@@ -58,7 +58,7 @@ export function selectNote(note) {
 }
 
 export function setQuery(query) {
-  return {type: SEARCH_NOTE, query};
+  return { type: SEARCH_NOTE, query };
 }
 
 function getNoteContent(note) {
@@ -73,7 +73,7 @@ export function setEditorState(editorState) {
   return { type: SET_EDITOR_STATE, editorState };
 }
 
-function updateNote(note) {
+export function updateNote(note) {
   return { type: UPDATE_NOTE, note };
 }
 
@@ -107,10 +107,14 @@ export function loadNotes() {
 
 export function updateAndSaveNote(note) {
   return dispatch => {
-    saveNote(note).then(() => {
+    save(note).then(() => {
       dispatch(updateNote(note));
     });
   };
+}
+
+export function saveNote(note) {
+  save(note);
 }
 
 export function newNote(note) {

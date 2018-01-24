@@ -7,9 +7,10 @@ import { connect } from "react-redux";
 import { EDITOR_NAME, serializeContent } from "./index";
 import {
   setEditorState,
-  updateAndSaveNote,
+  updateNote,
   selectNote,
-  deleteNote
+  deleteNote,
+  saveNote
 } from "../../redux/actions";
 
 const EditorStyles = styled.div`
@@ -42,6 +43,13 @@ class BaseEditor extends React.Component {
 
   onChange = editorState => {
     this.props.dispatch(setEditorState(editorState));
+
+    const note = this.props.note;
+    const content = serializeContent(editorState);
+    note.setContent(content);
+    note.updatePreview();
+    this.props.dispatch(updateNote(note));
+
     if (this.props.onChangeEx) {
       this.props.onChangeEx(editorState);
     }
@@ -51,33 +59,25 @@ class BaseEditor extends React.Component {
     this.handleFocus();
   }
 
-  // trying to save upon quitting without onBlur. But doesn't work currently.
-  componentWillUnmount() {
-    this.updateAndSaveNote();
-  }
-
   removeNote = note => {
     this.props.dispatch(deleteNote(note));
     this.props.dispatch(selectNote(null));
   };
 
-  updateAndSaveNote = () => {
+  checkAndSaveNote = () => {
     const note = this.props.note;
     if (note === null) {
       return;
     }
-    if (!this.props.ourEditorState.getCurrentContent().hasText()) {
-      this.removeNote(note);
-      return;
-    }
-    const content = serializeContent(this.props.ourEditorState);
-    note.setContent(content);
-    note.updatePreview();
-    this.props.dispatch(updateAndSaveNote(note));
+    // if (!this.props.ourEditorState.getCurrentContent().hasText()) {
+    //   this.removeNote(note);
+    //   return;
+    // }
+    saveNote(note);
   };
 
   onBlur = () => {
-    this.updateAndSaveNote();
+    this.checkAndSaveNote();
   };
 
   // rich styling here

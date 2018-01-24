@@ -15,10 +15,10 @@ import {
   SEARCH_NOTE
 } from "../actions";
 import {
-  emptyEditorState,
   updateNoteInAllNotes,
   removeNoteFromAllNotes,
-  pickPreviousNoteInList
+  pickPreviousNoteInList,
+  emptyEditorState
 } from "../utils";
 import { noteArrayToDict } from "../../lib/note/util";
 
