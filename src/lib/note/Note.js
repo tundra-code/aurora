@@ -91,7 +91,6 @@ export default class Note {
   };
 
   renderPreview = () => {
-    console.log(this.preview);
     return renderPre(this.preview);
   };
 

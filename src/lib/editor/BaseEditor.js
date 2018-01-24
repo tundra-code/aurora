@@ -57,7 +57,7 @@ class BaseEditor extends React.Component {
     const serializedPreview = serializePreview(serializedContent);
 
     if (this.props.onChangeEx) {
-      this.props.onChangeEx(editorState, serializedContent);
+      this.props.onChangeEx(editorState, serializedContent, serializedPreview);
     }
   };
 

@@ -2,8 +2,7 @@
  * A collection of utilities for working with Draft-js and editors in general
  */
 import { EditorState, ContentState } from "draft-js";
-import { serializeContent, EDITOR_NAME } from "./index";
-import { NoteModel } from "../note";
+import { serializeContent } from "./index";
 
 /**
  * Returns an EditorState with the text already typed out for you!
@@ -17,13 +16,4 @@ const emptySerializedEditorState = () => {
   return serializeContent(emptyEditorState());
 };
 
-const noteWithEmptyEditor = () => {
-  return new NoteModel(emptySerializedEditorState(), EDITOR_NAME, [], []);
-};
-
-export {
-  editorStateFromText,
-  emptySerializedEditorState,
-  emptyEditorState,
-  noteWithEmptyEditor
-};
+export { editorStateFromText, emptySerializedEditorState, emptyEditorState };
