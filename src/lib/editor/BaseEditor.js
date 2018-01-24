@@ -1,17 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { RichUtils, Editor } from "draft-js";
+import { Editor } from "draft-js";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { EDITOR_NAME, serializeContent } from "./index";
-import {
-  setEditorState,
-  updateNote,
-  selectNote,
-  deleteNote,
-  saveNote
-} from "../../redux/actions";
 
 const EditorStyles = styled.div`
   padding: ${props => props.theme.spacing.padding};
@@ -42,55 +35,22 @@ class BaseEditor extends React.Component {
   };
 
   onChange = editorState => {
-    this.props.dispatch(setEditorState(editorState));
-
-    const note = this.props.note;
-    const content = serializeContent(editorState);
-    note.setContent(content);
-    note.updatePreview();
-    this.props.dispatch(updateNote(note));
+    const serializedContent = serializeContent(editorState);
 
     if (this.props.onChangeEx) {
-      this.props.onChangeEx(editorState);
+      this.props.onChangeEx(editorState, serializedContent);
+    }
+  };
+
+  onBlur = () => {
+    if (this.props.onBlurEx) {
+      this.props.onBlurEx();
     }
   };
 
   componentDidMount() {
     this.handleFocus();
   }
-
-  removeNote = note => {
-    this.props.dispatch(deleteNote(note));
-    this.props.dispatch(selectNote(null));
-  };
-
-  checkAndSaveNote = () => {
-    const note = this.props.note;
-    if (note === null) {
-      return;
-    }
-    // if (!this.props.ourEditorState.getCurrentContent().hasText()) {
-    //   this.removeNote(note);
-    //   return;
-    // }
-    saveNote(note);
-  };
-
-  onBlur = () => {
-    this.checkAndSaveNote();
-  };
-
-  // rich styling here
-  handleKeyCommand = (command, editorState) => {
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-    if (newState) {
-      if (window.styling) {
-        this.onChange(newState);
-      }
-      return "handled";
-    }
-    return "not-handled";
-  };
 
   render() {
     return (

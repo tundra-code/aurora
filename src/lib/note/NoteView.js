@@ -5,7 +5,13 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Card, Container } from "../ui";
 import { Editor } from "../editor";
-import { deleteNote, selectNote } from "../../redux/actions";
+import {
+  setEditorState,
+  updateNote,
+  selectNote,
+  deleteNote,
+  saveNote
+} from "../../redux/actions";
 
 const DeleteButton = styled.button`
   float: right;
@@ -39,6 +45,30 @@ class NoteView extends React.Component {
     this.props.dispatch(selectNote(null));
   };
 
+  onEditorChange = (editorState, serializedContent) => {
+    const note = this.props.note;
+    this.props.dispatch(setEditorState(editorState));
+    note.setContent(serializedContent);
+    note.updatePreview();
+    this.props.dispatch(updateNote(note));
+  };
+
+  checkAndSaveNote = () => {
+    const note = this.props.note;
+    if (note === null) {
+      return;
+    }
+    // if (!this.props.ourEditorState.getCurrentContent().hasText()) {
+    //   this.removeNote(note);
+    //   return;
+    // }
+    saveNote(note);
+  };
+
+  onEditorBlur = () => {
+    this.checkAndSaveNote();
+  };
+
   render() {
     if (this.props.note === null) {
       return (
@@ -49,7 +79,11 @@ class NoteView extends React.Component {
       <BumpedDownContainer>
         <Card>
           <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
-          <Editor {...this.props} />
+          <Editor
+            {...this.props}
+            onChangeEx={this.onEditorChange}
+            onBlurEx={this.onEditorBlur}
+          />
         </Card>
       </BumpedDownContainer>
     );
