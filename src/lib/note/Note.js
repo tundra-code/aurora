@@ -32,7 +32,8 @@ export default class Note {
   }
 
   addTag = tag => {
-    this.tags.push(tag);
+    const copy = Object.assign({}, tag);
+    this.tags.push(copy);
   };
 
   removeTag = id => {
@@ -54,7 +55,8 @@ export default class Note {
           this.setContent(emptySerializedEditorState());
         }
 
-        callback(this.content);
+        const copy = Object.assign({}, this.content);
+        callback(copy);
       },
       onFailure
     );
@@ -65,28 +67,32 @@ export default class Note {
       if (this.content[this.mutationName] === null) {
         this.loadContent(resolve, reject);
       } else {
-        resolve(this.content);
+        const copy = Object.assign({}, this.content);
+        resolve(copy);
       }
     });
   };
 
   setPreview = serializedPreview => {
-    this.preview = Object.assign({}, serializedPreview);
+    const copy = Object.assign({}, serializedPreview);
+    this.preview = copy;
   };
 
   getPreview = () => {
-    return this.preview;
+    const copy = Object.assign({}, this.preview);
+    return copy;
   };
 
   renderPreview = () => {
-    return renderPre(this.preview);
+    const copy = Object.assign({}, this.preview);
+    return renderPre(copy);
   };
 
   setContent = serializedState => {
     const cont = {};
-    cont[this.mutationName] = serializedState;
+    const copy = Object.assign({}, serializedState);
+    cont[this.mutationName] = copy;
     this.content = cont;
-    return this.content;
   };
 
   forceUUIdToBeString = () => {
