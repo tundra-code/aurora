@@ -7,13 +7,12 @@ Interacting with the IO functions is relatively simple. Almost all are done asyn
 require callbacks.
 
 ### Saving a note.
-First, create a note (with associated attributes and tags).
+First, create a note (with associated tags).
 ```
 const myNote = new NoteModel(
   serializeContent(content),
   "Aurora-Editor",
-  [new Tag("java"), new Tag("sql")],
-  [new Attribute("title", "My note", true), new Attribute("class", "math")]
+  [new Tag("java"), new Tag("sql")]
 );
 ```
 Then, save the note. Optionally pass in callbacks for successful and unsuccessful saving.
@@ -24,10 +23,10 @@ saveNote(myNote).then(() => {
   console.log(err);
 });
 ```
-To edit the note in any way (including adding/removing attributes), just modify the
-`NoteModel` object and save it again. It will update the new values. For example, to add a new attribute:
+To edit the note in any way (including adding/removing tags), just modify the
+`NoteModel` object and save it again. It will update the new values. For example, to add a new tags:
 ```
-myNote.addAttribute(new Attribute("topic", "partial differential techniques"));
+myNote.addTag(new Tag("Java"));
 await saveNote(myNote);
 ```
 For a list of functions that are handy to interact with the `NoteModel` object, check out the `README` in that module.
@@ -129,7 +128,7 @@ deleteFile(fileName, dirContext) => Promise to delete
 By default, the database is created at `HOME_DIR/.aurora/<NODE_ENV>/<NODE_ENV>.db`.
 This is set in the `config/database.json` file, but please don't screw with it.
 
-When running or testing, a `NODE_ENV` must be specified; this is the database where notes and attributes are stored.
+When running or testing, a `NODE_ENV` must be specified; this is the database where notes and tags are stored.
 The actual note content is stored in a file `<uuid>.aur` which lies in the `HOME_DIR/.aurora/<NODE_ENV>/notes` folder.
 
 The preference object is stored at `HOME_DIR/.aurora/<NODE_ENV>/preferences.json`.

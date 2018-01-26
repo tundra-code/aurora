@@ -5,7 +5,7 @@ import { NoteModel } from "../note";
 const EDITOR_NAME = "BaseEditor";
 
 const noteWithEmptyEditor = () => {
-  return new NoteModel(emptySerializedEditorState(), EDITOR_NAME, [], []);
+  return new NoteModel(emptySerializedEditorState(), EDITOR_NAME, []);
 };
 
 export {

@@ -1,18 +1,9 @@
-import { NoteModel, Attribute, Tag } from "../index.js";
+import { NoteModel, Tag } from "../index.js";
 import { newNote, contentFromText } from "../../test-util";
 
 describe("NoteModel", () => {
   it("is exported and exists", () => {
     expect(NoteModel).toBeDefined();
-  });
-
-  it("can add and delete an attribute", () => {
-    const note = newNote("hello");
-    const numAtts = note.attributes.length;
-    note.addAttribute(new Attribute("lecture", "1"));
-    expect(note.attributes.length).toBe(numAtts + 1);
-    note.removeAttribute(note.attributes[0].id);
-    expect(note.attributes.length).toBe(numAtts);
   });
 
   it("can add and delete a tag", () => {
@@ -30,12 +21,6 @@ describe("NoteModel", () => {
     note.setContent(contentFromText("some other text"));
     const content2 = await note.getContent();
     expect(content2).not.toBe(content1);
-  });
-});
-
-describe("Attribute", () => {
-  it("is exported and exists", () => {
-    expect(Attribute).toBeDefined();
   });
 });
 

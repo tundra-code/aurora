@@ -1,4 +1,3 @@
-import Attribute from "./Attribute.js";
 import Tag from "./Tag.js";
 import _ from "lodash";
 import uuidv4 from "uuid/v4";
@@ -11,10 +10,9 @@ export default class Note {
    * @param content Draft js content
    * @param mutationName String
    * @param tags array
-   * @param attributes array
    * @param options object
    */
-  constructor(content, mutationName, tags, attributes, options) {
+  constructor(content, mutationName, tags, options) {
     options = options || {}; // avoid undefined errors
 
     const cont = {};
@@ -28,27 +26,13 @@ export default class Note {
     this.created_at = options.created_at;
     this.updated_at = options.updated_at;
     this.preview = options.preview ? options.preview : { text: "New Note" };
-    this.attributes = attributes;
     this.tags = tags;
 
     this.forceUUIdToBeString();
   }
 
-  addAttribute = attribute => {
-    this.attributes.push(attribute);
-  };
-
   addTag = tag => {
     this.tags.push(tag);
-  };
-
-  removeAttribute = id => {
-    const index = this.attributes.findIndex(attr => {
-      return attr.id === id;
-    });
-    if (index !== -1) {
-      this.attributes.splice(index, 1);
-    }
   };
 
   removeTag = id => {
@@ -122,16 +106,12 @@ export default class Note {
    */
   static fromDBData(data) {
     const json = data.toJSON();
-    const attrs = [];
     const tags = [];
     json.tag.forEach(t => {
       tags.push(new Tag(t.value, { id: t.id }));
     });
-    json.attribute.forEach(at => {
-      attrs.push(new Attribute(at.key, at.value, at.searchable, { id: at.id }));
-    });
     const mutationName = json.mutationName;
-    return new Note(null, mutationName, tags, attrs, {
+    return new Note(null, mutationName, tags, {
       uuid: `${json.uuid}`,
       id: json.id,
       created_at: json.created_at,
