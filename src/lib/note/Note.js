@@ -36,9 +36,29 @@ export default class Note {
     this.tags.push(copy);
   };
 
-  removeTag = id => {
+  getTags = () => {
+    const copyOfTags = [];
+    this.tags.forEach(tag => {
+      const copy = Object.assign({}, tag);
+      copyOfTags.push(copy);
+    });
+    return copyOfTags;
+  };
+
+  updateTag = (uuid, tagValue) => {
     const index = this.tags.findIndex(tag => {
-      return tag.id === id;
+      return tag.uuid === uuid;
+    });
+    if (index !== -1) {
+      this.tags[index].value = tagValue;
+      const copy = Object.assign({}, this.tags[index]);
+      return copy;
+    }
+  };
+
+  removeTag = uuid => {
+    const index = this.tags.findIndex(tag => {
+      return tag.uuid === uuid;
     });
     if (index !== -1) {
       this.tags.splice(index, 1);
@@ -114,7 +134,7 @@ export default class Note {
     const json = data.toJSON();
     const tags = [];
     json.tag.forEach(t => {
-      tags.push(new Tag(t.value, { id: t.id }));
+      tags.push(new Tag(t.value, { id: t.id, uuid: t.uuid }));
     });
     const mutationName = json.mutationName;
     return new Note(null, mutationName, tags, {

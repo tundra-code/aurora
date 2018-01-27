@@ -40,7 +40,8 @@ function tagFromTagModel(tag, noteID) {
   return new Tag({
     id: tag.id,
     value: tag.value,
-    note_id: noteID
+    note_id: noteID,
+    uuid: tag.uuid
   });
 }
 

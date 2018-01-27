@@ -6,13 +6,16 @@ describe("NoteModel", () => {
     expect(NoteModel).toBeDefined();
   });
 
-  it("can add and delete a tag", () => {
+  it("can add, update, and delete a tag", () => {
     const note = newNote("hello");
-    const numTags = note.tags.length;
-    note.addTag(new Tag("git"));
-    expect(note.tags.length).toBe(numTags + 1);
-    note.removeTag(note.tags[0].id);
-    expect(note.tags.length).toBe(numTags);
+    const numTags = note.getTags().length;
+    const tag = new Tag("git");
+    note.addTag(tag);
+    expect(note.getTags().length).toBe(numTags + 1);
+    const updatedTag = note.updateTag(tag.uuid, "sql");
+    expect(updatedTag.value).not.toBe(tag.value);
+    note.removeTag(note.tags[0].uuid);
+    expect(note.getTags().length).toBe(numTags);
   });
 
   it("can set note content", async () => {
