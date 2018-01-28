@@ -15,8 +15,6 @@ export const newNote = text => {
         : EditorState.createEmpty()
     ),
     "BaseEditor",
-    [],
-    [],
     []
   );
 };

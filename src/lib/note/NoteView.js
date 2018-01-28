@@ -7,7 +7,12 @@ import { Card, Container } from "../ui";
 import { Editor } from "../editor";
 import {
   deleteNoteAndChangeSelection,
-  updateAndSaveNote
+  updateAndSaveNote,
+  setEditorState,
+  updateNote,
+  selectNote,
+  deleteNote,
+  saveNote
 } from "../../redux/actions";
 import TagContainer from "./TagContainer";
 import TagModel from "./Tag";
@@ -21,6 +26,10 @@ const DeleteButton = styled.button`
   right: -20px;
   top: -30px;
   font-size: ${props => props.theme.fontSize};
+`;
+
+const InsetText = styled.div`
+  color: ${props => props.theme.colors.insetText};
 `;
 
 const BumpedDownContainer = Container.extend`
@@ -80,26 +89,64 @@ class NoteView extends React.Component {
     const note = _.clone(this.props.note);
     note.removeTag(tag.id);
     this.props.updateAndSaveNote(note);
+    this.removeNote(this.props.note);
+  };
+
+  removeNote = note => {
+    this.props.dispatch(deleteNote(note));
+    this.props.dispatch(selectNote(null));
+  };
+
+  onEditorChange = (editorState, serializedContent, serializedPreview) => {
+    const note = this.props.note;
+    this.props.dispatch(setEditorState(editorState));
+    note.setContent(serializedContent);
+    note.setPreview(serializedPreview);
+    this.props.dispatch(updateNote(note));
+  };
+
+  onEditorContentLoaded = editorState => {
+    this.props.dispatch(setEditorState(editorState));
+  };
+
+  checkAndSaveNote = () => {
+    const note = this.props.note;
+    if (note === null) {
+      return;
+    }
+    // if (!this.props.ourEditorState.getCurrentContent().hasText()) {
+    //   this.removeNote(note);
+    //   return;
+    // }
+    saveNote(note);
+  };
+
+  onEditorBlur = () => {
+    this.checkAndSaveNote();
   };
 
   render() {
     const tags = this._getTags();
-
+    if (this.props.note === null) {
+      return (
+        <InsetText>Create new note or select note from sidebar.</InsetText>
+      );
+    }
     return (
       <BumpedDownContainer>
         <NoteViewContainer>
-          <TopViewContainer>
-            <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
-            <Editor {...this.props} />
-          </TopViewContainer>
-          <TagContainer
-            tags={tags}
-            tagInputValue={this.state.tagInputValue}
-            onChange={this.onTagInputChange}
-            onEnterPress={this.onTagSubmit}
-            onTagDelete={this.onTagDelete}
-          />
-        </NoteViewContainer>
+            <TopViewContainer>
+              <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
+              <Editor {...this.props} />
+            </TopViewContainer>
+            <TagContainer
+              tags={tags}
+              tagInputValue={this.state.tagInputValue}
+              onChange={this.onTagInputChange}
+              onEnterPress={this.onTagSubmit}
+              onTagDelete={this.onTagDelete}
+            />
+          </NoteViewContainer>
       </BumpedDownContainer>
     );
   }

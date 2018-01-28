@@ -1,10 +1,9 @@
 import {
   loadNotes as load,
-  saveNote,
+  saveNote as save,
   deleteNote as deleteN
 } from "../../lib/io";
 import { firstNoteIfDefined } from "../utils";
-import { EDITOR_NAME, deSerializeContent } from "../../lib/editor";
 /**
  * Action Name constants
  */
@@ -19,7 +18,6 @@ export const SET_EDITOR_STATE = "SET_EDITOR_STATE";
 export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
-export const BUMP_NOTE = "BUMP_NOTE";
 export const SEARCH_NOTE = "SEARCH_NOTE";
 
 /**
@@ -73,7 +71,7 @@ export function setEditorState(editorState) {
   return { type: SET_EDITOR_STATE, editorState };
 }
 
-const updateNote = note => {
+export function updateNote(note) {
   return { type: UPDATE_NOTE, note };
 };
 
@@ -92,9 +90,7 @@ export function loadNoteContent(note) {
   return dispatch => {
     dispatch(getNoteContent());
     return note.getContent().then(content => {
-      const editorState = deSerializeContent(content[EDITOR_NAME]);
       dispatch(receivedNoteContent(note, content));
-      dispatch(setEditorState(editorState));
     });
   };
 }
@@ -102,7 +98,9 @@ export function loadNoteContent(note) {
 export function selectAndLoadNote(note) {
   return dispatch => {
     dispatch(selectNote(note));
-    dispatch(loadNoteContent(note));
+    if (note !== null) {
+      dispatch(loadNoteContent(note));
+    }
   };
 }
 
@@ -118,10 +116,14 @@ export function loadNotes() {
 
 export function updateAndSaveNote(note) {
   return dispatch => {
-    saveNote(note).then(() => {
-      dispatch(updateNoteAndSelect(note));
+    save(note).then(() => {
+      dispatch(updateNote(note));
     });
   };
+}
+
+export function saveNote(note) {
+  save(note);
 }
 
 export function newNote(note) {
@@ -131,15 +133,4 @@ export function newNote(note) {
 export function deleteNote(note) {
   deleteN(note);
   return { type: DELETE_NOTE, note };
-}
-
-export function bumpNoteSelection() {
-  return { type: BUMP_NOTE };
-}
-
-export function deleteNoteAndChangeSelection(note) {
-  return dispatch => {
-    dispatch(bumpNoteSelection());
-    dispatch(deleteNote(note));
-  };
 }

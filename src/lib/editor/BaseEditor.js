@@ -1,18 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { RichUtils, Editor } from "draft-js";
+import { Editor } from "draft-js";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { EDITOR_NAME, serializeContent } from "./index";
-import {
-  setEditorState,
-  updateAndSaveNote,
-  newNote,
-  selectNote,
-  deleteNote
-} from "../../redux/actions";
-import { noteWithEmptyEditor } from "./util";
+import { EDITOR_NAME, serializeContent, deSerializeContent } from "./index";
+import { serializePreview } from "./Preview";
 
 const EditorStyles = styled.div`
   padding: ${props => props.theme.spacing.padding};
@@ -42,70 +35,44 @@ class BaseEditor extends React.Component {
     }
   };
 
+  componentDidUpdate(prevProps) {
+    const contentLoaded =
+      prevProps.isLoadingContent === true &&
+      this.props.isLoadingContent === false;
+    if (contentLoaded) {
+      this.finishedLoadingContent();
+    }
+  }
+
+  finishedLoadingContent = () => {
+    this.props.note.getContent().then(content => {
+      const editorState = deSerializeContent(
+        content[this.props.note.mutationName]
+      );
+      if (this.props.onContentLoaded) {
+        this.props.onContentLoaded(editorState);
+      }
+    });
+  };
+
   onChange = editorState => {
-    this.props.dispatch(setEditorState(editorState));
+    const serializedContent = serializeContent(editorState);
+    const serializedPreview = serializePreview(editorState);
+
     if (this.props.onChangeEx) {
-      this.props.onChangeEx(editorState);
+      this.props.onChangeEx(editorState, serializedContent, serializedPreview);
+    }
+  };
+
+  onBlur = () => {
+    if (this.props.onBlurEx) {
+      this.props.onBlurEx();
     }
   };
 
   componentDidMount() {
     this.handleFocus();
   }
-
-  // trying to save upon quitting without onBlur. But doesn't work currently.
-  componentWillUnmount() {
-    this.updateAndSaveNote();
-  }
-
-  createNewNote = () => {
-    const note = noteWithEmptyEditor();
-    this.props.dispatch(newNote(note));
-    this.props.dispatch(selectNote(note));
-  };
-
-  onFocus = () => {
-    if (this.props.note !== null) {
-      return;
-    }
-    this.createNewNote();
-  };
-
-  removeNote = note => {
-    this.props.dispatch(deleteNote(note));
-    this.props.dispatch(selectNote(null));
-  };
-
-  updateAndSaveNote = () => {
-    const note = this.props.note;
-    if (note === null) {
-      return;
-    }
-    if (!this.props.ourEditorState.getCurrentContent().hasText()) {
-      this.removeNote(note);
-      return;
-    }
-    const content = serializeContent(this.props.ourEditorState);
-    note.setContent(content);
-    note.updatePreview();
-    this.props.dispatch(updateAndSaveNote(note));
-  };
-
-  onBlur = () => {
-    this.updateAndSaveNote();
-  };
-
-  // rich styling here
-  handleKeyCommand = (command, editorState) => {
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-    if (newState) {
-      if (window.styling) {
-        this.onChange(newState);
-      }
-      return "handled";
-    }
-    return "not-handled";
-  };
 
   render() {
     return (
@@ -128,8 +95,11 @@ class BaseEditor extends React.Component {
 BaseEditor.propTypes = {
   focused: PropTypes.bool,
   onChangeEx: PropTypes.func,
+  onBlurEx: PropTypes.func,
+  onContentLoaded: PropTypes.func,
   selectNote: PropTypes.object,
-  ourEditorState: PropTypes.object.isRequired
+  ourEditorState: PropTypes.object.isRequired,
+  isLoadingContent: PropTypes.bool.isRequired
 };
 
 export default connect()(mutate(BaseEditor, EDITOR_NAME));
