@@ -11,14 +11,12 @@ import {
   SET_EDITOR_STATE,
   UPDATE_NOTE,
   DELETE_NOTE,
-  BUMP_NOTE,
   SEARCH_NOTE
 } from "../actions";
 import {
-  emptyEditorState,
   updateNoteInAllNotes,
   removeNoteFromAllNotes,
-  pickPreviousNoteInList
+  emptyEditorState
 } from "../utils";
 import { noteArrayToDict } from "../../lib/note/util";
 
@@ -86,15 +84,6 @@ function notes(
       return Object.assign({}, state, {
         allNotes: updateNoteInAllNotes(action.note, state.allNotes)
       });
-    case BUMP_NOTE: {
-      const newSelectedNote = pickPreviousNoteInList(
-        state.allNotes,
-        state.selectedNote
-      );
-      return Object.assign({}, state, {
-        selectedNote: newSelectedNote
-      });
-    }
     case DELETE_NOTE:
       return Object.assign({}, state, {
         allNotes: removeNoteFromAllNotes(action.note, state.allNotes)

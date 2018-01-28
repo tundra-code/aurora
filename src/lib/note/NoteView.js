@@ -5,7 +5,13 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Card, Container } from "../ui";
 import { Editor } from "../editor";
-import { deleteNote, selectNote } from "../../redux/actions";
+import {
+  setEditorState,
+  updateNote,
+  selectNote,
+  deleteNote,
+  saveNote
+} from "../../redux/actions";
 
 const DeleteButton = styled.button`
   float: right;
@@ -35,8 +41,40 @@ class NoteView extends React.Component {
     if (this.props.note === null) {
       return;
     }
-    this.props.dispatch(deleteNote(this.props.note));
+    this.removeNote(this.props.note);
+  };
+
+  removeNote = note => {
+    this.props.dispatch(deleteNote(note));
     this.props.dispatch(selectNote(null));
+  };
+
+  onEditorChange = (editorState, serializedContent, serializedPreview) => {
+    const note = this.props.note;
+    this.props.dispatch(setEditorState(editorState));
+    note.setContent(serializedContent);
+    note.setPreview(serializedPreview);
+    this.props.dispatch(updateNote(note));
+  };
+
+  onEditorContentLoaded = editorState => {
+    this.props.dispatch(setEditorState(editorState));
+  };
+
+  checkAndSaveNote = () => {
+    const note = this.props.note;
+    if (note === null) {
+      return;
+    }
+    // if (!this.props.ourEditorState.getCurrentContent().hasText()) {
+    //   this.removeNote(note);
+    //   return;
+    // }
+    saveNote(note);
+  };
+
+  onEditorBlur = () => {
+    this.checkAndSaveNote();
   };
 
   render() {
@@ -49,7 +87,12 @@ class NoteView extends React.Component {
       <BumpedDownContainer>
         <Card>
           <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
-          <Editor {...this.props} />
+          <Editor
+            {...this.props}
+            onChangeEx={this.onEditorChange}
+            onBlurEx={this.onEditorBlur}
+            onContentLoaded={this.onEditorContentLoaded}
+          />
         </Card>
       </BumpedDownContainer>
     );
