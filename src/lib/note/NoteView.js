@@ -52,8 +52,12 @@ class NoteView extends React.Component {
   onEditorChange = (editorState, serializedContent, serializedPreview) => {
     const note = this.props.note;
     this.props.dispatch(setEditorState(editorState));
-    note.setContent(serializedContent);
-    note.setPreview(serializedPreview);
+    if (serializedContent) {
+      note.setContent(serializedContent);
+    }
+    if (serializedPreview) {
+      note.setPreview(serializedPreview);
+    }
     this.props.dispatch(updateNote(note));
   };
 

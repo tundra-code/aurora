@@ -4,7 +4,7 @@ import { Editor } from "draft-js";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { EDITOR_NAME, serializeContent, deSerializeContent } from "./index";
+import { serializeContent, deSerializeContent } from "./index";
 import { serializePreview } from "./Preview";
 
 const EditorStyles = styled.div`
@@ -102,4 +102,4 @@ BaseEditor.propTypes = {
   isLoadingContent: PropTypes.bool.isRequired
 };
 
-export default connect()(mutate(BaseEditor, EDITOR_NAME));
+export default connect()(mutate(BaseEditor, "BaseEditor"));
