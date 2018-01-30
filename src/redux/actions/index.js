@@ -1,10 +1,9 @@
 import {
   loadNotes as load,
-  saveNote,
+  saveNote as save,
   deleteNote as deleteN
 } from "../../lib/io";
 import { firstNoteIfDefined } from "../utils";
-import { EDITOR_NAME, deSerializeContent } from "../../lib/editor";
 /**
  * Action Name constants
  */
@@ -19,6 +18,7 @@ export const SET_EDITOR_STATE = "SET_EDITOR_STATE";
 export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
+export const SEARCH_NOTE = "SEARCH_NOTE";
 
 /**
  * Other constants
@@ -55,14 +55,8 @@ export function selectNote(note) {
   return { type: SELECT_NOTE, note };
 }
 
-export function loadNotes() {
-  return dispatch => {
-    dispatch(getNotes());
-    return load().then(notes => {
-      dispatch(receivedNotes(notes));
-      dispatch(selectNote(firstNoteIfDefined(notes)));
-    });
-  };
+export function setQuery(query) {
+  return { type: SEARCH_NOTE, query };
 }
 
 function getNoteContent(note) {
@@ -77,7 +71,7 @@ export function setEditorState(editorState) {
   return { type: SET_EDITOR_STATE, editorState };
 }
 
-function updateNote(note) {
+export function updateNote(note) {
   return { type: UPDATE_NOTE, note };
 }
 
@@ -85,18 +79,40 @@ export function loadNoteContent(note) {
   return dispatch => {
     dispatch(getNoteContent());
     return note.getContent().then(content => {
-      const editorState = deSerializeContent(content[EDITOR_NAME]);
       dispatch(receivedNoteContent(note, content));
-      dispatch(setEditorState(editorState));
+    });
+  };
+}
+
+export function selectAndLoadNote(note) {
+  return dispatch => {
+    dispatch(selectNote(note));
+    if (note !== null) {
+      dispatch(loadNoteContent(note));
+    }
+  };
+}
+
+export function loadNotes() {
+  return dispatch => {
+    dispatch(getNotes());
+    return load().then(notes => {
+      dispatch(receivedNotes(notes));
+      dispatch(selectAndLoadNote(firstNoteIfDefined(notes)));
     });
   };
 }
 
 export function updateAndSaveNote(note) {
   return dispatch => {
-    saveNote(note);
-    dispatch(updateNote(note));
+    save(note).then(() => {
+      dispatch(updateNote(note));
+    });
   };
+}
+
+export function saveNote(note) {
+  save(note);
 }
 
 export function newNote(note) {

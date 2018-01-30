@@ -1,5 +1,4 @@
-import NoteModel from "./Note.js";
-import Attribute from "./Attribute.js";
+import NoteModel from "./Note";
 import Tag from "./Tag.js";
 
-export { NoteModel, Attribute, Tag };
+export { NoteModel, Tag };

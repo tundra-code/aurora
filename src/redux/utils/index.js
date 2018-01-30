@@ -1,13 +1,6 @@
 import { EditorState } from "draft-js";
 import _ from "lodash";
-
-export const notesToDict = notes => {
-  const dict = {};
-  notes.forEach(note => {
-    dict[note.uuid] = note;
-  });
-  return dict;
-};
+import { noteDictToArray } from "../../lib/note/util";
 
 export const updateNote = (note, notesDict) => {
   notesDict[note.uuid] = note;
@@ -24,13 +17,39 @@ export const emptyEditorState = () => {
   return EditorState.createEmpty();
 };
 
-export const pickNoteFromAllNotes = allNotes => {
-  const keys = Object.keys(allNotes);
-  if (keys.length === 0) {
+export const indexOfNoteInArray = (noteArr, note) => {
+  return noteArr.map(n => n.uuid).indexOf(note.uuid);
+};
+
+export const pickPreviousNoteInList = (allNotes, selectedNote) => {
+  const noteArr = noteDictToArray(allNotes);
+
+  // Don't return anything if we have no other notes to pick from
+  if (noteArr.length === 0 || noteArr.length === 1) {
     return null;
   }
 
-  return allNotes[keys[0]];
+  let index = indexOfNoteInArray(noteArr, selectedNote);
+
+  // Just make sure we're not doing anything screwy
+  if (index === -1) {
+    throw new Error(
+      `pickPreviousNoteInList called with a note that doesn't exist. Selected note is: ${
+        selectedNote
+      }. Did you try to select a note that you deleted somehow? This may happen if you call 
+      a "deleteNote" action before a "selectNote" action.
+      `
+    );
+  }
+
+  // If select the item "up", do that, otherwise go down.
+  if (index > 0) {
+    index -= 1;
+  } else {
+    index += 1;
+  }
+
+  return noteArr[index];
 };
 
 export const updateNoteInAllNotes = (note, allNotes) => {

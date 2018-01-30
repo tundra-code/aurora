@@ -22,7 +22,8 @@ export default {
 
     // Text
     lightText: "#76657D",
-    text: "#331340"
+    text: "#331340",
+    insetText: "#9E96A1"
   },
 
   font: "Helvetica",
@@ -33,6 +34,6 @@ export default {
   spacing: {
     padding: "1em",
     extraPadding: "2em",
-    header: "2.5em"
+    header: "3.5em"
   }
 };

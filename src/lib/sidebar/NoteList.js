@@ -2,12 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { loadNotes } from "../../redux/actions";
 import NoteListItem from "./NoteListItem.js";
-import { Menu, MenuCardList, MenuItem } from "../ui/Menu";
-import { allNotes } from "../../redux/selectors";
-
-const BumpedDownMenu = Menu.extend`
-  padding-top: ${props => props.theme.spacing.header};
-`;
+import { MenuCardList } from "../ui/Menu";
+import { allNotes, query } from "../../redux/selectors";
+import { noteDictToArray } from "../note/util";
 
 class NoteList extends React.Component {
   constructor(props) {
@@ -18,18 +15,23 @@ class NoteList extends React.Component {
     this.props.dispatch(loadNotes());
   }
 
+  filterNotesBasedOnQuery = note => {
+    return note.tags.map(tag => tag.value).includes(this.props.query);
+  };
+
   render() {
-    const noteList = [];
-    for (const uuid in this.props.allNotes) {
-      const note = this.props.allNotes[uuid];
-      noteList.push(<NoteListItem key={note.uuid} note={note} />);
+    let noteObjectList = noteDictToArray(this.props.allNotes);
+    if (this.props.query.length !== 0) {
+      noteObjectList = noteObjectList.filter(this.filterNotesBasedOnQuery);
     }
+    const noteList = noteObjectList.map(note => (
+      <NoteListItem key={note.uuid} note={note} />
+    ));
 
     return (
-      <BumpedDownMenu>
-        <MenuItem active> 🔮 Untagged </MenuItem>
+      <div>
         <MenuCardList> {noteList} </MenuCardList>
-      </BumpedDownMenu>
+      </div>
     );
   }
 }
@@ -37,7 +39,10 @@ class NoteList extends React.Component {
 NoteList.propTypes = {};
 
 const mapStateToProps = state => {
-  return { allNotes: allNotes(state) };
+  return {
+    allNotes: allNotes(state),
+    query: query(state)
+  };
 };
 
 export default connect(mapStateToProps)(NoteList);
