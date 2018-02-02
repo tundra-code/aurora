@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["index","mutations"],envversion:52,filenames:["index.md","mutations.md"],objects:{},objnames:{},objtypes:{},terms:{These:0,doc:0,how:1,thei:1,them:1,todo:1,what:1,write:1},titles:["Aurora","Mutations"],titleterms:{aurora:0,mutat:1}})
