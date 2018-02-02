@@ -1,12 +1,12 @@
-# How to Write a Mutation for Aurora
+# Mutations in Aurora
 This is a simple tutorial for writing a mutation for the Aurora application. These are the steps you'll need to follow:
-1. setting up npm
-2. writing your mutation
-3. setting up Webpack
-4. publishing your mutation to npm
+1. Setting up npm
+2. Writing your mutation
+3. Setting up Webpack
+4. Publishing your mutation to npm
 
 Mutations allow our users to have ultimate flexibility with their note taking styles. A mutation can change most aspects of Aurora. For instance, if you like taking notes in a cornell style format, you can write a mutation that will allow you to do that. Don't like the way the previews look? You can write a mutation to change that.
-## npm
+## Plugins as NPM Packages
 First you’ll need to install node if you don’t already have it. That can be done with this link: [node download](https://nodejs.org/en/download/)
 
 
@@ -35,7 +35,7 @@ This command creates a package.json file and it will prompt you to enter in valu
 ![package json](https://i.imgur.com/4kMpiWm.png)
 
 If you need more help with npm check out their tutorial: [npm tutorial](https://docs.npmjs.com/getting-started/what-is-npm)
-## Mutation
+## Creating the Mutation
 After you create the package.json file, then you can create your mutation. Create another file in the same folder that your `package.json` is in. It needs to be titled the same as what you put in the `entry point` field when creating your `package.json`. In this running example that file is `index.js`.
 
 ![mutation setup](https://i.imgur.com/Sy2hIXm.png)
@@ -43,7 +43,8 @@ After you create the package.json file, then you can create your mutation. Creat
 Your mutation will need to be written in React, which is a framework for javascript. If you do not already have an editor that works well with React, you can get [Atom](https://atom.io/) or [VScode](https://code.visualstudio.com/).
 
 Here is an example on how to mutate the editor of Aurora to turn it purple
-```import React from "react";
+```js
+import React from "react";
 import styled from "styled-components";
 
 const purple = `
@@ -65,7 +66,8 @@ module.exports.mutations = {
 };
 ```
 Here is an example on how to mutate the frame of Aurora to replace it with a flying cat gif
-```import React from "react";
+```js
+import React from "react";
 import styled from "styled-components";
 
 const EVERYWHERE = styled.img`
@@ -106,13 +108,13 @@ For more information about the React technique used to write mutations check thi
 https://reactjs.org/docs/higher-order-components.html
 
 
-## Webpack
+## Building with Webpack
 Webpack is a bundler, and we’re going to use it to bundle your mutation once you have written it. You can install Webpack by entering this onto your command line
 
 `npm install webpack -g`
 
 Next you’ll have to create a `webpack.config.js` file. This file will tell webpack what it should do. Here is an example of what it should look like.
-```
+```js
 const path = require("path");
 
 module.exports = {
@@ -138,7 +140,7 @@ Then, you’ll have to bundle in react and styled components by running the foll
 `npm install --save react styled-components`
 
 Your `package.json` file should now look something like this
-```
+```js
 {
   "name": "aurora-mutate-purple-editor",
   "version": "1.0.0",
@@ -167,7 +169,7 @@ Your `package.json` file should now look something like this
 }
 ```
 After you write your config file and run the previous npm commands, you'll have to create a `.babelrc` file in your main mutation folder. The contents of that file should be exactly as follows.
-```
+```js
 {
   "presets": ["env", "react"]
 }
@@ -193,5 +195,5 @@ npm version <update-type>   //updates your npm package
 npm publish                 //publishes your updated package
 ```
 
-## Check out the Aurora Mutations Store!
+## See in the Aurora Mutations Store
 Once you publish your npm package your mutation will be available for all of the Aurora users to add to their version of the application!
