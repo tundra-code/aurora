@@ -1,7 +1,7 @@
 # Aurora
 
 ## Overview
-Aurora is an open source note taker with first class support for third part extensions. It's built on [react-mutate](https://github.com/Flaque/react-mutate), a framework for creating "mutations" in React. 
+Aurora is an open source note taker with first class support for third part extensions. It's built on [react-mutate](https://github.com/Flaque/react-mutate), a framework for creating "mutations" in React.
 
 It's still a little early in the process, but here's the general idea of what we're building at the moment:
 
@@ -15,7 +15,7 @@ It's still a little early in the process, but here's the general idea of what we
 </p>
 
 
-## For Devs 
+## For Devs
 The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** recommended, as opposed to using `npm`.
 
 ### Development Scripts
@@ -47,7 +47,7 @@ yarn db-reset -e test
 yarn db-down -e development
 yarn db-up -d development
 yarn db-create-config
-yarn db-migration-create myNewMigration
+yarn db-migrate-create myNewMigration
 
 # Adding a note
 # CURRENTLY DOES NOT WORK!!!

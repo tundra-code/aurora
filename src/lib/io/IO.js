@@ -1,6 +1,6 @@
 import { insertNote } from "./sqlite/insert.js";
 import { queryNotes } from "./sqlite/query.js";
-import { cascadeDeleteNote } from "./sqlite/delete.js";
+import { cascadeDeleteNote, deleteTagFromDB } from "./sqlite/delete.js";
 import {
   auroraDirContext,
   saveToAsync,
@@ -20,7 +20,7 @@ const preferencesFile = auroraPreferencesFile();
   @returns Promise
    */
 function saveNote(note) {
-  throwIfNotNoteModel(note);
+  //throwIfNotNoteModel(note); // This isn't working for some reason
   return insertNote(note);
 }
 
@@ -134,5 +134,6 @@ export {
   savePreferences,
   updatePreferences,
   createPreferencesIfNotExist,
-  installMutationFiles
+  installMutationFiles,
+  deleteTagFromDB
 };

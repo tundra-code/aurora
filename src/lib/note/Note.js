@@ -1,7 +1,7 @@
 import Tag from "./Tag.js";
 import _ from "lodash";
 import uuidv4 from "uuid/v4";
-import { loadNoteContent } from "../io";
+import { loadNoteContent, deleteTagFromDB } from "../io";
 import { renderPreview as renderPre } from "../preview";
 import { emptySerializedEditorState } from "../editor/util";
 
@@ -61,6 +61,7 @@ export default class Note {
       return tag.uuid === uuid;
     });
     if (index !== -1) {
+      deleteTagFromDB(this.tags[index]);
       this.tags.splice(index, 1);
     }
   };

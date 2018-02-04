@@ -17,31 +17,8 @@ exports.setup = function(options, seedLink) {
 function createTagTable(db) {
   return db.createTable("Tags", {
     id: { type: "int", primaryKey: true, autoIncrement: true },
+    uuid: { type: "string", notNull: true },
     value: { type: "string", notNull: true },
-    note_id: {
-      type: "int",
-      notNull: true,
-      foreignKey: {
-        name: "attribute_note_id_fk",
-        table: "Notes",
-        rules: {
-          onDelete: "CASCADE",
-          onUpdate: "RESTRICT"
-        },
-        mapping: "id"
-      }
-    },
-    created_at: { type: "int", notNull: true },
-    updated_at: { type: "int", notNull: true }
-  });
-}
-
-function createAttrbuteTable(db) {
-  return db.createTable("Attributes", {
-    id: { type: "int", primaryKey: true, autoIncrement: true },
-    key: { type: "string", notNull: true },
-    value: { type: "string", notNull: true },
-    searchable: { type: "boolean", notNull: true },
     note_id: {
       type: "int",
       notNull: true,
@@ -66,12 +43,10 @@ function createNoteTable(db) {
       id: { type: "int", primaryKey: true, autoIncrement: true },
       uuid: { type: "string", notNull: true },
       mutationName: { type: "string", notNull: true },
-      preview: { type: "string", notNull: true },
+      preview: { type: "text", notNull: true },
+      searchable_text: { type: "text" },
       created_at: { type: "int", notNull: true },
       updated_at: { type: "int", notNull: true }
-    })
-    .then(() => {
-      createAttrbuteTable(db);
     })
     .then(() => {
       createTagTable(db);
@@ -83,14 +58,9 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-  return db
-    .dropTable("Attributes")
-    .then(() => {
-      db.dropTable("Tags");
-    })
-    .then(() => {
-      db.dropTable("Notes");
-    });
+  return db.dropTable("Tags").then(() => {
+    db.dropTable("Notes");
+  });
 };
 
 exports._meta = {

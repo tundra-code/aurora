@@ -81,6 +81,12 @@ function notes(
         editorState: action.editorState
       });
     case UPDATE_NOTE:
+      if (action.note.uuid === state.selectedNote.uuid) {
+        return Object.assign({}, state, {
+          allNotes: updateNoteInAllNotes(action.note, state.allNotes),
+          selectedNote: Object.assign({}, action.note) // copy to force props to update
+        });
+      }
       return Object.assign({}, state, {
         allNotes: updateNoteInAllNotes(action.note, state.allNotes)
       });

@@ -16,7 +16,18 @@ class NoteList extends React.Component {
   }
 
   filterNotesBasedOnQuery = note => {
-    return note.tags.map(tag => tag.value).includes(this.props.query);
+    const searchTags = this.props.query.split(" ");
+    const noteTags = note.getTags();
+    for (const tag of searchTags) {
+      const trimmedTag = tag.trim().replace(/\W/g, ""); // remove alphanumeric
+      const matchingTags = noteTags.filter(t =>
+        t.value.toLowerCase().includes(trimmedTag.toLowerCase())
+      );
+      if (matchingTags.length === 0) {
+        return false;
+      }
+    }
+    return true;
   };
 
   render() {

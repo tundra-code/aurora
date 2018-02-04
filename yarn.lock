@@ -4390,10 +4390,6 @@ immutable-props@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/immutable-props/-/immutable-props-1.1.0.tgz#2489b49a27c3b01c742ff13107e7c033c1a5cec9"
 
-immutable@^3.8.2:
-  version "3.8.2"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
-
 immutable@~3.7.4:
   version "3.7.6"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
@@ -5250,6 +5246,10 @@ jsx-ast-utils@^2.0.0:
 just-extend@^1.1.26:
   version "1.1.27"
   resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-1.1.27.tgz#ec6e79410ff914e472652abfa0e603c03d60e905"
+
+key-code@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/key-code/-/key-code-0.0.1.tgz#96c82c538814653edbb69010fc16211991281342"
 
 keyboardevent-from-electron-accelerator@^0.7.0:
   version "0.7.1"
@@ -7039,6 +7039,10 @@ react-dom@^16.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react-feather@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.0.7.tgz#f2118f1d2402b0c1e6f23c732f9e7f9fd4ca61e2"
 
 react-redux@^5.0.6:
   version "5.0.6"

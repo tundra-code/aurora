@@ -2,6 +2,7 @@ import {
   saveNote,
   loadNotes,
   deleteNote,
+  deleteTagFromDB,
   loadPreferences,
   savePreferences,
   updatePreferences,
@@ -38,5 +39,6 @@ export {
   createDatabaseConfig,
   ensureDirExists,
   installNewMutation,
-  uninstallMutation
+  uninstallMutation,
+  deleteTagFromDB
 };
