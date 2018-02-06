@@ -9,8 +9,8 @@ import {
 import NoteView from "../note/NoteView";
 import styled from "styled-components";
 import { selectNote, newNote } from "../../redux/actions";
-import { noteWithEmptyEditor } from "../editor";
 import { Container } from "../ui";
+import { NoteModel } from "../note";
 
 const AddButtonContainer = styled.div`
   display: flex;
@@ -36,9 +36,21 @@ class Feed extends React.Component {
   }
 
   onAdd = () => {
-    const note = noteWithEmptyEditor();
+    // Display to user options of different editor types
+    console.log(Object.keys(window.editors));
+
+    // Then create a note with the selected editor name.
+    const note = this.newNote("BaseEditor");
     this.props.dispatch(newNote(note));
     this.props.dispatch(selectNote(note));
+  };
+
+  newNote = mutationName => {
+    return new NoteModel(
+      window.editors[mutationName].emptySerializedEditorState,
+      mutationName,
+      []
+    );
   };
 
   render() {

@@ -5,7 +5,7 @@ import {
   auroraDirContext,
   saveToAsync,
   readFromAsync,
-  throwIfNotNoteModel,
+  //throwIfNotNoteModel,
   exists
 } from "./util.js";
 import { auroraUserPath, auroraPreferencesFile } from "../paths";
@@ -30,7 +30,7 @@ function saveNote(note) {
   @returns Promise
    */
 function deleteNote(note) {
-  throwIfNotNoteModel(note);
+  //throwIfNotNoteModel(note); // This isn't working for some reason
   return new Promise((resolve, reject) => {
     cascadeDeleteNote(note, resolve, reject);
   });

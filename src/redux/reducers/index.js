@@ -64,9 +64,15 @@ function notes(
       if (action.note === state.selectedNote) {
         return state;
       }
+      if (action.note === null) {
+        return Object.assign({}, state, {
+          selectedNote: action.note,
+          editorState: emptyEditorState()
+        });
+      }
       return Object.assign({}, state, {
         selectedNote: action.note,
-        editorState: emptyEditorState()
+        editorState: window.editors[action.note.mutationName].emptyEditorState
       });
     case LOAD_NOTE_CONTENT:
       return Object.assign({}, state, {
