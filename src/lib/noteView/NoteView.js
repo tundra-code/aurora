@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import ContentView from "./ContentView";
 import { Card, Container } from "../ui";
-import { Editor } from "../editor";
 import {
   updateAndSaveNote,
   setEditorState,
@@ -14,7 +14,7 @@ import {
   saveNote
 } from "../../redux/actions";
 import TagContainer from "./TagContainer";
-import TagModel from "./Tag";
+import TagModel from "../note/Tag";
 
 const DeleteButton = styled.button`
   float: right;
@@ -137,7 +137,7 @@ class NoteView extends React.Component {
         <NoteViewContainer>
           <TopViewContainer>
             <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
-            <Editor
+            <ContentView
               {...this.props}
               onChangeEx={this.onEditorChange}
               onBlurEx={this.onEditorBlur}

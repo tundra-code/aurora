@@ -93,7 +93,6 @@ class BaseEditor extends React.Component {
 }
 
 BaseEditor.propTypes = {
-  focused: PropTypes.bool,
   onChangeEx: PropTypes.func,
   onBlurEx: PropTypes.func,
   onContentLoaded: PropTypes.func,
