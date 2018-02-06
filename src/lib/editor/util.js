@@ -46,11 +46,14 @@ function deSerializeContent(content) {
   return editorState;
 }
 
-window.editors = {
-  BaseEditor: {
-    emptyEditorState: emptyEditorState(),
-    newNoteContent: emptySerializedEditorState()
-  }
+// Initialize editor registry if needed.
+if (window.editors === undefined) {
+  window.editors = {};
+}
+// Add base editor to global registry
+window.editors.BaseEditor = {
+  emptyEditorState: emptyEditorState(),
+  newNoteContent: emptySerializedEditorState()
 };
 
 export {
