@@ -46,8 +46,19 @@ class NoteView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tagInputValue: ""
+      tagInputValue: "",
+      focused: false
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.note &&
+      this.props.note &&
+      prevProps.note.uuid !== this.props.note.uuid
+    ) {
+      this.setState({ tagInputValue: "" });
+    }
   }
 
   onDelete = () => {
@@ -92,6 +103,10 @@ class NoteView extends React.Component {
   };
 
   onEditorChange = (editorState, serializedContent, serializedPreview) => {
+    if (!this.state.focused) {
+      return; // avoid writing editor changes when it's not even focused
+    }
+
     const note = this.props.note;
     this.props.dispatch(setEditorState(editorState));
     if (serializedContent) {
@@ -112,15 +127,23 @@ class NoteView extends React.Component {
     if (note === null) {
       return;
     }
-    // if (!this.props.ourEditorState.getCurrentContent().hasText()) {
-    //   this.removeNote(note);
-    //   return;
-    // }
-    saveNote(note);
+    this.props.dispatch(saveNote(note));
+  };
+
+  handleKeyPress = event => {
+    if (event.ctrlKey && event.keyCode === 83) {
+      this.checkAndSaveNote();
+    }
   };
 
   onEditorBlur = () => {
-    this.checkAndSaveNote();
+    this.setState({ focused: false }, () => {
+      this.checkAndSaveNote();
+    });
+  };
+
+  onEditorFocus = () => {
+    this.setState({ focused: true });
   };
 
   render() {
@@ -135,13 +158,14 @@ class NoteView extends React.Component {
     return (
       <BumpedDownContainer>
         <NoteViewContainer>
-          <TopViewContainer>
+          <TopViewContainer onKeyDown={this.handleKeyPress}>
             <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
             <Editor
               {...this.props}
               onChangeEx={this.onEditorChange}
               onBlurEx={this.onEditorBlur}
               onContentLoaded={this.onEditorContentLoaded}
+              onFocusEx={this.onEditorFocus}
             />
           </TopViewContainer>
           <TagContainer

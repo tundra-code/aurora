@@ -20,3 +20,4 @@ export const selectedNote = state => notes(state).selectedNote;
 export const isLoadingContent = state => notes(state).isLoadingContent;
 export const editorState = state => notes(state).editorState;
 export const query = state => notes(state).query;
+export const unsavedChanges = state => notes(state).unsavedChanges;

@@ -19,6 +19,7 @@ export const SET_TOAST = "SET_TOAST";
 export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 export const SEARCH_NOTE = "SEARCH_NOTE";
+export const SAVED_NOTE = "SAVED_NOTE";
 
 /**
  * Other constants
@@ -103,16 +104,23 @@ export function loadNotes() {
   };
 }
 
+function savedNote(note) {
+  return { type: SAVED_NOTE, note };
+}
+
 export function updateAndSaveNote(note) {
   return dispatch => {
-    save(note).then(() => {
-      dispatch(updateNote(note));
-    });
+    dispatch(updateNote(note));
+    dispatch(savedNote(note));
+    save(note);
   };
 }
 
 export function saveNote(note) {
-  save(note);
+  return dispatch => {
+    dispatch(savedNote(note));
+    save(note);
+  };
 }
 
 export function newNote(note) {

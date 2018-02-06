@@ -70,6 +70,12 @@ class BaseEditor extends React.Component {
     }
   };
 
+  onFocus = () => {
+    if (this.props.onFocusEx) {
+      this.props.onFocusEx();
+    }
+  };
+
   componentDidMount() {
     this.handleFocus();
   }
@@ -96,6 +102,7 @@ BaseEditor.propTypes = {
   focused: PropTypes.bool,
   onChangeEx: PropTypes.func,
   onBlurEx: PropTypes.func,
+  onFocusEx: PropTypes.func,
   onContentLoaded: PropTypes.func,
   selectNote: PropTypes.object,
   ourEditorState: PropTypes.object.isRequired,

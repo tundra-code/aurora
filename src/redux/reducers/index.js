@@ -11,7 +11,8 @@ import {
   SET_EDITOR_STATE,
   UPDATE_NOTE,
   DELETE_NOTE,
-  SEARCH_NOTE
+  SEARCH_NOTE,
+  SAVED_NOTE
 } from "../actions";
 import {
   updateNoteInAllNotes,
@@ -46,7 +47,8 @@ function notes(
     selectedNote: null,
     editorState: emptyEditorState(),
     isLoadingContent: false,
-    query: ""
+    query: "",
+    unsavedChanges: false
   },
   action
 ) {
@@ -54,6 +56,10 @@ function notes(
     case LOAD_NOTES:
       return Object.assign({}, state, {
         isLoadingNotes: true
+      });
+    case SAVED_NOTE:
+      return Object.assign({}, state, {
+        unsavedChanges: false
       });
     case RECEIVED_NOTES:
       return Object.assign({}, state, {
@@ -84,11 +90,13 @@ function notes(
       if (action.note.uuid === state.selectedNote.uuid) {
         return Object.assign({}, state, {
           allNotes: updateNoteInAllNotes(action.note, state.allNotes),
-          selectedNote: Object.assign({}, action.note) // copy to force props to update
+          selectedNote: Object.assign({}, action.note), // copy to force props to update
+          unsavedChanges: true
         });
       }
       return Object.assign({}, state, {
-        allNotes: updateNoteInAllNotes(action.note, state.allNotes)
+        allNotes: updateNoteInAllNotes(action.note, state.allNotes),
+        unsavedChanges: true
       });
     case DELETE_NOTE:
       return Object.assign({}, state, {
