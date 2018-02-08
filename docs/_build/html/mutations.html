@@ -1,88 +1,418 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Mutations &#8212; Aurora 0.0.1 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mutations in Aurora &mdash; Aurora 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Aurora 0.0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Aurora" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
-  </head>
-  <body>
-  
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> Aurora
+          
+
+          
+          </a>
+
+          
             
-  <div class="section" id="mutations">
-<span id="mutations"></span><h1>Mutations<a class="headerlink" href="#mutations" title="Permalink to this headline">¶</a></h1>
-<p>How to write them and what they are //TODO</p>
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
 
-
-          </div>
+          
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  </ul></li>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Plugin System</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mutations in Aurora</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plugins-as-npm-packages">Plugins as NPM Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-the-mutation">Creating the Mutation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-with-webpack">Building with Webpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#publishing-your-npm-package">Publishing your npm package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#updating-your-npm-package">Updating your npm package</a></li>
 </ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#see-in-the-aurora-mutations-store">See in the Aurora Mutations Store</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2018, Tundra.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-      |
-      <a href="_sources/mutations.md.txt"
-          rel="nofollow">Page source</a>
-    </div>
+    </nav>
 
-    
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Aurora</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
     
-  </body>
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Mutations in Aurora</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/mutations.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mutations-in-aurora">
+<span id="mutations-in-aurora"></span><h1>Mutations in Aurora<a class="headerlink" href="#mutations-in-aurora" title="Permalink to this headline">¶</a></h1>
+<p>This is a simple tutorial for writing a mutation for the Aurora application. These are the steps you’ll need to follow:</p>
+<ol class="simple">
+<li>Setting up npm</li>
+<li>Writing your mutation</li>
+<li>Setting up Webpack</li>
+<li>Publishing your mutation to npm</li>
+</ol>
+<p>Mutations allow our users to have ultimate flexibility with their note taking styles. A mutation can change most aspects of Aurora. For instance, if you like taking notes in a cornell style format, you can write a mutation that will allow you to do that. Don’t like the way the previews look? You can write a mutation to change that.</p>
+<div class="section" id="plugins-as-npm-packages">
+<span id="plugins-as-npm-packages"></span><h2>Plugins as NPM Packages<a class="headerlink" href="#plugins-as-npm-packages" title="Permalink to this headline">¶</a></h2>
+<p>First you’ll need to install node if you don’t already have it. That can be done with this link: <a class="reference external" href="https://nodejs.org/en/download/">node download</a></p>
+<p>Node comes with a version of npm, but you will need to check if it is the latest version. That can be done with entering this command in your terminal</p>
+<p><code class="docutils literal"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">npm&#64;latest</span> <span class="pre">-g</span></code></p>
+<p>To test if it updated enter the command</p>
+<p><code class="docutils literal"><span class="pre">npm</span> <span class="pre">-v</span></code></p>
+<p>The version should be higher than 2.1.8</p>
+<p>Once you have npm downloaded and updated you can then you can start creating your mutation.</p>
+<p>Navigate in your file system to where you would like your npm package to be stored. Then create a folder called <code class="docutils literal"><span class="pre">aurora-mutate-nameOfMutation</span></code>. It is important to have the prefix <code class="docutils literal"><span class="pre">aurora-mutate</span></code> because that is how it will end up in our mutation store.</p>
+<p>Enter the following command into your command line</p>
+<p><code class="docutils literal"><span class="pre">npm</span> <span class="pre">init</span></code></p>
+<p><img alt="npm init" src="https://i.imgur.com/rEk9owK.png" /></p>
+<p>This command creates a package.json file and it will prompt you to enter in values for the fields of the <code class="docutils literal"><span class="pre">package.json</span></code>. The default values are fine to use.</p>
+<p><img alt="package json" src="https://i.imgur.com/4kMpiWm.png" /></p>
+<p>If you need more help with npm check out their tutorial: <a class="reference external" href="https://docs.npmjs.com/getting-started/what-is-npm">npm tutorial</a></p>
+</div>
+<div class="section" id="creating-the-mutation">
+<span id="creating-the-mutation"></span><h2>Creating the Mutation<a class="headerlink" href="#creating-the-mutation" title="Permalink to this headline">¶</a></h2>
+<p>After you create the package.json file, then you can create your mutation. Create another file in the same folder that your <code class="docutils literal"><span class="pre">package.json</span></code> is in. It needs to be titled the same as what you put in the <code class="docutils literal"><span class="pre">entry</span> <span class="pre">point</span></code> field when creating your <code class="docutils literal"><span class="pre">package.json</span></code>. In this running example that file is <code class="docutils literal"><span class="pre">index.js</span></code>.</p>
+<p><img alt="mutation setup" src="https://i.imgur.com/Sy2hIXm.png" /></p>
+<p>Your mutation will need to be written in React, which is a framework for javascript. If you do not already have an editor that works well with React, you can get <a class="reference external" href="https://atom.io/">Atom</a> or <a class="reference external" href="https://code.visualstudio.com/">VScode</a>.</p>
+<p>Here is an example on how to mutate the editor of Aurora to turn it purple</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span>import React from &quot;react&quot;;
+import styled from &quot;styled-components&quot;;
+
+const purple = `
+  color: #8B008D;
+`;
+
+function purpleEditor(Editor) {
+  return class extends React.Component {
+    render() {
+      return (
+        &lt;Editor style={purple}&gt;{this.props.children}&lt;/Editor&gt;;
+      );
+    }
+  };
+}
+
+module.exports.mutations = {
+  Editor: purpleEditor
+};
+</pre></div>
+</div>
+<p>Here is an example on how to mutate the frame of Aurora to replace it with a flying cat gif</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span>import React from &quot;react&quot;;
+import styled from &quot;styled-components&quot;;
+
+const EVERYWHERE = styled.img`
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+`;
+
+function AddKitty(Frame) {
+  return class extends React.Component {
+    render() {
+      return (
+        &lt;Frame&gt;
+          &lt;EVERYWHERE src=&quot;https://media.giphy.com/media/VxbvpfaTTo3le/giphy.gif&quot; /&gt;
+          {this.props.children}
+        &lt;/Frame&gt;
+      );
+    }
+  };
+}
+
+module.exports.mutations = {
+  Frame: AddKitty
+};
+</pre></div>
+</div>
+<p>Here is the github repository for this example: <a class="reference external" href="https://github.com/Flaque/aurora-mutate-kitty-cat">flying cat</a></p>
+<p>There are other examples in this repository that you can look at.</p>
+<p>The import statements used are to import react and styled components. React is the language used to write the mutation and styled components allow us to change how the components(Editor and Frame) look. The constants (<code class="docutils literal"><span class="pre">const</span></code>) are used to style the components using css. If you want a more in depth guide for writing React check this out:</p>
+<p>https://reactjs.org/docs/hello-world.html</p>
+<p>For more information about the React technique used to write mutations check this out:</p>
+<p>https://reactjs.org/docs/higher-order-components.html</p>
+</div>
+<div class="section" id="building-with-webpack">
+<span id="building-with-webpack"></span><h2>Building with Webpack<a class="headerlink" href="#building-with-webpack" title="Permalink to this headline">¶</a></h2>
+<p>Webpack is a bundler, and we’re going to use it to bundle your mutation once you have written it. You can install Webpack by entering this onto your command line</p>
+<p><code class="docutils literal"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">webpack</span> <span class="pre">-g</span></code></p>
+<p>Next you’ll have to create a <code class="docutils literal"><span class="pre">webpack.config.js</span></code> file. This file will tell webpack what it should do. Here is an example of what it should look like.</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="s2">&quot;./index.js&quot;</span><span class="p">,</span> <span class="c1">//tells webpack where to start</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&quot;./build/bundle.js&quot;</span><span class="p">,</span> <span class="c1">//tells webpack the output</span>
+    <span class="nx">libraryTarget</span><span class="o">:</span> <span class="s2">&quot;commonjs2&quot;</span>
+  <span class="p">},</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span> <span class="nx">loader</span><span class="o">:</span> <span class="s2">&quot;babel-loader&quot;</span><span class="p">,</span> <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.jsx$/</span><span class="p">,</span> <span class="nx">loader</span><span class="o">:</span> <span class="s2">&quot;babel-loader&quot;</span><span class="p">,</span> <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Next, you’ll have to install some babel dependencies by running the following command on your command line:</p>
+<p><code class="docutils literal"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">babel-core</span> <span class="pre">babel-preset-env</span> <span class="pre">babel-preset-react</span> <span class="pre">babel-loader</span></code></p>
+<p>Then, you’ll have to bundle in react and styled components by running the following command:</p>
+<p><code class="docutils literal"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">--save</span> <span class="pre">react</span> <span class="pre">styled-components</span></code></p>
+<p>Your <code class="docutils literal"><span class="pre">package.json</span></code> file should now look something like this</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;aurora-mutate-purple-editor&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Turns the aurora editor purple&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;main&quot;</span><span class="o">:</span> <span class="s2">&quot;build/bundle.js&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;test&quot;</span><span class="o">:</span> <span class="s2">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;keywords&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;aurora&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mutation&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;author&quot;</span><span class="o">:</span> <span class="s2">&quot;rainmaker&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;license&quot;</span><span class="o">:</span> <span class="s2">&quot;ISC&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;dependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;react&quot;</span><span class="o">:</span> <span class="s2">&quot;^16.1.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;styled-components&quot;</span><span class="o">:</span> <span class="s2">&quot;^2.2.3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;webpack&quot;</span><span class="o">:</span> <span class="s2">&quot;^3.8.1&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;devDependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;babel-core&quot;</span><span class="o">:</span> <span class="s2">&quot;^6.26.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;babel-loader&quot;</span><span class="o">:</span> <span class="s2">&quot;^7.1.2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;babel-preset-env&quot;</span><span class="o">:</span> <span class="s2">&quot;^1.6.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;babel-preset-react&quot;</span><span class="o">:</span> <span class="s2">&quot;^6.24.1&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After you write your config file and run the previous npm commands, you’ll have to create a <code class="docutils literal"><span class="pre">.babelrc</span></code> file in your main mutation folder. The contents of that file should be exactly as follows.</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;presets&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;env&quot;</span><span class="p">,</span> <span class="s2">&quot;react&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then run the command <code class="docutils literal"><span class="pre">webpack</span></code> on your command line. This will create a build folder and a bundle.js file.</p>
+<p><img alt="webpack" src="https://i.imgur.com/zszzTEC.png" /></p>
+</div>
+<div class="section" id="publishing-your-npm-package">
+<span id="publishing-your-npm-package"></span><h2>Publishing your npm package<a class="headerlink" href="#publishing-your-npm-package" title="Permalink to this headline">¶</a></h2>
+<p>To publish a npm package you have to register yourself as a user. If you have already created your account on the npm website use the command <code class="docutils literal"><span class="pre">npm</span> <span class="pre">login</span></code> to login to your account. If you have not created an account yet use the command <code class="docutils literal"><span class="pre">npm</span> <span class="pre">adduser</span></code> to create your npm account. The next step is to publish your npm package by using the command <code class="docutils literal"><span class="pre">npm</span> <span class="pre">publish</span></code>. This command will publish everything in the current directory, so make sure you are in the right spot before running this command.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">adduser</span> <span class="o">//</span><span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">account</span> <span class="k">for</span> <span class="n">npm</span>
+<span class="n">npm</span> <span class="n">login</span>   <span class="o">//</span><span class="n">logs</span> <span class="n">onto</span> <span class="n">npm</span>
+<span class="n">npm</span> <span class="n">publish</span> <span class="o">//</span><span class="n">publishes</span> <span class="n">your</span> <span class="n">npm</span> <span class="n">package</span>
+</pre></div>
+</div>
+<p><img alt="npm publish" src="https://i.imgur.com/m4lkqRA.png" /></p>
+<div class="section" id="updating-your-npm-package">
+<span id="updating-your-npm-package"></span><h3>Updating your npm package<a class="headerlink" href="#updating-your-npm-package" title="Permalink to this headline">¶</a></h3>
+<p>After publishing your package you can also update it by using the <code class="docutils literal"><span class="pre">npm</span> <span class="pre">version</span> <span class="pre">&lt;update-type&gt;</span></code> command, where <code class="docutils literal"><span class="pre">&lt;update-type&gt;</span></code> is either patch, major, or minor. Then run <code class="docutils literal"><span class="pre">npm</span> <span class="pre">publish</span></code> to publish your changes.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">version</span> <span class="o">&lt;</span><span class="n">update</span><span class="o">-</span><span class="nb">type</span><span class="o">&gt;</span>   <span class="o">//</span><span class="n">updates</span> <span class="n">your</span> <span class="n">npm</span> <span class="n">package</span>
+<span class="n">npm</span> <span class="n">publish</span>                 <span class="o">//</span><span class="n">publishes</span> <span class="n">your</span> <span class="n">updated</span> <span class="n">package</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="see-in-the-aurora-mutations-store">
+<span id="see-in-the-aurora-mutations-store"></span><h2>See in the Aurora Mutations Store<a class="headerlink" href="#see-in-the-aurora-mutations-store" title="Permalink to this headline">¶</a></h2>
+<p>Once you publish your npm package your mutation will be available for all of the Aurora users to add to their version of the application!</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Aurora" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tundra.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
