@@ -40,4 +40,4 @@ Draggable.propTypes = {
   children: PropTypes.element.isRequired
 };
 
-module.exports = Draggable;
+export default Draggable;
