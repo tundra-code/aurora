@@ -53,11 +53,22 @@ class Feed extends React.Component {
     );
   };
 
+  handleOnChange = event => {
+    console.log(event.target.value);
+    const note = this.newNote(event.target.value);
+    this.props.dispatch(newNote(note));
+    this.props.dispatch(selectNote(note));
+    event.target.value = "";
+  };
+
   render() {
     return (
       <Container>
         <AddButtonContainer>
-          <AddButton onClick={this.onAdd}>📝 New Note</AddButton>
+          <select onChange={this.handleOnChange}>
+            <option value="" selected disabled hidden>New Note</option>
+            {Object.keys(window.editors).map((t,i) => <option key={i} value={t}>{t}</option>)}
+          </select>
         </AddButtonContainer>
         <NoteView
           ourEditorState={this.props.editorState}
