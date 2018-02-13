@@ -18,32 +18,22 @@ const AddButtonContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const AddButton = styled.a`
-  cursor: pointer;
-  color: ${props => props.theme.colors.darkPrimary};
-  padding: ${props => props.theme.spacing.padding};
-  user-select: none;
-
-  &:hover {
-    color: ${props => props.theme.colors.primary};
-    text-decoration: underline;
-  }
-`;
+// const AddButton = styled.a`
+//   cursor: pointer;
+//   color: ${props => props.theme.colors.darkPrimary};
+//   padding: ${props => props.theme.spacing.padding};
+//   user-select: none;
+//
+//   &:hover {
+//     color: ${props => props.theme.colors.primary};
+//     text-decoration: underline;
+//   }
+// `;
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  onAdd = () => {
-    // Display to user options of different editor types
-    console.log(Object.keys(window.editors));
-
-    // Then create a note with the selected editor name.
-    const note = this.newNote("BaseEditor");
-    this.props.dispatch(newNote(note));
-    this.props.dispatch(selectNote(note));
-  };
 
   newNote = mutationName => {
     return new NoteModel(
@@ -54,7 +44,6 @@ class Feed extends React.Component {
   };
 
   handleOnChange = event => {
-    console.log(event.target.value);
     const note = this.newNote(event.target.value);
     this.props.dispatch(newNote(note));
     this.props.dispatch(selectNote(note));
@@ -66,8 +55,14 @@ class Feed extends React.Component {
       <Container>
         <AddButtonContainer>
           <select onChange={this.handleOnChange}>
-            <option value="" selected disabled hidden>New Note</option>
-            {Object.keys(window.editors).map((t,i) => <option key={i} value={t}>{t}</option>)}
+            <option value="" selected disabled hidden>
+              New Note
+            </option>
+            {Object.keys(window.editors).map((t, i) => (
+              <option key={i} value={t}>
+                {t}
+              </option>
+            ))}
           </select>
         </AddButtonContainer>
         <NoteView
