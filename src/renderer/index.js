@@ -29,6 +29,9 @@ class Aurora extends React.Component {
   }
 }
 
-// Add Electron to the page
-document.body.innerHTML = `<div id="root"></div>`;
-ReactDOM.render(<Aurora />, document.getElementById("root"));
+if (typeof document !== "undefined") {
+  // Add Electron to the page
+  document.body.innerHTML = `<div id="root"></div>`;
+  ReactDOM.render(<Aurora />, document.getElementById("root"));
+}
+

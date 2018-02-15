@@ -1,5 +1,5 @@
 {
-  "name": "electron-webpack-quick-start",
+  "name": "Aurora",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -42,6 +42,7 @@
     "electron-default-menu": "^1.0.1",
     "fs-jetpack": "^1.2.0",
     "fuse.js": "^3.1.0",
+    "glamor": "^2.20.40",
     "halogen": "^0.2.0",
     "immutable-props": "^1.1.0",
     "inline-style-prefixer": "^3.0.8",
@@ -81,7 +82,7 @@
     "cross-env": "^5.1.1",
     "electron": "1.7.9",
     "electron-builder": "^19.42.1",
-    "electron-webpack": "1.10.1",
+    "electron-webpack": "1.12.1",
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-react-16-adapter-setup": "^0.1.0",
@@ -139,5 +140,5 @@
   },
   "resolutions": {
     "webpack-sources": "1.0.1"
-  }
+  },
 }

@@ -8,7 +8,8 @@ function getWindowOptionsByPlatform() {
   const platform = os.platform();
   const MacOptions = {
     frame: false,
-    titleBarStyle: "hiddenInset"
+    titleBarStyle: "hiddenInset",
+    show: true
   };
 
   return platform === "darwin" ? MacOptions : {};
@@ -29,11 +30,11 @@ function createMainWindow() {
     ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
     : `file://${__dirname}/index.html`;
 
-  if (isDevelopment) {
+  // if (isDevelopment) {
     window.webContents.openDevTools();
-  }
+  // }
 
-  window.loadURL(url);
+  // window.loadURL(url);
 
   window.on("closed", () => {
     mainWindow = null;
