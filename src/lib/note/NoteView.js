@@ -103,19 +103,19 @@ class NoteView extends React.Component {
   };
 
   onEditorChange = (editorState, serializedContent, serializedPreview) => {
-    if (!this.state.focused) {
-      return; // avoid writing editor changes when it's not even focused
-    }
-
     const note = this.props.note;
     this.props.dispatch(setEditorState(editorState));
-    if (serializedContent) {
-      note.setContent(serializedContent);
+
+    if (this.state.focused) {
+      // only write changes if note is actually focused.
+      if (serializedContent) {
+        note.setContent(serializedContent);
+      }
+      if (serializedPreview) {
+        note.setPreview(serializedPreview);
+      }
+      this.props.dispatch(updateNote(note));
     }
-    if (serializedPreview) {
-      note.setPreview(serializedPreview);
-    }
-    this.props.dispatch(updateNote(note));
   };
 
   onEditorContentLoaded = editorState => {
