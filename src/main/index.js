@@ -20,7 +20,7 @@ let mainWindow;
 
 function createMainWindow() {
   // Construct new BrowserWindow
-  const window = new BrowserWindow(getWindowOptionsByPlatform());
+  const w = new BrowserWindow(getWindowOptionsByPlatform());
 
   // Set url for `win`
   // points to `webpack-dev-server` in development
@@ -30,23 +30,23 @@ function createMainWindow() {
     : `file://${__dirname}/index.html`;
 
   if (isDevelopment) {
-    window.webContents.openDevTools();
+    w.webContents.openDevTools();
   }
 
-  window.loadURL(url);
+  w.loadURL(url);
 
-  window.on("closed", () => {
+  w.on("closed", () => {
     mainWindow = null;
   });
 
-  window.webContents.on("devtools-opened", () => {
-    window.focus();
+  w.webContents.on("devtools-opened", () => {
+    w.focus();
     setImmediate(() => {
-      window.focus();
+      w.focus();
     });
   });
 
-  return window;
+  return w;
 }
 
 // Quit application when all windows are closed
