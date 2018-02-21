@@ -1,5 +1,5 @@
 import { ContentState, EditorState } from "draft-js";
-import { serializeContent } from "../editor/EditorSerializer";
+import { serializeContent } from "../editor";
 import NoteModel from "./Note";
 
 /**

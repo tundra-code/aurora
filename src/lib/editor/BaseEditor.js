@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Editor } from "draft-js";
+import Editor from "draft-js-plugins-editor";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -22,7 +22,7 @@ const EditorStyles = styled.div`
 class BaseEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.setDomEditorRef = ref => (this.domEditor = ref);
+    this.setDomEditorRef = ref => (this.editor = ref);
   }
 
   handleFocus = () => {
@@ -90,7 +90,6 @@ class BaseEditor extends React.Component {
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           editorState={this.props.ourEditorState}
-          handleKeyCommand={this.handleKeyCommand}
           {...this.props}
         />
       </EditorStyles>
@@ -99,14 +98,13 @@ class BaseEditor extends React.Component {
 }
 
 BaseEditor.propTypes = {
-  focused: PropTypes.bool,
   onChangeEx: PropTypes.func,
   onBlurEx: PropTypes.func,
   onFocusEx: PropTypes.func,
   onContentLoaded: PropTypes.func,
-  selectNote: PropTypes.object,
-  ourEditorState: PropTypes.object.isRequired,
-  isLoadingContent: PropTypes.bool.isRequired
+  note: PropTypes.object,
+  ourEditorState: PropTypes.object,
+  isLoadingContent: PropTypes.bool
 };
 
 export default connect()(mutate(BaseEditor, "BaseEditor"));

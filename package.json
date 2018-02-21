@@ -38,6 +38,7 @@
     "db-migrate-sqlite3": "^0.2.1",
     "debounce": "^1.1.0",
     "draft-js": "^0.10.4",
+    "draft-js-plugins-editor": "^2.0.4",
     "electron-debug": "^1.4.0",
     "electron-default-menu": "^1.0.1",
     "fs-jetpack": "^1.2.0",
@@ -138,5 +139,5 @@
   },
   "resolutions": {
     "webpack-sources": "1.0.1"
-}
+  }
 }

@@ -6,11 +6,11 @@ import {
   editorState,
   isLoadingContent
 } from "../../redux/selectors";
-import NoteView from "../note/NoteView";
+import { NoteView } from "../noteView";
 import styled from "styled-components";
 import { selectNote, newNote } from "../../redux/actions";
-import { noteWithEmptyEditor } from "../editor";
 import { Container } from "../ui";
+import { NoteModel } from "../note";
 
 const AddButtonContainer = styled.div`
   display: flex;
@@ -18,34 +18,52 @@ const AddButtonContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const AddButton = styled.a`
-  cursor: pointer;
-  color: ${props => props.theme.colors.darkPrimary};
-  padding: ${props => props.theme.spacing.padding};
-  user-select: none;
-
-  &:hover {
-    color: ${props => props.theme.colors.primary};
-    text-decoration: underline;
-  }
-`;
+// const AddButton = styled.a`
+//   cursor: pointer;
+//   color: ${props => props.theme.colors.darkPrimary};
+//   padding: ${props => props.theme.spacing.padding};
+//   user-select: none;
+//
+//   &:hover {
+//     color: ${props => props.theme.colors.primary};
+//     text-decoration: underline;
+//   }
+// `;
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  onAdd = () => {
-    const note = noteWithEmptyEditor();
+  newNote = mutationName => {
+    return new NoteModel(
+      window.editors[mutationName].newNoteContent,
+      mutationName,
+      []
+    );
+  };
+
+  handleOnChange = event => {
+    const note = this.newNote(event.target.value);
     this.props.dispatch(newNote(note));
     this.props.dispatch(selectNote(note));
+    event.target.value = "";
   };
 
   render() {
     return (
       <Container>
         <AddButtonContainer>
-          <AddButton onClick={this.onAdd}>📝 New Note</AddButton>
+          <select onChange={this.handleOnChange}>
+            <option value="" selected disabled hidden>
+              New Note
+            </option>
+            {Object.keys(window.editors).map((t, i) => (
+              <option key={i} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
         </AddButtonContainer>
         <NoteView
           ourEditorState={this.props.editorState}

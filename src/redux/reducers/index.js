@@ -70,10 +70,20 @@ function notes(
       if (action.note === state.selectedNote) {
         return state;
       }
+      if (
+        action.note === null ||
+        window.editors[action.note.mutationName] === undefined
+      ) {
+        return Object.assign({}, state, {
+          selectedNote: action.note,
+          editorState: emptyEditorState()
+        });
+      }
       return Object.assign({}, state, {
         selectedNote: action.note,
-        editorState: emptyEditorState()
+        editorState: window.editors[action.note.mutationName].emptyEditorState
       });
+
     case LOAD_NOTE_CONTENT:
       return Object.assign({}, state, {
         isLoadingContent: true
@@ -87,7 +97,11 @@ function notes(
         editorState: action.editorState
       });
     case UPDATE_NOTE:
-      if (action.note.uuid === state.selectedNote.uuid) {
+      if (
+        state.selectedNote !== null &&
+        action.note !== null &&
+        action.note.uuid === state.selectedNote.uuid
+      ) {
         return Object.assign({}, state, {
           allNotes: updateNoteInAllNotes(action.note, state.allNotes),
           selectedNote: Object.assign({}, action.note), // copy to force props to update
