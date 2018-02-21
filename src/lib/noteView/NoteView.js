@@ -15,6 +15,7 @@ import {
 } from "../../redux/actions";
 import TagContainer from "./TagContainer";
 import TagModel from "../note/Tag";
+import { getDefaultKeyBinding, KeyBindingUtil } from "draft-js";
 
 const DeleteButton = styled.button`
   float: right;
@@ -41,6 +42,8 @@ const NoteViewContainer = Card.extend`
 const TopViewContainer = styled.div`
   padding: ${props => props.theme.spacing.padding};
 `;
+
+const { hasCommandModifier } = KeyBindingUtil;
 
 class NoteView extends React.Component {
   constructor(props) {
@@ -129,10 +132,19 @@ class NoteView extends React.Component {
     this.props.dispatch(saveNote(note));
   };
 
-  handleKeyPress = event => {
-    if (event.ctrlKey && event.keyCode === 83) {
-      this.checkAndSaveNote();
+  saveKeyBinding = e => {
+    if (e.keyCode === 83 && hasCommandModifier(e)) {
+      return "save-note";
     }
+    return getDefaultKeyBinding(e);
+  };
+
+  handleKeyCommand = command => {
+    if (command === "save-note") {
+      this.checkAndSaveNote();
+      return "handled";
+    }
+    return "not-handled";
   };
 
   onEditorBlur = () => {
@@ -157,7 +169,7 @@ class NoteView extends React.Component {
     return (
       <BumpedDownContainer>
         <NoteViewContainer>
-          <TopViewContainer onKeyDown={this.handleKeyPress}>
+          <TopViewContainer>
             <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
             <ContentView
               {...this.props}
@@ -165,6 +177,8 @@ class NoteView extends React.Component {
               onBlurEx={this.onEditorBlur}
               onContentLoaded={this.onEditorContentLoaded}
               onFocusEx={this.onEditorFocus}
+              keyBindingFn={this.saveKeyBinding}
+              handleKeyCommand={this.handleKeyCommand}
             />
           </TopViewContainer>
           <TagContainer
