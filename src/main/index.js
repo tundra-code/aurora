@@ -27,7 +27,7 @@ function createMainWindow() {
   // points to `index.html` in production
   const url = isDevelopment
     ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
-    : `file://${__dirname}/index.html`;
+    : `file://${__dirname}/renderer/index.html`;
 
   if (isDevelopment) {
     w.webContents.openDevTools();

@@ -17,7 +17,8 @@
     "add-some-notes": "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_small_dataset.json",
     "add-many-notes": "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
     "create-note": "cross-env NODE_ENV=development babel-node scripts/create-note/create.js",
-    "lint": "./node_modules/.bin/eslint src"
+    "lint": "./node_modules/.bin/eslint src",
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@react-mutate/core": "^0.4.4",
@@ -39,6 +40,7 @@
     "electron-default-menu": "^1.0.1",
     "fs-jetpack": "^1.2.0",
     "fuse.js": "^3.1.0",
+    "glamor": "^2.20.40",
     "halogen": "^0.2.0",
     "immutable-props": "^1.1.0",
     "inline-style-prefixer": "^3.0.8",

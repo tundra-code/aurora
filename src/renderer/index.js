@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ScreenManager from "./ScreenManager";
 import { Provider } from "react-redux";
-import { setPreferences } from "../redux/actions";
-import { loadPreferences } from "../lib/io";
-import configureStore from "../redux/configureStore";
-import Draggable from "../lib/ui/Draggable";
+import { setPreferences } from "./redux/actions";
+import { loadPreferences } from "./lib/io";
+import configureStore from "./redux/configureStore";
+import Draggable from "./lib/ui/Draggable";
 
 const store = configureStore();
 

@@ -1,10 +1,10 @@
 import React from "react";
-import Core from "../lib/core";
-import { Store } from "../lib/mutate";
+import Core from "./lib/core";
+import { Store } from "./lib/mutate";
 import { connect } from "react-redux";
-import rendererEvents from "../lib/electron-events/renderer";
-import { setScreen } from "../redux/actions";
-import { screen } from "../redux/selectors";
+import rendererEvents from "../common/electron-events/renderer";
+import { setScreen } from "./redux/actions";
+import { screen } from "./redux/selectors";
 
 class ScreenManager extends React.Component {
   constructor(props) {

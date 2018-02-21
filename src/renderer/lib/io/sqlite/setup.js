@@ -2,7 +2,8 @@ import {
   dbFilePath,
   dbConfigExists,
   writeDatabaseJSON,
-  auroraDirContext
+  auroraDirContext,
+  configFilePath
 } from "../util.js";
 const ENVs = ["test", "production", "development"];
 
@@ -47,7 +48,7 @@ bookshelf.plugin(cascadeDelete);
 //getting an instance of dbmigrate
 const dbmigrate = DBMigrate.getInstance(true, {
   env: process.env.NODE_ENV,
-  config: "config/database.json",
+  config: configFilePath(),
   throwUncatched: true
 });
 

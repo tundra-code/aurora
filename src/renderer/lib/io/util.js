@@ -19,7 +19,11 @@ const auroraDirContext = () => {
 };
 
 const configDir = () => {
-  return jetpack.dir("config");
+  return auroraRootContext();
+};
+
+const configFilePath = () => {
+  return auroraRootPath() + "/" + databaseJSONFile;
 };
 
 const dbFilePath = env => {
@@ -123,6 +127,7 @@ export {
   dbConfigExists,
   writeDatabaseJSON,
   dbFilePath,
+  configFilePath,
   throwIfNotNoteModel,
   exists,
   auroraRootPath

@@ -4,5 +4,9 @@
  */
 module.exports = {
   entry: ["babel-polyfill", "./src/main/index.js"],
-  target: "electron"
+  target: "electron",
+  output: {
+		path: __dirname + "/app/output",
+		filename: "main.js"
+	}
 };
