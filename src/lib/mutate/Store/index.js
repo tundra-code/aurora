@@ -11,7 +11,7 @@ import { itemArrayToKeyValueObj, pkgKey } from "./util";
 import { nextState, UNINSTALL } from "./InstallStates";
 import { Map } from "immutable";
 import { installMutation, uninstallMutation } from "../mutationsManager";
-import { preferences } from "../../../redux/selectors";
+import { preferences, allNotes } from "../../../redux/selectors";
 
 class Store extends React.Component {
   constructor(props) {
@@ -91,9 +91,36 @@ class Store extends React.Component {
     ); // Installed
   };
 
+  mutationsInUse = () => {
+    const mutationsInUse = [];
+    for (const id in this.props.notes) {
+      mutationsInUse.push(this.props.notes[id].mutationName);
+    }
+    return mutationsInUse;
+  };
+
+  mutationIsInUse = pkg => {
+    const mutationsInUse = this.mutationsInUse();
+    for (const keyword of pkg.keywords) {
+      if (mutationsInUse.includes(keyword)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   onUninstallClick = pkg => {
-    this.bumpPkgInstallState(pkg);
+    if (this.mutationIsInUse(pkg)) {
+      if (
+        !window.confirm(
+          "This mutation is currently used by a note(s). Are you sure you want to remove it?"
+        )
+      ) {
+        return;
+      }
+    }
     uninstallMutation(pkg.name, this.props.dispatch);
+    this.bumpPkgInstallState(pkg);
   };
 
   render() {
@@ -120,7 +147,10 @@ class Store extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { preferences: preferences(state) };
+  return {
+    preferences: preferences(state),
+    notes: allNotes(state)
+  };
 };
 
 export default connect(mapStateToProps)(Store);
