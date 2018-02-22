@@ -101,6 +101,9 @@ class Store extends React.Component {
 
   mutationIsInUse = pkg => {
     const mutationsInUse = this.mutationsInUse();
+    if (pkg.keywords === undefined) {
+      return false;
+    }
     for (const keyword of pkg.keywords) {
       if (mutationsInUse.includes(keyword)) {
         return true;
