@@ -68,9 +68,11 @@ class NoteView extends React.Component {
     if (this.props.note === null) {
       return;
     }
-    this.props.delete(this.props.note);
-    this.setState({ tagInputValue: "" });
-    this.removeNote(this.props.note);
+    if (window.confirm("Are you sure you want to delete this note?")) {
+      this.props.delete(this.props.note);
+      this.setState({ tagInputValue: "" });
+      this.removeNote(this.props.note);
+    }
   };
 
   _getTags = () => {
