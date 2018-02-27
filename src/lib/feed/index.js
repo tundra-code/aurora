@@ -11,6 +11,8 @@ import styled from "styled-components";
 import { selectNote, newNote } from "../../redux/actions";
 import { Container } from "../ui";
 import { NoteModel } from "../note";
+import Menu, { SubMenu, MenuItem } from "rc-menu";
+import "rc-menu/assets/index.css";
 
 const AddButtonContainer = styled.div`
   display: flex;
@@ -43,27 +45,32 @@ class Feed extends React.Component {
     );
   };
 
-  handleOnChange = event => {
-    const note = this.newNote(event.target.value);
+  newNoteSelected = info => {
+    const note = this.newNote(info.key);
     this.props.dispatch(newNote(note));
     this.props.dispatch(selectNote(note));
-    event.target.value = "";
+  };
+
+  createAddMenu = () => {
+    let addMenu = null;
+    if (Object.keys(window.editors).length === 1) {
+      addMenu = (
+        <MenuItem key={Object.keys(window.editors)[0]}>New Note</MenuItem>
+      );
+    } else {
+      const subMenu = Object.keys(window.editors).map(t => (
+        <MenuItem key={t}>{t}</MenuItem>
+      ));
+      addMenu = <SubMenu title="New Note">{subMenu}</SubMenu>;
+    }
+    return addMenu;
   };
 
   render() {
     return (
       <Container>
         <AddButtonContainer>
-          <select onChange={this.handleOnChange}>
-            <option value="" selected disabled hidden>
-              New Note
-            </option>
-            {Object.keys(window.editors).map((t, i) => (
-              <option key={i} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
+          <Menu onSelect={this.newNoteSelected}>{this.createAddMenu()}</Menu>
         </AddButtonContainer>
         <NoteView
           ourEditorState={this.props.editorState}
