@@ -81,7 +81,7 @@
     "coveralls": "^2.13.1",
     "cross-env": "^5.1.1",
     "electron": "1.7.9",
-    "electron-builder": "^19.42.1",
+    "electron-builder": "^20.2.0",
     "electron-webpack": "1.10.1",
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
