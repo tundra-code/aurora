@@ -70,7 +70,9 @@ class Feed extends React.Component {
     return (
       <Container>
         <AddButtonContainer>
-          <Menu onSelect={this.newNoteSelected}>{this.createAddMenu()}</Menu>
+          <Menu selectedKeys={[]} onSelect={this.newNoteSelected}>
+            {this.createAddMenu()}
+          </Menu>
         </AddButtonContainer>
         <NoteView
           ourEditorState={this.props.editorState}
