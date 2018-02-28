@@ -116,6 +116,15 @@ export function updateAndSaveNote(note) {
   };
 }
 
+export function saveThenUpdateNote(note) {
+  return dispatch => {
+    save(note).then(() => {
+      dispatch(updateNote(note));
+      dispatch(savedNote(note));
+    });
+  };
+}
+
 export function saveNote(note) {
   return dispatch => {
     dispatch(savedNote(note));
@@ -124,7 +133,7 @@ export function saveNote(note) {
 }
 
 export function newNote(note) {
-  return updateAndSaveNote(note);
+  return saveThenUpdateNote(note);
 }
 
 export function deleteNote(note) {
