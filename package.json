@@ -145,7 +145,7 @@
     "asar": false,
     "extraResources": {
       "from": "./migrations",
-      "to": "./app"
+      "to": "./app/migrations"
     }
   }
 }
