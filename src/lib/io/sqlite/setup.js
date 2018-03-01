@@ -5,6 +5,7 @@ import {
   auroraDirContext,
   configFilePath
 } from "../util.js";
+const app = require("electron").remote.app;
 const ENVs = ["test", "production", "development"];
 
 function createDatabaseConfig() {
@@ -49,7 +50,8 @@ bookshelf.plugin(cascadeDelete);
 const dbmigrate = DBMigrate.getInstance(true, {
   env: process.env.NODE_ENV,
   config: configFilePath(),
-  throwUncatched: true
+  throwUncatched: true,
+  cwd: app.getAppPath()
 });
 
 function loadDB() {

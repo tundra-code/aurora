@@ -140,5 +140,12 @@
   },
   "resolutions": {
     "webpack-sources": "1.0.1"
+  },
+  "build": {
+    "asar": false,
+    "extraResources": {
+      "from": "./migrations",
+      "to": "./app"
+    }
   }
 }
