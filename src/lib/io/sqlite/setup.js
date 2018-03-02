@@ -5,6 +5,7 @@ import {
   auroraDirContext,
   configFilePath
 } from "../util.js";
+const app = require("electron").remote.app;
 const ENVs = ["test", "production", "development"];
 
 function createDatabaseConfig() {
@@ -45,12 +46,17 @@ const bookshelf = require("bookshelf")(knex);
 const cascadeDelete = require("bookshelf-cascade-delete");
 bookshelf.plugin(cascadeDelete);
 
-//getting an instance of dbmigrate
-const dbmigrate = DBMigrate.getInstance(true, {
+const dbmigrateOptions = {
   env: process.env.NODE_ENV,
   config: configFilePath(),
   throwUncatched: true
-});
+};
+if (process.env.NODE_ENV === "production") {
+  dbmigrateOptions.cwd = app.getAppPath();
+}
+
+//getting an instance of dbmigrate
+const dbmigrate = DBMigrate.getInstance(true, dbmigrateOptions);
 
 function loadDB() {
   if (global.DB_IS_UP) {
