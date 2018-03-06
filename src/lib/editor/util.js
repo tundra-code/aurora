@@ -53,7 +53,8 @@ if (window.editors === undefined) {
 // Add base editor to global registry
 window.editors.BaseEditor = {
   emptyEditorState: emptyEditorState(),
-  newNoteContent: emptySerializedEditorState()
+  newNoteContent: emptySerializedEditorState(),
+  screenName: "Plain Note"
 };
 
 export {

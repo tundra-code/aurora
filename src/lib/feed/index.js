@@ -53,7 +53,7 @@ class Feed extends React.Component {
       );
     } else {
       const subMenu = Object.keys(window.editors).map(t => (
-        <MenuItem key={t}>{t}</MenuItem>
+        <MenuItem key={t}>{window.editors[t].screenName}</MenuItem>
       ));
       addMenu = <SubMenu title="New Note">{subMenu}</SubMenu>;
     }
