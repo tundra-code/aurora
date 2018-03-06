@@ -16,21 +16,15 @@ import "rc-menu/assets/index.css";
 
 const AddButtonContainer = styled.div`
   display: flex;
-  width: 100%;
-  justify-content: flex-end;
-`;
+  justify-content: flex-start;
+  margin-bottom: ${props => props.theme.spacing.padding};
 
-// const AddButton = styled.a`
-//   cursor: pointer;
-//   color: ${props => props.theme.colors.darkPrimary};
-//   padding: ${props => props.theme.spacing.padding};
-//   user-select: none;
-//
-//   &:hover {
-//     color: ${props => props.theme.colors.primary};
-//     text-decoration: underline;
-//   }
-// `;
+  .rc-menu {
+    background: white;
+    width: 150px;
+    cursor: pointer;
+  }
+`;
 
 class Feed extends React.Component {
   constructor(props) {
