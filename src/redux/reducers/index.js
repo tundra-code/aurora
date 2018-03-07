@@ -12,12 +12,14 @@ import {
   UPDATE_NOTE,
   DELETE_NOTE,
   SEARCH_NOTE,
-  SAVED_NOTE
+  SAVED_NOTE,
+  MOVE_NOTE_TO_FRONT
 } from "../actions";
 import {
   updateNoteInAllNotes,
   removeNoteFromAllNotes,
-  emptyEditorState
+  emptyEditorState,
+  moveNoteToFront
 } from "../utils";
 import { noteArrayToDict } from "../../lib/note/util";
 
@@ -95,6 +97,10 @@ function notes(
     case SET_EDITOR_STATE:
       return Object.assign({}, state, {
         editorState: action.editorState
+      });
+    case MOVE_NOTE_TO_FRONT:
+      return Object.assign({}, state, {
+        allNotes: moveNoteToFront(action.note, state.allNotes)
       });
     case UPDATE_NOTE:
       if (

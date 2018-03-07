@@ -20,6 +20,7 @@ export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 export const SEARCH_NOTE = "SEARCH_NOTE";
 export const SAVED_NOTE = "SAVED_NOTE";
+export const MOVE_NOTE_TO_FRONT = "MOVE_NOTE_TO_FRONT";
 
 /**
  * Other constants
@@ -46,6 +47,10 @@ export function setPreferences(preferences) {
 
 function getNotes() {
   return { type: LOAD_NOTES };
+}
+
+function moveNoteToFront(note) {
+  return { type: MOVE_NOTE_TO_FRONT, note };
 }
 
 function receivedNotes(notes) {
@@ -116,14 +121,14 @@ export function updateAndSaveNote(note) {
   };
 }
 
-export function saveThenUpdateNote(note) {
-  return dispatch => {
-    save(note).then(() => {
-      dispatch(updateNote(note));
-      dispatch(savedNote(note));
-    });
-  };
-}
+// export function saveThenUpdateNote(note) {
+//   return dispatch => {
+//     save(note).then(() => {
+//       dispatch(updateNote(note));
+//       dispatch(savedNote(note));
+//     });
+//   };
+// }
 
 export function saveNote(note) {
   return dispatch => {
@@ -133,7 +138,13 @@ export function saveNote(note) {
 }
 
 export function newNote(note) {
-  return saveThenUpdateNote(note);
+  return dispatch => {
+    save(note).then(() => {
+      dispatch(updateNote(note));
+      dispatch(savedNote(note));
+      dispatch(moveNoteToFront(note));
+    });
+  };
 }
 
 export function deleteNote(note) {

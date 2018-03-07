@@ -1,6 +1,6 @@
 import { EditorState } from "draft-js";
 import _ from "lodash";
-import { noteDictToArray } from "../../lib/note/util";
+import { noteDictToArray, noteArrayToDict } from "../../lib/note/util";
 
 export const updateNote = (note, notesDict) => {
   notesDict[note.uuid] = note;
@@ -36,7 +36,7 @@ export const pickPreviousNoteInList = (allNotes, selectedNote) => {
     throw new Error(
       `pickPreviousNoteInList called with a note that doesn't exist. Selected note is: ${
         selectedNote
-      }. Did you try to select a note that you deleted somehow? This may happen if you call 
+      }. Did you try to select a note that you deleted somehow? This may happen if you call
       a "deleteNote" action before a "selectNote" action.
       `
     );
@@ -50,6 +50,19 @@ export const pickPreviousNoteInList = (allNotes, selectedNote) => {
   }
 
   return noteArr[index];
+};
+
+export const moveNoteToFront = (note, allNotes) => {
+  const noteArr = noteDictToArray(allNotes);
+  // Remove note from list and place it at front.
+  for (let i = 0; i < noteArr.length; i++) {
+    if (noteArr[i].uuid === note.uuid) {
+      const n = noteArr.splice(i, 1); // removes the item
+      noteArr.unshift(n[0]); // adds it back to the beginning
+      break;
+    }
+  }
+  return Object.assign({}, noteArrayToDict(noteArr));
 };
 
 export const updateNoteInAllNotes = (note, allNotes) => {
