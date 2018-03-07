@@ -116,24 +116,26 @@ function savedNote(note) {
 export function updateAndSaveNote(note) {
   return dispatch => {
     dispatch(updateNote(note));
-    dispatch(savedNote(note));
-    save(note);
+    save(note).then(() => {
+      dispatch(savedNote(note));
+    });
   };
 }
 
-// export function saveThenUpdateNote(note) {
-//   return dispatch => {
-//     save(note).then(() => {
-//       dispatch(updateNote(note));
-//       dispatch(savedNote(note));
-//     });
-//   };
-// }
+export function saveThenUpdateNote(note) {
+  return dispatch => {
+    save(note).then(() => {
+      dispatch(updateNote(note));
+      dispatch(savedNote(note));
+    });
+  };
+}
 
 export function saveNote(note) {
   return dispatch => {
-    dispatch(savedNote(note));
-    save(note);
+    save(note).then(() => {
+      dispatch(savedNote(note));
+    });
   };
 }
 

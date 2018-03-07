@@ -60,7 +60,19 @@ function notes(
         isLoadingNotes: true
       });
     case SAVED_NOTE:
+      if (
+        state.selectedNote !== null &&
+        action.note !== null &&
+        action.note.uuid === state.selectedNote.uuid
+      ) {
+        return Object.assign({}, state, {
+          allNotes: updateNoteInAllNotes(action.note, state.allNotes),
+          selectedNote: Object.assign({}, action.note), // copy to force props to update
+          unsavedChanges: false
+        });
+      }
       return Object.assign({}, state, {
+        allNotes: updateNoteInAllNotes(action.note, state.allNotes),
         unsavedChanges: false
       });
     case RECEIVED_NOTES:

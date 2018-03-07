@@ -168,6 +168,7 @@ class NoteView extends React.Component {
               onFocusEx={this.onEditorFocus}
             />
           </TopViewContainer>
+          <div>Last saved at </div>
           <TagContainer
             tags={tags}
             tagInputValue={this.state.tagInputValue}

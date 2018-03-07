@@ -16,6 +16,7 @@ import {
 import TagContainer from "./TagContainer";
 import TagModel from "../note/Tag";
 import { getDefaultKeyBinding, KeyBindingUtil } from "draft-js";
+import moment from "moment";
 
 const DeleteButton = styled.button`
   float: right;
@@ -28,6 +29,10 @@ const DeleteButton = styled.button`
 
 const InsetText = styled.div`
   color: ${props => props.theme.colors.insetText};
+`;
+
+const SavedAtDiv = InsetText.extend`
+  padding: ${props => props.theme.spacing.padding};
 `;
 
 const BumpedDownContainer = Container.extend`
@@ -167,6 +172,9 @@ class NoteView extends React.Component {
     }
 
     const tags = this._getTags();
+    const savedAt = moment(this.props.note.updated_at).format(
+      "M/D/YY hh:mm:ss a"
+    );
 
     return (
       <BumpedDownContainer>
@@ -182,6 +190,7 @@ class NoteView extends React.Component {
               keyBindingFn={this.saveKeyBinding}
               handleKeyCommand={this.handleKeyCommand}
             />
+            <SavedAtDiv>Last saved at {savedAt}</SavedAtDiv>
           </TopViewContainer>
           <TagContainer
             tags={tags}
