@@ -18,6 +18,16 @@ const onKeyPress = (event, onEnterPress) => {
   onEnterPress();
 };
 
+const TagButton = styled.button`
+  background: transparent;
+  border: none;
+  position: relative;
+  bottom:0
+  left:0
+  top: -${props => 2 * props.theme.spacing.padding};
+  font-size: ${props => props.theme.fontSize};
+`;
+
 const TagContainer = ({
   tags,
   tagInputValue,
@@ -34,6 +44,13 @@ const TagContainer = ({
         onKeyPress(event, onEnterPress);
       }}
     />
+    <TagButton
+      onClick={event => {
+        onEnterPress();
+      }}
+    >
+      Add Tag
+    </TagButton>
     {tags.map(tag => (
       <Tag
         text={tag.value}
