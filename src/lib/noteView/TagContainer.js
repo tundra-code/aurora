@@ -19,12 +19,10 @@ const onKeyPress = (event, onEnterPress) => {
 };
 
 const TagButton = styled.button`
-  background: transparent;
-  border: none;
+  border: 1px solid ${props => props.theme.colors.border};
+  background: ${props => props.theme.colors.background};
   position: relative;
   bottom:0
-  left:0
-  top: -${props => 2 * props.theme.spacing.padding};
   font-size: ${props => props.theme.fontSize};
 `;
 
