@@ -3,14 +3,11 @@ import {
   emptySerializedEditorState,
   emptyEditorState,
   serializeContent,
-  deSerializeContent
+  deSerializeContent,
+  getSearchableText
 } from "./util";
 import { serializePreview } from "./Preview";
 const EDITOR_NAME = "BaseEditor";
-
-// const noteWithEmptyEditor = () => {
-//   return new NoteModel(emptySerializedEditorState(), EDITOR_NAME, []);
-// };
 
 export {
   Editor,
@@ -19,5 +16,6 @@ export {
   EDITOR_NAME,
   emptyEditorState,
   emptySerializedEditorState,
-  serializePreview
+  serializePreview,
+  getSearchableText
 };

@@ -46,6 +46,10 @@ function deSerializeContent(content) {
   return editorState;
 }
 
+function getSearchableText(editorState) {
+  return editorState.getCurrentContent().getPlainText();
+}
+
 // Initialize editor registry if needed.
 if (window.editors === undefined) {
   window.editors = {};
@@ -62,5 +66,6 @@ export {
   emptySerializedEditorState,
   emptyEditorState,
   serializeContent,
-  deSerializeContent
+  deSerializeContent,
+  getSearchableText
 };

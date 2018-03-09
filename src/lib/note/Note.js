@@ -27,6 +27,7 @@ export default class Note {
     this.updated_at = options.updated_at;
     this.preview = options.preview ? options.preview : { text: "New Note" };
     this.tags = tags;
+    this.searchableText = options.searchableText ? options.searchableText : "";
 
     this.forceUUIdToBeString();
   }
@@ -143,7 +144,8 @@ export default class Note {
       id: json.id,
       created_at: json.created_at,
       updated_at: json.updated_at,
-      preview: JSON.parse(json.preview)
+      preview: JSON.parse(json.preview),
+      searchableText: json.searchable_text
     });
   }
 }

@@ -4,7 +4,11 @@ import Editor from "draft-js-plugins-editor";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { serializeContent, deSerializeContent } from "./index";
+import {
+  serializeContent,
+  deSerializeContent,
+  getSearchableText
+} from "./index";
 import { serializePreview } from "./Preview";
 
 const EditorStyles = styled.div`
@@ -58,9 +62,15 @@ class BaseEditor extends React.Component {
   onChange = editorState => {
     const serializedContent = serializeContent(editorState);
     const serializedPreview = serializePreview(editorState);
+    const searchableText = getSearchableText(editorState);
 
     if (this.props.onChangeEx) {
-      this.props.onChangeEx(editorState, serializedContent, serializedPreview);
+      this.props.onChangeEx(
+        editorState,
+        serializedContent,
+        serializedPreview,
+        searchableText
+      );
     }
   };
 

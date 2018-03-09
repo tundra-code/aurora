@@ -32,7 +32,8 @@ function noteFromNoteModel(note) {
     id: note.id,
     uuid: note.uuid,
     mutationName: note.mutationName,
-    preview: JSON.stringify(note.getPreview())
+    preview: JSON.stringify(note.getPreview()),
+    searchable_text: note.searchableText
   });
 }
 

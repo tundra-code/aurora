@@ -112,7 +112,12 @@ class NoteView extends React.Component {
     this.props.dispatch(selectNote(null));
   };
 
-  onEditorChange = (editorState, serializedContent, serializedPreview) => {
+  onEditorChange = (
+    editorState,
+    serializedContent,
+    serializedPreview,
+    searchableText
+  ) => {
     const note = this.props.note;
     this.props.dispatch(setEditorState(editorState));
 
@@ -122,6 +127,9 @@ class NoteView extends React.Component {
       }
       if (serializedPreview) {
         note.setPreview(serializedPreview);
+      }
+      if (searchableText) {
+        note.searchableText = searchableText;
       }
       this.props.dispatch(updateNote(note));
     }
