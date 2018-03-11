@@ -15,28 +15,65 @@ class NoteList extends React.Component {
     this.props.dispatch(loadNotes());
   }
 
-  filterNotesBasedOnQuery = note => {
-    const searchTags = this.props.query.split(" ");
-    const noteTags = note.getTags();
-    for (const tag of searchTags) {
-      const trimmedTag = tag.trim().replace(/\W/g, ""); // remove alphanumeric
-      const matchingTags = noteTags.filter(t =>
-        t.value.toLowerCase().includes(trimmedTag.toLowerCase())
-      );
-      if (matchingTags.length === 0) {
-        return false;
+  getMatchingTags = (tag, noteTags) => {
+    const trimmedTag = tag.trim().replace(/\W/g, ""); // remove alphanumeric
+    const matchingTags = noteTags.filter(t =>
+      t.value.toLowerCase().includes(trimmedTag.toLowerCase())
+    );
+    return matchingTags;
+  };
+
+  removeDuplicateTags = matchingTags => {
+    const uniqueMatchingTags = {};
+    for (const tags of matchingTags) {
+      for (const t of tags) {
+        uniqueMatchingTags[t.value] = true;
       }
     }
-    return true;
+    return Object.keys(uniqueMatchingTags);
+  };
+
+  filterNotesBasedOnQuery = note => {
+    const searchTags = this.props.query.trim().split(" ");
+    const noteTags = note.getTags();
+    const allMatchingTags = [];
+    for (const tag of searchTags) {
+      allMatchingTags.push(this.getMatchingTags(tag, noteTags));
+    }
+    return this.removeDuplicateTags(allMatchingTags);
+  };
+
+  sortFilteredNoteList = (noteList, matchingTagsDict) => {
+    return noteList.sort((a, b) => {
+      return matchingTagsDict[a.uuid].length < matchingTagsDict[b.uuid].length;
+    });
   };
 
   render() {
     let noteObjectList = noteDictToArray(this.props.allNotes);
+    const matchingTagsDict = {};
     if (this.props.query.length !== 0) {
-      noteObjectList = noteObjectList.filter(this.filterNotesBasedOnQuery);
+      const filteredNoteList = [];
+      for (const note of noteObjectList) {
+        const matchingTags = this.filterNotesBasedOnQuery(note);
+        if (matchingTags.length > 0) {
+          filteredNoteList.push(note);
+          matchingTagsDict[note.uuid] = matchingTags;
+        }
+      }
+
+      noteObjectList = this.sortFilteredNoteList(
+        filteredNoteList,
+        matchingTagsDict
+      );
     }
+
     const noteList = noteObjectList.map(note => (
-      <NoteListItem key={note.uuid} note={note} />
+      <NoteListItem
+        key={note.uuid}
+        note={note}
+        matchingTags={matchingTagsDict[note.uuid]}
+      />
     ));
 
     return (

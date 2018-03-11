@@ -31,11 +31,25 @@ const Icon = styled.div`
   }
 `;
 
-export default props => (
-  <TagViewContainer key={`${props.key}-container`}>
-    {props.text}
-    <Icon onClick={props.onDelete}>
-      <X size={theme.iconSizes.small} />
-    </Icon>
-  </TagViewContainer>
-);
+export default class TagView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let deleteButton = null;
+    if (this.props.onDelete) {
+      deleteButton = (
+        <Icon onClick={this.props.onDelete}>
+          <X size={theme.iconSizes.small} />
+        </Icon>
+      );
+    }
+    return (
+      <TagViewContainer key={`${this.props.key}-container`}>
+        {this.props.text}
+        {deleteButton}
+      </TagViewContainer>
+    );
+  }
+}

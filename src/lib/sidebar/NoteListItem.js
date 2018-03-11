@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import { MenuCard } from "../ui/Menu";
 import { selectedNote, unsavedChanges } from "../../redux/selectors";
 import styled from "styled-components";
+
+import { TagView } from "../noteView";
+
 import moment from "moment";
 
 const HorizontalDiv = styled.div`
@@ -13,6 +16,12 @@ const HorizontalDiv = styled.div`
 
 const UnsavedChangesDiv = HorizontalDiv.extend`
   width: 10px;
+`;
+
+const TagStyleContainer = styled.div`
+  border-top: 1px solid ${props => props.theme.colors.border};
+  width: 100%;
+  padding: ${props => props.theme.spacing.padding};
 `;
 
 const InsetText = styled.div`
@@ -40,16 +49,24 @@ class NoteListItem extends React.Component {
       unsavedChangesIcon = "*";
     }
 
+    let matchingTags = null;
+    if (this.props.matchingTags) {
+      const tagViews = this.props.matchingTags.map(tag => (
+        <TagView key={tag} text={tag} />
+      ));
+      matchingTags = <TagStyleContainer> {tagViews} </TagStyleContainer>;
+    }
+
     const preview = this.props.note.renderPreview();
     return (
       <MenuCard
         onClick={this.onClick}
         key={`${this.props.note.uuid}-note`}
-        active={isActive}
-      >
+        active={isActive}>
         <UnsavedChangesDiv>{unsavedChangesIcon}</UnsavedChangesDiv>
         <HorizontalDiv>{preview}</HorizontalDiv>
         <InsetText>{formattedDate}</InsetText>
+        {matchingTags}
       </MenuCard>
     );
   }
