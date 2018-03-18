@@ -10,7 +10,7 @@ exports[`StoreItemList renders correctly with items 1`] = `
   >
     <div>
       <div
-        className="sc-jTzLTM cEizhB"
+        className="sc-jTzLTM kWOcbp"
       >
         <h2
           className="sc-VigVT gvySff"
@@ -28,7 +28,7 @@ exports[`StoreItemList renders correctly with items 1`] = `
         </button>
       </div>
       <div
-        className="sc-jTzLTM cEizhB"
+        className="sc-jTzLTM kWOcbp"
       >
         <h2
           className="sc-VigVT gvySff"

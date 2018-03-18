@@ -11,9 +11,13 @@ const Input = styled.input`
   border-style: solid;
   border-color: ${props => props.theme.colors.border};
   border-image: initial;
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
   font-size: ${props => props.theme.fontSize};
   box-sizing: border-box;
+
+  &:focus {
+      outline: none !important;
+      border-color: ${props => props.theme.colors.primary};
+  }
 `;
 
 export { Input };

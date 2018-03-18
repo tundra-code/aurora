@@ -23,6 +23,10 @@ const AddButtonContainer = styled.div`
     background: white;
     width: 150px;
     cursor: pointer;
+    box-shadow: none;
+    border-radius: ${props => props.theme.borderRadius}
+    border-color: ${props => props.theme.colors.border};
+  
   }
 `;
 

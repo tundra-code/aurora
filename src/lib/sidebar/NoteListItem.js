@@ -12,7 +12,7 @@ import moment from "moment";
 
 const HorizontalDiv = styled.div`
   display: inline-block;
-`;
+  `;
 
 const UnsavedChangesDiv = HorizontalDiv.extend`
   width: 10px;
@@ -60,6 +60,7 @@ class NoteListItem extends React.Component {
     const preview = this.props.note.renderPreview();
     return (
       <MenuCard
+        role="button"
         onClick={this.onClick}
         key={`${this.props.note.uuid}-note`}
         active={isActive}>

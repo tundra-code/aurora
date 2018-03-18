@@ -13,9 +13,7 @@ class Preview extends React.Component {
 
   render() {
     return (
-      <div>
         <p>{this.props.preview.text}</p>
-      </div>
     );
   }
 }

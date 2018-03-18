@@ -40,7 +40,4 @@ export const MenuCard = Card.extend`
   &:hover {
     border-color: ${props => props.theme.colors.primary};
   }
-
-  border-color: ${props =>
-    props.active ? props.theme.colors.primary : props.theme.colors.border};
 `;

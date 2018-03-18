@@ -9,7 +9,7 @@ exports[`StoreSearchBar renders correctly 1`] = `
     className="sc-htpNat dYxwZX"
   >
     <input
-      className="sc-bwzfXH cFCtWB"
+      className="sc-bwzfXH fCQffQ"
       onChange={[Function]}
       placeholder="Type to search for a mutation..."
       type="text"

@@ -186,7 +186,7 @@ class NoteView extends React.Component {
 
     return (
       <BumpedDownContainer>
-        <NoteViewContainer>
+        <NoteViewContainer active={this.state.focused}>
           <TopViewContainer>
             <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
             <ContentView
