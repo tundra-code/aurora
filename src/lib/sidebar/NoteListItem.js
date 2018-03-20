@@ -12,10 +12,6 @@ import moment from "moment";
 
 const HorizontalDiv = styled.div`
   display: inline-block;
-  `;
-
-const UnsavedChangesDiv = HorizontalDiv.extend`
-  width: 10px;
 `;
 
 const TagStyleContainer = styled.div`
@@ -44,11 +40,6 @@ class NoteListItem extends React.Component {
 
     const formattedDate = moment(this.props.note.updated_at).format("M/D/YY");
 
-    let unsavedChangesIcon = " ";
-    if (this.props.unsavedChanges && isActive) {
-      unsavedChangesIcon = "*";
-    }
-
     let matchingTags = null;
     if (this.props.matchingTags) {
       const tagViews = this.props.matchingTags.map(tag => (
@@ -64,7 +55,6 @@ class NoteListItem extends React.Component {
         onClick={this.onClick}
         key={`${this.props.note.uuid}-note`}
         active={isActive}>
-        <UnsavedChangesDiv>{unsavedChangesIcon}</UnsavedChangesDiv>
         <HorizontalDiv>{preview}</HorizontalDiv>
         <InsetText>{formattedDate}</InsetText>
         {matchingTags}
