@@ -19,10 +19,9 @@ const onKeyPress = (event, onEnterPress) => {
 };
 
 const TagButton = styled.button`
-  border: 1px solid ${props => props.theme.colors.border};
-  background: ${props => props.theme.colors.background};
+  border: none;
+  background: transparent;
   position: relative;
-  bottom:0
   font-size: ${props => props.theme.fontSize};
 `;
 
@@ -47,7 +46,7 @@ const TagContainer = ({
         onEnterPress();
       }}
     >
-      Add Tag
+      ➕
     </TagButton>
     {tags.map(tag => (
       <Tag
