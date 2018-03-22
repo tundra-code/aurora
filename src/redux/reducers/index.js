@@ -22,6 +22,7 @@ import {
   moveNoteToFront
 } from "../utils";
 import { noteArrayToDict } from "../../lib/note/util";
+import _ from "lodash";
 
 function app(state = {}, action) {
   switch (action.type) {
@@ -95,7 +96,9 @@ function notes(
       }
       return Object.assign({}, state, {
         selectedNote: action.note,
-        editorState: window.editors[action.note.mutationName].emptyEditorState
+        editorState: _.clone(
+          window.editors[action.note.mutationName].emptyEditorState
+        )
       });
 
     case LOAD_NOTE_CONTENT:

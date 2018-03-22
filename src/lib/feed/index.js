@@ -13,6 +13,7 @@ import { Container } from "../ui";
 import { NoteModel } from "../note";
 import Menu, { SubMenu, MenuItem } from "rc-menu";
 import "rc-menu/assets/index.css";
+import _ from "lodash";
 
 const AddButtonContainer = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const AddButtonContainer = styled.div`
     box-shadow: none;
     border-radius: ${props => props.theme.borderRadius}
     border-color: ${props => props.theme.colors.border};
-  
+
   }
 `;
 
@@ -37,7 +38,7 @@ class Feed extends React.Component {
 
   newNote = mutationName => {
     return new NoteModel(
-      window.editors[mutationName].newNoteContent,
+      _.clone(window.editors[mutationName].newNoteContent),
       mutationName,
       []
     );
