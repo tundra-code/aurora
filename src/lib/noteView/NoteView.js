@@ -93,6 +93,9 @@ class NoteView extends React.Component {
   };
 
   onTagSubmit = () => {
+    if (this.state.tagInputValue === "") {
+      return;
+    }
     const note = this.props.note;
     note.addTag(new TagModel(this.state.tagInputValue));
     this.props.updateAndSaveNote(note);

@@ -27,7 +27,7 @@ const TagContainer = ({
 }) => (
   <TagStyleContainer>
     <Input
-      placeholder={"Press enter to add a tag"}
+      placeholder={"Press enter to add tag"}
       value={tagInputValue}
       onChange={onChange}
       onKeyPress={event => {
