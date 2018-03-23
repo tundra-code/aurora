@@ -17,6 +17,7 @@ import TagContainer from "./TagContainer";
 import TagModel from "../note/Tag";
 import { getDefaultKeyBinding, KeyBindingUtil } from "draft-js";
 import moment from "moment";
+import Toolbar from "./Toolbar";
 
 const DeleteButton = styled.button`
   float: right;
@@ -46,6 +47,11 @@ const NoteViewContainer = Card.extend`
 
 const TopViewContainer = styled.div`
   padding: ${props => props.theme.spacing.padding};
+`;
+
+const TopBarContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto 50px;
 `;
 
 const { hasCommandModifier } = KeyBindingUtil;
@@ -191,7 +197,10 @@ class NoteView extends React.Component {
       <BumpedDownContainer>
         <NoteViewContainer active={this.state.focused}>
           <TopViewContainer>
-            <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
+            <TopBarContainer>
+              <Toolbar />
+              <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
+            </TopBarContainer>
             <ContentView
               isLoadingContent={this.props.isLoadingContent}
               ourEditorState={this.props.ourEditorState}
