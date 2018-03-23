@@ -193,11 +193,13 @@ class NoteView extends React.Component {
           <TopViewContainer>
             <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
             <ContentView
-              {...this.props}
-              onChangeEx={this.onEditorChange}
-              onBlurEx={this.onEditorBlur}
+              isLoadingContent={this.props.isLoadingContent}
+              ourEditorState={this.props.ourEditorState}
+              note={this.props.note}
+              onChange={this.onEditorChange}
+              onBlur={this.onEditorBlur}
               onContentLoaded={this.onEditorContentLoaded}
-              onFocusEx={this.onEditorFocus}
+              onFocus={this.onEditorFocus}
               keyBindingFn={this.saveKeyBinding}
               handleKeyCommand={this.handleKeyCommand}
             />

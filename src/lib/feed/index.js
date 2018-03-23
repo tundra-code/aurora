@@ -76,7 +76,6 @@ class Feed extends React.Component {
         <NoteView
           ourEditorState={this.props.editorState}
           note={this.props.selectedNote}
-          placeholder={"Change me!"}
           {...this.props}
         />
       </Container>

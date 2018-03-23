@@ -32,11 +32,12 @@ class ContentView extends React.Component {
 }
 
 ContentView.propTypes = {
-  onChangeEx: PropTypes.func,
-  onBlurEx: PropTypes.func,
-  onContentLoaded: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  onContentLoaded: PropTypes.func.isRequired,
   selectNote: PropTypes.object,
-  note: PropTypes.object,
+  note: PropTypes.object.isRequired,
   ourEditorState: PropTypes.object.isRequired,
   isLoadingContent: PropTypes.bool.isRequired
 };

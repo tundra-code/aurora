@@ -53,9 +53,7 @@ class BaseEditor extends React.Component {
       const editorState = deSerializeContent(
         content[this.props.note.mutationName]
       );
-      if (this.props.onContentLoaded) {
-        this.props.onContentLoaded(editorState);
-      }
+      this.props.onContentLoaded(editorState);
     });
   };
 
@@ -64,26 +62,12 @@ class BaseEditor extends React.Component {
     const serializedPreview = serializePreview(editorState);
     const searchableText = getSearchableText(editorState);
 
-    if (this.props.onChangeEx) {
-      this.props.onChangeEx(
-        editorState,
-        serializedContent,
-        serializedPreview,
-        searchableText
-      );
-    }
-  };
-
-  onBlur = () => {
-    if (this.props.onBlurEx) {
-      this.props.onBlurEx();
-    }
-  };
-
-  onFocus = () => {
-    if (this.props.onFocusEx) {
-      this.props.onFocusEx();
-    }
+    this.props.onChange(
+      editorState,
+      serializedContent,
+      serializedPreview,
+      searchableText
+    );
   };
 
   componentDidMount() {
@@ -91,16 +75,16 @@ class BaseEditor extends React.Component {
   }
 
   render() {
+    const { onChange, ...props } = this.props; // eslint-disable-line
     return (
       <EditorStyles>
         <Editor
           className="editor"
           ref={this.setDomEditorRef}
           onChange={this.onChange}
-          onBlur={this.onBlur}
-          onFocus={this.onFocus}
           editorState={this.props.ourEditorState}
-          {...this.props}
+          placeholder={"Change me!"}
+          {...props}
         />
       </EditorStyles>
     );
@@ -108,13 +92,13 @@ class BaseEditor extends React.Component {
 }
 
 BaseEditor.propTypes = {
-  onChangeEx: PropTypes.func,
-  onBlurEx: PropTypes.func,
-  onFocusEx: PropTypes.func,
-  onContentLoaded: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  onContentLoaded: PropTypes.func.isRequired,
   note: PropTypes.object,
-  ourEditorState: PropTypes.object,
-  isLoadingContent: PropTypes.bool
+  ourEditorState: PropTypes.object.isRequired,
+  isLoadingContent: PropTypes.bool.isRequired
 };
 
 export default connect()(mutate(BaseEditor, "BaseEditor"));
