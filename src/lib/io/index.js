@@ -7,7 +7,9 @@ import {
   savePreferences,
   updatePreferences,
   installNewMutation,
-  uninstallMutation
+  uninstallMutation,
+  importNotes,
+  exportNotes
 } from "./IO.js";
 import {
   loadNoteContent,
@@ -40,5 +42,7 @@ export {
   ensureDirExists,
   installNewMutation,
   uninstallMutation,
-  deleteTagFromDB
+  deleteTagFromDB,
+  importNotes,
+  exportNotes
 };

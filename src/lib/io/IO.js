@@ -6,7 +6,9 @@ import {
   saveToAsync,
   readFromAsync,
   //throwIfNotNoteModel,
-  exists
+  exists,
+  zipNotes,
+  unzipNotes
 } from "./util.js";
 import { auroraUserPath, auroraPreferencesFile } from "../paths";
 import { installMutations } from "@react-mutate/loader";
@@ -43,6 +45,20 @@ function deleteNote(note) {
 function loadNotes() {
   return new Promise((resolve, reject) => {
     queryNotes(resolve, reject);
+  });
+}
+
+function exportNotes(filePath) {
+  return new Promise(resolve => {
+    zipNotes(filePath);
+    resolve();
+  });
+}
+
+function importNotes(filePath) {
+  return new Promise(resolve => {
+    unzipNotes(filePath);
+    resolve();
   });
 }
 
@@ -135,5 +151,7 @@ export {
   updatePreferences,
   createPreferencesIfNotExist,
   installMutationFiles,
-  deleteTagFromDB
+  deleteTagFromDB,
+  exportNotes,
+  importNotes
 };

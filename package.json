@@ -6,6 +6,7 @@
     "dev": "electron-webpack dev",
     "dev-log-redux": "cross-env LOG_REDUX=true yarn dev",
     "compile": "electron-webpack",
+    "update-snapshot-tests": "./node_modules/.bin/jest --updateSnapshot",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
@@ -18,13 +19,12 @@
     "add-many-notes": "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
     "create-note": "cross-env NODE_ENV=development babel-node scripts/create-note/create.js",
     "lint": "./node_modules/.bin/eslint src",
-    "postinstall": "electron-builder install-app-deps",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@react-mutate/core": "^0.4.4",
     "@react-mutate/loader": "^0.4.4",
+    "adm-zip": "^0.4.7",
     "axios": "^0.17.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-polyfill": "^6.26.0",
@@ -65,7 +65,6 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "snyk": "^1.50.0",
     "source-map-support": "^0.5.0",
     "sqlite3": "^3.1.13",
     "styled-components": "^2.2.3",
@@ -112,7 +111,6 @@
       "webpackConfig": "webpack.babel-polyfill.renderer.js"
     }
   },
-  "snyk": true,
   "jest": {
     "setupFiles": [
       "raf/polyfill",

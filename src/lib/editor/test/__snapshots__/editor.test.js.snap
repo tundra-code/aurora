@@ -12,13 +12,23 @@ exports[`Editor renders correctly 1`] = `
       className="DraftEditor-root"
     >
       <div
+        className="public-DraftEditorPlaceholder-root"
+      >
+        <div
+          className="public-DraftEditorPlaceholder-inner"
+          id="placeholder-123"
+        >
+          Change me!
+        </div>
+      </div>
+      <div
         className="DraftEditor-editorContainer"
       >
         <div
           aria-activedescendant={undefined}
           aria-autocomplete={undefined}
           aria-controls={undefined}
-          aria-describedby={null}
+          aria-describedby="placeholder-123"
           aria-expanded={null}
           aria-label={undefined}
           aria-multiline={undefined}

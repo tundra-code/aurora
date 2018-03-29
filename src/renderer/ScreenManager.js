@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import rendererEvents from "../lib/electron-events/renderer";
 import { setScreen } from "../redux/actions";
 import { screen } from "../redux/selectors";
+import { exportNotes, importNotes } from "../lib/io";
 
 class ScreenManager extends React.Component {
   constructor(props) {
@@ -19,6 +20,12 @@ class ScreenManager extends React.Component {
     // 5. ScreenManager treats the action like any other state change
     rendererEvents.onChangeScreen((event, screen) => {
       props.dispatch(setScreen(screen));
+    });
+    rendererEvents.onExportNotes((event, filepath) => {
+      exportNotes(filepath);
+    });
+    rendererEvents.onImportNotes((event, filepath) => {
+      importNotes(filepath);
     });
   }
 
