@@ -15,6 +15,13 @@ const ToolbarItem = styled.div`
   border-radius: 15px;
   user-select: none;
   text-align: center;
+  cursor: pointer;
+
+  & span {
+    position: relative;
+    top: 5px;
+  }
+
   &:hover {
     background-color: ${props => props.theme.colors.border};
   }
@@ -37,7 +44,7 @@ class Toolbar extends React.Component {
           onMouseUp={this.props.onClickRelease}
           key={button.command}
           data-tip={button.hint}>
-          {button.icon}
+          <span>{button.icon}</span>
           <StyledTooltip delayShow={1000} />
         </ToolbarItem>
       );
