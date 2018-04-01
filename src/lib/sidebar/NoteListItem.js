@@ -11,7 +11,7 @@ import { TagView } from "../noteView";
 import moment from "moment";
 
 const HorizontalDiv = styled.div`
-  display: inline-block;
+  display: flex;
 `;
 
 const TagStyleContainer = styled.div`
