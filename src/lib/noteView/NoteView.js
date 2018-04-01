@@ -16,6 +16,7 @@ import {
 import TagContainer from "./TagContainer";
 import TagModel from "../note/Tag";
 import { getDefaultKeyBinding, KeyBindingUtil } from "draft-js";
+import Toolbar from "./Toolbar";
 import moment from "moment";
 
 const DeleteButton = styled.button`
@@ -48,6 +49,11 @@ const TopViewContainer = styled.div`
   padding: ${props => props.theme.spacing.padding};
 `;
 
+const TopBarContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto 50px;
+`;
+
 const { hasCommandModifier } = KeyBindingUtil;
 
 class NoteView extends React.Component {
@@ -55,7 +61,8 @@ class NoteView extends React.Component {
     super(props);
     this.state = {
       tagInputValue: "",
-      focused: false
+      focused: false,
+      toolbarCommand: null
     };
   }
 
@@ -175,6 +182,15 @@ class NoteView extends React.Component {
     this.setState({ focused: true });
   };
 
+  toolbarOnClick = (command, event) => {
+    event.preventDefault(); // prevent de-focus of editor
+    this.setState({ toolbarCommand: command });
+  };
+
+  toolbarOnClickRelease = () => {
+    this.setState({ toolbarCommand: null });
+  };
+
   render() {
     if (this.props.note === null) {
       return (
@@ -191,7 +207,13 @@ class NoteView extends React.Component {
       <BumpedDownContainer>
         <NoteViewContainer active={this.state.focused}>
           <TopViewContainer>
-            <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
+            <TopBarContainer>
+              <Toolbar
+                onClick={this.toolbarOnClick}
+                onClickRelease={this.toolbarOnClickRelease}
+              />
+              <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
+            </TopBarContainer>
             <ContentView
               isLoadingContent={this.props.isLoadingContent}
               ourEditorState={this.props.ourEditorState}
@@ -202,6 +224,7 @@ class NoteView extends React.Component {
               onFocus={this.onEditorFocus}
               keyBindingFn={this.saveKeyBinding}
               handleKeyCommand={this.handleKeyCommand}
+              simulatedKeyCommand={this.state.toolbarCommand}
             />
             <SavedAtDiv>Last saved at {savedAt}</SavedAtDiv>
           </TopViewContainer>
@@ -217,6 +240,16 @@ class NoteView extends React.Component {
     );
   }
 }
+
+window.toolbar = {
+  buttons: [],
+  toggleButtons: []
+};
+window.toolbar.buttons.push({
+  icon: "💾",
+  command: "save-note",
+  hint: "save"
+});
 
 NoteView.propTypes = {
   note: PropTypes.object

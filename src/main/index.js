@@ -32,6 +32,7 @@ function createMainWindow() {
   if (isDevelopment) {
     window.webContents.openDevTools();
   }
+  process.env.webContents = window.webContents;
 
   window.loadURL(url);
 

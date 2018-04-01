@@ -46,6 +46,13 @@ class BaseEditor extends React.Component {
     if (contentLoaded) {
       this.finishedLoadingContent();
     }
+
+    const simulatedKeyCommand =
+      prevProps.simulatedKeyCommand === null &&
+      this.props.simulatedKeyCommand !== null;
+    if (simulatedKeyCommand) {
+      this.props.handleKeyCommand(this.props.simulatedKeyCommand);
+    }
   }
 
   finishedLoadingContent = () => {
