@@ -25,9 +25,19 @@ const AddButtonContainer = styled.div`
     width: 150px;
     cursor: pointer;
     box-shadow: none;
-    border-radius: ${props => props.theme.borderRadius}
+    border-radius: ${props => props.theme.borderRadius};
     border-color: ${props => props.theme.colors.border};
+    padding: 0;
+    font-size: ${props => props.theme.fontSize};
+    color: ${props => props.theme.colors.text};
 
+    & li, & .rc-menu-submenu-title  {
+      background: none;
+    }
+
+    &:hover {
+      background: ${props => props.theme.colors.lightPrimary};
+    }
   }
 `;
 
