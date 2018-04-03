@@ -6,8 +6,8 @@ import { Menu } from "../ui/Menu";
 import NoteList from "./NoteList.js";
 import { Input } from "../ui/Inputs";
 
-const BumpedDownMenu = Menu.extend`
-  padding-top: ${props => props.theme.spacing.header};
+const BumpedDownMenu = Menu.extend` 
+  /* padding-top: ${props => props.theme.spacing.header}; */
 `;
 
 const SearchBar = Input.extend`
