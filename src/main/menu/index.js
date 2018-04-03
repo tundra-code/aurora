@@ -26,10 +26,10 @@ module.exports = (app, Menu, MainWindow) => {
   const template = defaultMenu(app);
 
   template.push({
-    label: "Mutations",
+    label: "Extensions",
     submenu: [
       {
-        label: "Add New Mutation",
+        label: "Add New Extension",
         click: () => {
           main.sendScreenChange(MainWindow, "store");
         }

@@ -11,7 +11,7 @@ exports[`StoreSearchBar renders correctly 1`] = `
     <input
       className="sc-bwzfXH fCQffQ"
       onChange={[Function]}
-      placeholder="Type to search for a mutation..."
+      placeholder="Type to search for a extension..."
       type="text"
       value={undefined}
     />

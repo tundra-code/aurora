@@ -14,7 +14,7 @@ const StoreSearchBar = ({ onChange, value }) => {
       type="text"
       onChange={onChange}
       value={value}
-      placeholder="Type to search for a mutation..."
+      placeholder="Type to search for a extension..."
     />
   );
 };

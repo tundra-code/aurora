@@ -116,7 +116,7 @@ class Store extends React.Component {
     if (this.mutationIsInUse(pkg)) {
       if (
         !window.confirm(
-          "This mutation is currently used by a note(s). Are you sure you want to remove it?"
+          "This extension is currently used by a note(s). Are you sure you want to remove it?"
         )
       ) {
         return;
