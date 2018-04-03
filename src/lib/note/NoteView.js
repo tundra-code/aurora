@@ -136,6 +136,14 @@ class NoteView extends React.Component {
     }
   };
 
+  onIdle = () => {
+    if (focused === true) {
+      setTimeout(() => {
+        this.checkAndSaveNote();
+      }, 5000);
+    }
+  };
+
   onEditorBlur = () => {
     this.setState({ focused: false }, () => {
       this.checkAndSaveNote();
@@ -166,6 +174,7 @@ class NoteView extends React.Component {
               onBlurEx={this.onEditorBlur}
               onContentLoaded={this.onEditorContentLoaded}
               onFocusEx={this.onEditorFocus}
+              onIdleEx={this.onIdle}
             />
           </TopViewContainer>
           <div>Last saved at </div>
