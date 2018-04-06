@@ -37,6 +37,12 @@ const StyledTooltip = styled(ReactTooltip)`
 class Toolbar extends React.Component {
   getSingleButtons = () => {
     return window.toolbar.buttons.map(button => {
+      if (
+        button.noteType !== undefined &&
+        button.noteType !== this.props.noteType
+      ) {
+        return null;
+      }
       const boundItemClick = this.props.onClick.bind(this, button.command);
       return (
         <ToolbarItem

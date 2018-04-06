@@ -126,12 +126,13 @@ class NoteView extends React.Component {
     editorState,
     serializedContent,
     serializedPreview,
-    searchableText
+    searchableText,
+    save = false
   ) => {
     const note = this.props.note;
     this.props.dispatch(setEditorState(editorState));
 
-    if (this.state.focused) {
+    if (this.state.focused || save) {
       if (serializedContent) {
         note.setContent(serializedContent);
       }
@@ -141,7 +142,12 @@ class NoteView extends React.Component {
       if (searchableText) {
         note.searchableText = searchableText;
       }
-      this.props.dispatch(updateNote(note));
+      // see if we should save after updating.
+      if (save) {
+        this.props.dispatch(updateAndSaveNote(note));
+      } else {
+        this.props.dispatch(updateNote(note));
+      }
     }
   };
 
@@ -211,6 +217,7 @@ class NoteView extends React.Component {
               <Toolbar
                 onClick={this.toolbarOnClick}
                 onClickRelease={this.toolbarOnClickRelease}
+                noteType={this.props.note.mutationName}
               />
               <DeleteButton onClick={this.onDelete}>🗑</DeleteButton>
             </TopBarContainer>
