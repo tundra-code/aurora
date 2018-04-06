@@ -8,7 +8,6 @@
     "compile": "electron-webpack",
     "update-snapshot-tests": "./node_modules/.bin/jest --updateSnapshot",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
-    "update-snapshot-tests": "./node_modules/.bin/jest --updateSnapshot",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "db-down": "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
@@ -23,8 +22,8 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "@react-mutate/core": "^0.4.4",
-    "@react-mutate/loader": "^0.4.4",
+    "@react-mutate/core": "^0.6.0",
+    "@react-mutate/loader": "^0.6.0",
     "adm-zip": "^0.4.7",
     "axios": "^0.17.0",
     "babel-plugin-transform-regenerator": "^6.26.0",

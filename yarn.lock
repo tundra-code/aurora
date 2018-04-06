@@ -83,17 +83,17 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@flaque/error-if/-/error-if-1.0.2.tgz#2486cb4558d28cdd470ae5f4b76fa8d35679a707"
 
-"@react-mutate/core@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@react-mutate/core/-/core-0.4.4.tgz#a31f79ff4c36a1b0454da74fef6fa6ff23fe8410"
+"@react-mutate/core@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@react-mutate/core/-/core-0.6.0.tgz#e80e5bb5b1cd337185a9d8fbd889ee79999a0e5e"
   dependencies:
     "@flaque/error-if" "^1.0.2"
     "@sindresorhus/is" "^0.2.1"
     invariant "^2.2.2"
 
-"@react-mutate/loader@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@react-mutate/loader/-/loader-0.4.4.tgz#93d1c9ff4deeb3d17a5e570f74168e719ad97398"
+"@react-mutate/loader@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@react-mutate/loader/-/loader-0.6.0.tgz#b44852f7534ebe1529d5ac41ac095f2d7419e22b"
   dependencies:
     "@flaque/error-if" "^1.0.2"
     async "^2.5.0"
@@ -4476,9 +4476,15 @@ interpret@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.4.tgz#820cdd588b868ffb191a809506d6c9c8f212b1b0"
 
-invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.2:
+invariant@^2.0.0, invariant@^2.2.0:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
+  dependencies:
+    loose-envify "^1.0.0"
+
+invariant@^2.2.2:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
     loose-envify "^1.0.0"
 

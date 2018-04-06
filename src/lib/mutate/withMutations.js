@@ -3,10 +3,18 @@ import { MutationsProvider } from "@react-mutate/core";
 import requireMutations from "./requireMutations";
 
 function arrayToObject(muts) {
-  let ob = {};
+  const ob = {};
+
   for (const m of muts) {
-    ob = Object.assign(ob, m.mutations);
+    for (const key in m.mutations) {
+      if (ob[key]) {  
+        ob[key].push(m.mutations[key])
+      } else {
+        ob[key] = [m.mutations[key]]
+      }
+    }
   }
+
   return ob;
 }
 /**
