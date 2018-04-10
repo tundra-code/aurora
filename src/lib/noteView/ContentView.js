@@ -11,11 +11,23 @@ import {
 import PropTypes from "prop-types";
 
 class ContentView extends React.Component {
+  finishedLoadingContent = () => {
+    this.props.note.getContent().then(content => {
+      const editorState = deSerializeContent(
+        content[this.props.note.mutationName]
+      );
+      this.props.onContentLoaded(editorState);
+    });
+  };
+
   render() {
     if (this.props.note && this.props.note.mutationName === "BaseEditor") {
       return (
         <div>
-          <Editor {...this.props} />
+          <Editor
+            {...this.props}
+            finishedLoadingContent={this.finishedLoadingContent}
+          />
         </div>
       );
     }

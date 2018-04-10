@@ -4,11 +4,7 @@ import Editor from "draft-js-plugins-editor";
 import { mutate } from "@react-mutate/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import {
-  serializeContent,
-  deSerializeContent,
-  getSearchableText
-} from "./index";
+import { serializeContent, getSearchableText } from "./index";
 import { serializePreview } from "./Preview";
 
 const EditorStyles = styled.div`
@@ -44,25 +40,19 @@ class BaseEditor extends React.Component {
       prevProps.isLoadingContent === true &&
       this.props.isLoadingContent === false;
     if (contentLoaded) {
-      this.finishedLoadingContent();
+      this.props.finishedLoadingContent();
     }
 
     const simulatedKeyCommand =
       prevProps.simulatedKeyCommand === null &&
       this.props.simulatedKeyCommand !== null;
     if (simulatedKeyCommand) {
-      this.props.handleKeyCommand(this.props.simulatedKeyCommand);
+      this.props.handleKeyCommand(
+        this.props.simulatedKeyCommand,
+        this.props.ourEditorState
+      );
     }
   }
-
-  finishedLoadingContent = () => {
-    this.props.note.getContent().then(content => {
-      const editorState = deSerializeContent(
-        content[this.props.note.mutationName]
-      );
-      this.props.onContentLoaded(editorState);
-    });
-  };
 
   onChange = editorState => {
     const serializedContent = serializeContent(editorState);
@@ -102,10 +92,10 @@ BaseEditor.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
-  onContentLoaded: PropTypes.func.isRequired,
   note: PropTypes.object,
   ourEditorState: PropTypes.object.isRequired,
-  isLoadingContent: PropTypes.bool.isRequired
+  isLoadingContent: PropTypes.bool,
+  finishedLoadingContent: PropTypes.func
 };
 
 export default connect()(mutate(BaseEditor, "BaseEditor"));
