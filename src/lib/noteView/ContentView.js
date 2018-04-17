@@ -35,8 +35,8 @@ class ContentView extends React.Component {
       <div>
         <p>Note cannot be rendered!</p>
         <p>
-          Mutation {this.props.note.mutationName} is required, but is not
-          installed. Try Mutations - Add New Mutation to install it.
+          Extension {this.props.note.mutationName} is required, but is not
+          installed. Try Extensions - Add New Extension to install it.
         </p>
       </div>
     );
