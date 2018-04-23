@@ -43,6 +43,8 @@ const BumpedDownContainer = Container.extend`
 
 const NoteViewContainer = Card.extend`
   padding: 0;
+  position: relative;
+  z-index: 0;
 `;
 
 const TopViewContainer = styled.div`
