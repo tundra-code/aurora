@@ -9,7 +9,7 @@ const opaqueBorder = (props, alpha) => {
 
 const StyledSplitPaneContainer = styled.div`
   .Pane2 {
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .Resizer {
