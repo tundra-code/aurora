@@ -1,6 +1,6 @@
 {
   "name": "Aurora",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "dev": "electron-webpack dev",
@@ -20,7 +20,7 @@
     "create-note": "cross-env NODE_ENV=development babel-node scripts/create-note/create.js",
     "lint": "./node_modules/.bin/eslint src",
     "postinstall": "electron-builder install-app-deps",
-    "release": "electron-builder --linux --win --mac --publish always"
+    "release": "yarn compile && electron-builder --publish always"
   },
   "dependencies": {
     "@react-mutate/core": "^0.6.0",
