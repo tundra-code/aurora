@@ -16,9 +16,8 @@ os:
   - osx
 
 script:
-  - yarn 
-  - yarn lint
-  - yarn test
+  - npm install
+  - npm run test
 cache:
   directories:
     - node_modules
@@ -26,17 +25,12 @@ cache:
     - $HOME/.cache/electron-builder
     - $HOME/.npm/_prebuilds
 
-before_install:
-  - mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.2.0/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.2.0.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1 && /tmp/git-lfs/git-lfs pull
-  - cd /tmp; curl -L https://yarnpkg.com/latest.tar.gz | tar xvz && mv dist $HOME/.yarn
-  - export PATH="$HOME/.yarn/bin:$PATH"
-
 install: 
-  - yarn
+  - npm install
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn release; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn release -- --mac --win; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run release; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run release -- --mac --win; fi
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
