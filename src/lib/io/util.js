@@ -3,6 +3,7 @@ import { NoteModel } from "../note";
 import { auroraRootPath } from "../paths";
 const os = require("os");
 import AdmZip from "adm-zip";
+const app = require("electron").remote.app;
 
 const noteFolder = "notes";
 const databaseJSONFile = "database.json";
@@ -153,6 +154,9 @@ function unzipNotes(filePath) {
       zip.extractEntryTo(zipEntry, auroraDirContext().path(), false, true);
     }
   });
+  // reload app automatically
+  app.relaunch();
+  app.exit(0);
 }
 
 export {
