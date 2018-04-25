@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 const LeftFixedWidthDiv = FixedWidthDiv.extend`
   background: ${props => props.theme.colors.secondaryBackground};
   height: 100%;
-  overflow: scroll;
+  overflow-y: auto;
   z-index: 0;
 `;
 

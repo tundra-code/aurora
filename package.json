@@ -1,6 +1,6 @@
 {
   "name": "Aurora",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "dev": "electron-webpack dev",
@@ -8,7 +8,7 @@
     "compile": "electron-webpack",
     "update-snapshot-tests": "./node_modules/.bin/jest --updateSnapshot",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
-    "dist": "yarn compile && electron-builder",
+    "dist": "yarn compile && electron-builder --prepackaged dist",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "db-down": "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
     "db-up": "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
@@ -19,7 +19,8 @@
     "add-many-notes": "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
     "create-note": "cross-env NODE_ENV=development babel-node scripts/create-note/create.js",
     "lint": "./node_modules/.bin/eslint src",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "release": "yarn compile && electron-builder --publish always"
   },
   "dependencies": {
     "@react-mutate/core": "^0.6.0",
@@ -66,6 +67,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "snyk": "^1.50.0",
     "source-map-support": "^0.5.0",
     "sqlite3": "^3.1.13",
     "styled-components": "^2.2.3",
@@ -82,8 +84,8 @@
     "coveralls": "^2.13.1",
     "cross-env": "^5.1.1",
     "electron": "1.7.9",
-    "electron-builder": "^20.2.0",
-    "electron-webpack": "1.10.1",
+    "electron-builder": "^20.10.0",
+    "electron-webpack": "1.12.1",
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-react-16-adapter-setup": "^0.1.0",
@@ -102,7 +104,8 @@
     "redux-devtools": "^3.4.0",
     "regenerator-runtime": "^0.11.0",
     "sinon": "^4.1.2",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "webpack-sources": "1.0.1"
   },
   "electronWebpack": {
     "main": {
