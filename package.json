@@ -42,6 +42,7 @@
     "draft-js-plugins-editor": "^2.0.4",
     "electron-debug": "^1.4.0",
     "electron-default-menu": "^1.0.1",
+    "electron-google-analytics": "^0.1.0",
     "fs-jetpack": "^1.2.0",
     "fuse.js": "^3.1.0",
     "halogen": "^0.2.0",

@@ -6,10 +6,25 @@ import { Themed } from "../theme";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import * as selectors from "../../redux/selectors";
+import Analytics from 'electron-google-analytics';
+
+const analytics = new Analytics('UA-117599866-1');
+
 
 class Core extends React.Component {
   constructor(props) {
     super(props);
+    this.analytics();
+  }
+
+  analytics = () => {
+    return analytics.screen('Aurora', '1.0.0', 'com.aurora.test', 'com.app.installer', 'MainScreen')
+  .then((response) => {
+    window.clientID=response.clientID;
+    return response;
+  }).catch((err) => {
+    return err;
+  });
   }
 
   componentWillReceiveProps(nextProps) {

@@ -18,6 +18,10 @@ import TagModel from "../note/Tag";
 import { getDefaultKeyBinding, KeyBindingUtil } from "draft-js";
 import Toolbar from "./Toolbar";
 import moment from "moment";
+import Analytics from 'electron-google-analytics';
+
+const analytics = new Analytics('UA-117599866-1');
+
 
 const DeleteButton = styled.button`
   float: right;
@@ -87,6 +91,12 @@ class NoteView extends React.Component {
       this.setState({ tagInputValue: "" });
       this.removeNote(this.props.note);
     }
+    return analytics.event('Button', 'delete', { evLabel: 'delete', evValue: 1,clientID:window.clientID})
+  .then((response) => {
+    return response;
+  }).catch((err) => {
+    return err;
+  });
   };
 
   _getTags = () => {
@@ -111,12 +121,27 @@ class NoteView extends React.Component {
 
     // Clear text input
     this.setState({ tagInputValue: "" });
+
+    return analytics.event('Tag', 'add', { evLabel: "add tag", evValue: 1, clientID:window.clientID})
+      .then((response) => {
+        console.log(response);
+        return response;
+      }).catch((err) => {
+        return err;
+      });
   };
 
   onTagDelete = tag => {
     const note = this.props.note;
     note.removeTag(tag.uuid);
     this.props.updateAndSaveNote(note);
+
+    return analytics.event('Tag', 'delete', { evLabel: "delete tag", evValue: 1,clientID:window.clientID})
+      .then((response) => {
+        return response;
+      }).catch((err) => {
+        return err;
+      });
   };
 
   removeNote = note => {
