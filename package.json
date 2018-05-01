@@ -1,6 +1,6 @@
 {
-  "name": "electron-webpack-quick-start",
-  "version": "0.0.0",
+  "name": "Aurora",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "dev": "electron-webpack dev",
@@ -8,7 +8,7 @@
     "compile": "electron-webpack",
     "update-snapshot-tests": "./node_modules/.bin/jest --updateSnapshot",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
-    "dist": "yarn compile && electron-builder",
+    "dist": "yarn compile && electron-builder dist",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "db-down": "node node_modules/db-migrate/bin/db-migrate down --config config/database.json",
     "db-up": "node node_modules/db-migrate/bin/db-migrate up --config config/database.json",
@@ -19,7 +19,8 @@
     "add-many-notes": "cross-env NODE_ENV=development babel-node scripts/convert-notes/convert.js scripts/convert-notes/our_large_dataset.json",
     "create-note": "cross-env NODE_ENV=development babel-node scripts/create-note/create.js",
     "lint": "./node_modules/.bin/eslint src",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "release": "yarn compile && electron-builder --publish always"
   },
   "dependencies": {
     "@react-mutate/core": "^0.6.0",
@@ -37,10 +38,11 @@
     "db-migrate": "^0.10.0-beta.24",
     "db-migrate-sqlite3": "^0.2.1",
     "debounce": "^1.1.0",
-    "draft-js": "^0.10.4",
+    "draft-js": "0.10.4",
     "draft-js-plugins-editor": "^2.0.4",
     "electron-debug": "^1.4.0",
     "electron-default-menu": "^1.0.1",
+    "electron-google-analytics": "^0.1.0",
     "fs-jetpack": "^1.2.0",
     "fuse.js": "^3.1.0",
     "halogen": "^0.2.0",
@@ -82,8 +84,8 @@
     "coveralls": "^2.13.1",
     "cross-env": "^5.1.1",
     "electron": "1.7.9",
-    "electron-builder": "^20.2.0",
-    "electron-webpack": "1.10.1",
+    "electron-builder": "^20.10.0",
+    "electron-webpack": "1.12.1",
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-react-16-adapter-setup": "^0.1.0",
@@ -102,7 +104,8 @@
     "redux-devtools": "^3.4.0",
     "regenerator-runtime": "^0.11.0",
     "sinon": "^4.1.2",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "webpack-sources": "1.0.1"
   },
   "electronWebpack": {
     "main": {

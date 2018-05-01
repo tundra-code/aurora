@@ -11,6 +11,11 @@ import { connect } from "react-redux";
 const LeftFixedWidthDiv = FixedWidthDiv.extend`
   background: ${props => props.theme.colors.secondaryBackground};
   height: 100%;
+  z-index: 0;
+`;
+
+const RightFixedWidthDiv = FixedWidthDiv.extend`
+  z-index: 0;
 `;
 
 const Frame = props => (
@@ -19,10 +24,10 @@ const Frame = props => (
       <LeftFixedWidthDiv>
         <Sidebar />
       </LeftFixedWidthDiv>
-      <FixedWidthDiv>
+      <RightFixedWidthDiv>
         <Feed />
         {props.children}
-      </FixedWidthDiv>
+      </RightFixedWidthDiv>
     </SplitPane>
   </StyledSplitPaneContainer>
 );

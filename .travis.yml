@@ -1,11 +1,42 @@
+osx_image: xcode8.3
+
+dist: trusty
+
 language: node_js
 node_js:
   - "8"
+
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
+os:
+  - linux
+  - osx
+
 script:
-  - yarn 
-  - yarn lint
-  - yarn test
+  - npm install
+  - npm run test
 cache:
   directories:
     - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+    - $HOME/.npm/_prebuilds
+
+install: 
+  - npm install
+
+script:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo "linux release"; npm run release; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then echo "mac release"; npm run release -- --mac --win; fi
+
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
+
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
+
 after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"

@@ -17,6 +17,11 @@ const StoreItemList = ({ items, onClick, onUninstallClick }) => {
       return null;
     }
 
+    // if this mutation is unpublished, don't show it.
+    if (item.package.keywords && item.package.keywords.includes("unpublish")) {
+      return null;
+    }
+
     return (
       <StoreItem
         key={item.package.name}

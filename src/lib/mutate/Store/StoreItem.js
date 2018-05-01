@@ -4,7 +4,15 @@ import { PrimaryButton } from "../../ui/Buttons";
 import { withShadow } from "../../ui/Modifiers";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { INSTALLING, INSTALLED, ERROR, UNINSTALL } from "./InstallStates";
+import {
+  INSTALLING,
+  INSTALLED,
+  ERROR,
+  UNINSTALL,
+  UNINSTALLED
+} from "./InstallStates";
+
+const app = require("electron").remote.app;
 
 const Title = styled.h2`
   margin-top: 0;
@@ -13,20 +21,38 @@ const Title = styled.h2`
 
 const CardWithShadow = withShadow(Card);
 
+const reload = () => {
+  app.relaunch();
+  app.exit(0);
+};
+
 const InstallButton = ({ installState, onClick, onUninstallClick }) => {
   switch (installState) {
     case INSTALLING:
       return <p> Installing... This may take a moment 😅 </p>;
     case INSTALLED:
       return (
-        <p>
-          🙌 Installed! You may need to restart the app in order to see the
-          effects.
-        </p>
+        <div>
+          <p>
+            🙌 Installed! You need to reload the app in order to see the
+            effects.
+          </p>
+          <PrimaryButton onClick={reload}>Reload</PrimaryButton>
+        </div>
       );
     case UNINSTALL:
       return (
         <PrimaryButton onClick={onUninstallClick}>Uninstall</PrimaryButton>
+      );
+    case UNINSTALLED:
+      return (
+        <div>
+          <p>
+            ✔️ Uninstalled. You need to reload the app in order to see the
+            effects.
+          </p>
+          <PrimaryButton onClick={reload}>Reload</PrimaryButton>
+        </div>
       );
     case ERROR:
       return <p> Error! </p>;

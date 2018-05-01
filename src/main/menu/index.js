@@ -7,10 +7,10 @@ function confirmImport(MainWindow, filePath) {
     {
       title: "Import Notes",
       message:
-        "Are you sure you want to import notes? Doing so will delete current notes.",
+        "Are you sure you want to import notes? Doing so will delete current notes and restart app.",
       type: "question",
       buttons: ["yes", "no"],
-      detail: "Restart immediately to see changes.",
+      detail: "If yes, app will restart immediately to see changes.",
       defaultId: 1,
       cancelId: 1
     },

@@ -96,7 +96,7 @@ function notes(
       }
       return Object.assign({}, state, {
         selectedNote: action.note,
-        editorState: _.clone(
+        editorState: _.cloneDeep(
           window.editors[action.note.mutationName].emptyEditorState
         )
       });

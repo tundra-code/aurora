@@ -12,6 +12,10 @@ import { nextState, UNINSTALL } from "./InstallStates";
 import { Map } from "immutable";
 import { installMutation, uninstallMutation } from "../mutationsManager";
 import { preferences, allNotes } from "../../../redux/selectors";
+import Analytics from 'electron-google-analytics';
+
+const analytics = new Analytics('UA-117599866-1');
+
 
 class Store extends React.Component {
   constructor(props) {
@@ -89,6 +93,12 @@ class Store extends React.Component {
     installMutation(pkg.name, this.props.dispatch).then(() =>
       this.bumpPkgInstallState(pkg)
     ); // Installed
+    return analytics.event('Mutation', 'install', { evLabel: pkg.name, evValue: 1, clientID:window.clientID})
+      .then((response) => {
+        return response;
+      }).catch((err) => {
+        return err;
+      });
   };
 
   mutationsInUse = () => {
@@ -124,6 +134,13 @@ class Store extends React.Component {
     }
     uninstallMutation(pkg.name, this.props.dispatch);
     this.bumpPkgInstallState(pkg);
+
+    return analytics.event('Mutation', 'uninstall', { evLabel: pkg.name, evValue: 1,clientID:window.clientID})
+      .then((response) => {
+        return response;
+      }).catch((err) => {
+        return err;
+      });
   };
 
   render() {

@@ -14,6 +14,12 @@ import { auroraUserPath, auroraPreferencesFile } from "../paths";
 import { installMutations } from "@react-mutate/loader";
 import safeParseJSON from "json-parse-safe";
 
+const isWin = /^win/.test(process.platform);
+
+if (!isWin) {
+  process.env.PATH = process.env.PATH + ":/usr/local/bin";
+}
+
 const preferencesFile = auroraPreferencesFile();
 
 /*

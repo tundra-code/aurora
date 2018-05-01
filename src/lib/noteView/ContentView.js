@@ -11,11 +11,23 @@ import {
 import PropTypes from "prop-types";
 
 class ContentView extends React.Component {
+  finishedLoadingContent = () => {
+    this.props.note.getContent().then(content => {
+      const editorState = deSerializeContent(
+        content[this.props.note.mutationName]
+      );
+      this.props.onContentLoaded(editorState);
+    });
+  };
+
   render() {
     if (this.props.note && this.props.note.mutationName === "BaseEditor") {
       return (
         <div>
-          <Editor {...this.props} />
+          <Editor
+            {...this.props}
+            finishedLoadingContent={this.finishedLoadingContent}
+          />
         </div>
       );
     }
@@ -23,8 +35,8 @@ class ContentView extends React.Component {
       <div>
         <p>Note cannot be rendered!</p>
         <p>
-          Mutation {this.props.note.mutationName} is required, but is not
-          installed. Try Mutations - Add New Mutation to install it.
+          Extension {this.props.note.mutationName} is required, but is not
+          installed. Try Extensions - Add New Extension to install it.
         </p>
       </div>
     );
