@@ -22,12 +22,11 @@ const SearchBar = Input.extend`
 const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  overflow: hidden;
 `;
 
 const ToastBar = styled.div`
   display: flex;
-  flex: 0 0 auto;
   width: 100%;
 `;
 

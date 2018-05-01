@@ -9,6 +9,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   overflow-y: auto;
+  flex: 2;
 `;
 
 class TagList extends React.Component {
