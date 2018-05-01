@@ -9,14 +9,9 @@ import NoteList from "./NoteList.js";
 import { Input } from "../ui/Inputs";
 import TagList from "./TagList.js"
 
-<<<<<<< HEAD
 const BumpedDownMenu = Menu.extend`
   padding-top: ${props => props.theme.spacing.header};
   flex: 1;
-=======
-const BumpedDownMenu = Menu.extend` 
-  /* padding-top: ${props => props.theme.spacing.header}; */
->>>>>>> 58168d3088e5db273806b76c87113889579533d3
 `;
 
 const SearchBar = Input.extend`
