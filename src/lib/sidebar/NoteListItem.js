@@ -29,7 +29,8 @@ class NoteListItem extends React.Component {
     super(props);
   }
 
-  onClick = () => {
+  onClick = (e) => {
+    e.stopPropagation();
     this.props.dispatch(selectAndLoadNote(this.props.note));
   };
 

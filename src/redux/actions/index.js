@@ -91,6 +91,7 @@ export function loadNoteContent(note) {
 }
 
 export function selectAndLoadNote(note) {
+  console.log("This is begin called.")
   return dispatch => {
     dispatch(selectNote(note));
     if (note !== null) {

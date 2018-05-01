@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { mutate } from "@react-mutate/core";
 import { connect } from "react-redux";
 import { query } from "../../redux/selectors";
-import { setQuery } from "../../redux/actions";
+import { loadNotes, setQuery } from "../../redux/actions";
 import { Menu } from "../ui/Menu";
 import NoteList from "./NoteList.js";
 import { Input } from "../ui/Inputs";
@@ -47,7 +47,12 @@ class Sidebar extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.dispatch(loadNotes());
+  }
+
   onInput = e => {
+    e.stopPropagation();
     const searchBoxValue = e.target.value;
     this.props.dispatch(setQuery(searchBoxValue));
   };

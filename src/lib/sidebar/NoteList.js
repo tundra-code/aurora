@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loadNotes } from "../../redux/actions";
 import NoteListItem from "./NoteListItem.js";
 import { MenuCardList } from "../ui/Menu";
 import { allNotes, query } from "../../redux/selectors";
@@ -15,10 +14,6 @@ const Container = styled.div`
 class NoteList extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    this.props.dispatch(loadNotes());
   }
 
   getMatchingTags = (tag, noteTags) => {

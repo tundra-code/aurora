@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loadNotes } from "../../redux/actions";
 import TagItem from "./TagItem.js";
 import { noteDictToArray } from "../note/util";
 import { allNotes } from "../../redux/selectors";
@@ -15,10 +14,6 @@ const Container = styled.div`
 class TagList extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    this.props.dispatch(loadNotes());
   }
   
   render() {
