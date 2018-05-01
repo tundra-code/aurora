@@ -5,6 +5,11 @@ import NoteListItem from "./NoteListItem.js";
 import { MenuCardList } from "../ui/Menu";
 import { allNotes, query } from "../../redux/selectors";
 import { noteDictToArray } from "../note/util";
+import styled from "styled-components";
+
+const Container = styled.div`
+  overflow-y: auto;
+`;
 
 class NoteList extends React.Component {
   constructor(props) {
@@ -77,9 +82,9 @@ class NoteList extends React.Component {
     ));
 
     return (
-      <div>
+      <Container>
         <MenuCardList> {noteList} </MenuCardList>
-      </div>
+      </Container>
     );
   }
 }

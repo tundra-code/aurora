@@ -1,13 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 import { mutate } from "@react-mutate/core";
 import { connect } from "react-redux";
+import { query } from "../../redux/selectors";
 import { setQuery } from "../../redux/actions";
 import { Menu } from "../ui/Menu";
 import NoteList from "./NoteList.js";
 import { Input } from "../ui/Inputs";
+import TagList from "./TagList.js"
 
 const BumpedDownMenu = Menu.extend`
   padding-top: ${props => props.theme.spacing.header};
+  flex: 1;
 `;
 
 const SearchBar = Input.extend`
@@ -15,9 +19,33 @@ const SearchBar = Input.extend`
   margin-bottom: 16px;
 `;
 
+const SidebarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
+const ToastBar = styled.div`
+  display: flex;
+  flex: 0 0 auto;
+  width: 100%;
+`;
+
+const ToastButton = styled.button`
+  margin: 10px;
+  padding: 10px;
+  flex: 1;
+  background-color: rgba(1,1,1,0);
+  border: none;
+  
+`
+
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      noteView: "Recent"
+    };
   }
 
   onInput = e => {
@@ -25,18 +53,44 @@ class Sidebar extends React.Component {
     this.props.dispatch(setQuery(searchBoxValue));
   };
 
+  onViewSelect = type => {
+    return () => {
+      this.setState({noteView: type}, () => {
+        this.props.dispatch(setQuery(""));
+      });
+    }
+  }
+
+  chooseNoteView = () => {
+    if(this.state.noteView === "Recent" || this.props.query.length !== 0){
+      return <NoteList />
+    }
+    
+    return <TagList/>
+  }
+
   render() {
     return (
-      <div>
+      <SidebarContainer>
         <BumpedDownMenu>
-          <SearchBar onInput={this.onInput} placeholder="Search" />
-          <NoteList />
+            <SearchBar onInput={this.onInput} value={this.props.query} placeholder="Search" />
+            {this.chooseNoteView()}
         </BumpedDownMenu>
-      </div>
+        <ToastBar>
+            <ToastButton onClick={this.onViewSelect("Tags")}>Tags</ToastButton>
+            <ToastButton onClick={this.onViewSelect("Recent")}>Recent</ToastButton>
+        </ToastBar>
+      </SidebarContainer>
     );
   }
 }
 
 Sidebar.propTypes = {};
 
-export default connect()(mutate(Sidebar, "Sidebar"));
+const mapStateToProps = state => {
+  return {
+    query: query(state)
+  };
+};
+
+export default connect(mapStateToProps)(mutate(Sidebar, "Sidebar"));
