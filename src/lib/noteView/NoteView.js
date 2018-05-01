@@ -124,7 +124,6 @@ class NoteView extends React.Component {
 
     return analytics.event('Tag', 'add', { evLabel: "add tag", evValue: 1, clientID:window.clientID})
       .then((response) => {
-        console.log(response);
         return response;
       }).catch((err) => {
         return err;
