@@ -24,15 +24,16 @@ class TagList extends React.Component {
         set.add(tag);
       }
     }
-    
-    const tagList = [];
-    for(const tag of set){
-      tagList.push(<TagItem key={tag.uuid} tag={tag.value}/>);
+    const tagList = Array.from(set).sort((tag1, tag2) => {return tag1.value.toLowerCase() >= tag2.value.toLowerCase()});
+    const tagListReact = [] 
+    for(const tag of tagList){
+      tagListReact.push(<TagItem key={tag.uuid} tag={tag.value}/>);
     }
+
 
     return (
       <Container>
-         {tagList}
+         {tagListReact}
       </Container>
     );
   }
